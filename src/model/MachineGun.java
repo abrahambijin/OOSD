@@ -11,7 +11,10 @@ public class MachineGun extends Weapon{
     }
 
     @Override
-    public ArrayList<Point> weaponRange() {
-        return null;
+    public ArrayList<Point> weaponRange(Point point)
+    {
+        ArrayList<Point> shootingOptions = new ArrayList<>();
+        shootingOptions.addAll(super.getStraightLineShootingOptions(point));
+        return shootingOptions;
     }
 }

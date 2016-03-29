@@ -3,30 +3,46 @@ package model;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Point {
+public class Point
+{
 
     private int xCoordinate;
     private int yCoordinate;
 
-    public Point(int xCoordinate, int yCoordinate) {
+    public Point(int xCoordinate, int yCoordinate)
+    {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
     }
 
-    public int getxCoordinate() {
+    public int getXCoordinate()
+    {
         return xCoordinate;
     }
 
-    public int getyCoordinate() {
+    public int getYCoordinate()
+    {
         return yCoordinate;
     }
 
-    public boolean equals(Point point){
-        return ((point.getxCoordinate() == xCoordinate) && (point.getyCoordinate() == yCoordinate));
+    public boolean equals(Point point)
+    {
+        return ((point.getXCoordinate() == xCoordinate) &&
+                (point.getYCoordinate() == yCoordinate));
     }
 
-    public String toString(){
-         return new String("("+xCoordinate+", "+yCoordinate+")");
+    public String toString()
+    {
+        return "(" + xCoordinate + ", " + yCoordinate + ")";
     }
 
+    public void setxCoordinate(int xCoordinate)
+    {
+        this.xCoordinate = xCoordinate;
+    }
+
+    public void setyCoordinate(int yCoordinate)
+    {
+        this.yCoordinate = yCoordinate;
+    }
 }

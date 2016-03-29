@@ -10,8 +10,13 @@ public class Pistol extends Weapon {
         super(1, 20);
     }
 
+
     @Override
-    public ArrayList<Point> weaponRange() {
-        return null;
+    public ArrayList<Point> weaponRange(Point point)
+    {
+        ArrayList<Point> shootingOptions = new ArrayList<>();
+        shootingOptions.addAll(super.getDiagonalShootingOptions(point));
+        shootingOptions.addAll(super.getStraightLineShootingOptions(point));
+        return shootingOptions;
     }
 }
