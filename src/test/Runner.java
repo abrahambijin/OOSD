@@ -1,4 +1,7 @@
-package model;
+package test;
+
+import model.Board;
+import model.Game;
 
 import java.util.Scanner;
 
