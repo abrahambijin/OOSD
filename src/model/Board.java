@@ -13,4 +13,15 @@ public class Board {
         this.warZone = new GameItem[BOARDSIZE][BOARDSIZE];
     }
 
+    public void placeGameItem(GameItem item){
+
+        Point position = item.getPosition();
+        int xCoordinate = position.getXCoordinate();
+        int yCoordinate = position.getYCoordinate();
+        // the cell must be empty to place a new game item
+        if(warZone[xCoordinate][yCoordinate] == null){
+            warZone[xCoordinate][yCoordinate] = item;
+        }
+    }
+
 }
