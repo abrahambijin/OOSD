@@ -5,31 +5,32 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public abstract class Troop extends GameItem
+public class Troop extends GameItem
 {
+
     private int steps;
     private Weapon primaryWeapon;
     private Weapon secondaryWeapon;
 
 
-    public Troop(Point position, int steps, Weapon primaryWeapon,
+    public Troop(String name, Point position, int steps, Weapon primaryWeapon,
                  Weapon secondaryWeapon)
     {
-        super(position);
+        super(name,position);
         this.steps = steps;
         this.primaryWeapon = primaryWeapon;
         this.secondaryWeapon = secondaryWeapon;
     }
 
 
-    public ArrayList<Point> primaryWeaponRange(Point loc)
+    public ArrayList<Point> primaryWeaponRange()
     {
-        return primaryWeapon.weaponRange(loc);
+        return primaryWeapon.weaponRange(super.getPosition());
     }
 
-    public ArrayList<Point> secondaryWeaponRange(Point loc)
+    public ArrayList<Point> secondaryWeaponRange()
     {
-        return secondaryWeapon.weaponRange(loc);
+        return secondaryWeapon.weaponRange(super.getPosition());
     }
 
     public int getSteps()

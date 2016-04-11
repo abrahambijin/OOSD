@@ -11,7 +11,7 @@ public class Grenade extends Weapon
 
     public Grenade()
     {
-        super(1, 30);
+        super("Grenade",1, 30,false,false);
         this.head = null;
     }
 

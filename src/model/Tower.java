@@ -12,7 +12,7 @@ public class Tower extends Troop
 
     public Tower(Point position)
     {
-        super(position, 1, new Sniper(), new Grenade());
+        super("Tower",position, 1, new Sniper(), new Grenade());
 
         Random randomNumberGenerator = new Random();
         int headXPos = randomNumberGenerator.nextInt(3) - 1;
