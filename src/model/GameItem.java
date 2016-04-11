@@ -12,4 +12,13 @@ public class GameItem  {
         this.position = position;
         health = 100;
     }
+
+    public GameItem(Point position, int health){
+        this.position = position;
+        this.health = health;
+    }
+
+    public Point getPosition() {
+        return position;
+    }
 }
