@@ -17,13 +17,13 @@ public class Sniper extends Weapon
 
 
     @Override
-    public ArrayList<Point> weaponRange(Point point)
+    public ArrayList<Point> weaponRange(Point currentPosition)
     {
         ArrayList<Point> shootingOptions = new ArrayList<>();
         int headXCoordinate = head.getXCoordinate();
         int headYCoordinate = head.getYCoordinate();
-        int xPos = point.getXCoordinate();
-        int yPos = point.getYCoordinate();
+        int xPos = currentPosition.getXCoordinate();
+        int yPos = currentPosition.getYCoordinate();
         shootingOptions.add(new Point((xPos + headXCoordinate),
                 (yPos + headYCoordinate)));
         shootingOptions.add(new Point((xPos + (2 * headXCoordinate)),
