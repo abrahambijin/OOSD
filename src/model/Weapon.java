@@ -5,19 +5,35 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public abstract class Weapon {
+public class Weapon
+{
 
-    int range;
-    int damage;
+    private int range;
+    private int damage;
+    private boolean canShootDiagonally;
+    private boolean canShootStraight;
 
-    public Weapon(int range, int damage) {
+    public Weapon(int range, int damage, boolean canShootDiagonally,
+                  boolean canShootStraight)
+    {
         this.range = range;
         this.damage = damage;
+        this.canShootDiagonally = canShootDiagonally;
+        this.canShootStraight = canShootStraight;
     }
 
-    public abstract ArrayList<Point> weaponRange(Point point);
+    public ArrayList<Point> weaponRange(Point point)
+    {
+        ArrayList<Point> shootingOptions = new ArrayList<>();
+        if (canShootDiagonally)
+            shootingOptions.addAll(getDiagonalShootingOptions(point));
+        if (canShootStraight)
+            shootingOptions.addAll(getStraightLineShootingOptions(point));
+        return shootingOptions;
+    }
 
-    public int getRange() {
+    protected int getRange()
+    {
         return range;
     }
 
@@ -40,7 +56,7 @@ public abstract class Weapon {
     {
         int xPos = location.getXCoordinate();
         int yPos = location.getYCoordinate();
-        ArrayList<Point>straightLineShootingOptions = new ArrayList<>();
+        ArrayList<Point> straightLineShootingOptions = new ArrayList<>();
         for (int i = range; i > 0; i--)
         {
             straightLineShootingOptions.add(new Point((xPos - i), yPos));
@@ -51,7 +67,8 @@ public abstract class Weapon {
         return straightLineShootingOptions;
     }
 
-    public int getDamage() {
+    public int getDamage()
+    {
         return damage;
     }
 }
