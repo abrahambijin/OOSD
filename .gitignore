@@ -45,3 +45,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Eclipse files
+.classpath
+.project
+OOSD.eml
+OOSD.userlibraries
+.metadata
+cls.ucls
