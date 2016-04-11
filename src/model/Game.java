@@ -15,12 +15,6 @@ public class Game
     public Game()
     {
 
-<<<<<<< HEAD
-        this.board = board;
-    }
-
-    public void initializeGame(String teamNamePlayerOne, String teamNamePlayerTwo) {
-=======
         this.board = new Board(BOARDSIZE);
         initializeGame();
         placePlayersOnBoard(new Player[]{playerOne, playerTwo});
@@ -28,24 +22,11 @@ public class Game
 
     private void initializeGame()
     {
->>>>>>> master
 
-        Weapon Ak47 = new Weapon(2,15,true,true);
-        Weapon bomb = new Weapon(1,25,true,false);
-        Weapon cannon = new Weapon(2,15,false,true);
+        System.out.println("Player One will defend the base");
+        askName(1);
+        String teamName = getTeamName();
 
-<<<<<<< HEAD
-        Jet jet = new Jet(new Point(0,0), 3, bomb, new Mg17());
-        Army army = new Army(new Point(6,6), 1, new Pistol(), Ak47);
-        Tank tank = new Tank(new Point(6,6), 2, cannon, new MachineGun());
-        Tower tower = new Tower(new Point(9,9));
-        Base base = new Base(new Point(0,0), 500);
-
-        playerOne = new BasePlayer(teamNamePlayerOne, tank, tower, base);
-        playerTwo = new Player(teamNamePlayerTwo,jet, army);
-
-        placePlayersOnBoard(new Player[] {playerOne, playerTwo});
-=======
         Troop jet = new Troop("Jet",new Point(0, 0), 3,
                 new Weapon("Bomb", 1, 25, true, false),
                 new Weapon("Mg17", 2, 20, true, false));
@@ -73,7 +54,6 @@ public class Game
     {
         Scanner input = new Scanner(System.in);
         return input.next();
->>>>>>> master
     }
 
     private void placePlayersOnBoard(Player[] players)
