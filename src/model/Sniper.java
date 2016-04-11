@@ -11,7 +11,7 @@ public class Sniper extends Weapon
 
     public Sniper()
     {
-        super(3, 35);
+        super("Sniper",3, 35,false,false);
         this.head = null;
     }
 
@@ -24,6 +24,9 @@ public class Sniper extends Weapon
         int headYCoordinate = head.getYCoordinate();
         int xPos = currentPosition.getXCoordinate();
         int yPos = currentPosition.getYCoordinate();
+        for(int i=1; i<=super.getRange();i++)
+            shootingOptions.add(new Point((xPos + (i * headXCoordinate)),
+                    (yPos + (i * headYCoordinate))));
         shootingOptions.add(new Point((xPos + headXCoordinate),
                 (yPos + headYCoordinate)));
         shootingOptions.add(new Point((xPos + (2 * headXCoordinate)),

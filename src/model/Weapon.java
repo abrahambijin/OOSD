@@ -7,15 +7,16 @@ import java.util.ArrayList;
  */
 public class Weapon
 {
-
+    private String name;
     private int range;
     private int damage;
     private boolean canShootDiagonally;
     private boolean canShootStraight;
 
-    public Weapon(int range, int damage, boolean canShootDiagonally,
-                  boolean canShootStraight)
+    public Weapon(String name, int range, int damage,
+                  boolean canShootDiagonally, boolean canShootStraight)
     {
+        this.name = name;
         this.range = range;
         this.damage = damage;
         this.canShootDiagonally = canShootDiagonally;
@@ -65,6 +66,11 @@ public class Weapon
             straightLineShootingOptions.add(new Point(xPos, (yPos - i)));
         }
         return straightLineShootingOptions;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
     public int getDamage()
