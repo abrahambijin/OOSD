@@ -24,9 +24,13 @@ public class Game {
         askName(1);
         String teamName = getTeamName();
 
-        Jet jet = new Jet(new Point(0,0), 3, new Bomb(), new Mg17());
-        Army army = new Army(new Point(6,6), 1, new Pistol(), new Ak47());
-        Tank tank = new Tank(new Point(6,6), 2,new Cannon(), new MachineGun());
+        Weapon Ak47 = new Weapon(2,15,true,true);
+        Weapon bomb = new Weapon(1,25,true,false);
+        Weapon cannon = new Weapon(2,15,false,true);
+
+        Jet jet = new Jet(new Point(0,0), 3, bomb, new Mg17());
+        Army army = new Army(new Point(6,6), 1, new Pistol(), Ak47);
+        Tank tank = new Tank(new Point(6,6), 2, cannon, new MachineGun());
         Tower tower = new Tower(new Point(9,9));
         Base base = new Base(new Point(0,0), 500);
 
