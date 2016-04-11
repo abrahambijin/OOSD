@@ -14,15 +14,9 @@ public class Game {
     public Game(Board board) {
 
         this.board = board;
-        initializeGame();
-        placePlayersOnBoard(new Player[]{playerOne, playerTwo});
     }
 
-    private void initializeGame() {
-
-        System.out.println("Player One will defend the base");
-        askName(1);
-        String teamName = getTeamName();
+    public void initializeGame(String teamNamePlayerOne, String teamNamePlayerTwo) {
 
         Weapon Ak47 = new Weapon(2,15,true,true);
         Weapon bomb = new Weapon(1,25,true,false);
@@ -34,19 +28,10 @@ public class Game {
         Tower tower = new Tower(new Point(9,9));
         Base base = new Base(new Point(0,0), 500);
 
-        playerOne = new BasePlayer(teamName, tank, tower, base);
-        askName(2);
-        teamName = getTeamName();
-        playerTwo = new Player(teamName,jet, army);
-    }
+        playerOne = new BasePlayer(teamNamePlayerOne, tank, tower, base);
+        playerTwo = new Player(teamNamePlayerTwo,jet, army);
 
-    private void askName(int number) {
-        System.out.println("Player" +  Integer.toString(number) + ",please select your team name:");
-    }
-
-    private String getTeamName() {
-        Scanner input = new Scanner(System.in);
-        return input.next();
+        placePlayersOnBoard(new Player[] {playerOne, playerTwo});
     }
 
     private void placePlayersOnBoard(Player [] players) {
