@@ -19,12 +19,12 @@ public class Runner {
 
         askName(2);
         String teamNamePlayerTwo = getTeamName();
-        game = new Game(new Board());
+        game = new Game();
         game.initializeGame(teamNamePlayerOne, teamNamePlayerTwo );
     }
 
     private static void askName(int number) {
-        System.out.println("Player" +  Integer.toString(number) + ",please select your team name:");
+        System.out.println("Player" +  number + ",please select your team name:");
     }
 
     private static String getTeamName() {

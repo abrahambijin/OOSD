@@ -14,18 +14,12 @@ public class Game
 
     public Game()
     {
-
         this.board = new Board(BOARDSIZE);
-        initializeGame();
-        placePlayersOnBoard(new Player[]{playerOne, playerTwo});
     }
 
-    private void initializeGame()
+    public void initializeGame(String teamNamePlayerOne, String
+            teamNamePlayerTwo)
     {
-
-        System.out.println("Player One will defend the base");
-        askName(1);
-        String teamName = getTeamName();
 
         Troop jet = new Troop("Jet",new Point(0, 0), 3,
                 new Weapon("Bomb", 1, 25, true, false),
@@ -38,16 +32,10 @@ public class Game
                 new Weapon("Machine Gun", 1, 17, false, true));
         Tower tower = new Tower(new Point(9, 9));
 
-        playerOne = new BasePlayer(teamName, tank, tower);
-        askName(2);
-        teamName = getTeamName();
-        playerTwo = new Player(teamName, jet, army);
-    }
+        playerOne = new BasePlayer(teamNamePlayerOne, tank, tower);
+        playerTwo = new Player(teamNamePlayerTwo, jet, army);
 
-    private void askName(int number)
-    {
-        System.out.println("Player" + Integer.toString(number) +
-                ",please select your team name:");
+        placePlayersOnBoard(new Player[]{playerOne, playerTwo});
     }
 
     private String getTeamName()
@@ -59,16 +47,16 @@ public class Game
     private void placePlayersOnBoard(Player[] players)
     {
 
-        for (int i = 0; i < players.length; i++)
-            populateGameItems(players[i].getItems());
+        for (Player player : players)
+            populateGameItems(player.getItems());
 
     }
 
     private void populateGameItems(GameItem[] items)
     {
 
-        for (int i = 0; i < items.length; i++)
-            board.placeGameItem(items[i]);
+        for (GameItem item : items)
+            board.placeGameItem(item);
     }
 
 }
