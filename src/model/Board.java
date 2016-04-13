@@ -27,4 +27,19 @@ public class Board
         }
     }
 
+    public GameItem[][] getWarZone()
+    {
+        return warZone;
+    }
+
+    public String getItemName(Point location)
+    {
+        GameItem item =
+                warZone[location.getXCoordinate()][location.getYCoordinate()];
+        if(item == null)
+            return "     ";
+        else
+            return item.getName();
+    }
+
 }

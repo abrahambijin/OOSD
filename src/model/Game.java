@@ -3,9 +3,6 @@ package model;
 import exceptions.ObjectAlreadyExistException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-
 /**
  * Created by mitulmanish on 26/03/2016.
  */
@@ -14,8 +11,6 @@ public class Game
     private final int BOARD_SIZE = 10;
     private static final int NO_OF_PLAYERS = 2;
     private Board board;
-    private PlayerOne playerOne;
-    private Player playerTwo;
     private ArrayList<Player> players;
     private static int noOfGameObjects = 0;
 
@@ -32,25 +27,15 @@ public class Game
         {
             players.add(Player.playerFactory(teamName));
         }
-
-        placePlayersOnBoard(players);
     }
 
-    private String getTeamName()
+    public void placePlayersOnBoard()
     {
-        Scanner input = new Scanner(System.in);
-        return input.next();
-    }
-
-    private void placePlayersOnBoard(ArrayList<Player> players)
-    {
-
         for (Player player : players)
             for (GameItem item : player.getItems())
                 board.placeGameItem(item);
 
     }
-
 
     public static int getNO_OF_PLAYERS()
     {
@@ -72,4 +57,18 @@ public class Game
         }
     }
 
+    public ArrayList<Player> getPlayers()
+    {
+        return players;
+    }
+
+    public String getItemName(Point location)
+    {
+        return board.getItemName(location);
+    }
+
+    public int getBOARD_SIZE()
+    {
+        return BOARD_SIZE;
+    }
 }

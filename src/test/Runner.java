@@ -1,8 +1,7 @@
 package test;
 
 import exceptions.ObjectAlreadyExistException;
-import model.Board;
-import model.Game;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,7 +32,30 @@ public class Runner
             System.err.println(e.getMessage());
             System.exit(0);
         }
+        System.out.println();
+        for(Player player: game.getPlayers())
+        {
+            System.out.println(player.getName()+": ");
+            for (GameItem item : player.getItems())
+            {
+                System.out.print("Where would you like to place " +
+                        item.getName() + ":");
+                Point location = getLocationInput();
+                item.setPosition(location);
+            }
+        }
+        game.placePlayersOnBoard();
 
+
+        for(int i=0; i<game.getBOARD_SIZE();i++)
+        {
+            System.out.print("|");
+            for(int j=0;j<game.getBOARD_SIZE();j++)
+            {
+                System.out.print(game.getItemName(new Point(i,j))+"|");
+            }
+            System.out.println();
+        }
     }
 
     private static void askName(int number)
@@ -45,7 +67,15 @@ public class Runner
     private static String getTeamName()
     {
         Scanner input = new Scanner(System.in);
-        return input.next();
+        return input.nextLine();
+    }
+
+    private static Point getLocationInput()
+    {
+        Scanner input = new Scanner(System.in);
+        int x = input.nextInt();
+        int y = input.nextInt();
+        return new Point(x,y);
     }
 
 }

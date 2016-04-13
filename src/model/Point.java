@@ -35,14 +35,4 @@ public class Point
     {
         return "(" + xCoordinate + ", " + yCoordinate + ")";
     }
-
-    public void setxCoordinate(int xCoordinate)
-    {
-        this.xCoordinate = xCoordinate;
-    }
-
-    public void setyCoordinate(int yCoordinate)
-    {
-        this.yCoordinate = yCoordinate;
-    }
 }

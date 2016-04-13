@@ -10,12 +10,11 @@ public class GameItem  {
     int health;
 
     public GameItem(String name) {
-        this.name = name;
-        health = 100;
+        this(name,100);
     }
 
-    public GameItem(String name,Point position, int health){
-        this.position = position;
+    public GameItem(String name, int health){
+        this.name = name;
         this.health = health;
     }
 
@@ -26,5 +25,10 @@ public class GameItem  {
     public void setPosition(Point position)
     {
         this.position = position;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 }

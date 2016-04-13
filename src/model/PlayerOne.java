@@ -11,7 +11,7 @@ public class PlayerOne extends Player {
 
     public PlayerOne(String name, ArrayList<Troop> troops) {
         super(name, troops);
-        this.base = new GameItem("Base",new Point(0, 0), 500);
+        this.base = new GameItem("Base", 500);
     }
 
     public ArrayList<GameItem> getItems()
