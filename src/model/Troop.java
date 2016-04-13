@@ -1,5 +1,7 @@
 package model;
 
+import interfaces.WeaponWithHead;
+
 import java.util.ArrayList;
 
 /**
@@ -9,28 +11,35 @@ public class Troop extends GameItem
 {
 
     private int steps;
-    private Weapon primaryWeapon;
-    private Weapon secondaryWeapon;
+    private ArrayList<Weapon> weapons;
+    private Boolean canMoveDiagonally;
+    private Boolean canMoveInStraightLine;
 
-
-    public Troop(String name, Point position, int steps, Weapon primaryWeapon,
-                 Weapon secondaryWeapon)
+    public Troop(String name, int steps,
+                 ArrayList<Weapon> weapons, Boolean canMoveDiagonally,
+                 Boolean canMoveInStraightLine)
     {
-        super(name,position);
+        super(name);
         this.steps = steps;
-        this.primaryWeapon = primaryWeapon;
-        this.secondaryWeapon = secondaryWeapon;
+        this.weapons = weapons;
+        this.canMoveDiagonally = canMoveDiagonally;
+        this.canMoveInStraightLine = canMoveInStraightLine;
     }
 
-
-    public ArrayList<Point> primaryWeaponRange()
+    public ArrayList<Point> getWeaponRange(int weaponIndex)
     {
-        return primaryWeapon.weaponRange(super.getPosition());
+        return weapons.get(weaponIndex).weaponRange(super.getPosition());
     }
 
-    public ArrayList<Point> secondaryWeaponRange()
+    protected ArrayList<Point> getWeaponRange(int weaponIndex, Point head)
     {
-        return secondaryWeapon.weaponRange(super.getPosition());
+        if(weapons.get(weaponIndex) instanceof WeaponWithHead)
+        {
+            return ((WeaponWithHead) weapons.get(weaponIndex)).weaponRange
+                    (super.getPosition(),head);
+        }
+        else
+            return getWeaponRange(weaponIndex);
     }
 
     public int getSteps()
@@ -38,13 +47,8 @@ public class Troop extends GameItem
         return steps;
     }
 
-    public Weapon getPrimaryWeapon()
+    public ArrayList<Weapon> getWeapons()
     {
-        return primaryWeapon;
-    }
-
-    public Weapon getSecondaryWeapon()
-    {
-        return secondaryWeapon;
+        return weapons;
     }
 }

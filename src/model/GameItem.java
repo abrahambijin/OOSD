@@ -9,8 +9,8 @@ public class GameItem  {
     private Point position;
     int health;
 
-    public GameItem(String name,Point position) {
-        this.position = position;
+    public GameItem(String name) {
+        this.name = name;
         health = 100;
     }
 
@@ -21,5 +21,10 @@ public class GameItem  {
 
     public Point getPosition() {
         return position;
+    }
+
+    public void setPosition(Point position)
+    {
+        this.position = position;
     }
 }

@@ -1,23 +1,21 @@
 package model;
 
+import interfaces.WeaponWithHead;
+
 import java.util.ArrayList;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Sniper extends Weapon
+public class Sniper extends Weapon implements WeaponWithHead
 {
-    private Point head;
-
     public Sniper()
     {
         super("Sniper",3, 35,false,false);
-        this.head = null;
     }
 
-
     @Override
-    public ArrayList<Point> weaponRange(Point currentPosition)
+    public ArrayList<Point> weaponRange(Point currentPosition, Point head)
     {
         ArrayList<Point> shootingOptions = new ArrayList<>();
         int headXCoordinate = head.getXCoordinate();
@@ -34,10 +32,5 @@ public class Sniper extends Weapon
         shootingOptions.add(new Point((xPos + (3 * headXCoordinate)),
                 (yPos + (3 * headYCoordinate))));
         return shootingOptions;
-    }
-
-    public void updateHead(Point head)
-    {
-        this.head = head;
     }
 }

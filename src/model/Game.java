@@ -1,5 +1,9 @@
 package model;
 
+import exceptions.ObjectAlreadyExistException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -7,35 +11,29 @@ import java.util.Scanner;
  */
 public class Game
 {
-    private final int BOARDSIZE = 10;
+    private final int BOARD_SIZE = 10;
+    private static final int NO_OF_PLAYERS = 2;
     private Board board;
-    private BasePlayer playerOne;
+    private PlayerOne playerOne;
     private Player playerTwo;
+    private ArrayList<Player> players;
+    private static int noOfGameObjects = 0;
 
-    public Game()
+    private Game(ArrayList<String> teamNames)
     {
-        this.board = new Board(BOARDSIZE);
+        this.board = new Board(BOARD_SIZE);
+        players = new ArrayList<>();
+        initializeGame(teamNames);
     }
 
-    public void initializeGame(String teamNamePlayerOne, String
-            teamNamePlayerTwo)
+    private void initializeGame(ArrayList<String> teamNames)
     {
+        for (String teamName : teamNames)
+        {
+            players.add(Player.playerFactory(teamName));
+        }
 
-        Troop jet = new Troop("Jet",new Point(0, 0), 3,
-                new Weapon("Bomb", 1, 25, true, false),
-                new Weapon("Mg17", 2, 20, true, false));
-        Troop army = new Troop("Army",new Point(6,6),1,new Weapon("Pistol", 1,
-                20, true, true),
-                new Weapon("Ak47", 2, 15, true, true));
-        Troop tank = new Troop("Tank",new Point(6, 6), 2,
-                new Weapon("Cannon", 2, 15, false, true),
-                new Weapon("Machine Gun", 1, 17, false, true));
-        Tower tower = new Tower(new Point(9, 9));
-
-        playerOne = new BasePlayer(teamNamePlayerOne, tank, tower);
-        playerTwo = new Player(teamNamePlayerTwo, jet, army);
-
-        placePlayersOnBoard(new Player[]{playerOne, playerTwo});
+        placePlayersOnBoard(players);
     }
 
     private String getTeamName()
@@ -44,19 +42,34 @@ public class Game
         return input.next();
     }
 
-    private void placePlayersOnBoard(Player[] players)
+    private void placePlayersOnBoard(ArrayList<Player> players)
     {
 
         for (Player player : players)
-            populateGameItems(player.getItems());
+            for (GameItem item : player.getItems())
+                board.placeGameItem(item);
 
     }
 
-    private void populateGameItems(GameItem[] items)
-    {
 
-        for (GameItem item : items)
-            board.placeGameItem(item);
+    public static int getNO_OF_PLAYERS()
+    {
+        return NO_OF_PLAYERS;
+    }
+
+    public static Game gameFactory(ArrayList<String> teamNames)
+            throws ObjectAlreadyExistException
+    {
+        if (noOfGameObjects == 0)
+        {
+            noOfGameObjects++;
+            return new Game(teamNames);
+        }
+        else
+        {
+            throw new ObjectAlreadyExistException(
+                    "A game class already " + "exists");
+        }
     }
 
 }

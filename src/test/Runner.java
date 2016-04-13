@@ -1,33 +1,49 @@
 package test;
 
+import exceptions.ObjectAlreadyExistException;
 import model.Board;
 import model.Game;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Created by mitulmanish on 12/04/2016.
  */
-public class Runner {
+public class Runner
+{
     static Game game;
 
-    public static void main(String [] args){
+    public static void main(String[] args)
+    {
 
         System.out.println("Player One will defend the base");
-        askName(1);
-        String teamNamePlayerOne = getTeamName();
+        ArrayList<String> teamNames = new ArrayList<>();
+        for (int i = 1; i <= Game.getNO_OF_PLAYERS(); i++)
+        {
+            askName(i);
+            teamNames.add(getTeamName());
+        }
+        try
+        {
+            game = Game.gameFactory(teamNames);
+        }
+        catch (ObjectAlreadyExistException e)
+        {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
 
-        askName(2);
-        String teamNamePlayerTwo = getTeamName();
-        game = new Game();
-        game.initializeGame(teamNamePlayerOne, teamNamePlayerTwo );
     }
 
-    private static void askName(int number) {
-        System.out.println("Player" +  number + ",please select your team name:");
+    private static void askName(int number)
+    {
+        System.out
+                .println("Player" + number + ",please select your team name:");
     }
 
-    private static String getTeamName() {
+    private static String getTeamName()
+    {
         Scanner input = new Scanner(System.in);
         return input.next();
     }

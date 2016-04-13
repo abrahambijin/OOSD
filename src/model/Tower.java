@@ -1,5 +1,9 @@
 package model;
 
+import interfaces.WeaponWithHead;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -10,9 +14,11 @@ public class Tower extends Troop
 
     Point head;
 
-    public Tower(Point position)
+    public Tower()
     {
-        super("Tower",position, 1, new Sniper(), new Grenade());
+        super("Tower", 1,
+                new ArrayList<>(Arrays.asList(new Sniper(), new Grenade())),
+                false, false);
 
         Random randomNumberGenerator = new Random();
         int headXPos = randomNumberGenerator.nextInt(3) - 1;
@@ -23,12 +29,12 @@ public class Tower extends Troop
         } while (headXPos == 0 && headYPos == 0);
 
         head = new Point(headXPos, headYPos);
-        updateWeaponHead();
     }
 
-    private void updateWeaponHead()
+    @Override
+    public ArrayList<Point> getWeaponRange(int weaponIndex)
     {
-        ((Sniper)super.getPrimaryWeapon()).updateHead(head);
-        ((Grenade)super.getSecondaryWeapon()).updateHead(head);
+        return super.getWeaponRange(weaponIndex,head);
     }
+
 }
