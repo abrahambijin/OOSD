@@ -11,7 +11,7 @@ public class Sniper extends Weapon implements WeaponWithHead
 {
     public Sniper()
     {
-        super("Sniper",3, 35,false,false);
+        super("Sniper",3, 35,Direction.CUSTOM);
     }
 
     @Override

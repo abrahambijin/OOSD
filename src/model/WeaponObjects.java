@@ -8,23 +8,20 @@ import java.util.Arrays;
  */
 public class WeaponObjects
 {
-    Weapon Ak47 = new Weapon("Ak47",2,15,true,true);
-    Weapon bomb = new Weapon("Bomb",1,25,true,false);
-    Weapon cannon = new Weapon("Cannon",2,15,false,true);
-    Weapon machineGun = new Weapon("Machine Gun",1,17,false,true);
-    Weapon Mg17 = new Weapon("Mg17",2,20,true,false);
-    Weapon pistol = new Weapon("Pistol",1,20,true,true);
+    Weapon Ak47 = new Weapon("Ak47",2,15,Direction.ANY);
+    Weapon bomb = new Weapon("Bomb",1,25,Direction.DIAGONAL);
+    Weapon cannon = new Weapon("Cannon",2,15,Direction.STRAIGHT_LINE);
+    Weapon machineGun = new Weapon("Machine Gun",1,17,Direction.STRAIGHT_LINE);
+    Weapon Mg17 = new Weapon("Mg17",2,20,Direction.DIAGONAL);
+    Weapon pistol = new Weapon("Pistol",1,20,Direction.ANY);
 
     Troop jet = new Troop("Jet", 3, new ArrayList<>(
-            Arrays.asList(new Weapon("Mg17", 2, 20, true, false),
-                    new Weapon("Bomb", 1, 25, true, false))), true,
+            Arrays.asList(Mg17, bomb)), true,
             false);
     Troop army = new Troop("Army", 1, new ArrayList<>(
-            Arrays.asList(new Weapon("Pistol", 1, 20, true, true),
-                    new Weapon("Ak47", 2, 15, true, true))), true,
+            Arrays.asList(pistol, Ak47)), true,
             true);
     Troop tank = new Troop("Tank", 2, new ArrayList<>(
-            Arrays.asList(new Weapon("Cannon", 2, 15, false, true),
-                    new Weapon("Machine Gun", 1, 17, false, true))),
+            Arrays.asList(cannon, machineGun)),
             false, true);
 }

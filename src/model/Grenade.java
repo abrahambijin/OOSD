@@ -11,7 +11,7 @@ public class Grenade extends Weapon implements WeaponWithHead
 {
     public Grenade()
     {
-        super("Grenade",1, 30,false,false);
+        super("Grenade",1, 30,Direction.CUSTOM);
     }
 
     @Override

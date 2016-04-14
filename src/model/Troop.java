@@ -28,7 +28,7 @@ public class Troop extends GameItem
 
     public ArrayList<Point> getWeaponRange(int weaponIndex)
     {
-        return weapons.get(weaponIndex).weaponRange(super.getPosition());
+        return weapons.get(weaponIndex).getWeaponRange(super.getPosition());
     }
 
     protected ArrayList<Point> getWeaponRange(int weaponIndex, Point head)
