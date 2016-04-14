@@ -35,4 +35,13 @@ public class Point
     {
         return "(" + xCoordinate + ", " + yCoordinate + ")";
     }
+
+    public boolean isWithInRange(Point point, int limit)
+    {
+        return ((xCoordinate - limit) <= point.getXCoordinate() &&
+                point.getXCoordinate() <= (xCoordinate + limit) &&
+                (yCoordinate - limit) <= point.getYCoordinate() &&
+                point.getYCoordinate() <= (yCoordinate + limit));
+
+    }
 }

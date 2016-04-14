@@ -41,10 +41,15 @@ public class Runner
                 System.out.print("Where would you like to place " +
                         item.getName() + ":");
                 Point location = getLocationInput();
-                item.setPosition(location);
+                while(!game.addItemToBoard(player,item,location))
+                {
+                    System.out.println("Incorrect position");
+                    System.out.print("Where would you like to place " +
+                            item.getName() + ":");
+                    location = getLocationInput();
+                }
             }
         }
-        game.placePlayersOnBoard();
 
 
         for(int i=0; i<game.getBOARD_SIZE();i++)

@@ -29,12 +29,15 @@ public class Game
         }
     }
 
-    public void placePlayersOnBoard()
+    public boolean addItemToBoard(Player player, GameItem item, Point
+            preferredLocation)
     {
-        for (Player player : players)
-            for (GameItem item : player.getItems())
-                board.placeGameItem(item);
-
+        boolean success;
+        if (player instanceof PlayerOne)
+            success=board.placePlayerOneItem(item,preferredLocation);
+        else
+            success = board.placePlayerItem(item,preferredLocation);
+        return success;
     }
 
     public static int getNO_OF_PLAYERS()

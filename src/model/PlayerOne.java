@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.ObjectAlreadyExistException;
+
 import java.util.ArrayList;
 
 /**
@@ -11,7 +13,15 @@ public class PlayerOne extends Player {
 
     public PlayerOne(String name, ArrayList<Troop> troops) {
         super(name, troops);
-        this.base = new GameItem("Base", 500);
+        try
+        {
+            this.base = Base.baseFactory();
+        }
+        catch (ObjectAlreadyExistException e)
+        {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
     }
 
     public ArrayList<GameItem> getItems()
