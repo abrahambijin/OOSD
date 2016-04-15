@@ -12,7 +12,7 @@ public class PlayerOne extends Player {
     private GameItem base;
 
     public PlayerOne(String name, ArrayList<Troop> troops) {
-        super(name, troops);
+        super(name, troops,new PlayerColor(255,0,0));
         try
         {
             this.base = Base.baseFactory();

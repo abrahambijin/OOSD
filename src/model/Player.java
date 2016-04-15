@@ -12,10 +12,16 @@ public class Player
     private static int noOfPlayers = 0;
     private String name;
     private ArrayList<Troop> troops;
+    private PlayerColor color;
 
     public Player(String name, ArrayList<Troop> troops)
     {
+        this(name, troops,new PlayerColor(0,255,0));
+    }
+    protected Player(String name, ArrayList<Troop> troops, PlayerColor color)
+    {
         this.name = name;
+        this.color = color;
         this.troops = troops;
         noOfPlayers++;
     }
@@ -37,7 +43,7 @@ public class Player
             Troop tank = new Troop("Tank", 2, new ArrayList<>(Arrays.asList(
                     new Weapon("Cannon", 2, 15, Direction.STRAIGHT_LINE),
                     new Weapon("Machine Gun", 1, 17, Direction.STRAIGHT_LINE))),
-                    false, true);
+                    Direction.STRAIGHT_LINE);
             Tower tower = new Tower();
             return new PlayerOne(name,
                     new ArrayList<>(Arrays.asList(tank, tower)));
@@ -46,12 +52,11 @@ public class Player
         {
             Troop jet = new Troop("Jet", 3, new ArrayList<>(
                     Arrays.asList(new Weapon("Mg17", 2, 20, Direction.DIAGONAL),
-                            new Weapon("Bomb", 1, 25, Direction.DIAGONAL))), true,
-                    false);
+                            new Weapon("Bomb", 1, 25, Direction.DIAGONAL))),
+                    Direction.DIAGONAL);
             Troop army = new Troop("Army", 1, new ArrayList<>(
                     Arrays.asList(new Weapon("Pistol", 1, 20, Direction.ANY),
-                            new Weapon("Ak47", 2, 15, Direction.ANY))), true,
-                    true);
+                            new Weapon("Ak47", 2, 15, Direction.ANY))), Direction.ANY);
             return new Player(name, new ArrayList<>(Arrays.asList(jet, army)));
         }
     }
@@ -62,4 +67,10 @@ public class Player
         items.addAll(troops);
         return items;
     }
+
+    public PlayerColor getColor() {
+        //return PlayerOne
+        return color;
+    }
+
 }

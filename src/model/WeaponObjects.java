@@ -16,12 +16,10 @@ public class WeaponObjects
     Weapon pistol = new Weapon("Pistol",1,20,Direction.ANY);
 
     Troop jet = new Troop("Jet", 3, new ArrayList<>(
-            Arrays.asList(Mg17, bomb)), true,
-            false);
+            Arrays.asList(Mg17, bomb)), Direction.DIAGONAL);
     Troop army = new Troop("Army", 1, new ArrayList<>(
-            Arrays.asList(pistol, Ak47)), true,
-            true);
+            Arrays.asList(pistol, Ak47)), Direction.ANY);
     Troop tank = new Troop("Tank", 2, new ArrayList<>(
             Arrays.asList(cannon, machineGun)),
-            false, true);
+            Direction.STRAIGHT_LINE);
 }
