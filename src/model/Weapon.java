@@ -24,7 +24,7 @@ public class Weapon
 
     public ArrayList<Point> getWeaponRange(Point location)
     {
-        return PossiblePoints.getPossiblrPoints(location,range,direction);
+        return PossiblePoints.getPossiblePoints(location,range,direction);
     }
 
     protected int getRange()

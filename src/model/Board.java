@@ -1,5 +1,9 @@
 package model;
 
+import utility.PossiblePoints;
+
+import java.util.ArrayList;
+
 /**
  * Created by mitulmanish on 26/03/2016.
  */
@@ -53,13 +57,19 @@ public class Board
             {
                 successfullyPlaced = placeGameItem(item, preferredLocation);
                 if (successfullyPlaced)
+                {
                     basePosition = preferredLocation;
+                    item.setPosition(preferredLocation);
+                }
             }
             else
             {
-                if (basePosition.isWithInRange(preferredLocation, 2))
+                if (possiblePointsToPlacePlayerOneItem()
+                        .contains(preferredLocation))
                 {
                     successfullyPlaced = placeGameItem(item, preferredLocation);
+                    if (successfullyPlaced)
+                        item.setPosition(preferredLocation);
                 }
                 else
                     successfullyPlaced = false;
@@ -72,20 +82,44 @@ public class Board
         }
     }
 
+    public ArrayList<Point> possiblePointsToPlacePlayerOneItem()
+    {
+        return PossiblePoints.getPossiblePoints(basePosition, 2, Direction.ANY);
+    }
+
+    public ArrayList<Point> possiblePointsToPlacePlayerItem()
+    {
+        ArrayList<Point> listOfPositions = new ArrayList<>();
+        if (!(basePosition.getYCoordinate() < ((BOARD_SIZE - 1) / 2)))
+        {
+            listOfPositions.addAll(getBorder(0, false));
+        }
+        if (!(basePosition.getYCoordinate() > ((BOARD_SIZE - 1) / 2)))
+        {
+            listOfPositions.addAll(getBorder(BOARD_SIZE-1, false));
+        }
+        if (!(basePosition.getXCoordinate() < ((BOARD_SIZE - 1) / 2)))
+        {
+            listOfPositions.addAll(getBorder(0, true));
+        }
+        if (!(basePosition.getXCoordinate() > ((BOARD_SIZE - 1) / 2)))
+        {
+            listOfPositions.addAll(getBorder(BOARD_SIZE-1, true));
+        }
+        return listOfPositions;
+    }
+
     public boolean placePlayerItem(GameItem item, Point preferredLocation)
     {
         try
         {
             boolean successfullyPlaced = false;
-            if (((preferredLocation.getXCoordinate() == 0) ||
-                    (preferredLocation.getXCoordinate() == BOARD_SIZE -1)
-                    ) ||
-                    ((preferredLocation.getYCoordinate() == 0) ||
-                    (preferredLocation.getYCoordinate() == BOARD_SIZE -1)))
+
+            if (possiblePointsToPlacePlayerItem().contains(preferredLocation))
             {
-                successfullyPlaced = basePosition
-                        .isWithInRange(preferredLocation, BOARD_SIZE / 2) &&
-                        placeGameItem(item, preferredLocation);
+                successfullyPlaced = placeGameItem(item, preferredLocation);
+                if (successfullyPlaced)
+                    item.setPosition(preferredLocation);
             }
             return successfullyPlaced;
         }
@@ -93,6 +127,18 @@ public class Board
         {
             return false;
         }
+    }
+
+    private ArrayList<Point> getBorder(int fixedValue, boolean xIsFixed)
+    {
+        ArrayList<Point> listOfPositions = new ArrayList<>();
+        if (xIsFixed)
+            for (int i = 0; i < BOARD_SIZE; i++)
+                listOfPositions.add(new Point(fixedValue, i));
+        else
+            for (int i = 1; i < BOARD_SIZE - 1; i++)
+                listOfPositions.add(new Point(i, fixedValue));
+        return listOfPositions;
     }
 
 }

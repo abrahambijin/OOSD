@@ -12,30 +12,30 @@ public final class PossiblePoints
 {
     private PossiblePoints(){}
 
-    public static ArrayList<Point> getPossiblrPoints(Point position, int
+    public static ArrayList<Point> getPossiblePoints(Point position, int
             limit, Direction direction)
     {
-        ArrayList<Point> shootingOptions = new ArrayList<>();
+        ArrayList<Point> pointOptions = new ArrayList<>();
         if (direction != Direction.STRAIGHT_LINE)
-            shootingOptions.addAll(getDiagonalOptions(position, limit));
+            pointOptions.addAll(getDiagonalOptions(position, limit));
         if (direction != Direction.DIAGONAL)
-            shootingOptions.addAll(getStraightLineOptions(position, limit));
-        return shootingOptions;
+            pointOptions.addAll(getStraightLineOptions(position, limit));
+        return pointOptions;
     }
 
     private static ArrayList<Point> getDiagonalOptions(Point location, int limit)
     {
         int xPos = location.getXCoordinate();
         int yPos = location.getYCoordinate();
-        ArrayList<Point> diagonalShootingOptions = new ArrayList<>();
+        ArrayList<Point> diagonalOptions = new ArrayList<>();
         for (int i = limit; i > 0; i--)
         {
-            diagonalShootingOptions.add(new Point((xPos - i), (yPos - i)));
-            diagonalShootingOptions.add(new Point((xPos - i), (yPos + i)));
-            diagonalShootingOptions.add(new Point((xPos + i), (yPos - i)));
-            diagonalShootingOptions.add(new Point((xPos + i), (yPos + i)));
+            diagonalOptions.add(new Point((xPos - i), (yPos - i)));
+            diagonalOptions.add(new Point((xPos - i), (yPos + i)));
+            diagonalOptions.add(new Point((xPos + i), (yPos - i)));
+            diagonalOptions.add(new Point((xPos + i), (yPos + i)));
         }
-        return diagonalShootingOptions;
+        return diagonalOptions;
     }
 
     private static ArrayList<Point> getStraightLineOptions(Point location, int

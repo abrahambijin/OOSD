@@ -25,23 +25,20 @@ public class Point
         return yCoordinate;
     }
 
-    public boolean equals(Point point)
+    private boolean equals(Point point)
     {
         return ((point.getXCoordinate() == xCoordinate) &&
                 (point.getYCoordinate() == yCoordinate));
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        return o != null && o instanceof Point && equals((Point) o);
+    }
+
     public String toString()
     {
         return "(" + xCoordinate + ", " + yCoordinate + ")";
-    }
-
-    public boolean isWithInRange(Point point, int limit)
-    {
-        return ((xCoordinate - limit) <= point.getXCoordinate() &&
-                point.getXCoordinate() <= (xCoordinate + limit) &&
-                (yCoordinate - limit) <= point.getYCoordinate() &&
-                point.getYCoordinate() <= (yCoordinate + limit));
-
     }
 }
