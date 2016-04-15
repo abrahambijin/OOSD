@@ -13,10 +13,12 @@ public class Board
     private GameItem[][] warZone;
     private Point basePosition;
     private final int BOARD_SIZE;
+    private final int INITIAL_DISTANCE_FROM_BASE;
 
     public Board(int boardSize)
     {
         BOARD_SIZE = boardSize;
+        INITIAL_DISTANCE_FROM_BASE = 2;
         this.warZone = new GameItem[BOARD_SIZE][BOARD_SIZE];
     }
 
@@ -84,7 +86,8 @@ public class Board
 
     public ArrayList<Point> possiblePointsToPlacePlayerOneItem()
     {
-        return PossiblePoints.getPossiblePoints(basePosition, 2, Direction.ANY);
+        return PossiblePoints.getPointsInRange(basePosition,
+        INITIAL_DISTANCE_FROM_BASE);
     }
 
     public ArrayList<Point> possiblePointsToPlacePlayerItem()
