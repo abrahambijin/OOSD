@@ -1,7 +1,6 @@
 package controller;
 
 import model.Point;
-import view.CellPosition;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

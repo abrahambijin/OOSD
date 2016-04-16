@@ -9,25 +9,32 @@ import java.awt.*;
 /**
  * Created by ankurdabral on 12/04/2016.
  */
-public class PlayGround extends JPanel {
+public class PlayGround extends JPanel
+{
     private int size = 10;
 
-    public PlayGround() {
+    public PlayGround()
+    {
         this.setLayout(new GridLayout(size, size));
         //this.setBackground(Color.blue);
-        intialise();
+        initialise();
 
 
     }
     //cell[2][3].setBackground(Color.red);
 
-    public void intialise() {
-        CellPosition cell[][] = new CellPosition[size][size];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                cell[i][j] = new CellPosition(i, j);
-                cell[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-                cell[i][j].addActionListener(new CellButtonController(new Point(i,j)));
+    private void initialise()
+    {
+        Cell cell[][] = new Cell[size][size];
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                cell[i][j] = new Cell(i, j);
+                cell[i][j]
+                        .setBorder(BorderFactory.createLineBorder(Color.black));
+                cell[i][j].addActionListener(
+                        new CellButtonController(new Point(i, j)));
                 cell[i][j].setEnabled(false);
                 this.add(cell[i][j]);
 
