@@ -24,4 +24,5 @@ public class CellPosition extends JButton{
         return position;
     }
 
+
 }

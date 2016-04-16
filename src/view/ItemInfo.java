@@ -48,5 +48,6 @@ public class ItemInfo extends JPanel{
                 new Color(playerColor.getRed(), playerColor.getGreen(),
                         playerColor.getBlue()));
 
+
     }
 }

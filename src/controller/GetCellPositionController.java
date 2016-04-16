@@ -19,6 +19,10 @@ public class GetCellPositionController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        System.out.println(location);
+        //System.out.println(location);
+        //new CellPosition(location.getXCoordinate(),location.getYCoordinate());
+
+
+
     }
 }

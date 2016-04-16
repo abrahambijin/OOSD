@@ -33,7 +33,6 @@ public class PlayGround extends JPanel {
 
             }
         }
-
         cell[5][3].setIcon(new ImageIcon("Images/Tank.png"));
         cell[5][3].setEnabled(true);
         cell[3][9].setIcon(new ImageIcon("Images/Army.png"));
