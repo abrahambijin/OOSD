@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class GameItem  {
+public abstract class GameItem  {
 
     private String name;
     private Point position;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class PlayerOne extends Player {
 
-    private GameItem base;
+    private Base base;
 
     public PlayerOne(String name, ArrayList<Troop> troops) {
         super(name, troops,new PlayerColor(255,0,0));
