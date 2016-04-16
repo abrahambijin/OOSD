@@ -37,8 +37,8 @@ public class PlayerStatus extends JPanel{
             playerName.setOpaque(true);
             //playerName.setBackground(Color.red);
 
-            LabelledTextField weapon = new LabelledTextField("Weapon : ","Tank");
-            LabelledTextField health = new LabelledTextField("Health : ","100%");
+            LabelField weapon = new LabelField("Weapon");
+            LabelField health = new LabelField("Health");
             buttonPanel.setLayout(new BorderLayout());
             buttonPanel.setLayout(new FlowLayout());
                 move = new JButton("Move");
@@ -63,7 +63,7 @@ public class PlayerStatus extends JPanel{
                 bottomLeft.add(scroll, BorderLayout.CENTER);
 
                 bottomRight.setLayout(new FlowLayout(FlowLayout.LEFT,5,20));
-                    LabelledTextField power = new LabelledTextField("Power : ","");
+                    LabelField power = new LabelField("Power");
                 bottomRight.add(power);
 
             //add panels
