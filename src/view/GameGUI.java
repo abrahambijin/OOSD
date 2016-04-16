@@ -16,11 +16,8 @@ public class GameGUI extends JFrame
 {
 
     private PlayGround playGround = new PlayGround();
-    private PlayerStatus rightPanel = new PlayerStatus();
-    private JPanel game = new JPanel();
-    private JPanel leftPanel = new JPanel();
+    private PlayerStatus playerStatus = new PlayerStatus();
 
-    private int row = 10, col = 10;
     private Game warZone;
     private GameItem item;
 
@@ -28,17 +25,20 @@ public class GameGUI extends JFrame
     public GameGUI()
     {
         super("Game");
+
+        JPanel game = new JPanel();
         game.setLayout(new BorderLayout());
 
+        JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
         leftPanel.add(playGround);
         LabelField status = new LabelField("Status ");
         leftPanel.add(status, BorderLayout.SOUTH);
         playGround = new PlayGround();
-        rightPanel = new PlayerStatus();
+        playerStatus = new PlayerStatus();
         JSplitPane splitPane =
                 new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel,
-                        rightPanel);
+                        playerStatus);
         splitPane.setResizeWeight(0.75);
         splitPane.setEnabled(false);
         game.add(splitPane, BorderLayout.CENTER);
@@ -81,7 +81,7 @@ public class GameGUI extends JFrame
         {
             for (GameItem item : player1.getItems())
             {
-                rightPanel.getTop().setPlayerName(player1);
+                playerStatus.getTop().setPlayerName(player1);
 
                 JOptionPane.showMessageDialog(null,"Click where would you like to place " + item.getName() + ": ",player1.getName(),JOptionPane.INFORMATION_MESSAGE);
 
@@ -134,7 +134,6 @@ public class GameGUI extends JFrame
 //        CellPosition
 //        }
     }
-
 
 
 }

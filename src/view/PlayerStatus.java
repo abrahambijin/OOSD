@@ -1,14 +1,9 @@
 package view;
 
-import model.Game;
-import model.Player;
-import model.PlayerColor;
-import model.PlayerOne;
-import sun.plugin2.util.ColorUtil;
+import model.GameItem;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 
 /**
@@ -19,6 +14,7 @@ public class PlayerStatus extends JPanel
 
     private ItemInfo top = new ItemInfo();
     private ItemWeaponInfo bottom = new ItemWeaponInfo();
+    GameItem item;
 
     public PlayerStatus()
     {
@@ -26,6 +22,7 @@ public class PlayerStatus extends JPanel
         this.setLayout(new GridLayout(2, 0));
         // divide top panel for label
         bottom = new ItemWeaponInfo();
+        bottom.setVisible(false);
         top = new ItemInfo();
         this.add(top);
         this.add(bottom);
@@ -35,9 +32,6 @@ public class PlayerStatus extends JPanel
         return top;
     }
 
-    public void setTop(ItemInfo top) {
-        this.top = top;
-    }
 
     public ItemWeaponInfo getBottom() {
         return bottom;
@@ -45,5 +39,15 @@ public class PlayerStatus extends JPanel
 
     public void setBottom(ItemWeaponInfo bottom) {
         this.bottom = bottom;
+    }
+
+    public GameItem getItem()
+    {
+        return item;
+    }
+
+    public void setItem(GameItem item)
+    {
+        this.item = item;
     }
 }

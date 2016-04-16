@@ -31,6 +31,7 @@ public class ItemInfo extends JPanel{
         move.setPreferredSize(new Dimension(100, 40));
         JButton attack = new JButton("Attack");
         attack.setPreferredSize(new Dimension(100, 40));
+        attack.setEnabled(false);
         buttonPanel.add(move);
         buttonPanel.add(attack);
         this.add(playerName);

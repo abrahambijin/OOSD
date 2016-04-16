@@ -10,6 +10,5 @@ public class MainGameGUI {
 
         GameGUI gui = new GameGUI();
         //gui.setVisible(true);
-
     }
 }
