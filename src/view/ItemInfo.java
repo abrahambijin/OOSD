@@ -11,19 +11,21 @@ import java.awt.*;
  */
 public class ItemInfo extends JPanel{
     private JLabel playerName = new JLabel();
-    private JPanel buttonPanel = new JPanel();
+    LabelField weapon;
+    LabelField health;
+
     public ItemInfo() {
         this.setLayout(new GridLayout(0, 1));
         // add labels
         playerName =new JLabel("Player : ", SwingConstants.CENTER);
         playerName.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        playerName.setFont(new Font("Times New Roman",Font.BOLD,24));
+        //playerName.setFont(new Font("Times New Roman",Font.BOLD,24));
         playerName.setOpaque(true);
-        //playerName.setBackground(Color.red);
 
-        LabelField weapon = new LabelField("Weapon");
-        LabelField health = new LabelField("Health");
-        buttonPanel.setLayout(new BorderLayout());
+        weapon = new LabelField("Troop");
+        health = new LabelField("Health");
+
+        JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
         JButton move = new JButton("Move");
         move.setPreferredSize(new Dimension(100, 40));
