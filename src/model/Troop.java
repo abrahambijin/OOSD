@@ -1,6 +1,7 @@
 package model;
 
 import interfaces.WeaponWithHead;
+import utility.PossiblePoints;
 
 import java.util.ArrayList;
 
@@ -10,20 +11,17 @@ import java.util.ArrayList;
 public class Troop extends GameItem
 {
 
-    private int steps;
+    private int maxNoOfSteps;
     private ArrayList<Weapon> weapons;
-    private Boolean canMoveDiagonally;
-    private Boolean canMoveInStraightLine;
+    private Direction movingDirection;
 
-    public Troop(String name, int steps,
-                 ArrayList<Weapon> weapons, Boolean canMoveDiagonally,
-                 Boolean canMoveInStraightLine)
+    public Troop(String name, int maxNoOfSteps,
+                 ArrayList<Weapon> weapons, Direction movingDirection)
     {
         super(name);
-        this.steps = steps;
+        this.maxNoOfSteps = maxNoOfSteps;
         this.weapons = weapons;
-        this.canMoveDiagonally = canMoveDiagonally;
-        this.canMoveInStraightLine = canMoveInStraightLine;
+        this.movingDirection = movingDirection;
     }
 
     public ArrayList<Point> getWeaponRange(int weaponIndex)
@@ -42,13 +40,25 @@ public class Troop extends GameItem
             return getWeaponRange(weaponIndex);
     }
 
-    public int getSteps()
+    public int getMaxNoOfSteps()
     {
-        return steps;
+        return maxNoOfSteps;
     }
 
     public ArrayList<Weapon> getWeapons()
     {
         return weapons;
     }
+
+    public  ArrayList<Point> possibleMovePositions()
+    {
+        return PossiblePoints.getPossiblePoints(super.getPosition(),
+                maxNoOfSteps,movingDirection);
+    }
+
+    public void move(Point newPosition)
+    {
+        super.setPosition(newPosition);
+    }
+
 }

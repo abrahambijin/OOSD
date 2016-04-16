@@ -50,23 +50,38 @@ public class Runner
                 }
             }
         }
+        displayBoard();
 
-
-        for(int i=0; i<game.getBOARD_SIZE();i++)
+        while(true)
         {
-            System.out.print("|");
-            for(int j=0;j<game.getBOARD_SIZE();j++)
+            Player currentPlayer = game.getNextPlayer();
+            System.out.println(currentPlayer.getName()+": Select a Troop");
+            Point selectedPoint = getLocationInput();
+            while(!game.isTroopOfCurrentPlayer(selectedPoint))
             {
-                System.out.print(game.getItemName(new Point(i,j))+"|");
+                System.out.println("Incorrect selection");
+                System.out.println(currentPlayer.getName()+": Select a Troop");
+                selectedPoint = getLocationInput();
+            }
+            System.out.println("Where do you want to move "+game.getItem
+                    (selectedPoint).getName());
+            Point newLocation = getLocationInput();
+            while(!game.move(selectedPoint,newLocation))
+            {
+                System.out.println("Incorrect selection");
+                System.out.println("Where do you want to move "+game.getItem
+                        (selectedPoint).getName());
+                newLocation = getLocationInput();
             }
             System.out.println();
+            displayBoard();
         }
     }
 
     private static void askName(int number)
     {
         System.out
-                .println("Player" + number + ",please select your team name:");
+                .print("Player" + number + ",please select your team name: ");
     }
 
     private static String getTeamName()
@@ -81,6 +96,23 @@ public class Runner
         int x = input.nextInt();
         int y = input.nextInt();
         return new Point(x,y);
+    }
+
+    private static void displayBoard()
+    {
+        for(int i=0; i<game.getBOARD_SIZE();i++)
+        {
+            System.out.print("|");
+            for(int j=0;j<game.getBOARD_SIZE();j++)
+            {
+                GameItem item = game.getItem(new Point(i,j));
+                if(item!=null)
+                    System.out.print(item.getName()+" |");
+                else
+                    System.out.print("      |");
+            }
+            System.out.println();
+        }
     }
 
 }

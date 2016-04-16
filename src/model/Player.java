@@ -73,4 +73,12 @@ public class Player
         return color;
     }
 
+    public ArrayList<Point> getItemLocations()
+    {
+        ArrayList<Point> locations = new ArrayList<>();
+        for(GameItem item : troops)
+            locations.add(item.getPosition());
+        return locations;
+    }
+
 }

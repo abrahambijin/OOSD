@@ -3,22 +3,25 @@ package model;
 import exceptions.ObjectAlreadyExistException;
 
 import java.util.ArrayList;
+
 /**
  * Created by mitulmanish on 26/03/2016.
  */
 public class Game
 {
-    private final int BOARD_SIZE = 10;
     private static final int NO_OF_PLAYERS = 2;
+    private static int noOfGameObjects = 0;
+    private final int BOARD_SIZE = 10;
     private Board board;
     private ArrayList<Player> players;
-    private static int noOfGameObjects = 0;
+    private int currentPlayerIndex;
 
     private Game(ArrayList<String> teamNames)
     {
         this.board = new Board(BOARD_SIZE);
         players = new ArrayList<>();
         initializeGame(teamNames);
+        currentPlayerIndex = -1;
     }
 
     private void initializeGame(ArrayList<String> teamNames)
@@ -29,14 +32,14 @@ public class Game
         }
     }
 
-    public boolean addItemToBoard(Player player, GameItem item, Point
-            preferredLocation)
+    public boolean addItemToBoard(Player player, GameItem item,
+                                  Point preferredLocation)
     {
         boolean success;
         if (player instanceof PlayerOne)
-            success=board.placePlayerOneItem(item,preferredLocation);
+            success = board.placePlayerOneItem(item, preferredLocation);
         else
-            success = board.placePlayerItem(item,preferredLocation);
+            success = board.placePlayerItem(item, preferredLocation);
         return success;
     }
 
@@ -65,9 +68,9 @@ public class Game
         return players;
     }
 
-    public String getItemName(Point location)
+    public GameItem getItem(Point location)
     {
-        return board.getItemName(location);
+        return board.getItem(location);
     }
 
     public int getBOARD_SIZE()
@@ -82,4 +85,43 @@ public class Game
         else
             return board.possiblePointsToPlacePlayerItem();
     }
+
+    public Player getNextPlayer()
+    {
+        currentPlayerIndex++;
+        if (currentPlayerIndex == NO_OF_PLAYERS)
+            currentPlayerIndex = 0;
+        return players.get(currentPlayerIndex);
+    }
+
+    public ArrayList<Point> getPossibleMovePoints(GameItem item)
+    {
+        if (item instanceof Troop)
+        {
+            ArrayList<Point> possibleMovePositions =
+                    ((Troop) item).possibleMovePositions();
+            if (item instanceof Tower)
+                return possibleMovePositions;
+
+            return board.filterMovePositions(possibleMovePositions);
+        } return null;
+    }
+
+    public boolean isTroopOfCurrentPlayer(Point location)
+    {
+        return (players.get(currentPlayerIndex).getItemLocations()
+                .contains(location));
+    }
+
+    public boolean move(Point currentLocation, Point newLocation)
+    {
+        boolean success = false;
+        ArrayList<Point> possibleMoveLocations =
+                getPossibleMovePoints(board.getItem(currentLocation));
+        if (possibleMoveLocations != null &&
+                possibleMoveLocations.contains(newLocation))
+            success = board.move(currentLocation, newLocation);
+        return success;
+    }
+
 }

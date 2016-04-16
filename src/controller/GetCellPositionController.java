@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 /**
  * Created by ankurdabral on 12/04/2016.
  */
-public class GetCellPositionContoller implements ActionListener {
+public class GetCellPositionController implements ActionListener {
    private Point location;
 
-    public GetCellPositionContoller(Point location) {
+    public GetCellPositionController(Point location) {
         this.location = location;
     }
 

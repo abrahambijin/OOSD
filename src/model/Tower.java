@@ -1,6 +1,6 @@
 package model;
 
-import interfaces.WeaponWithHead;
+import utility.PossiblePoints;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class Tower extends Troop
     {
         super("Tower", 1,
                 new ArrayList<>(Arrays.asList(new Sniper(), new Grenade())),
-                false, false);
+                Direction.CUSTOM);
 
         Random randomNumberGenerator = new Random();
         int headXPos = randomNumberGenerator.nextInt(3) - 1;
@@ -35,6 +35,19 @@ public class Tower extends Troop
     public ArrayList<Point> getWeaponRange(int weaponIndex)
     {
         return super.getWeaponRange(weaponIndex,head);
+    }
+
+    public  ArrayList<Point> possibleMovePositions()
+    {
+        return PossiblePoints.getPossiblePoints(super.getPosition(),
+                super.getMaxNoOfSteps(),Direction.ANY);
+    }
+
+    public void move(Point newPosition)
+    {
+        int headX = newPosition.getXCoordinate()-head.getXCoordinate();
+        int headY = newPosition.getYCoordinate()-head.getYCoordinate();
+        head = new Point(headX,headY);
     }
 
 }

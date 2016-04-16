@@ -3,6 +3,7 @@ package model;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -40,14 +41,9 @@ public class Board
         return warZone;
     }
 
-    public String getItemName(Point location)
+    public GameItem getItem(Point location)
     {
-        GameItem item =
-                warZone[location.getXCoordinate()][location.getYCoordinate()];
-        if (item == null)
-            return "     ";
-        else
-            return item.getName();
+        return warZone[location.getXCoordinate()][location.getYCoordinate()];
     }
 
     public boolean placePlayerOneItem(GameItem item, Point preferredLocation)
@@ -86,8 +82,8 @@ public class Board
 
     public ArrayList<Point> possiblePointsToPlacePlayerOneItem()
     {
-        return PossiblePoints.getPointsInRange(basePosition,
-        INITIAL_DISTANCE_FROM_BASE);
+        return PossiblePoints
+                .getPointsInRange(basePosition, INITIAL_DISTANCE_FROM_BASE);
     }
 
     public ArrayList<Point> possiblePointsToPlacePlayerItem()
@@ -99,7 +95,7 @@ public class Board
         }
         if (!(basePosition.getYCoordinate() > ((BOARD_SIZE - 1) / 2)))
         {
-            listOfPositions.addAll(getBorder(BOARD_SIZE-1, false));
+            listOfPositions.addAll(getBorder(BOARD_SIZE - 1, false));
         }
         if (!(basePosition.getXCoordinate() < ((BOARD_SIZE - 1) / 2)))
         {
@@ -107,7 +103,7 @@ public class Board
         }
         if (!(basePosition.getXCoordinate() > ((BOARD_SIZE - 1) / 2)))
         {
-            listOfPositions.addAll(getBorder(BOARD_SIZE-1, true));
+            listOfPositions.addAll(getBorder(BOARD_SIZE - 1, true));
         }
         return listOfPositions;
     }
@@ -142,6 +138,67 @@ public class Board
             for (int i = 1; i < BOARD_SIZE - 1; i++)
                 listOfPositions.add(new Point(i, fixedValue));
         return listOfPositions;
+    }
+
+    public boolean move(Point currentPosition, Point newPosition)
+    {
+        boolean success = false;
+        int xCoordinate = currentPosition.getXCoordinate();
+        int yCoordinate = currentPosition.getYCoordinate();
+
+        GameItem item = warZone[xCoordinate][yCoordinate];
+        if (item != null && item instanceof Troop)
+        {
+            if(item instanceof Tower)
+            {
+                ((Tower) item).move(newPosition);
+                success = true;
+            }
+            else
+            {
+                try
+                {
+                    success = placeGameItem(item, newPosition);
+                }
+                catch (ArrayIndexOutOfBoundsException e)
+                {
+                    return false;
+                }
+                if (success)
+                {
+                    ((Troop) item).move(newPosition);
+                    setPointToNull(currentPosition);
+                }
+            }
+        }
+        return success;
+    }
+
+    public ArrayList<Point> filterMovePositions(ArrayList<Point> points)
+    {
+        ListIterator<Point> iterator = points.listIterator();
+        while (iterator.hasNext())
+        {
+            Point point = iterator.next();
+            try
+            {
+                if (getItem(point) != null)
+                {
+                    iterator.remove();
+                }
+            }
+            catch (ArrayIndexOutOfBoundsException e)
+            {
+                iterator.remove();
+            }
+        }
+
+        return points;
+    }
+
+    private void setPointToNull(Point location)
+    {
+        warZone[location.getXCoordinate()][location.getYCoordinate()] = null;
     }
 
 }
