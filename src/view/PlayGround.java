@@ -1,6 +1,6 @@
 package view;
 
-import controller.GetCellPositionController;
+import controller.CellButtonController;
 import model.Point;
 
 import javax.swing.*;
@@ -27,7 +27,7 @@ public class PlayGround extends JPanel {
             for (int j = 0; j < size; j++) {
                 cell[i][j] = new CellPosition(i, j);
                 cell[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-                cell[i][j].addActionListener(new GetCellPositionController(new Point(i,j)));
+                cell[i][j].addActionListener(new CellButtonController(new Point(i,j)));
                 cell[i][j].setEnabled(false);
                 this.add(cell[i][j]);
 
