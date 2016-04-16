@@ -16,7 +16,7 @@ public class Player
 
     public Player(String name, ArrayList<Troop> troops)
     {
-        this(name, troops,new PlayerColor(0,255,0));
+        this(name, troops,new PlayerColor(0,0,255));
     }
     protected Player(String name, ArrayList<Troop> troops, PlayerColor color)
     {

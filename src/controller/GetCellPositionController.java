@@ -1,6 +1,7 @@
 package controller;
 
 import model.Point;
+import view.CellPosition;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ public class GetCellPositionController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         System.out.println(location);
     }
 }

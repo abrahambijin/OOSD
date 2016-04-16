@@ -13,7 +13,7 @@ public class LabelField extends JPanel
     {
         super(new FlowLayout(FlowLayout.LEFT));
         label = new JLabel();
-        label.setFont(new Font("Courier New", Font.ITALIC, 12));
+        label.setFont(new Font("Courier New", Font.BOLD, 14));
         this.labelName = labelName;
         setValue("");
         this.add(label);
@@ -21,7 +21,7 @@ public class LabelField extends JPanel
 
     public void setValue(String value)
     {
-        label.setText(String.format("%-12s: %s", labelName, value));
+        label.setText(String.format("%-6s: %s", labelName, value));
     }
 
     public void resetValue()

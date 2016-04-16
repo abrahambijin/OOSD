@@ -1,7 +1,9 @@
 package view;
 
+import controller.GetCellPositionController;
 import exceptions.ObjectAlreadyExistException;
 import model.Game;
+import model.GameItem;
 import model.Player;
 
 import java.awt.*;
@@ -23,6 +25,7 @@ public class GameGUI extends JFrame
     private JPanel gameButtons = new JPanel();
     private int row = 10, col = 10;
     private Game warZone;
+    private GameItem item;
 
 
     public GameGUI()
@@ -53,7 +56,7 @@ public class GameGUI extends JFrame
         for (int i = 0; i < players; i++)
         {
             player.add(JOptionPane.showInputDialog(null,
-                    "Enter Player " + (i + 1) + " Team Name:"));
+                    "Enter Player " + (i + 1) + " Team Name:","Player 1",JOptionPane.INFORMATION_MESSAGE));
         }
         try
         {
@@ -61,21 +64,38 @@ public class GameGUI extends JFrame
         }
         catch (ObjectAlreadyExistException e)
         {
-            JOptionPane.showMessageDialog(null, "Error - " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error - " + e.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
 
             System.exit(0);
         }
 
         //play
 
-        for (int i = 0; i < players; i++)
+//
+        // set with player 1
+        JOptionPane.showMessageDialog(null,"Player : "+player.get(0)+" will Go first","Information",JOptionPane.INFORMATION_MESSAGE);
+
+        for(Player player1: warZone.getPlayers())
         {
+            for (GameItem item : player1.getItems())
+            {
+                rightPanel.getTop().setPlayerName(player1);
+                JOptionPane.showMessageDialog(null,"Click where would you like to place " + item.getName() + ": ",player1.getName(),JOptionPane.INFORMATION_MESSAGE);
 
-            //            System.out.println(warZone);
-            rightPanel.setPlayerName(warZone.getPlayers().get(i));
-
-            JOptionPane.showMessageDialog(null, "Player " + i + " Colour");
+                //point cell = getPosition();
+                //System.out.println(position.getPosition());
+//                Point location = getLocationInput();
+//                while(!game.addItemToBoard(player,item,location))
+//                {
+//                    System.out.println("Incorrect position");
+//                    System.out.print("Where would you like to place " +
+//                            item.getName() + ":");
+//                    location = getLocationInput();
+//                }
+            }
         }
+        //displayBoard();
+
 
     }
 
