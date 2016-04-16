@@ -15,10 +15,10 @@ public class Troop extends GameItem
     private ArrayList<Weapon> weapons;
     private Direction movingDirection;
 
-    public Troop(String name, int maxNoOfSteps,
+    public Troop(String name,String imageIconPath, int maxNoOfSteps,
                  ArrayList<Weapon> weapons, Direction movingDirection)
     {
-        super(name);
+        super(name,imageIconPath);
         this.maxNoOfSteps = maxNoOfSteps;
         this.weapons = weapons;
         this.movingDirection = movingDirection;

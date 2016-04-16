@@ -11,7 +11,7 @@ public class Base extends GameItem
 
     private Base()
     {
-        super("Base", 500);
+        super("Base","Images/Base.png", 500);
         COUNT++;
     }
 

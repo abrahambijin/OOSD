@@ -16,7 +16,7 @@ public class Tower extends Troop
 
     public Tower()
     {
-        super("Tower", 1,
+        super("Tower","Images/Tower.png", 1,
                 new ArrayList<>(Arrays.asList(new Sniper(), new Grenade())),
                 Direction.CUSTOM);
 
