@@ -11,25 +11,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
-//import controller.WindowDestroyer;
+
 /**
  * Created by ankurdabral on 11/04/2016.
  */
-public class GameGUI extends JFrame {
+public class GameGUI extends JFrame
+{
 
     private PlayGround leftPanel = new PlayGround();
     private PlayerStatus rightPanel = new PlayerStatus();
     private JPanel gameButtons = new JPanel();
-    private int row =10,col= 10;
+    private int row = 10, col = 10;
     private Game warZone;
 
 
-    public GameGUI(){
+    public GameGUI()
+    {
         super("Game");
         gameButtons.setLayout(new BorderLayout());
         leftPanel = new PlayGround();
         rightPanel = new PlayerStatus();
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, rightPanel);
+        JSplitPane splitPane =
+                new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel,
+                        rightPanel);
         splitPane.setResizeWeight(0.75);
         splitPane.setEnabled(false);
         gameButtons.add(splitPane, BorderLayout.CENTER);
@@ -46,25 +50,31 @@ public class GameGUI extends JFrame {
 
         ArrayList<String> player = new ArrayList<>();
 
-        for (int i =0; i< players; i++){
-            player.add(JOptionPane.showInputDialog(null,"Enter Player "+ (i + 1)+ " Team Name:"));
+        for (int i = 0; i < players; i++)
+        {
+            player.add(JOptionPane.showInputDialog(null,
+                    "Enter Player " + (i + 1) + " Team Name:"));
         }
-        try {
+        try
+        {
             warZone = Game.gameFactory(player);
-        } catch (ObjectAlreadyExistException e) {
-            JOptionPane.showMessageDialog(null,"Error - "+ e.getMessage());
+        }
+        catch (ObjectAlreadyExistException e)
+        {
+            JOptionPane.showMessageDialog(null, "Error - " + e.getMessage());
 
             System.exit(0);
         }
 
         //play
 
-        for (int i =0; i< players; i++) {
+        for (int i = 0; i < players; i++)
+        {
 
-//            System.out.println(warZone);
+            //            System.out.println(warZone);
             rightPanel.setPlayerName(warZone.getPlayers().get(i));
 
-            JOptionPane.showMessageDialog(null,"Player "+i+" Colour");
+            JOptionPane.showMessageDialog(null, "Player " + i + " Colour");
         }
 
     }
