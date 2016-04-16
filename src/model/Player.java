@@ -40,7 +40,7 @@ public class Player
     {
         if (noOfPlayers == 0)
         {
-            Troop tank = new Troop("Tank","Images/Tank.png", 2, new ArrayList<>(Arrays.asList(
+            Troop tank = new Troop("Tank", 2, new ArrayList<>(Arrays.asList(
                     new Weapon("Cannon", 2, 15, Direction.STRAIGHT_LINE),
                     new Weapon("Machine Gun", 1, 17, Direction.STRAIGHT_LINE))),
                     Direction.STRAIGHT_LINE);
@@ -50,11 +50,11 @@ public class Player
         }
         else
         {
-            Troop jet = new Troop("Jet","Images/Jet.png", 3, new ArrayList<>(
+            Troop jet = new Troop("Jet", 3, new ArrayList<>(
                     Arrays.asList(new Weapon("Mg17", 2, 20, Direction.DIAGONAL),
                             new Weapon("Bomb", 1, 25, Direction.DIAGONAL))),
                     Direction.DIAGONAL);
-            Troop army = new Troop("Army","Images/Army.png", 1, new ArrayList<>(
+            Troop army = new Troop("Army", 1, new ArrayList<>(
                     Arrays.asList(new Weapon("Pistol", 1, 20, Direction.ANY),
                             new Weapon("Ak47", 2, 15, Direction.ANY))), Direction.ANY);
             return new Player(name, new ArrayList<>(Arrays.asList(jet, army)));
