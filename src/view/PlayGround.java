@@ -1,6 +1,7 @@
 package view;
 
 import controller.CellButtonController;
+import model.Game;
 import model.Point;
 
 import javax.swing.*;
@@ -11,19 +12,20 @@ import java.awt.*;
  */
 public class PlayGround extends JPanel
 {
-    private int size = 10;
+    private int size;
 
-    public PlayGround()
+    public PlayGround(Game game, GameGUI view)
     {
+        size = game.getBOARD_SIZE();
         this.setLayout(new GridLayout(size, size));
         //this.setBackground(Color.blue);
-        initialise();
+        initialise(game, view);
 
 
     }
     //cell[2][3].setBackground(Color.red);
 
-    private void initialise()
+    private void initialise(Game game, GameGUI view)
     {
         Cell cell[][] = new Cell[size][size];
         for (int i = 0; i < size; i++)
@@ -34,7 +36,7 @@ public class PlayGround extends JPanel
                 cell[i][j]
                         .setBorder(BorderFactory.createLineBorder(Color.black));
                 cell[i][j].addActionListener(
-                        new CellButtonController(new Point(i, j)));
+                        new CellButtonController(new Point(i, j),game,view));
                 cell[i][j].setEnabled(false);
                 this.add(cell[i][j]);
 

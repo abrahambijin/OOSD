@@ -29,6 +29,7 @@ public class Tower extends Troop
         } while (headXPos == 0 && headYPos == 0);
 
         head = new Point(headXPos, headYPos);
+        super.setImageIconPath("Images/Tower/Tower"+head+".png");
     }
 
     @Override
@@ -48,6 +49,7 @@ public class Tower extends Troop
         int headX = newPosition.getXCoordinate()-head.getXCoordinate();
         int headY = newPosition.getYCoordinate()-head.getYCoordinate();
         head = new Point(headX,headY);
+        super.setImageIconPath("/Images/Tower/Tower"+head+".png");
     }
 
 }

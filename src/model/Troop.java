@@ -15,8 +15,8 @@ public class Troop extends GameItem
     private ArrayList<Weapon> weapons;
     private Direction movingDirection;
 
-    public Troop(String name, int maxNoOfSteps,
-                 ArrayList<Weapon> weapons, Direction movingDirection)
+    public Troop(String name, int maxNoOfSteps, ArrayList<Weapon> weapons,
+                 Direction movingDirection)
     {
         super(name);
         this.maxNoOfSteps = maxNoOfSteps;
@@ -31,10 +31,10 @@ public class Troop extends GameItem
 
     protected ArrayList<Point> getWeaponRange(int weaponIndex, Point head)
     {
-        if(weapons.get(weaponIndex) instanceof WeaponWithHead)
+        if (weapons.get(weaponIndex) instanceof WeaponWithHead)
         {
-            return ((WeaponWithHead) weapons.get(weaponIndex)).weaponRange
-                    (super.getPosition(),head);
+            return ((WeaponWithHead) weapons.get(weaponIndex))
+                    .weaponRange(super.getPosition(), head);
         }
         else
             return getWeaponRange(weaponIndex);
@@ -50,10 +50,11 @@ public class Troop extends GameItem
         return weapons;
     }
 
-    public  ArrayList<Point> possibleMovePositions()
+    public ArrayList<Point> possibleMovePositions()
     {
-        return PossiblePoints.getPossiblePoints(super.getPosition(),
-                maxNoOfSteps,movingDirection);
+        return PossiblePoints
+                .getPossiblePoints(super.getPosition(), maxNoOfSteps,
+                        movingDirection);
     }
 
     public void move(Point newPosition)

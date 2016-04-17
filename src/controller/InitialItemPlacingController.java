@@ -10,13 +10,16 @@ import java.awt.event.ActionListener;
 /**
  * Created by ankurdabral on 12/04/2016.
  */
-public class CellButtonController implements ActionListener
+public class InitialItemPlacingController implements ActionListener
 {
+
+    public static int ITEM_INDEX = 0;
+
     private Point location;
     private Game game;
     private GameGUI view;
 
-    public CellButtonController(Point location, Game game, GameGUI view)
+    public InitialItemPlacingController(Point location, Game game, GameGUI view)
     {
         this.location = location;
         this.game = game;

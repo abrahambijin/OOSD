@@ -15,27 +15,27 @@ import javax.swing.*;
 public class GameGUI extends JFrame
 {
 
-    private PlayGround playGround = new PlayGround();
-    private PlayerStatus playerStatus = new PlayerStatus();
-
-    private Game warZone;
-    private GameItem item;
+    private PlayGround playGround;
+    private PlayerStatus playerStatus;
 
 
-    public GameGUI()
+
+    public GameGUI(Game game)
     {
         super("Game");
 
         JPanel gamePanel = new JPanel();
         gamePanel.setLayout(new BorderLayout());
 
+        playGround = new PlayGround(game,this);
+        playerStatus = new PlayerStatus();
+
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
         leftPanel.add(playGround);
         LabelField status = new LabelField("Status ");
         leftPanel.add(status, BorderLayout.SOUTH);
-        playGround = new PlayGround();
-        playerStatus = new PlayerStatus();
+
         JSplitPane splitPane =
                 new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel,
                         playerStatus);
@@ -45,49 +45,17 @@ public class GameGUI extends JFrame
         add(gamePanel);
 
         // Add players team name
-        this.setSize(1400, 700);
-        this.setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        //this.addWindowListener(new WindowDestroyer(this));
-        this.setVisible(true);
-        int players = Game.getNO_OF_PLAYERS();
 
-        ArrayList<String> player = new ArrayList<>();
-
-        for (int i = 0; i < players; i++)
-        {
-            String name;
-            do
-            {
-                name = JOptionPane.showInputDialog(null,
-                        "Enter Player " + (i + 1) + " Team Name:", "Player 1",
-                        JOptionPane.OK_OPTION);
-            } while (name.isEmpty());
-            player.add(name);
-
-        } try
-    {
-        warZone = Game.gameFactory(player);
-    }
-    catch (ObjectAlreadyExistException e)
-    {
-        JOptionPane
-                .showMessageDialog(null, "Error - " + e.getMessage(), "Error",
-                        JOptionPane.INFORMATION_MESSAGE);
-
-        System.exit(0);
-    }
 
         //play
 
         //
         // set with player 1
-        JOptionPane.showMessageDialog(null,
-                "Player : " + player.get(0) + " will Go first", "Information",
-                JOptionPane.INFORMATION_MESSAGE);
+//        JOptionPane.showMessageDialog(null,
+//                "Player : " + player.get(0) + " will Go first", "Information",
+//                JOptionPane.INFORMATION_MESSAGE);
 
-        for (Player player1 : warZone.getPlayers())
+        for (Player player1 : game.getPlayers())
         {
             for (GameItem item : player1.getItems())
             {

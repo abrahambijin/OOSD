@@ -10,14 +10,14 @@ public abstract class GameItem  {
     private String imageIconPath;
     int health;
 
-    public GameItem(String name,String imageIconPath) {
-        this(name,imageIconPath,100);
+    public GameItem(String name) {
+        this(name,100);
     }
 
-    public GameItem(String name, String imageIconPath, int health){
+    public GameItem(String name, int health){
         this.name = name;
         this.health = health;
-        this.imageIconPath = imageIconPath;
+        this.imageIconPath = "Images/"+name+".png";
     }
 
     public Point getPosition() {
@@ -42,5 +42,10 @@ public abstract class GameItem  {
     public int getHealth()
     {
         return health;
+    }
+
+    protected void setImageIconPath(String imageIconPath)
+    {
+        this.imageIconPath = imageIconPath;
     }
 }
