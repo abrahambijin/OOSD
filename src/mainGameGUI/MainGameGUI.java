@@ -22,21 +22,31 @@ public class MainGameGUI
         splashScreen.setLocationRelativeTo(null);
         splashScreen.setVisible(true);
 
-        try
-        {
-            Game game = Game.gameFactory(splashScreen.getNames());
-            splashScreen.setVisible(false);
-            GameGUI gui = new GameGUI(game);
-            gui.setSize(1400, 700);
-            gui.setLocationRelativeTo(null);
-            gui.setVisible(true);
-            gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
-        catch (ObjectAlreadyExistException e)
-        {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
-        }
+
+        Game game = new Game(splashScreen.getNames());
+        splashScreen.setVisible(false);
+
+        GameGUI gui = new GameGUI(game);
+        gui.setSize(1400, 700);
+        gui.setLocationRelativeTo(null);
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+//            for(Player player: game.getPlayers())
+//            {
+//                for (GameItem item : player.getItems())
+//                {
+//                    System.out.print("Where would you like to place " +
+//                            item.getName() + ":");
+//                    Point location = getLocationInput();
+//                    while(!game.addItemToBoard(player,item,location))
+//                    {
+//                        System.out.println("Incorrect position");
+//                        System.out.print("Where would you like to place " +
+//                                item.getName() + ":");
+//                        location = getLocationInput();
+//                    }
+//                }
+//            }
     }
 }

@@ -19,7 +19,6 @@ public class GameGUI extends JFrame
     private PlayerStatus playerStatus;
 
 
-
     public GameGUI(Game game)
     {
         super("Game");
@@ -27,7 +26,7 @@ public class GameGUI extends JFrame
         JPanel gamePanel = new JPanel();
         gamePanel.setLayout(new BorderLayout());
 
-        playGround = new PlayGround(game,this);
+        playGround = new PlayGround(game, this);
         playerStatus = new PlayerStatus();
 
         JPanel leftPanel = new JPanel();
@@ -43,6 +42,8 @@ public class GameGUI extends JFrame
         splitPane.setEnabled(false);
         gamePanel.add(splitPane, BorderLayout.CENTER);
         add(gamePanel);
+    }
+}
 
         // Add players team name
 
@@ -51,41 +52,41 @@ public class GameGUI extends JFrame
 
         //
         // set with player 1
-//        JOptionPane.showMessageDialog(null,
-//                "Player : " + player.get(0) + " will Go first", "Information",
-//                JOptionPane.INFORMATION_MESSAGE);
+        //        JOptionPane.showMessageDialog(null,
+        //                "Player : " + player.get(0) + " will Go first", "Information",
+        //                JOptionPane.INFORMATION_MESSAGE);
 
-        for (Player player1 : game.getPlayers())
-        {
-            for (GameItem item : player1.getItems())
-            {
-                playerStatus.getTop().setPlayerName(player1);
-
-                JOptionPane.showMessageDialog(null,
-                        "Click where would you like to place " +
-                                item.getName() + ": ", player1.getName(),
-                        JOptionPane.INFORMATION_MESSAGE);
-
-                //                //point cell = getPosition();
-                //                JButton cell = new CellPosition();
-                //                //System.out.println(position.getPosition());
-                //               // Point location = getLocationInput();
-                //                CellPosition pos = getPosition();
-                //                while(!warZone.addItemToBoard(player1,item,location))
-                //                {
-                //                    System.out.println("Incorrect position");
-                //                    System.out.print("Where would you like to place " +
-                //                            item.getName() + ":");
-                //                    location = getLocationInput();
-                //                }
-            }
-        }
+        //        for (Player player1 : game.getPlayers())
+        //        {
+        //            for (GameItem item : player1.getItems())
+        //            {
+        //                playerStatus.getTop().setPlayerName(player1);
+        //
+        //                JOptionPane.showMessageDialog(null,
+        //                        "Click where would you like to place " +
+        //                                item.getName() + ": ", player1.getName(),
+        //                        JOptionPane.INFORMATION_MESSAGE);
+        //
+        //                //                //point cell = getPosition();
+        //                //                JButton cell = new CellPosition();
+        //                //                //System.out.println(position.getPosition());
+        //                //               // Point location = getLocationInput();
+        //                //                CellPosition pos = getPosition();
+        //                //                while(!warZone.addItemToBoard(player1,item,location))
+        //                //                {
+        //                //                    System.out.println("Incorrect position");
+        //                //                    System.out.print("Where would you like to place " +
+        //                //                            item.getName() + ":");
+        //                //                    location = getLocationInput();
+        //                //                }
+        //            }
+        //        }
         //displayBoard();
 
 
         //        while(true)
         //        {
-        //            Player currentPlayer = warZone.getNextPlayer();
+        //            Player currentPlayer = warZone.nextPlayer();
         //
         //            System.out.println(currentPlayer.getName()+": Select a Troop");
         //            JOptionPane.showMessageDialog(null,currentPlayer.getName()+" : Select a Troop",currentPlayer.getName(),JOptionPane.INFORMATION_MESSAGE);
@@ -114,7 +115,3 @@ public class GameGUI extends JFrame
         //        public Point getLocation(){
         //        CellPosition
         //        }
-    }
-
-
-}

@@ -29,10 +29,12 @@ public final class PossiblePoints
                                                     int rangeLimit)
     {
         ArrayList<Point> pointOptions = new ArrayList<>();
+        int xpos = position.getXCoordinate();
+        int ypos = position.getYCoordinate();
         for (int i = (-1 * rangeLimit); i <= rangeLimit; i++)
             for (int j = (-1 * rangeLimit); j <= rangeLimit; j++)
                 if (i != 0 || j != 0)
-                    pointOptions.add(new Point(i, j));
+                    pointOptions.add(new Point(xpos+i, ypos+j));
         return pointOptions;
     }
 

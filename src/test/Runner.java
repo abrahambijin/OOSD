@@ -1,6 +1,5 @@
 package test;
 
-import exceptions.ObjectAlreadyExistException;
 import model.*;
 
 import java.util.ArrayList;
@@ -23,15 +22,7 @@ public class Runner
             askName(i);
             teamNames.add(getTeamName());
         }
-        try
-        {
-            game = Game.gameFactory(teamNames);
-        }
-        catch (ObjectAlreadyExistException e)
-        {
-            System.err.println(e.getMessage());
-            System.exit(0);
-        }
+        game = new Game(teamNames);
         System.out.println();
         for(Player player: game.getPlayers())
         {
@@ -54,7 +45,7 @@ public class Runner
 
         while(true)
         {
-            Player currentPlayer = game.getNextPlayer();
+            Player currentPlayer = game.getCurrentPlayer();
             System.out.println(currentPlayer.getName()+": Select a Troop");
             Point selectedPoint = getLocationInput();
             while(!game.isTroopOfCurrentPlayer(selectedPoint))
@@ -75,6 +66,7 @@ public class Runner
             }
             System.out.println();
             displayBoard();
+            game.nextPlayer();
         }
     }
 

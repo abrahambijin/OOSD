@@ -10,18 +10,17 @@ import java.util.ArrayList;
 public class Game
 {
     private static final int NO_OF_PLAYERS = 2;
-    private static int noOfGameObjects = 0;
     private final int BOARD_SIZE = 10;
     private Board board;
     private ArrayList<Player> players;
     private int currentPlayerIndex;
 
-    private Game(ArrayList<String> teamNames)
+    public Game(ArrayList<String> teamNames)
     {
         this.board = new Board(BOARD_SIZE);
         players = new ArrayList<>();
         initializeGame(teamNames);
-        currentPlayerIndex = -1;
+        currentPlayerIndex = 0;
     }
 
     private void initializeGame(ArrayList<String> teamNames)
@@ -48,21 +47,6 @@ public class Game
         return NO_OF_PLAYERS;
     }
 
-    public static Game gameFactory(ArrayList<String> teamNames)
-            throws ObjectAlreadyExistException
-    {
-        if (noOfGameObjects == 0)
-        {
-            noOfGameObjects++;
-            return new Game(teamNames);
-        }
-        else
-        {
-            throw new ObjectAlreadyExistException(
-                    "A game class already " + "exists");
-        }
-    }
-
     public ArrayList<Player> getPlayers()
     {
         return players;
@@ -86,11 +70,14 @@ public class Game
             return board.possiblePointsToPlacePlayerItem();
     }
 
-    public Player getNextPlayer()
+    public void nextPlayer()
     {
         currentPlayerIndex++;
         if (currentPlayerIndex == NO_OF_PLAYERS)
             currentPlayerIndex = 0;
+    }
+    public Player getCurrentPlayer()
+    {
         return players.get(currentPlayerIndex);
     }
 

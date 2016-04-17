@@ -1,6 +1,7 @@
 package controller;
 
 import model.Game;
+import model.Player;
 import model.Point;
 import view.GameGUI;
 
@@ -29,6 +30,8 @@ public class InitialItemPlacingController implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
+
+        Player currentPlayer = game.getCurrentPlayer();
 
         //System.out.println(location);
         //new CellPosition(location.getXCoordinate(),location.getYCoordinate());
