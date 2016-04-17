@@ -1,12 +1,8 @@
 package view;
 
-import exceptions.ObjectAlreadyExistException;
-import model.Game;
-import model.GameItem;
-import model.Player;
 
+import model.Game;
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -42,6 +38,16 @@ public class GameGUI extends JFrame
         splitPane.setEnabled(false);
         gamePanel.add(splitPane, BorderLayout.CENTER);
         add(gamePanel);
+    }
+
+    public PlayGround getPlayGround()
+    {
+        return playGround;
+    }
+
+    public PlayerStatus getPlayerStatus()
+    {
+        return playerStatus;
     }
 }
 

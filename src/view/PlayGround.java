@@ -1,6 +1,7 @@
 package view;
 
 import controller.CellButtonController;
+import controller.InitialItemPlacingController;
 import model.Game;
 import model.Point;
 
@@ -39,19 +40,19 @@ public class PlayGround extends JPanel
                 cell[i][j]
                         .setBorder(BorderFactory.createLineBorder(Color.black));
                 cell[i][j].addActionListener(
-                        new CellButtonController(new Point(i, j),game,view));
-                cell[i][j].setEnabled(false);
+                        new InitialItemPlacingController(new Point(i, j),game,view));
+//                cell[i][j].setEnabled(false);
                 this.add(cell[i][j]);
 
             }
         }
-        cell[5][3].setIcon(new ImageIcon("Images/Tank.png"));
-        cell[5][3].setEnabled(true);
-        cell[3][9].setIcon(new ImageIcon("Images/Army.png"));
-        cell[8][1].setIcon(new ImageIcon("Images/Base.png"));
-        cell[6][1].setIcon(new ImageIcon("Images/Tower.png"));
-        cell[6][1].setEnabled(true);
-        cell[0][8].setIcon(new ImageIcon("Images/Jet.png"));
+//        cell[5][3].setIcon(new ImageIcon("Images/Tank.png"));
+//        cell[5][3].setEnabled(true);
+//        cell[3][9].setIcon(new ImageIcon("Images/Army.png"));
+//        cell[8][1].setIcon(new ImageIcon("Images/Base.png"));
+//        cell[6][1].setIcon(new ImageIcon("Images/Tower.png"));
+//        cell[6][1].setEnabled(true);
+//        cell[0][8].setIcon(new ImageIcon("Images/Jet.png"));
     }
 
     public void disableButtons(ArrayList<Point> exceptionsList)

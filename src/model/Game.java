@@ -62,9 +62,9 @@ public class Game
         return BOARD_SIZE;
     }
 
-    public ArrayList<Point> possiblePointToPlaceItems(Player player)
+    public ArrayList<Point> possiblePointToPlaceItems()
     {
-        if (player instanceof PlayerOne)
+        if (getCurrentPlayer() instanceof PlayerOne)
             return board.possiblePointsToPlacePlayerOneItem();
         else
             return board.possiblePointsToPlacePlayerItem();

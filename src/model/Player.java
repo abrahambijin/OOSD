@@ -31,11 +31,6 @@ public class Player
         return name;
     }
 
-    public ArrayList<Troop> getTroops()
-    {
-        return troops;
-    }
-
     public static Player playerFactory(String name)
     {
         if (noOfPlayers == 0)

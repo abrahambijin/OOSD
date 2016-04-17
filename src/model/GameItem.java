@@ -8,7 +8,7 @@ public abstract class GameItem  {
     private String name;
     private Point position;
     private String imageIconPath;
-    int health;
+    private int health;
 
     public GameItem(String name) {
         this(name,100);
