@@ -76,6 +76,7 @@ public class Game
         if (currentPlayerIndex == NO_OF_PLAYERS)
             currentPlayerIndex = 0;
     }
+
     public Player getCurrentPlayer()
     {
         return players.get(currentPlayerIndex);
@@ -91,7 +92,8 @@ public class Game
                 return possibleMovePositions;
 
             return board.filterMovePositions(possibleMovePositions);
-        } return null;
+        }
+        return null;
     }
 
     public boolean isTroopOfCurrentPlayer(Point location)
@@ -109,6 +111,15 @@ public class Game
                 possibleMoveLocations.contains(newLocation))
             success = board.move(currentLocation, newLocation);
         return success;
+    }
+
+    public ArrayList<Point> getOccupiedBoardLocation()
+    {
+        ArrayList<Point> positionsOccupied = new ArrayList<>();
+        for (Player player : players)
+            for (GameItem item : player.getItems())
+                positionsOccupied.add(item.getPosition());
+        return positionsOccupied;
     }
 
 }
