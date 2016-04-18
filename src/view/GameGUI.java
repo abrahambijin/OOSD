@@ -23,7 +23,7 @@ public class GameGUI extends JFrame
         gamePanel.setLayout(new BorderLayout());
 
         playGround = new PlayGround(game, this);
-        playerStatus = new PlayerStatus();
+        playerStatus = new PlayerStatus(game,this);
 
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
@@ -66,7 +66,7 @@ public class GameGUI extends JFrame
         //        {
         //            for (GameItem item : player1.getItems())
         //            {
-        //                playerStatus.getTop().setPlayerName(player1);
+        //                playerStatus.getTop().setPlayer(player1);
         //
         //                JOptionPane.showMessageDialog(null,
         //                        "Click where would you like to place " +

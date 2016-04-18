@@ -201,4 +201,6 @@ public class Board
         warZone[location.getXCoordinate()][location.getYCoordinate()] = null;
     }
 
+
+
 }

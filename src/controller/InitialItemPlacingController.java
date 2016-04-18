@@ -35,25 +35,33 @@ public class InitialItemPlacingController implements ActionListener
 
         Player currentPlayer = game.getCurrentPlayer();
 
-        if (!(ITEM_INDEX < currentPlayer.getItems().size()))
-        {
-            ITEM_INDEX = 0;
-            game.nextPlayer();
-            PLAYER_INDEX++;
-            currentPlayer = game.getCurrentPlayer();
-        }
-
         GameItem item = currentPlayer.getItems().get(ITEM_INDEX);
         boolean success = game.addItemToBoard(currentPlayer, item, location);
 
         if (success)
         {
-            view.getPlayGround()
-                    .disableButtons(game.possiblePointToPlaceItems());
             ITEM_INDEX++;
             view.getPlayGround()
                     .setButtonImage(location, item.getImageIconPath());
+
+            if (ITEM_INDEX >= currentPlayer.getItems().size())
+            {
+                ITEM_INDEX = 0;
+                game.nextPlayer();
+                PLAYER_INDEX++;
+                view.getPlayerStatus().getTop()
+                        .setPlayer(game.getCurrentPlayer());
+            }
+
+            if (PLAYER_INDEX <= Game.getNO_OF_PLAYERS())
+                view.getPlayGround()
+                        .disableButtons(game.possiblePointToPlaceItems());
+            else
+            {
+
+            }
         }
+
         //System.out.println(location);
         //new CellPosition(location.getXCoordinate(),location.getYCoordinate());
 

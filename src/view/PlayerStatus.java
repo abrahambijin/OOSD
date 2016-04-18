@@ -1,5 +1,6 @@
 package view;
 
+import model.Game;
 import model.GameItem;
 
 import javax.swing.*;
@@ -12,18 +13,18 @@ import java.awt.*;
 public class PlayerStatus extends JPanel
 {
 
-    private ItemInfo top = new ItemInfo();
-    private ItemWeaponInfo bottom = new ItemWeaponInfo();
+    private ItemInfo top;
+    private ItemWeaponInfo bottom;
     GameItem item;
 
-    public PlayerStatus()
+    public PlayerStatus(Game game, GameGUI view)
     {
         this.setLayout(new FlowLayout());
         this.setLayout(new GridLayout(2, 0));
         // divide top panel for label
         bottom = new ItemWeaponInfo();
         bottom.setVisible(false);
-        top = new ItemInfo();
+        top = new ItemInfo(game.getCurrentPlayer());
         this.add(top);
         this.add(bottom);
     }

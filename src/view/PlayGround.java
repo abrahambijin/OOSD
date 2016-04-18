@@ -1,5 +1,6 @@
 package view;
 
+import com.sun.javafx.image.BytePixelSetter;
 import controller.CellButtonController;
 import controller.InitialItemPlacingController;
 import model.Game;
@@ -7,6 +8,7 @@ import model.Point;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -28,7 +30,6 @@ public class PlayGround extends JPanel
 
 
     }
-    //cell[2][3].setBackground(Color.red);
 
     private void initialise(Game game, GameGUI view)
     {
@@ -46,34 +47,30 @@ public class PlayGround extends JPanel
 
             }
         }
-//        cell[5][3].setIcon(new ImageIcon("Images/Tank.png"));
-//        cell[5][3].setEnabled(true);
-//        cell[3][9].setIcon(new ImageIcon("Images/Army.png"));
-//        cell[8][1].setIcon(new ImageIcon("Images/Base.png"));
-//        cell[6][1].setIcon(new ImageIcon("Images/Tower.png"));
-//        cell[6][1].setEnabled(true);
-//        cell[0][8].setIcon(new ImageIcon("Images/Jet.png"));
     }
 
     public void disableButtons(ArrayList<Point> exceptionsList)
     {
         for (int i = 0; i < size; i++)
-        {
             for (int j = 0; j < size; j++)
-            {
-                if(!exceptionsList.contains(new Point(i,j)))
-                {
-                    cell[i][j].setEnabled(false);
-                }
-
-            }
-        }
+                cell[i][j].setEnabled(exceptionsList.contains(new Point(i,j)));
     }
 
     public void setButtonImage(Point location, String path)
     {
         cell[location.getXCoordinate()][location.getYCoordinate()].setIcon
                 (new ImageIcon(path));
+    }
+
+    public void resetButtonActionListener(ActionListener actionListener)
+    {
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+            {
+                for(ActionListener listener : cell[i][j].getActionListeners())
+                    cell[i][j].removeActionListener(listener);
+                cell[i][j].addActionListener(actionListener);
+            }
     }
 
 }

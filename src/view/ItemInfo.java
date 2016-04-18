@@ -14,12 +14,13 @@ public class ItemInfo extends JPanel{
     LabelField weapon;
     LabelField health;
 
-    public ItemInfo() {
+    public ItemInfo(Player player) {
         this.setLayout(new GridLayout(0, 1));
         // add labels
         playerName =new JLabel("Player : ", SwingConstants.CENTER);
         playerName.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         //playerName.setFont(new Font("Times New Roman",Font.BOLD,24));
+        setPlayer(player);
         playerName.setOpaque(true);
 
         weapon = new LabelField("Troop");
@@ -41,7 +42,7 @@ public class ItemInfo extends JPanel{
     }
 
 
-        public void setPlayerName(Player player)
+        public void setPlayer(Player player)
     {
         playerName.setText("Player : " + player.getName());
         PlayerColor playerColor =  player.getColor();
