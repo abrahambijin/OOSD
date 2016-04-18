@@ -60,8 +60,7 @@ public class InitialItemPlacingController implements ActionListener
             {
                 view.getPlayGround()
                         .disableButtons(game.getOccupiedBoardLocation());
-                //view.getPlayGround().resetButtonActionListener(new
-                    //CellButtonController());
+                view.getPlayGround().resetButtonActionListener(game,view);
             }
         }
 

@@ -27,8 +27,6 @@ public class PlayGround extends JPanel
         this.setLayout(new GridLayout(size, size));
         cell = new Cell[size][size];
         initialise(game, view);
-
-
     }
 
     private void initialise(Game game, GameGUI view)
@@ -62,14 +60,15 @@ public class PlayGround extends JPanel
                 (new ImageIcon(path));
     }
 
-    public void resetButtonActionListener(ActionListener actionListener)
+    public void resetButtonActionListener(Game game, GameGUI view)
     {
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
             {
                 for(ActionListener listener : cell[i][j].getActionListeners())
                     cell[i][j].removeActionListener(listener);
-                cell[i][j].addActionListener(actionListener);
+                cell[i][j].addActionListener(new CellButtonController(new
+                        Point(i,j),game,view));
             }
     }
 

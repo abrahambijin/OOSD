@@ -71,7 +71,7 @@ public class Player
     public ArrayList<Point> getItemLocations()
     {
         ArrayList<Point> locations = new ArrayList<>();
-        for(GameItem item : troops)
+        for(GameItem item : this.getItems())
             locations.add(item.getPosition());
         return locations;
     }

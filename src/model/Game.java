@@ -1,7 +1,5 @@
 package model;
 
-import exceptions.ObjectAlreadyExistException;
-
 import java.util.ArrayList;
 
 /**
@@ -117,8 +115,7 @@ public class Game
     {
         ArrayList<Point> positionsOccupied = new ArrayList<>();
         for (Player player : players)
-            for (GameItem item : player.getItems())
-                positionsOccupied.add(item.getPosition());
+                positionsOccupied.addAll(player.getItemLocations());
         return positionsOccupied;
     }
 

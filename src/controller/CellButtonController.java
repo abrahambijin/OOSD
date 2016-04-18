@@ -1,6 +1,8 @@
 package controller;
 
+import model.Base;
 import model.Game;
+import model.GameItem;
 import model.Point;
 import view.GameGUI;
 
@@ -12,6 +14,7 @@ import java.awt.event.ActionListener;
  */
 public class CellButtonController implements ActionListener
 {
+    private static boolean isItemSelected = false;
     private Point location;
     private Game game;
     private GameGUI view;
@@ -26,10 +29,19 @@ public class CellButtonController implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-
-        //System.out.println(location);
-        //new CellPosition(location.getXCoordinate(),location.getYCoordinate());
-
-
+        GameItem item = game.getItem(location);
+        if (item != null)
+        {
+            if (isItemSelected)
+            {
+            }
+            else
+            {
+                Boolean pass = game.isTroopOfCurrentPlayer(location) &&
+                        !(item instanceof Base);
+                view.getPlayerStatus().getTop().setMoveEnabled(pass);
+                view.getPlayerStatus().getTop().setValues(item);
+            }
+        }
     }
 }

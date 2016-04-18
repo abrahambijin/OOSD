@@ -1,6 +1,5 @@
 package mainGameGUI;
 
-import exceptions.ObjectAlreadyExistException;
 import model.Game;
 import view.GameGUI;
 import view.SplashScreen;
@@ -15,8 +14,6 @@ public class MainGameGUI
 
     public static void main(String[] arg)
     {
-
-
         ImageIcon imageIcon = new ImageIcon("Images/warzone.jpg");
         final SplashScreen splashScreen = new SplashScreen(imageIcon);
         splashScreen.setLocationRelativeTo(null);
@@ -31,22 +28,5 @@ public class MainGameGUI
         gui.setLocationRelativeTo(null);
         gui.setVisible(true);
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-//            for(Player player: game.getPlayers())
-//            {
-//                for (GameItem item : player.getItems())
-//                {
-//                    System.out.print("Where would you like to place " +
-//                            item.getName() + ":");
-//                    Point location = getLocationInput();
-//                    while(!game.addItemToBoard(player,item,location))
-//                    {
-//                        System.out.println("Incorrect position");
-//                        System.out.print("Where would you like to place " +
-//                                item.getName() + ":");
-//                        location = getLocationInput();
-//                    }
-//                }
-//            }
     }
 }
