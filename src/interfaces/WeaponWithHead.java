@@ -1,6 +1,6 @@
 package interfaces;
 
-import model.Point;
+import model.Position;
 
 import java.util.ArrayList;
 
@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 public interface WeaponWithHead
 {
-    ArrayList<Point> weaponRange(Point location, Point head);
+    ArrayList<Position> weaponRange(Position location, Position head);
 }

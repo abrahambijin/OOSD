@@ -24,12 +24,12 @@ public class Troop extends GameItem
         this.movingDirection = movingDirection;
     }
 
-    public ArrayList<Point> getWeaponRange(int weaponIndex)
+    public ArrayList<Position> getWeaponRange(int weaponIndex)
     {
         return weapons.get(weaponIndex).getWeaponRange(super.getPosition());
     }
 
-    protected ArrayList<Point> getWeaponRange(int weaponIndex, Point head)
+    protected ArrayList<Position> getWeaponRange(int weaponIndex, Position head)
     {
         if (weapons.get(weaponIndex) instanceof WeaponWithHead)
         {
@@ -50,14 +50,14 @@ public class Troop extends GameItem
         return weapons;
     }
 
-    public ArrayList<Point> possibleMovePositions()
+    public ArrayList<Position> possibleMovePositions()
     {
         return PossiblePoints
                 .getPossiblePoints(super.getPosition(), maxNoOfSteps,
                         movingDirection);
     }
 
-    public void move(Point newPosition)
+    public void move(Position newPosition)
     {
         super.setPosition(newPosition);
     }

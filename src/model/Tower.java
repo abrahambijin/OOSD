@@ -12,7 +12,7 @@ import java.util.Random;
 public class Tower extends Troop
 {
 
-    Point head;
+    Position head;
 
     public Tower()
     {
@@ -28,28 +28,31 @@ public class Tower extends Troop
             headYPos = randomNumberGenerator.nextInt(3) - 1;
         } while (headXPos == 0 && headYPos == 0);
 
-        head = new Point(headXPos, headYPos);
-        super.setImageIconPath("Images/Tower/Tower"+head+".png");
+        head = new Position(headXPos, headYPos);
+        super.setImageIconPath("Images/Tower/Tower" + head + ".png");
     }
 
     @Override
-    public ArrayList<Point> getWeaponRange(int weaponIndex)
+    public ArrayList<Position> getWeaponRange(int weaponIndex)
     {
-        return super.getWeaponRange(weaponIndex,head);
+        return super.getWeaponRange(weaponIndex, head);
     }
 
-    public  ArrayList<Point> possibleMovePositions()
+    public ArrayList<Position> possibleMovePositions()
     {
-        return PossiblePoints.getPossiblePoints(super.getPosition(),
-                super.getMaxNoOfSteps(),Direction.ANY);
+        return PossiblePoints
+                .getPossiblePoints(super.getPosition(), super.getMaxNoOfSteps(),
+                        Direction.ANY);
     }
 
-    public void move(Point newPosition)
+    public void move(Position newPosition)
     {
-        int headX = newPosition.getXCoordinate()-head.getXCoordinate();
-        int headY = newPosition.getYCoordinate()-head.getYCoordinate();
-        head = new Point(headX,headY);
-        super.setImageIconPath("/Images/Tower/Tower"+head+".png");
+        int headX =
+                newPosition.getXCoordinate() - getPosition().getXCoordinate();
+        int headY =
+                newPosition.getYCoordinate() - getPosition().getYCoordinate();
+        head = new Position(headX, headY);
+        super.setImageIconPath("Images/Tower/Tower" + head + ".png");
     }
 
 }

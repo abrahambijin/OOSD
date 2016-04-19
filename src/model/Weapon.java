@@ -22,7 +22,7 @@ public class Weapon
         this.direction = direction;
     }
 
-    public ArrayList<Point> getWeaponRange(Point location)
+    public ArrayList<Position> getWeaponRange(Position location)
     {
         return PossiblePoints.getPossiblePoints(location,range,direction);
     }

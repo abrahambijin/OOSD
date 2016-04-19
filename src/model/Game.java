@@ -30,7 +30,7 @@ public class Game
     }
 
     public boolean addItemToBoard(Player player, GameItem item,
-                                  Point preferredLocation)
+                                  Position preferredLocation)
     {
         boolean success;
         if (player instanceof PlayerOne)
@@ -50,7 +50,7 @@ public class Game
         return players;
     }
 
-    public GameItem getItem(Point location)
+    public GameItem getItem(Position location)
     {
         return board.getItem(location);
     }
@@ -60,7 +60,7 @@ public class Game
         return BOARD_SIZE;
     }
 
-    public ArrayList<Point> possiblePointToPlaceItems()
+    public ArrayList<Position> possiblePointToPlaceItems()
     {
         if (getCurrentPlayer() instanceof PlayerOne)
             return board.possiblePointsToPlacePlayerOneItem();
@@ -80,11 +80,11 @@ public class Game
         return players.get(currentPlayerIndex);
     }
 
-    public ArrayList<Point> getPossibleMovePoints(GameItem item)
+    public ArrayList<Position> getPossibleMovePoints(GameItem item)
     {
         if (item instanceof Troop)
         {
-            ArrayList<Point> possibleMovePositions =
+            ArrayList<Position> possibleMovePositions =
                     ((Troop) item).possibleMovePositions();
             if (item instanceof Tower)
                 return possibleMovePositions;
@@ -94,16 +94,16 @@ public class Game
         return null;
     }
 
-    public boolean isTroopOfCurrentPlayer(Point location)
+    public boolean isTroopOfCurrentPlayer(Position location)
     {
         return (players.get(currentPlayerIndex).getItemLocations()
                 .contains(location));
     }
 
-    public boolean move(Point currentLocation, Point newLocation)
+    public boolean move(Position currentLocation, Position newLocation)
     {
         boolean success = false;
-        ArrayList<Point> possibleMoveLocations =
+        ArrayList<Position> possibleMoveLocations =
                 getPossibleMovePoints(board.getItem(currentLocation));
         if (possibleMoveLocations != null &&
                 possibleMoveLocations.contains(newLocation))
@@ -111,9 +111,9 @@ public class Game
         return success;
     }
 
-    public ArrayList<Point> getOccupiedBoardLocation()
+    public ArrayList<Position> getOccupiedBoardLocation()
     {
-        ArrayList<Point> positionsOccupied = new ArrayList<>();
+        ArrayList<Position> positionsOccupied = new ArrayList<>();
         for (Player player : players)
                 positionsOccupied.addAll(player.getItemLocations());
         return positionsOccupied;

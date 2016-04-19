@@ -3,13 +3,13 @@ package model;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Point
+public class Position
 {
 
     private int xCoordinate;
     private int yCoordinate;
 
-    public Point(int xCoordinate, int yCoordinate)
+    public Position(int xCoordinate, int yCoordinate)
     {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
@@ -25,16 +25,16 @@ public class Point
         return yCoordinate;
     }
 
-    private boolean equals(Point point)
+    private boolean equals(Position position)
     {
-        return ((point.getXCoordinate() == xCoordinate) &&
-                (point.getYCoordinate() == yCoordinate));
+        return ((position.getXCoordinate() == xCoordinate) &&
+                (position.getYCoordinate() == yCoordinate));
     }
 
     @Override
     public boolean equals(Object o)
     {
-        return o != null && o instanceof Point && equals((Point) o);
+        return o != null && o instanceof Position && equals((Position) o);
     }
 
     public String toString()

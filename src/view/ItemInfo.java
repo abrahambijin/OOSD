@@ -1,8 +1,9 @@
 package view;
 
+import controller.BackButtonController;
+import controller.MoveButtonController;
+import model.Game;
 import model.GameItem;
-import model.Player;
-import model.PlayerColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,6 @@ import java.awt.*;
  */
 public class ItemInfo extends JPanel
 {
-    private JLabel playerName = new JLabel();
     LabelField troop;
     LabelField health;
     JButton moveButton;
@@ -20,15 +20,10 @@ public class ItemInfo extends JPanel
     JButton backButton;
     JPanel buttonPanel;
 
-    public ItemInfo(Player player)
+    public ItemInfo(Game game, GameGUI view)
     {
         this.setLayout(new GridLayout(0, 1));
         // add labels
-        playerName = new JLabel("Player : ", SwingConstants.CENTER);
-        playerName.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        //playerName.setFont(new Font("Times New Roman",Font.BOLD,24));
-        setPlayer(player);
-        playerName.setOpaque(true);
 
         troop = new LabelField("Troop");
         health = new LabelField("Health");
@@ -36,40 +31,40 @@ public class ItemInfo extends JPanel
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
         moveButton = new JButton("Move");
+        moveButton.addActionListener(new MoveButtonController(game, view));
         moveButton.setPreferredSize(new Dimension(100, 40));
         moveButton.setEnabled(false);
         attackButton = new JButton("Attack");
         attackButton.setPreferredSize(new Dimension(100, 40));
         attackButton.setEnabled(false);
         backButton = new JButton("Back");
+        backButton.addActionListener(new BackButtonController(game, view));
         backButton.setPreferredSize(new Dimension(200, 40));
         buttonPanel.add(moveButton);
         buttonPanel.add(attackButton);
-        this.add(playerName);
         this.add(troop);
         this.add(health);
         this.add(buttonPanel);
     }
 
-
-    public void setPlayer(Player player)
+    public void enableButtons(Boolean isEnabled)
     {
-        playerName.setText("Player : " + player.getName());
-        PlayerColor playerColor = player.getColor();
-        playerName.setBackground(
-                new Color(playerColor.getRed(), playerColor.getGreen(),
-                        playerColor.getBlue()));
-    }
-
-    public void setMoveEnabled(Boolean moveEnabled)
-    {
-        moveButton.setEnabled(moveEnabled);
+        moveButton.setEnabled(isEnabled);
+//        attackButton.setEnabled(isEnabled);
     }
 
     public void setValues(GameItem item)
     {
-        troop.setValue(item.getName());
-        health.setValue(item.getHealth() + "");
+        if(item!=null)
+        {
+            troop.setValue(item.getName());
+            health.setValue(item.getHealth() + "");
+        }
+        else
+        {
+            troop.resetValue();
+            health.resetValue();
+        }
     }
 
     public void enableBackButton(Boolean enable)
@@ -84,6 +79,14 @@ public class ItemInfo extends JPanel
             buttonPanel.add(moveButton);
             buttonPanel.add(attackButton);
         }
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void reset()
+    {
+        enableButtons(false);
+        setValues(null);
     }
 
 }

@@ -1,10 +1,9 @@
 package view;
 
-import com.sun.javafx.image.BytePixelSetter;
 import controller.CellButtonController;
 import controller.InitialItemPlacingController;
 import model.Game;
-import model.Point;
+import model.Position;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +16,7 @@ import java.util.ArrayList;
 public class PlayGround extends JPanel
 {
     private int size;
-    private Cell cell [][];
-
+    private Cell cell[][];
 
 
     public PlayGround(Game game, GameGUI view)
@@ -39,25 +37,27 @@ public class PlayGround extends JPanel
                 cell[i][j]
                         .setBorder(BorderFactory.createLineBorder(Color.black));
                 cell[i][j].addActionListener(
-                        new InitialItemPlacingController(new Point(i, j),game,view));
-//                cell[i][j].setEnabled(false);
+                        new InitialItemPlacingController(new Position(i, j),
+                                game, view));
+
                 this.add(cell[i][j]);
 
             }
         }
     }
 
-    public void disableButtons(ArrayList<Point> exceptionsList)
+    public void disableButtons(ArrayList<Position> exceptionsList)
     {
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
-                cell[i][j].setEnabled(exceptionsList.contains(new Point(i,j)));
+                cell[i][j].setEnabled(
+                        exceptionsList.contains(new Position(i, j)));
     }
 
-    public void setButtonImage(Point location, String path)
+    public void setButtonImage(Position location, String path)
     {
-        cell[location.getXCoordinate()][location.getYCoordinate()].setIcon
-                (new ImageIcon(path));
+        cell[location.getXCoordinate()][location.getYCoordinate()]
+                .setIcon(new ImageIcon(path));
     }
 
     public void resetButtonActionListener(Game game, GameGUI view)
@@ -65,11 +65,21 @@ public class PlayGround extends JPanel
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
             {
-                for(ActionListener listener : cell[i][j].getActionListeners())
+                for (ActionListener listener : cell[i][j].getActionListeners())
                     cell[i][j].removeActionListener(listener);
-                cell[i][j].addActionListener(new CellButtonController(new
-                        Point(i,j),game,view));
+                cell[i][j].addActionListener(
+                        new CellButtonController(new Position(i, j), game,
+                                view));
             }
+    }
+
+    public void moveItem(Position initialPosition, Position finalPosition,
+                         String imagePath)
+    {
+//        cell[initialPosition.getXCoordinate()][initialPosition
+//                .getYCoordinate()].setIcon(null);
+        setButtonImage(initialPosition,null);
+        setButtonImage(finalPosition,imagePath);
     }
 
 }

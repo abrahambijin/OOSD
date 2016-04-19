@@ -12,7 +12,7 @@ public class Board
 {
 
     private GameItem[][] warZone;
-    private Point basePosition;
+    private Position basePosition;
     private final int BOARD_SIZE;
     private final int INITIAL_DISTANCE_FROM_BASE;
 
@@ -23,7 +23,7 @@ public class Board
         this.warZone = new GameItem[BOARD_SIZE][BOARD_SIZE];
     }
 
-    private boolean placeGameItem(GameItem item, Point position)
+    private boolean placeGameItem(GameItem item, Position position)
     {
         int xCoordinate = position.getXCoordinate();
         int yCoordinate = position.getYCoordinate();
@@ -41,12 +41,12 @@ public class Board
         return warZone;
     }
 
-    public GameItem getItem(Point location)
+    public GameItem getItem(Position location)
     {
         return warZone[location.getXCoordinate()][location.getYCoordinate()];
     }
 
-    public boolean placePlayerOneItem(GameItem item, Point preferredLocation)
+    public boolean placePlayerOneItem(GameItem item, Position preferredLocation)
     {
         try
         {
@@ -80,15 +80,15 @@ public class Board
         }
     }
 
-    public ArrayList<Point> possiblePointsToPlacePlayerOneItem()
+    public ArrayList<Position> possiblePointsToPlacePlayerOneItem()
     {
         return PossiblePoints
                 .getPointsInRange(basePosition, INITIAL_DISTANCE_FROM_BASE);
     }
 
-    public ArrayList<Point> possiblePointsToPlacePlayerItem()
+    public ArrayList<Position> possiblePointsToPlacePlayerItem()
     {
-        ArrayList<Point> listOfPositions = new ArrayList<>();
+        ArrayList<Position> listOfPositions = new ArrayList<>();
         if (!(basePosition.getYCoordinate() < ((BOARD_SIZE - 1) / 2)))
         {
             listOfPositions.addAll(getBorder(0, false));
@@ -108,7 +108,7 @@ public class Board
         return listOfPositions;
     }
 
-    public boolean placePlayerItem(GameItem item, Point preferredLocation)
+    public boolean placePlayerItem(GameItem item, Position preferredLocation)
     {
         try
         {
@@ -128,19 +128,19 @@ public class Board
         }
     }
 
-    private ArrayList<Point> getBorder(int fixedValue, boolean xIsFixed)
+    private ArrayList<Position> getBorder(int fixedValue, boolean xIsFixed)
     {
-        ArrayList<Point> listOfPositions = new ArrayList<>();
+        ArrayList<Position> listOfPositions = new ArrayList<>();
         if (xIsFixed)
             for (int i = 0; i < BOARD_SIZE; i++)
-                listOfPositions.add(new Point(fixedValue, i));
+                listOfPositions.add(new Position(fixedValue, i));
         else
             for (int i = 1; i < BOARD_SIZE - 1; i++)
-                listOfPositions.add(new Point(i, fixedValue));
+                listOfPositions.add(new Position(i, fixedValue));
         return listOfPositions;
     }
 
-    public boolean move(Point currentPosition, Point newPosition)
+    public boolean move(Position currentPosition, Position newPosition)
     {
         boolean success = false;
         int xCoordinate = currentPosition.getXCoordinate();
@@ -174,15 +174,15 @@ public class Board
         return success;
     }
 
-    public ArrayList<Point> filterMovePositions(ArrayList<Point> points)
+    public ArrayList<Position> filterMovePositions(ArrayList<Position> positions)
     {
-        ListIterator<Point> iterator = points.listIterator();
+        ListIterator<Position> iterator = positions.listIterator();
         while (iterator.hasNext())
         {
-            Point point = iterator.next();
+            Position position = iterator.next();
             try
             {
-                if (getItem(point) != null)
+                if (getItem(position) != null)
                 {
                     iterator.remove();
                 }
@@ -193,10 +193,10 @@ public class Board
             }
         }
 
-        return points;
+        return positions;
     }
 
-    private void setPointToNull(Point location)
+    private void setPointToNull(Position location)
     {
         warZone[location.getXCoordinate()][location.getYCoordinate()] = null;
     }

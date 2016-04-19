@@ -6,7 +6,7 @@ package model;
 public abstract class GameItem  {
 
     private String name;
-    private Point position;
+    private Position position;
     private String imageIconPath;
     private int health;
 
@@ -20,11 +20,11 @@ public abstract class GameItem  {
         this.imageIconPath = "Images/"+name+".png";
     }
 
-    public Point getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(Point position)
+    public void setPosition(Position position)
     {
         this.position = position;
     }

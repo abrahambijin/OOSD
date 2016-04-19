@@ -3,7 +3,7 @@ package controller;
 import model.Game;
 import model.GameItem;
 import model.Player;
-import model.Point;
+import model.Position;
 import view.GameGUI;
 
 import java.awt.event.ActionEvent;
@@ -18,11 +18,11 @@ public class InitialItemPlacingController implements ActionListener
     private static int ITEM_INDEX = 0;
     private static int PLAYER_INDEX = 1;
 
-    private Point location;
+    private Position location;
     private Game game;
     private GameGUI view;
 
-    public InitialItemPlacingController(Point location, Game game, GameGUI view)
+    public InitialItemPlacingController(Position location, Game game, GameGUI view)
     {
         this.location = location;
         this.game = game;
@@ -49,8 +49,7 @@ public class InitialItemPlacingController implements ActionListener
                 ITEM_INDEX = 0;
                 game.nextPlayer();
                 PLAYER_INDEX++;
-                view.getPlayerStatus().getTop()
-                        .setPlayer(game.getCurrentPlayer());
+                view.getPlayerStatus().setPlayer(game.getCurrentPlayer());
             }
 
             if (PLAYER_INDEX <= Game.getNO_OF_PLAYERS())
@@ -60,13 +59,9 @@ public class InitialItemPlacingController implements ActionListener
             {
                 view.getPlayGround()
                         .disableButtons(game.getOccupiedBoardLocation());
-                view.getPlayGround().resetButtonActionListener(game,view);
+                view.getPlayGround().resetButtonActionListener(game, view);
             }
         }
-
-        //System.out.println(location);
-        //new CellPosition(location.getXCoordinate(),location.getYCoordinate());
-
 
     }
 }

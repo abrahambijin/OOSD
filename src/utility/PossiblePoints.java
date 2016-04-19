@@ -1,7 +1,7 @@
 package utility;
 
 import model.Direction;
-import model.Point;
+import model.Position;
 
 import java.util.ArrayList;
 
@@ -14,58 +14,58 @@ public final class PossiblePoints
     {
     }
 
-    public static ArrayList<Point> getPossiblePoints(Point position, int limit,
-                                                     Direction direction)
+    public static ArrayList<Position> getPossiblePoints(Position position, int limit,
+                                                        Direction direction)
     {
-        ArrayList<Point> pointOptions = new ArrayList<>();
+        ArrayList<Position> positionOptions = new ArrayList<>();
         if (direction != Direction.STRAIGHT_LINE)
-            pointOptions.addAll(getDiagonalOptions(position, limit));
+            positionOptions.addAll(getDiagonalOptions(position, limit));
         if (direction != Direction.DIAGONAL)
-            pointOptions.addAll(getStraightLineOptions(position, limit));
-        return pointOptions;
+            positionOptions.addAll(getStraightLineOptions(position, limit));
+        return positionOptions;
     }
 
-    public static ArrayList<Point> getPointsInRange(Point position,
-                                                    int rangeLimit)
+    public static ArrayList<Position> getPointsInRange(Position position,
+                                                       int rangeLimit)
     {
-        ArrayList<Point> pointOptions = new ArrayList<>();
+        ArrayList<Position> positionOptions = new ArrayList<>();
         int xpos = position.getXCoordinate();
         int ypos = position.getYCoordinate();
         for (int i = (-1 * rangeLimit); i <= rangeLimit; i++)
             for (int j = (-1 * rangeLimit); j <= rangeLimit; j++)
                 if (i != 0 || j != 0)
-                    pointOptions.add(new Point(xpos+i, ypos+j));
-        return pointOptions;
+                    positionOptions.add(new Position(xpos+i, ypos+j));
+        return positionOptions;
     }
 
-    private static ArrayList<Point> getDiagonalOptions(Point location,
-                                                       int limit)
+    private static ArrayList<Position> getDiagonalOptions(Position location,
+                                                          int limit)
     {
         int xPos = location.getXCoordinate();
         int yPos = location.getYCoordinate();
-        ArrayList<Point> diagonalOptions = new ArrayList<>();
+        ArrayList<Position> diagonalOptions = new ArrayList<>();
         for (int i = 1; i <= limit; i++)
         {
-            diagonalOptions.add(new Point((xPos - i), (yPos - i)));
-            diagonalOptions.add(new Point((xPos - i), (yPos + i)));
-            diagonalOptions.add(new Point((xPos + i), (yPos - i)));
-            diagonalOptions.add(new Point((xPos + i), (yPos + i)));
+            diagonalOptions.add(new Position((xPos - i), (yPos - i)));
+            diagonalOptions.add(new Position((xPos - i), (yPos + i)));
+            diagonalOptions.add(new Position((xPos + i), (yPos - i)));
+            diagonalOptions.add(new Position((xPos + i), (yPos + i)));
         }
         return diagonalOptions;
     }
 
-    private static ArrayList<Point> getStraightLineOptions(Point location,
-                                                           int limit)
+    private static ArrayList<Position> getStraightLineOptions(Position location,
+                                                              int limit)
     {
         int xPos = location.getXCoordinate();
         int yPos = location.getYCoordinate();
-        ArrayList<Point> straightLineShootingOptions = new ArrayList<>();
+        ArrayList<Position> straightLineShootingOptions = new ArrayList<>();
         for (int i = 1; i <= limit; i++)
         {
-            straightLineShootingOptions.add(new Point((xPos - i), yPos));
-            straightLineShootingOptions.add(new Point(xPos, (yPos + i)));
-            straightLineShootingOptions.add(new Point((xPos + i), yPos));
-            straightLineShootingOptions.add(new Point(xPos, (yPos - i)));
+            straightLineShootingOptions.add(new Position((xPos - i), yPos));
+            straightLineShootingOptions.add(new Position(xPos, (yPos + i)));
+            straightLineShootingOptions.add(new Position((xPos + i), yPos));
+            straightLineShootingOptions.add(new Position(xPos, (yPos - i)));
         }
         return straightLineShootingOptions;
     }

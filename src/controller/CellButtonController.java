@@ -1,9 +1,6 @@
 package controller;
 
-import model.Base;
-import model.Game;
-import model.GameItem;
-import model.Point;
+import model.*;
 import view.GameGUI;
 
 import java.awt.event.ActionEvent;
@@ -15,33 +12,64 @@ import java.awt.event.ActionListener;
 public class CellButtonController implements ActionListener
 {
     private static boolean isItemSelected = false;
-    private Point location;
+    private Position location;
     private Game game;
     private GameGUI view;
 
-    public CellButtonController(Point location, Game game, GameGUI view)
+    public CellButtonController(Position location, Game game, GameGUI view)
     {
         this.location = location;
         this.game = game;
         this.view = view;
     }
 
+    public static void setIsItemSelected(boolean isItemSelected)
+    {
+        CellButtonController.isItemSelected = isItemSelected;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        GameItem item = game.getItem(location);
-        if (item != null)
+        if (isItemSelected)
         {
-            if (isItemSelected)
+            Position currentLocation = view.getPlayerStatus().getItemLocation();
+            GameItem item = game.getItem(currentLocation);
+
+            boolean success = game.move(currentLocation, location);
+
+            if (success)
             {
+                if (item instanceof Tower)
+                {
+                    view.getPlayGround().setButtonImage(currentLocation,
+                            item.getImageIconPath());
+                }
+
+                else
+                {
+                    view.getPlayGround().moveItem(currentLocation, location,
+                            item.getImageIconPath());
+                }
+
+                game.nextPlayer();
+                view.getPlayGround()
+                        .disableButtons(game.getOccupiedBoardLocation());
+                view.getPlayerStatus().updatePage(game.getCurrentPlayer());
             }
-            else
+            view.getPlayerStatus().getTop().enableBackButton(false);
+            isItemSelected = false;
+        }
+        else
+        {
+            GameItem item = game.getItem(location);
+            if (item != null)
             {
                 Boolean pass = game.isTroopOfCurrentPlayer(location) &&
                         !(item instanceof Base);
-                view.getPlayerStatus().getTop().setMoveEnabled(pass);
-                view.getPlayerStatus().getTop().setValues(item);
+                view.getPlayerStatus().setItem(item, pass);
             }
+
         }
     }
 }

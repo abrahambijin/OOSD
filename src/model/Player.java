@@ -68,9 +68,9 @@ public class Player
         return color;
     }
 
-    public ArrayList<Point> getItemLocations()
+    public ArrayList<Position> getItemLocations()
     {
-        ArrayList<Point> locations = new ArrayList<>();
+        ArrayList<Position> locations = new ArrayList<>();
         for(GameItem item : this.getItems())
             locations.add(item.getPosition());
         return locations;

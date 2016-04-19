@@ -31,7 +31,7 @@ public class Runner
             {
                 System.out.print("Where would you like to place " +
                         item.getName() + ":");
-                Point location = getLocationInput();
+                Position location = getLocationInput();
                 while(!game.addItemToBoard(player,item,location))
                 {
                     System.out.println("Incorrect position");
@@ -47,21 +47,21 @@ public class Runner
         {
             Player currentPlayer = game.getCurrentPlayer();
             System.out.println(currentPlayer.getName()+": Select a Troop");
-            Point selectedPoint = getLocationInput();
-            while(!game.isTroopOfCurrentPlayer(selectedPoint))
+            Position selectedPosition = getLocationInput();
+            while(!game.isTroopOfCurrentPlayer(selectedPosition))
             {
                 System.out.println("Incorrect selection");
                 System.out.println(currentPlayer.getName()+": Select a Troop");
-                selectedPoint = getLocationInput();
+                selectedPosition = getLocationInput();
             }
             System.out.println("Where do you want to move "+game.getItem
-                    (selectedPoint).getName());
-            Point newLocation = getLocationInput();
-            while(!game.move(selectedPoint,newLocation))
+                    (selectedPosition).getName());
+            Position newLocation = getLocationInput();
+            while(!game.move(selectedPosition,newLocation))
             {
                 System.out.println("Incorrect selection");
                 System.out.println("Where do you want to move "+game.getItem
-                        (selectedPoint).getName());
+                        (selectedPosition).getName());
                 newLocation = getLocationInput();
             }
             System.out.println();
@@ -82,12 +82,12 @@ public class Runner
         return input.nextLine();
     }
 
-    private static Point getLocationInput()
+    private static Position getLocationInput()
     {
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
         int y = input.nextInt();
-        return new Point(x,y);
+        return new Position(x,y);
     }
 
     private static void displayBoard()
@@ -97,7 +97,7 @@ public class Runner
             System.out.print("|");
             for(int j=0;j<game.getBOARD_SIZE();j++)
             {
-                GameItem item = game.getItem(new Point(i,j));
+                GameItem item = game.getItem(new Position(i,j));
                 if(item!=null)
                     System.out.print(item.getName()+" |");
                 else

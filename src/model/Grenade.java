@@ -15,33 +15,33 @@ public class Grenade extends Weapon implements WeaponWithHead
     }
 
     @Override
-    public ArrayList<Point> weaponRange(Point location, Point head)
+    public ArrayList<Position> weaponRange(Position location, Position head)
     {
-        ArrayList<Point> shootingOptions = new ArrayList<>();
+        ArrayList<Position> shootingOptions = new ArrayList<>();
         int headXCoordinate = head.getXCoordinate();
         int headYCoordinate = head.getYCoordinate();
         int xPos = location.getXCoordinate();
         int yPos = location.getYCoordinate();
-        shootingOptions.add(new Point((xPos + headXCoordinate),
+        shootingOptions.add(new Position((xPos + headXCoordinate),
                 (yPos + headYCoordinate)));
         if (headXCoordinate == 0)
         {
             shootingOptions
-                    .add(new Point((xPos - 1), (yPos + headYCoordinate)));
+                    .add(new Position((xPos - 1), (yPos + headYCoordinate)));
             shootingOptions
-                    .add(new Point((xPos + 1), (yPos + headYCoordinate)));
+                    .add(new Position((xPos + 1), (yPos + headYCoordinate)));
         }
         else if (headYCoordinate == 0)
         {
             shootingOptions
-                    .add(new Point((xPos + headXCoordinate), (yPos - 1)));
+                    .add(new Position((xPos + headXCoordinate), (yPos - 1)));
             shootingOptions
-                    .add(new Point((xPos + headXCoordinate), (yPos + 1)));
+                    .add(new Position((xPos + headXCoordinate), (yPos + 1)));
         }
         else
         {
-            shootingOptions.add(new Point((xPos + headXCoordinate), yPos));
-            shootingOptions.add(new Point(xPos, (yPos + headYCoordinate)));
+            shootingOptions.add(new Position((xPos + headXCoordinate), yPos));
+            shootingOptions.add(new Position(xPos, (yPos + headYCoordinate)));
         }
         return shootingOptions;
     }

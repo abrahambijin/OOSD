@@ -1,7 +1,6 @@
 package view;
 
-import model.Game;
-import model.GameItem;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,20 +12,30 @@ import java.awt.*;
 public class PlayerStatus extends JPanel
 {
 
+    private JLabel playerName = new JLabel();
     private ItemInfo top;
     private ItemWeaponInfo bottom;
-    GameItem item;
+    private Position itemLocation;
 
     public PlayerStatus(Game game, GameGUI view)
     {
-        this.setLayout(new FlowLayout());
-        this.setLayout(new GridLayout(2, 0));
-        // divide top panel for label
+        this.setLayout(new BorderLayout());
+
+        playerName = new JLabel("Player : ", SwingConstants.CENTER);
+        playerName.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        playerName.setPreferredSize(new Dimension(playerName.getWidth(),75));
+        setPlayer(game.getCurrentPlayer());
+        playerName.setOpaque(true);
+        this.add(playerName,BorderLayout.NORTH);
+
+        JPanel itemDetails = new JPanel(new GridLayout(2,1));
+        top = new ItemInfo(game, view);
         bottom = new ItemWeaponInfo();
         bottom.setVisible(false);
-        top = new ItemInfo(game.getCurrentPlayer());
-        this.add(top);
-        this.add(bottom);
+        itemDetails.add(top);
+        itemDetails.add(bottom);
+
+        this.add(itemDetails);
     }
 
     public ItemInfo getTop() {
@@ -38,17 +47,31 @@ public class PlayerStatus extends JPanel
         return bottom;
     }
 
-    public void setBottom(ItemWeaponInfo bottom) {
-        this.bottom = bottom;
+
+    public Position getItemLocation()
+    {
+        return itemLocation;
     }
 
-    public GameItem getItem()
+    public void setItem(GameItem item, boolean buttonsEnabled)
     {
-        return item;
+        itemLocation = item.getPosition();
+        top.setValues(item);
+        top.enableButtons(buttonsEnabled);
     }
 
-    public void setItem(GameItem item)
+    public void setPlayer(Player player)
     {
-        this.item = item;
+        playerName.setText("Player : " + player.getName());
+        PlayerColor playerColor = player.getColor();
+        playerName.setBackground(
+                new Color(playerColor.getRed(), playerColor.getGreen(),
+                        playerColor.getBlue()));
+    }
+
+    public void updatePage(Player player)
+    {
+        setPlayer(player);
+        top.reset();
     }
 }
