@@ -26,5 +26,8 @@ public class BackButtonController implements ActionListener
         CellButtonController.setIsItemSelected(false);
         view.getPlayGround().disableButtons(game.getOccupiedBoardLocation());
         view.getPlayerStatus().getTop().enableBackButton(false);
+        view.setStatus(
+                game.getCurrentPlayer().getName() + ", select the troop you " +
+                        "wish to move or attack with");
     }
 }

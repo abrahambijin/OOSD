@@ -22,7 +22,8 @@ public class InitialItemPlacingController implements ActionListener
     private Game game;
     private GameGUI view;
 
-    public InitialItemPlacingController(Position location, Game game, GameGUI view)
+    public InitialItemPlacingController(Position location, Game game,
+                                        GameGUI view)
     {
         this.location = location;
         this.game = game;
@@ -52,15 +53,29 @@ public class InitialItemPlacingController implements ActionListener
                 view.getPlayerStatus().setPlayer(game.getCurrentPlayer());
             }
 
+            currentPlayer = game.getCurrentPlayer();
+            item = currentPlayer.getItems().get(ITEM_INDEX);
+
+
             if (PLAYER_INDEX <= Game.getNO_OF_PLAYERS())
+            {
                 view.getPlayGround()
                         .disableButtons(game.possiblePointToPlaceItems());
+                view.setStatus(
+                        currentPlayer.getName() + ", where would you like to" +
+                                " place " + item.getName() + "?");
+            }
             else
             {
                 view.getPlayGround()
                         .disableButtons(game.getOccupiedBoardLocation());
                 view.getPlayGround().resetButtonActionListener(game, view);
+                view.setStatus(
+                        currentPlayer.getName() + ", select the troop you " +
+                                "wish to move or attack with");
             }
+
+
         }
 
     }

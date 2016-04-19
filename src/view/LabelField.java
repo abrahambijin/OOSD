@@ -29,9 +29,4 @@ public class LabelField extends JPanel
         setValue("");
     }
 
-    public void centerHorizontaly()
-    {
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-    }
-
 }

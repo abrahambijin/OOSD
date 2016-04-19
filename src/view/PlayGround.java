@@ -76,8 +76,6 @@ public class PlayGround extends JPanel
     public void moveItem(Position initialPosition, Position finalPosition,
                          String imagePath)
     {
-//        cell[initialPosition.getXCoordinate()][initialPosition
-//                .getYCoordinate()].setIcon(null);
         setButtonImage(initialPosition,null);
         setButtonImage(finalPosition,imagePath);
     }
