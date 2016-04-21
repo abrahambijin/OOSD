@@ -40,9 +40,15 @@ public class Tower extends Troop
 
     public ArrayList<Position> possibleMovePositions()
     {
-        return PossiblePoints
+        ArrayList<Position> positions = PossiblePoints
                 .getPossiblePoints(super.getPosition(), super.getMaxNoOfSteps(),
                         Direction.ANY);
+        int excludeXPosition= getPosition().getXCoordinate() + head
+                .getXCoordinate();
+        int excludeYPosition= getPosition().getYCoordinate() + head
+                .getYCoordinate();
+        positions.remove(new Position(excludeXPosition,excludeYPosition));
+        return positions;
     }
 
     public void move(Position newPosition)

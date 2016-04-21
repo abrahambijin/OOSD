@@ -56,8 +56,19 @@ public class PlayGround extends JPanel
 
     public void setButtonImage(Position location, String path)
     {
+        int imageWidth =
+                cell[location.getXCoordinate()][location.getYCoordinate()]
+                        .getWidth()*2/3;
+        int imageHeight =
+                cell[location.getXCoordinate()][location.getYCoordinate()]
+                        .getHeight()*3/4;
+
+        Image buttonImage = new ImageIcon(path).getImage()
+                .getScaledInstance(imageWidth, imageHeight,
+                        Image.SCALE_DEFAULT);
+
         cell[location.getXCoordinate()][location.getYCoordinate()]
-                .setIcon(new ImageIcon(path));
+                .setIcon(new ImageIcon(buttonImage));
     }
 
     public void resetButtonActionListener(Game game, GameGUI view)
@@ -76,8 +87,8 @@ public class PlayGround extends JPanel
     public void moveItem(Position initialPosition, Position finalPosition,
                          String imagePath)
     {
-        setButtonImage(initialPosition,null);
-        setButtonImage(finalPosition,imagePath);
+        setButtonImage(initialPosition, null);
+        setButtonImage(finalPosition, imagePath);
     }
 
 }

@@ -31,6 +31,6 @@ public class MoveButtonController implements ActionListener
         view.getPlayGround().disableButtons(game.getPossibleMovePoints(item));
         view.getPlayerStatus().getTop().enableBackButton(true);
         view.setStatus(game.getCurrentPlayer().getName() +
-                ", where would you like to move " + item.getName() + "to?");
+                ", where would you like to move " + item.getName() + " to?");
     }
 }

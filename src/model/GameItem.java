@@ -3,24 +3,28 @@ package model;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public abstract class GameItem  {
+public abstract class GameItem
+{
 
     private String name;
     private Position position;
     private String imageIconPath;
     private int health;
 
-    public GameItem(String name) {
-        this(name,100);
+    public GameItem(String name)
+    {
+        this(name, 100);
     }
 
-    public GameItem(String name, int health){
+    public GameItem(String name, int health)
+    {
         this.name = name;
         this.health = health;
-        this.imageIconPath = "Images/"+name+".png";
+        this.imageIconPath = "Images/" + name + ".png";
     }
 
-    public Position getPosition() {
+    public Position getPosition()
+    {
         return position;
     }
 
@@ -48,4 +52,10 @@ public abstract class GameItem  {
     {
         this.imageIconPath = imageIconPath;
     }
+
+    public void getHit(int damage)
+    {
+        health -= damage;
+    }
+
 }

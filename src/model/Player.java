@@ -14,7 +14,7 @@ public class Player
     private ArrayList<Troop> troops;
     private PlayerColor color;
 
-    public Player(String name, ArrayList<Troop> troops)
+    private Player(String name, ArrayList<Troop> troops)
     {
         this(name, troops,new PlayerColor(0,0,255));
     }
@@ -64,7 +64,6 @@ public class Player
     }
 
     public PlayerColor getColor() {
-        //return PlayerOne
         return color;
     }
 
