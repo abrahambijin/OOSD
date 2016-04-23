@@ -62,4 +62,6 @@ public class Troop extends GameItem
         super.setPosition(newPosition);
     }
 
+    public void addWeapon(Weapon weapon){ this.weapons.add(weapon); }
+
 }

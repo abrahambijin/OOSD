@@ -27,10 +27,26 @@ public class Board
     {
         int xCoordinate = position.getXCoordinate();
         int yCoordinate = position.getYCoordinate();
+        Position finalPosition = new Position(xCoordinate, yCoordinate);
         // the cell must be empty to place a new game item
         if (warZone[xCoordinate][yCoordinate] == null)
         {
-            warZone[xCoordinate][yCoordinate] = item;
+            setItemOnWarZone(finalPosition, item);
+            return true;
+        }
+        // check if position is occupied by game Extras
+        else if (warZone[xCoordinate][yCoordinate] instanceof Infantry){
+            Infantry infantry  = (Infantry) getItem(new Position(xCoordinate, yCoordinate));
+            Weapon bonusWeapon = infantry.getBonusWeapon();
+            ArrayList<Weapon> weapons = ((Troop) item).getWeapons();
+            weapons.add(bonusWeapon);
+            setItemOnWarZone(finalPosition, item);
+            return true;
+        }
+        else if ((warZone[xCoordinate][yCoordinate] instanceof HealthEnhancer)){
+            HealthEnhancer healthEnhancer = (HealthEnhancer) getItem(new Position(xCoordinate, yCoordinate));
+            item.enhanceHealth(healthEnhancer.getHealthMultiplyingFactor());
+            setItemOnWarZone(finalPosition, item);
             return true;
         }
         return false;
@@ -199,6 +215,10 @@ public class Board
     private void setPointToNull(Position location)
     {
         warZone[location.getXCoordinate()][location.getYCoordinate()] = null;
+    }
+
+    public void setItemOnWarZone(Position location, GameItem item){
+        warZone[location.getXCoordinate()][location.getYCoordinate()] = item;
     }
 
 
