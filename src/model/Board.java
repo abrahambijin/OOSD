@@ -27,11 +27,10 @@ public class Board
     {
         int xCoordinate = position.getXCoordinate();
         int yCoordinate = position.getYCoordinate();
-        Position finalPosition = new Position(xCoordinate, yCoordinate);
         // the cell must be empty to place a new game item
         if (warZone[xCoordinate][yCoordinate] == null)
         {
-            setItemOnWarZone(finalPosition, item);
+            setItemOnWarZone(position, item);
             return true;
         }
         // check if position is occupied by game Extras
@@ -40,13 +39,21 @@ public class Board
             Weapon bonusWeapon = infantry.getBonusWeapon();
             ArrayList<Weapon> weapons = ((Troop) item).getWeapons();
             weapons.add(bonusWeapon);
-            setItemOnWarZone(finalPosition, item);
+            setItemOnWarZone(position, item);
             return true;
         }
-        else if ((warZone[xCoordinate][yCoordinate] instanceof HealthEnhancer)){
+        else if (warZone[xCoordinate][yCoordinate] instanceof HealthEnhancer){
             HealthEnhancer healthEnhancer = (HealthEnhancer) getItem(new Position(xCoordinate, yCoordinate));
             item.enhanceHealth(healthEnhancer.getHealthMultiplyingFactor());
-            setItemOnWarZone(finalPosition, item);
+            setItemOnWarZone(position, item);
+            return true;
+        }
+
+        else if (warZone[xCoordinate][yCoordinate] instanceof HealthDiminisher){
+            HealthDiminisher diminisher = (HealthDiminisher) getItem(position);
+            float diminishingFactor = diminisher.getHealthDiminishinfFactor();
+            item.diminishHealth(diminishingFactor);
+            setItemOnWarZone(position, item);
             return true;
         }
         return false;
