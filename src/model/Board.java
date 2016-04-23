@@ -35,7 +35,8 @@ public class Board
         }
         // check if position is occupied by game Extras
         else if (warZone[xCoordinate][yCoordinate] instanceof Infantry){
-            Infantry infantry  = (Infantry) getItem(new Position(xCoordinate, yCoordinate));
+
+            Infantry infantry  = (Infantry) getItem(position);
             Weapon bonusWeapon = infantry.getBonusWeapon();
             ArrayList<Weapon> weapons = ((Troop) item).getWeapons();
             weapons.add(bonusWeapon);
@@ -43,15 +44,17 @@ public class Board
             return true;
         }
         else if (warZone[xCoordinate][yCoordinate] instanceof HealthEnhancer){
-            HealthEnhancer healthEnhancer = (HealthEnhancer) getItem(new Position(xCoordinate, yCoordinate));
+
+            HealthEnhancer healthEnhancer = (HealthEnhancer) getItem(position);
             item.enhanceHealth(healthEnhancer.getHealthMultiplyingFactor());
             setItemOnWarZone(position, item);
             return true;
         }
 
         else if (warZone[xCoordinate][yCoordinate] instanceof HealthDiminisher){
-            HealthDiminisher diminisher = (HealthDiminisher) getItem(position);
-            float diminishingFactor = diminisher.getHealthDiminishinfFactor();
+
+            HealthDiminisher healthdiminisher = (HealthDiminisher) getItem(position);
+            float diminishingFactor = healthdiminisher.getHealthDiminishinfFactor();
             item.diminishHealth(diminishingFactor);
             setItemOnWarZone(position, item);
             return true;
@@ -227,7 +230,4 @@ public class Board
     public void setItemOnWarZone(Position location, GameItem item){
         warZone[location.getXCoordinate()][location.getYCoordinate()] = item;
     }
-
-
-
 }
