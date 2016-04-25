@@ -3,10 +3,10 @@ package model;
 /**
  * Created by mitulmanish on 23/04/2016.
  */
-public class HealthEnhancer extends GameItem {
+public class Hospital extends GameItem {
     private int healthMultiplyingFactor;
 
-    public HealthEnhancer(String name, int healthMultiplyingFactor) {
+    public Hospital(String name, int healthMultiplyingFactor) {
         super(name);
         this.healthMultiplyingFactor = healthMultiplyingFactor;
     }

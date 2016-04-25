@@ -3,11 +3,11 @@ package model;
 /**
  * Created by mitulmanish on 23/04/2016.
  */
-public class Infantry extends GameItem {
+public class Arsenal extends GameItem {
 
     private Weapon weapon;
 
-    public Infantry(String name, Weapon weapon) {
+    public Arsenal(String name, Weapon weapon) {
         super(name);
         this.weapon = weapon;
     }

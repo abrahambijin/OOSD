@@ -34,27 +34,27 @@ public class Board
             return true;
         }
         // check if position is occupied by game Extras
-        else if (warZone[xCoordinate][yCoordinate] instanceof Infantry){
+        else if (warZone[xCoordinate][yCoordinate] instanceof Arsenal){
 
-            Infantry infantry  = (Infantry) getItem(position);
-            Weapon bonusWeapon = infantry.getBonusWeapon();
+            Arsenal arsenal = (Arsenal) getItem(position);
+            Weapon bonusWeapon = arsenal.getBonusWeapon();
             ArrayList<Weapon> weapons = ((Troop) item).getWeapons();
             weapons.add(bonusWeapon);
             setItemOnWarZone(position, item);
             return true;
         }
-        else if (warZone[xCoordinate][yCoordinate] instanceof HealthEnhancer){
+        else if (warZone[xCoordinate][yCoordinate] instanceof Hospital){
 
-            HealthEnhancer healthEnhancer = (HealthEnhancer) getItem(position);
-            item.enhanceHealth(healthEnhancer.getHealthMultiplyingFactor());
+            Hospital hospital = (Hospital) getItem(position);
+            item.enhanceHealth(hospital.getHealthMultiplyingFactor());
             setItemOnWarZone(position, item);
             return true;
         }
 
-        else if (warZone[xCoordinate][yCoordinate] instanceof HealthDiminisher){
+        else if (warZone[xCoordinate][yCoordinate] instanceof LandMine){
 
-            HealthDiminisher healthdiminisher = (HealthDiminisher) getItem(position);
-            float diminishingFactor = healthdiminisher.getHealthDiminishinfFactor();
+            LandMine landMine = (LandMine) getItem(position);
+            float diminishingFactor = landMine.getHealthDiminishinfFactor();
             item.diminishHealth(diminishingFactor);
             setItemOnWarZone(position, item);
             return true;

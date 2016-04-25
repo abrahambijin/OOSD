@@ -3,14 +3,14 @@ package model;
 /**
  * Created by mitulmanish on 23/04/2016.
  */
-public class HealthDiminisher extends GameItem {
+public class LandMine extends GameItem {
     private float healthDiminishinfFactor;
 
-    public HealthDiminisher(String name) {
+    public LandMine(String name) {
         super(name);
     }
 
-    public HealthDiminisher(String name, float diminishFactor) {
+    public LandMine(String name, float diminishFactor) {
         super(name);
         this.healthDiminishinfFactor = diminishFactor;
     }
