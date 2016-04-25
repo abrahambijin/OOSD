@@ -1,9 +1,11 @@
 package utility;
 
 import model.Direction;
+import model.GameItem;
 import model.Position;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Bijin on 14-Apr-16.
@@ -68,5 +70,24 @@ public final class PossiblePoints
             straightLineShootingOptions.add(new Position(xPos, (yPos - i)));
         }
         return straightLineShootingOptions;
+    }
+
+    // find empty points on the warzone so that game extras can be populated on the warzone randomly
+    // after initial game items have been laid down on the warzone , find the empty positions and select random positions
+    private static ArrayList<Position> getEmptySlotsOnBoard(GameItem [][] warZone){
+        ArrayList<Position> emptySpots = null;
+        for (int row = 0; row < warZone.length; row++){
+            for(int col = 0; col < warZone.length; col++){
+                if (warZone[row][col] == null) {
+                    emptySpots.add(new Position(row, col));
+                }
+            }
+        }
+        return emptySpots;
+    }
+
+    public static Position  getRandomEmptySlotOnBoard(GameItem [][] warZone){
+        ArrayList<Position> emptyLocations = getEmptySlotsOnBoard(warZone);
+        return emptyLocations.get(new Random().nextInt(emptyLocations.size()) + 1);
     }
 }

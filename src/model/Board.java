@@ -30,7 +30,33 @@ public class Board
         // the cell must be empty to place a new game item
         if (warZone[xCoordinate][yCoordinate] == null)
         {
-            warZone[xCoordinate][yCoordinate] = item;
+            setItemOnWarZone(position, item);
+            return true;
+        }
+        // check if position is occupied by game Extras
+        else if (warZone[xCoordinate][yCoordinate] instanceof Arsenal){
+
+            Arsenal arsenal = (Arsenal) getItem(position);
+            Weapon bonusWeapon = arsenal.getBonusWeapon();
+            ArrayList<Weapon> weapons = ((Troop) item).getWeapons();
+            weapons.add(bonusWeapon);
+            setItemOnWarZone(position, item);
+            return true;
+        }
+        else if (warZone[xCoordinate][yCoordinate] instanceof Hospital){
+
+            Hospital hospital = (Hospital) getItem(position);
+            item.enhanceHealth(hospital.getHealthMultiplyingFactor());
+            setItemOnWarZone(position, item);
+            return true;
+        }
+
+        else if (warZone[xCoordinate][yCoordinate] instanceof LandMine){
+
+            LandMine landMine = (LandMine) getItem(position);
+            float diminishingFactor = landMine.getHealthDiminishinfFactor();
+            item.diminishHealth(diminishingFactor);
+            setItemOnWarZone(position, item);
             return true;
         }
         return false;
@@ -201,6 +227,7 @@ public class Board
         warZone[location.getXCoordinate()][location.getYCoordinate()] = null;
     }
 
-
-
+    public void setItemOnWarZone(Position location, GameItem item){
+        warZone[location.getXCoordinate()][location.getYCoordinate()] = item;
+    }
 }
