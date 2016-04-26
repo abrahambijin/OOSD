@@ -20,7 +20,7 @@ public class MainGameGUI
         splashScreen.setVisible(true);
 
 
-        Game game = new Game(splashScreen.getNames());
+        Game game = new Game(splashScreen.getNames(),splashScreen.getBoardSize());
         splashScreen.setVisible(false);
 
         GameGUI gui = new GameGUI(game);

@@ -51,4 +51,15 @@ public class SplashScreen extends JWindow
         return playerNames;
     }
 
+    public int getBoardSize(){
+        String[] values = {"small","medium","large"};
+
+        Object selected = JOptionPane.showInputDialog(null, "Specify size of the board", "Selection", JOptionPane.DEFAULT_OPTION, null, values, "0");
+        if ( selected == null ){
+            System.exit(0);
+        }
+        String selectedString = selected.toString();
+        return (selectedString.equals("Small"))? 10:(selectedString.equals("medium"))? 15:20;
+    }
+
 }
