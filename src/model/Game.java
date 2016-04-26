@@ -8,14 +8,13 @@ import java.util.ArrayList;
 public class Game
 {
     private static final int NO_OF_PLAYERS = 2;
-    private final int BOARD_SIZE = 10;
     private Board board;
     private ArrayList<Player> players;
     private int currentPlayerIndex;
 
-    public Game(ArrayList<String> teamNames)
+    public Game(ArrayList<String> teamNames, int boardSize)
     {
-        this.board = new Board(BOARD_SIZE);
+        this.board = new Board(boardSize);
         players = new ArrayList<>();
         initializeGame(teamNames);
         currentPlayerIndex = 0;
@@ -57,7 +56,7 @@ public class Game
 
     public int getBOARD_SIZE()
     {
-        return BOARD_SIZE;
+        return board.getBOARD_SIZE();
     }
 
     public ArrayList<Position> possiblePointToPlaceItems()

@@ -22,7 +22,7 @@ public class Runner
             askName(i);
             teamNames.add(getTeamName());
         }
-        game = new Game(teamNames);
+        game = new Game(teamNames,10);
         System.out.println();
         for(Player player: game.getPlayers())
         {

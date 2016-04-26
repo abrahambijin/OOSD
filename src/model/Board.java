@@ -230,4 +230,9 @@ public class Board
     public void setItemOnWarZone(Position location, GameItem item){
         warZone[location.getXCoordinate()][location.getYCoordinate()] = item;
     }
+
+    public int getBOARD_SIZE()
+    {
+        return BOARD_SIZE;
+    }
 }
