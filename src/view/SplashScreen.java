@@ -17,7 +17,7 @@ public class SplashScreen extends JWindow
         this.getContentPane().setLayout(new BorderLayout());
         JLabel label = new JLabel(imageIcon);
         progressBar = new JProgressBar(0, 100);
-//        label.setIcon(imageIcon);
+        //        label.setIcon(imageIcon);
         JLabel text = new JLabel("Initialising.....");
         this.getContentPane().add(label);
         this.getContentPane().add(text, BorderLayout.SOUTH);
@@ -40,14 +40,13 @@ public class SplashScreen extends JWindow
         for (int j = 0; j < players; j++)
         {
             String name;
-            do
-            {
-                name = JOptionPane.showInputDialog(null,
-                        "Enter Player " + (j + 1) + " Team Name:",
-                        ("Player " + (j + 1)),
-                        JOptionPane.QUESTION_MESSAGE);
-            } while (name==null||name.isEmpty());
-            playerNames.add(name);
+            name = JOptionPane.showInputDialog(null,
+                    "Enter Player " + (j + 1) + " Team Name:",
+                    ("Player " + (j + 1)), JOptionPane.QUESTION_MESSAGE);
+            if (name == null || name.isEmpty())
+                System.exit(0);
+            else
+                playerNames.add(name);
         }
         return playerNames;
     }
