@@ -40,26 +40,34 @@ public class SplashScreen extends JWindow
         for (int j = 0; j < players; j++)
         {
             String name;
-            name = JOptionPane.showInputDialog(null,
-                    "Enter Player " + (j + 1) + " Team Name:",
-                    ("Player " + (j + 1)), JOptionPane.QUESTION_MESSAGE);
-            if (name == null || name.isEmpty())
-                System.exit(0);
-            else
-                playerNames.add(name);
+            do
+            {
+                name = JOptionPane.showInputDialog(null,
+                        "Enter Player " + (j + 1) + " Team Name:",
+                        ("Player " + (j + 1)));
+                if (name == null)
+                    System.exit(0);
+            } while (name.isEmpty());
+
+            playerNames.add(name);
         }
         return playerNames;
     }
 
-    public int getBoardSize(){
-        String[] values = {"Small","Medium","Large"};
+    public int getBoardSize()
+    {
+        String[] values = {"Small", "Medium", "Large"};
 
-        Object selected = JOptionPane.showInputDialog(null, "Specify size of the board", "Selection", JOptionPane.DEFAULT_OPTION, null, values, "0");
-        if ( selected == null ){
+        Object selected = JOptionPane
+                .showInputDialog(null, "Specify size of the board", "Selection",
+                        JOptionPane.QUESTION_MESSAGE, null, values, "0");
+        if (selected == null)
+        {
             System.exit(0);
         }
         String selectedString = selected.toString();
-        return (selectedString.equals("Small"))? 10:(selectedString.equals("Medium"))? 15:20;
+        return (selectedString.equals("Small")) ? 10 :
+                (selectedString.equals("Medium")) ? 15 : 20;
     }
 
 }
