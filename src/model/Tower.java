@@ -30,7 +30,7 @@ public class Tower extends Troop
         head = new Position(headXPos, headYPos);
         super.setImageIconPath("Images/Tower/Tower" + head + ".png");
     }
-
+    //This code will have to be re written
 
     /*
     public ArrayList<Position> getWeaponRange(int weaponIndex)
