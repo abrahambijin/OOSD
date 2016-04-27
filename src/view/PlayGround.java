@@ -34,11 +34,11 @@ public class PlayGround extends JPanel
             for (int j = 0; j < size; j++)
             {
                 cell[i][j] = new Cell(i, j);
-                cell[i][j]
-                        .setBorder(BorderFactory.createLineBorder(Color.lightGray, 1));
                 cell[i][j].addActionListener(
                         new InitialItemPlacingController(new Position(i, j),
                                 game, view));
+                cell[i][j].setBorder(BorderFactory.createLineBorder
+                        (Color.black, 1));
 
                 this.add(cell[i][j]);
 
@@ -50,13 +50,16 @@ public class PlayGround extends JPanel
     {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (exceptionsList.contains(new Position(i, j)) == true){
+                if (exceptionsList.contains(new Position(i, j))){
                     cell[i][j].setEnabled(true);
-                    cell[i][j].setBorder(BorderFactory.createLineBorder(Color.black, 1));
+                    cell[i][j].setBorder(BorderFactory.createLineBorder
+                            (Color.black, 1));
                 }
                 else{
-                    cell[i][j].setEnabled(true);
-                    cell[i][j].setBorder(BorderFactory.createLineBorder(Color.lightGray, 1));
+                    cell[i][j].setEnabled(false);
+                    //cell[i][j].setBackground(Color.blue);
+                    cell[i][j].setBorder(BorderFactory.createLineBorder
+                            (Color.lightGray, 1));
                 }
 
 //                cell[i][j].setEnabled(

@@ -17,7 +17,7 @@ public class Cell extends JButton{
         this.position = new Position(xCoordinate,yCoordinate);
         //this.setBorderPainted(false);
         //this.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.setBackground(Color.white);
+        //this.setBackground(Color.white);
         //this.setBackground(new Color(0,0,0,50));
         this.setOpaque(false);
     }
