@@ -50,8 +50,17 @@ public class PlayGround extends JPanel
     {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                cell[i][j].setEnabled(
-                        exceptionsList.contains(new Position(i, j)));
+                if (exceptionsList.contains(new Position(i, j)) == true){
+                    cell[i][j].setEnabled(true);
+                    cell[i][j].setBorder(BorderFactory.createLineBorder(Color.lightGray, 1));
+                }
+                else{
+                    cell[i][j].setEnabled(true);
+                    cell[i][j].setBorder(BorderFactory.createLineBorder(Color.black, 1));
+                }
+
+//                cell[i][j].setEnabled(
+//                        exceptionsList.contains(new Position(i, j)));
             }
         }
     }
