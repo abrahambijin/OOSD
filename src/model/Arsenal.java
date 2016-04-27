@@ -1,5 +1,7 @@
 package model;
 
+import interfaces.Weapon;
+
 /**
  * Created by mitulmanish on 23/04/2016.
  */

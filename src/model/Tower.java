@@ -17,8 +17,7 @@ public class Tower extends Troop
     public Tower()
     {
         super("Tower", 1,
-                new ArrayList<>(Arrays.asList(new Sniper(), new Grenade())),
-                Direction.CUSTOM);
+                new ArrayList<>(Arrays.asList(new Sniper(), new Grenade())));
 
         Random randomNumberGenerator = new Random();
         int headXPos = randomNumberGenerator.nextInt(3) - 1;
@@ -32,11 +31,14 @@ public class Tower extends Troop
         super.setImageIconPath("Images/Tower/Tower" + head + ".png");
     }
 
-    @Override
+
+    /*
     public ArrayList<Position> getWeaponRange(int weaponIndex)
+
     {
         return super.getWeaponRange(weaponIndex, head);
     }
+    */
 
     public ArrayList<Position> possibleMovePositions()
     {

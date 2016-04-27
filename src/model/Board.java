@@ -1,5 +1,6 @@
 package model;
 
+import interfaces.Weapon;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;

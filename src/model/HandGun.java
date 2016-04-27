@@ -1,7 +1,8 @@
-package decorator;
+package model;
 
-import model.Direction;
-import model.Position;
+import interfaces.Attackable;
+import interfaces.Weapon;
+import utility.PossiblePoints;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 // BASE FOR Pistol Ak 47
 
-class HandGun implements FireArm {
+class HandGun implements Weapon, Attackable {
 
     @Override
     public String getName() {
@@ -35,6 +36,6 @@ class HandGun implements FireArm {
 
     @Override
     public ArrayList<Position> getWeaponRange(Position location) {
-        return null;
+        return PossiblePoints.getPossiblePoints(location,getRange(), getDirection());
     }
 }

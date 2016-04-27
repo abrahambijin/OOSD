@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 public interface WeaponWithHead
 {
-    ArrayList<Position> weaponRange(Position location, Position head);
+    ArrayList<Position> getWeaponRange(Position location, Position head);
 }

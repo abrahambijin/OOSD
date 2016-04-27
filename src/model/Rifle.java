@@ -1,7 +1,7 @@
-package decorator;
-
-import model.Direction;
-import model.Position;
+package model;
+import interfaces.Attackable;
+import interfaces.Weapon;
+import utility.PossiblePoints;
 
 import java.util.ArrayList;
 
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 // make this class a base class for staright line shooting weapons
 
-// BASE FOR CANNON MACHINE GUN
+// BASE FOR CANNON , MACHINE GUN
 
-class Rifle implements FireArm {
+class Rifle implements Weapon, Attackable {
 
     @Override
     public String getName() {
@@ -37,6 +37,6 @@ class Rifle implements FireArm {
 
     @Override
     public ArrayList<Position> getWeaponRange(Position location) {
-        return null;
+        return PossiblePoints.getPossiblePoints(location,getRange(), getDirection());
     }
 }

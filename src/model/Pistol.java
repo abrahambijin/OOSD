@@ -1,7 +1,6 @@
-package decorator;
-
-import model.Direction;
-import model.Position;
+package model;
+import interfaces.Attackable;
+import interfaces.Weapon;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
@@ -9,18 +8,15 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 27/04/2016.
  */
-public class Pistol extends WeaponDecorator {
+public class Pistol extends WeaponDecorator implements Attackable {
 
     String overriddenName;
 
-    public Pistol(FireArm decoratedWeapon, String name) {
+    public Pistol(Weapon decoratedWeapon, String name) {
         super(decoratedWeapon);
         this.overriddenName = name;
     }
 
-    public Pistol(FireArm decoratedWeapon) {
-        super(decoratedWeapon);
-    }
 
     public String getName() {
         if(overriddenName == null) return super.getName();

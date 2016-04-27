@@ -1,5 +1,7 @@
 package model;
 
+import interfaces.Weapon;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -36,24 +38,26 @@ public class Player
     {
         if (noOfPlayers == 0)
         {
+            Rifle rifle = new Rifle();
+            // Note rifle can also be used as a weapon
             Troop tank = new Troop("Tank", 2, new ArrayList<>(Arrays.asList(
-                    new Weapon("Cannon", 2, 15, Direction.STRAIGHT_LINE),
-                    new Weapon("Machine Gun", 1, 17, Direction.STRAIGHT_LINE))),
-                    Direction.STRAIGHT_LINE);
+                    new Cannon(rifle, "Cannon"),
+                    new MachineGun(rifle, "Machine Gun"))));
             Tower tower = new Tower();
             return new PlayerOne(name,
                     new ArrayList<>(Arrays.asList(tank, tower)));
         }
         else
         {
+            HandGun handGun = new HandGun();
+            Projectile projectile = new Projectile();
+
             Troop jet = new Troop("Jet", 3, new ArrayList<>(
-                    Arrays.asList(new Weapon("Mg17", 2, 20, Direction.DIAGONAL),
-                            new Weapon("Bomb", 1, 25, Direction.DIAGONAL))),
-                    Direction.DIAGONAL);
+                    Arrays.asList(new Mg17(projectile, "MG 17"),
+                            new Bomb(projectile, "Bomb"))));
+
             Troop army = new Troop("Army", 1, new ArrayList<>(
-                    Arrays.asList(new Weapon("Pistol", 1, 20, Direction.ANY),
-                            new Weapon("Ak47", 2, 15, Direction.ANY))),
-                    Direction.ANY);
+                    Arrays.asList(new Pistol(handGun, "Pistol"), new Ak47(handGun, "AK 47"))));
             return new Player(name, new ArrayList<>(Arrays.asList(jet, army)));
         }
     }

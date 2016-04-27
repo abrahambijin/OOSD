@@ -1,6 +1,6 @@
 package model;
 
-import interfaces.WeaponWithHead;
+import interfaces.Weapon;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
@@ -15,18 +15,18 @@ public class Troop extends GameItem
     private ArrayList<Weapon> weapons;
     private Direction movingDirection;
 
-    public Troop(String name, int maxNoOfSteps, ArrayList<Weapon> weapons,
-                 Direction movingDirection)
+    public Troop(String name, int maxNoOfSteps, ArrayList<Weapon> weapons)
     {
         super(name);
         this.maxNoOfSteps = maxNoOfSteps;
         this.weapons = weapons;
-        this.movingDirection = movingDirection;
     }
-
+    // This code will have to be re written .Please use different method signatures
+/*
     public ArrayList<Position> getWeaponRange(int weaponIndex)
     {
         return weapons.get(weaponIndex).getWeaponRange(super.getPosition());
+
     }
 
     protected ArrayList<Position> getWeaponRange(int weaponIndex, Position head)
@@ -34,12 +34,12 @@ public class Troop extends GameItem
         if (weapons.get(weaponIndex) instanceof WeaponWithHead)
         {
             return ((WeaponWithHead) weapons.get(weaponIndex))
-                    .weaponRange(super.getPosition(), head);
+                    .getWeaponRange(super.getPosition(), head);
         }
         else
             return getWeaponRange(weaponIndex);
     }
-
+*/
     public int getMaxNoOfSteps()
     {
         return maxNoOfSteps;

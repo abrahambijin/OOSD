@@ -1,5 +1,6 @@
 package model;
 
+import interfaces.Weapon;
 import interfaces.WeaponWithHead;
 
 import java.util.ArrayList;
@@ -7,15 +8,29 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Grenade extends Weapon implements WeaponWithHead
-{
-    public Grenade()
-    {
-        super("Grenade",1, 30,Direction.CUSTOM);
+public class Grenade implements WeaponWithHead, Weapon {
+
+    @Override
+    public String getName() { return "Grenade"; }
+
+    @Override
+    public int getRange() {
+        return 1;
     }
 
     @Override
-    public ArrayList<Position> weaponRange(Position location, Position head)
+    public int getDamage() {
+        return 30;
+    }
+
+    @Override
+    public Direction getDirection() {
+        return Direction.CUSTOM;
+    }
+
+
+    @Override
+    public ArrayList<Position> getWeaponRange(Position location, Position head)
     {
         ArrayList<Position> shootingOptions = new ArrayList<>();
         int headXCoordinate = head.getXCoordinate();

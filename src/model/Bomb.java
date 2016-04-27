@@ -1,7 +1,7 @@
-package decorator;
+package model;
 
-import model.Direction;
-import model.Position;
+import interfaces.Attackable;
+import interfaces.Weapon;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
@@ -9,16 +9,13 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 27/04/2016.
  */
-public class Cannon extends WeaponDecorator {
+public class Bomb extends WeaponDecorator implements Attackable {
+
     String overriddenName;
 
-    public Cannon(FireArm decoratedWeapon, String name) {
+    public Bomb(Weapon decoratedWeapon, String name) {
         super(decoratedWeapon);
         this.overriddenName = name;
-    }
-
-    public Cannon(FireArm decoratedWeapon) {
-        super(decoratedWeapon);
     }
 
     public String getName() {
@@ -33,7 +30,7 @@ public class Cannon extends WeaponDecorator {
 
     @Override
     public int getDamage() {
-        return super.getDamage() + 5;
+        return super.getDamage() + 15;
     }
 
     @Override
@@ -46,4 +43,3 @@ public class Cannon extends WeaponDecorator {
         return PossiblePoints.getPossiblePoints(location,getRange(), getDirection());
     }
 }
-
