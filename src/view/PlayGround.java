@@ -38,7 +38,7 @@ public class PlayGround extends JPanel
                         new InitialItemPlacingController(new Position(i, j),
                                 game, view));
                 cell[i][j].setBorder(
-                        BorderFactory.createLineBorder(Color.black, 1));
+                        BorderFactory.createLineBorder(Color.lightGray));
 
                 this.add(cell[i][j]);
 
@@ -56,18 +56,18 @@ public class PlayGround extends JPanel
                 if (exceptionsList.contains(new Position(i, j)))
                 {
                     cell[i][j].setEnabled(true);
-                    cell[i][j].setBackground(buttonColor);
+                    //cell[i][j].setBackground(buttonColor);
                     cell[i][j].setOpaque(true);
                     cell[i][j].setBorder(
-                            BorderFactory.createLineBorder(Color.black, 1));
+                            BorderFactory.createLineBorder(buttonColor,1));
                 }
                 else
                 {
                     cell[i][j].setEnabled(false);
-                    cell[i][j].setBackground(null);
+                    //cell[i][j].setBackground(null);
                     cell[i][j].setOpaque(false);
                     cell[i][j].setBorder(
-                            BorderFactory.createLineBorder(Color.lightGray, 1));
+                            BorderFactory.createLineBorder(Color.lightGray));
                     cell[i][j].setDisabledIcon(null);
                 }
             }
