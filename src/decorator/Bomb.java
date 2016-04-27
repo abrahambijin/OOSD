@@ -1,6 +1,10 @@
 package decorator;
 
 import model.Direction;
+import model.Position;
+import utility.PossiblePoints;
+
+import java.util.ArrayList;
 
 /**
  * Created by mitulmanish on 27/04/2016.
@@ -36,5 +40,10 @@ public class Bomb extends WeaponDecorator {
     @Override
     public Direction getDirection() {
         return super.getDirection();
+    }
+
+    @Override
+    public ArrayList<Position> getWeaponRange(Position location) {
+        return PossiblePoints.getPossiblePoints(location,getRange(), getDirection());
     }
 }

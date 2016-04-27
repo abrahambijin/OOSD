@@ -1,6 +1,9 @@
 package decorator;
 
 import model.Direction;
+import model.Position;
+
+import java.util.ArrayList;
 
 /**
  * Created by mitulmanish on 27/04/2016.
@@ -25,5 +28,10 @@ class AnyLineShootingWeapon implements FireArm {
     @Override
     public Direction getDirection() {
         return Direction.ANY;
+    }
+
+    @Override
+    public ArrayList<Position> getWeaponRange(Position location) {
+        return null;
     }
 }
