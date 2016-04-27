@@ -16,7 +16,7 @@ public class Player
 
     private Player(String name, ArrayList<Troop> troops)
     {
-        this(name, troops,new PlayerColor(0,0,255));
+        this(name, troops,new PlayerColor(46,96,234));
     }
     protected Player(String name, ArrayList<Troop> troops, PlayerColor color)
     {

@@ -18,8 +18,7 @@ public class GameGUI extends JFrame
 
     public GameGUI(Game game)
     {
-        super("Game");
-
+        super("WarZone");
         JPanel gamePanel = new JPanel();
         gamePanel.setLayout(new BorderLayout());
 
@@ -28,8 +27,10 @@ public class GameGUI extends JFrame
 
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
+        leftPanel.setOpaque(false);
         leftPanel.add(playGround);
         status = new LabelField("Status ");
+        //status.setBackground(Color.yellow);
         setStatus(
                 game.getCurrentPlayer().getName() + ", where would you like to" +
                         " place the Base?");
@@ -40,8 +41,11 @@ public class GameGUI extends JFrame
                         playerStatus);
         splitPane.setResizeWeight(0.75);
         splitPane.setEnabled(false);
+        splitPane.setOpaque(false);
+        gamePanel.setBackground(new Color(80,80,80));
         gamePanel.add(splitPane, BorderLayout.CENTER);
         add(gamePanel);
+
     }
 
     public PlayGround getPlayGround()

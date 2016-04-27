@@ -48,10 +48,12 @@ public class PlayGround extends JPanel
 
     public void disableButtons(ArrayList<Position> exceptionsList)
     {
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 cell[i][j].setEnabled(
                         exceptionsList.contains(new Position(i, j)));
+            }
+        }
     }
 
     public void setButtonImage(Position location, String path)

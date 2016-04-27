@@ -24,6 +24,8 @@ public class PlayerStatus extends JPanel
         playerName = new JLabel("Player : ", SwingConstants.CENTER);
         playerName.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         playerName.setPreferredSize(new Dimension(playerName.getWidth(),75));
+        playerName.setFont(new Font("Arial Black",Font.BOLD,30));
+        playerName.setForeground(Color.white);
         setPlayer(game.getCurrentPlayer());
         playerName.setOpaque(true);
         this.add(playerName,BorderLayout.NORTH);
@@ -32,9 +34,10 @@ public class PlayerStatus extends JPanel
         top = new ItemInfo(game, view);
         bottom = new ItemWeaponInfo();
         bottom.setVisible(false);
+        itemDetails.setOpaque(false);
         itemDetails.add(top);
         itemDetails.add(bottom);
-
+        this.setOpaque(false);
         this.add(itemDetails);
     }
 
@@ -62,7 +65,7 @@ public class PlayerStatus extends JPanel
 
     public void setPlayer(Player player)
     {
-        playerName.setText("Player : " + player.getName());
+        playerName.setText(player.getName());
         PlayerColor playerColor = player.getColor();
         playerName.setBackground(
                 new Color(playerColor.getRed(), playerColor.getGreen(),

@@ -22,6 +22,7 @@ public class SplashScreen extends JWindow
         this.getContentPane().add(label);
         this.getContentPane().add(text, BorderLayout.SOUTH);
         this.pack();
+
     }
 
 
@@ -42,9 +43,14 @@ public class SplashScreen extends JWindow
             String name;
             do
             {
-                name = JOptionPane.showInputDialog(null,
-                        "Enter Player " + (j + 1) + " Team Name:",
-                        ("Player " + (j + 1)));
+//                name = JOptionPane.showInputDialog(null,
+//                        "Enter Player " + (j + 1) + " Team Name:",
+//                        "Player " + (j + 1));
+
+                name = (String) JOptionPane.showInputDialog(null,
+                        "Enter Player " + (j + 1) + " Team Name:","Team Name",
+                        JOptionPane.PLAIN_MESSAGE, null, null,
+                        "Player " + (j + 1));
                 if (name == null)
                     System.exit(0);
             } while (name.isEmpty());
@@ -59,7 +65,7 @@ public class SplashScreen extends JWindow
         String[] values = {"Small", "Medium", "Large"};
 
         Object selected = JOptionPane
-                .showInputDialog(null, "Specify size of the board", "Selection",
+                .showInputDialog(null, "Specify size of the board", "Board Size",
                         JOptionPane.QUESTION_MESSAGE, null, values, "0");
         if (selected == null)
         {

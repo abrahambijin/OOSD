@@ -40,11 +40,14 @@ public class ItemInfo extends JPanel
         backButton = new JButton("Back");
         backButton.addActionListener(new BackButtonController(game, view));
         backButton.setPreferredSize(new Dimension(200, 40));
+        buttonPanel.setOpaque(false);
         buttonPanel.add(moveButton);
         buttonPanel.add(attackButton);
+        this.setOpaque(false);
         this.add(troop);
         this.add(health);
         this.add(buttonPanel);
+
     }
 
     public void enableButtons(Boolean isEnabled)
