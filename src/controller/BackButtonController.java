@@ -3,6 +3,7 @@ package controller;
 import model.*;
 import view.GameGUI;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,7 +25,8 @@ public class BackButtonController implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         CellButtonController.setIsItemSelected(false);
-        view.getPlayGround().disableButtons(game.getOccupiedBoardLocation());
+        view.getPlayGround().disableButtons(game.getOccupiedBoardLocation(),
+                null);
         view.getPlayerStatus().getTop().enableBackButton(false);
         view.setStatus(
                 game.getCurrentPlayer().getName() + ", select the troop you " +

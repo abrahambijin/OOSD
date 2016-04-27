@@ -37,8 +37,8 @@ public class PlayGround extends JPanel
                 cell[i][j].addActionListener(
                         new InitialItemPlacingController(new Position(i, j),
                                 game, view));
-                cell[i][j].setBorder(BorderFactory.createLineBorder
-                        (Color.black, 1));
+                cell[i][j].setBorder(
+                        BorderFactory.createLineBorder(Color.black, 1));
 
                 this.add(cell[i][j]);
 
@@ -46,40 +46,37 @@ public class PlayGround extends JPanel
         }
     }
 
-    public void disableButtons(ArrayList<Position> exceptionsList)
+    public void disableButtons(ArrayList<Position> exceptionsList,
+                               Color buttonColor)
     {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (exceptionsList.contains(new Position(i, j))){
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (exceptionsList.contains(new Position(i, j)))
+                {
                     cell[i][j].setEnabled(true);
-                    cell[i][j].setBorder(BorderFactory.createLineBorder
-                            (Color.black, 1));
+                    cell[i][j].setBackground(buttonColor);
+                    cell[i][j].setOpaque(true);
+                    cell[i][j].setBorder(
+                            BorderFactory.createLineBorder(Color.black, 1));
                 }
-                else{
+                else
+                {
                     cell[i][j].setEnabled(false);
-                    //cell[i][j].setBackground(Color.blue);
-                    cell[i][j].setBorder(BorderFactory.createLineBorder
-                            (Color.lightGray, 1));
+                    cell[i][j].setBackground(null);
+                    cell[i][j].setOpaque(false);
+                    cell[i][j].setBorder(
+                            BorderFactory.createLineBorder(Color.lightGray, 1));
+                    cell[i][j].setDisabledIcon(null);
                 }
-
-//                cell[i][j].setEnabled(
-//                        exceptionsList.contains(new Position(i, j)));
             }
         }
     }
 
     public void setButtonImage(Position location, String path)
     {
-        int imageWidth =
-                cell[location.getXCoordinate()][location.getYCoordinate()]
-                        .getWidth()*2/3;
-        int imageHeight =
-                cell[location.getXCoordinate()][location.getYCoordinate()]
-                        .getHeight()*3/4;
-
-        Image buttonImage = new ImageIcon(path).getImage()
-                .getScaledInstance(imageWidth, imageHeight,
-                        Image.SCALE_DEFAULT);
+        Image buttonImage = getScaledImage(location, path);
 
         cell[location.getXCoordinate()][location.getYCoordinate()]
                 .setIcon(new ImageIcon(buttonImage));
@@ -105,6 +102,27 @@ public class PlayGround extends JPanel
         setButtonImage(finalPosition, imagePath);
     }
 
+    public void setDisabledButtonIcon(Position location, String path)
+    {
+        Image buttonImage = getScaledImage(location, path);
+
+        cell[location.getXCoordinate()][location.getYCoordinate()]
+                .setDisabledIcon(new ImageIcon(buttonImage));
+    }
+
+    private Image getScaledImage(Position location, String path)
+    {
+        int imageWidth =
+                cell[location.getXCoordinate()][location.getYCoordinate()]
+                        .getWidth() * 2 / 3;
+        int imageHeight =
+                cell[location.getXCoordinate()][location.getYCoordinate()]
+                        .getHeight() * 3 / 4;
+
+        return new ImageIcon(path).getImage()
+                .getScaledInstance(imageWidth, imageHeight,
+                        Image.SCALE_DEFAULT);
+    }
 }
 
 

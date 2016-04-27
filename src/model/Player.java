@@ -16,8 +16,9 @@ public class Player
 
     private Player(String name, ArrayList<Troop> troops)
     {
-        this(name, troops,new PlayerColor(46,96,234));
+        this(name, troops, new PlayerColor(46, 96, 234));
     }
+
     protected Player(String name, ArrayList<Troop> troops, PlayerColor color)
     {
         this.name = name;
@@ -51,7 +52,8 @@ public class Player
                     Direction.DIAGONAL);
             Troop army = new Troop("Army", 1, new ArrayList<>(
                     Arrays.asList(new Weapon("Pistol", 1, 20, Direction.ANY),
-                            new Weapon("Ak47", 2, 15, Direction.ANY))), Direction.ANY);
+                            new Weapon("Ak47", 2, 15, Direction.ANY))),
+                    Direction.ANY);
             return new Player(name, new ArrayList<>(Arrays.asList(jet, army)));
         }
     }
@@ -63,19 +65,21 @@ public class Player
         return items;
     }
 
-    public PlayerColor getColor() {
+    public PlayerColor getColor()
+    {
         return color;
     }
 
     public ArrayList<Position> getItemLocations()
     {
         ArrayList<Position> locations = new ArrayList<>();
-        for(GameItem item : this.getItems())
+        for (GameItem item : this.getItems())
             locations.add(item.getPosition());
         return locations;
     }
 
-    public void addExtraWeapon(Weapon weapon){
+    public void addExtraWeapon(Weapon weapon)
+    {
 
     }
 

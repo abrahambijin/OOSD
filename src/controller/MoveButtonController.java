@@ -1,11 +1,9 @@
 package controller;
 
-import model.Base;
-import model.Game;
-import model.GameItem;
-import model.Position;
+import model.*;
 import view.GameGUI;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,7 +26,14 @@ public class MoveButtonController implements ActionListener
     {
         CellButtonController.setIsItemSelected(true);
         GameItem item = game.getItem(view.getPlayerStatus().getItemLocation());
-        view.getPlayGround().disableButtons(game.getPossibleMovePoints(item));
+        PlayerColor playerColor = game.getCurrentPlayer().getColor();
+        Color cellColor =
+                new Color(playerColor.getRed(), playerColor.getGreen(),
+                        playerColor.getBlue());
+        view.getPlayGround()
+                .disableButtons(game.getPossibleMovePoints(item), cellColor);
+        view.getPlayGround().setDisabledButtonIcon(item.getPosition(),
+                item.getImageIconPath());
         view.getPlayerStatus().getTop().enableBackButton(true);
         view.setStatus(game.getCurrentPlayer().getName() +
                 ", where would you like to move " + item.getName() + " to?");

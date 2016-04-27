@@ -1,11 +1,9 @@
 package controller;
 
-import model.Game;
-import model.GameItem;
-import model.Player;
-import model.Position;
+import model.*;
 import view.GameGUI;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -60,7 +58,7 @@ public class InitialItemPlacingController implements ActionListener
             if (PLAYER_INDEX <= Game.getNO_OF_PLAYERS())
             {
                 view.getPlayGround()
-                        .disableButtons(game.possiblePointToPlaceItems());
+                    .disableButtons(game.possiblePointToPlaceItems(),null);
                 view.setStatus(
                         currentPlayer.getName() + ", where would you like to" +
                                 " place " + item.getName() + "?");
@@ -68,7 +66,8 @@ public class InitialItemPlacingController implements ActionListener
             else
             {
                 view.getPlayGround()
-                        .disableButtons(game.getOccupiedBoardLocation());
+                        .disableButtons(game.getOccupiedBoardLocation(),
+                                null);
                 view.getPlayGround().resetButtonActionListener(game, view);
                 view.setStatus(
                         currentPlayer.getName() + ", select the troop you " +
