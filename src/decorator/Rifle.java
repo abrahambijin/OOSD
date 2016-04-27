@@ -11,7 +11,9 @@ import java.util.ArrayList;
 
 // make this class a base class for staright line shooting weapons
 
-class StraightLineShootingWeapon implements FireArm {
+// BASE FOR CANNON MACHINE GUN
+
+class Rifle implements FireArm {
 
     @Override
     public String getName() {
@@ -20,12 +22,12 @@ class StraightLineShootingWeapon implements FireArm {
 
     @Override
     public int getRange() {
-        return 0;
+        return 1;
     }
 
     @Override
     public int getDamage() {
-        return 0;
+        return 10;
     }
 
     @Override

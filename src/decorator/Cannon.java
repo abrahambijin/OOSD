@@ -28,12 +28,12 @@ public class Cannon extends WeaponDecorator {
 
     @Override
     public int getRange() {
-        return super.getRange() + 2;
+        return super.getRange() + 1;
     }
 
     @Override
     public int getDamage() {
-        return super.getDamage() + 15;
+        return super.getDamage() + 5;
     }
 
     @Override

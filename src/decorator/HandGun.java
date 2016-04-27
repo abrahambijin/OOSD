@@ -6,28 +6,31 @@ import model.Position;
 import java.util.ArrayList;
 
 /**
- * Created by mitulmanish on 26/04/2016.
+ * Created by mitulmanish on 27/04/2016.
  */
-class DiagonalShootingWeapon implements FireArm {
+
+// BASE FOR Pistol Ak 47
+
+class HandGun implements FireArm {
 
     @Override
     public String getName() {
-        return "I m a base diagonal line shooting thing";
+        return "I m a base omni directional shooting thing";
     }
 
     @Override
     public int getRange() {
-        return 2;
+        return 1;
     }
 
     @Override
     public int getDamage() {
-        return 20;
+        return 10;
     }
 
     @Override
     public Direction getDirection() {
-        return Direction.DIAGONAL;
+        return Direction.ANY;
     }
 
     @Override

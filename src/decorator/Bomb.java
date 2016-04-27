@@ -34,7 +34,7 @@ public class Bomb extends WeaponDecorator {
 
     @Override
     public int getDamage() {
-        return super.getDamage() + 25;
+        return super.getDamage() + 15;
     }
 
     @Override

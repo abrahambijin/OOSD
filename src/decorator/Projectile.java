@@ -8,26 +8,29 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 26/04/2016.
  */
-class CustomShootingWeapon implements FireArm {
+
+// BASE FOR Mg 17 BOMB
+
+class Projectile implements FireArm {
 
     @Override
     public String getName() {
-        return "I m a base custom line shooting thing";
+        return "I m a base diagonal line shooting thing";
     }
 
     @Override
     public int getRange() {
-        return 0;
+        return 1;
     }
 
     @Override
     public int getDamage() {
-        return 0;
+        return 10;
     }
 
     @Override
     public Direction getDirection() {
-        return Direction.CUSTOM;
+        return Direction.DIAGONAL;
     }
 
     @Override
@@ -35,4 +38,3 @@ class CustomShootingWeapon implements FireArm {
         return null;
     }
 }
-

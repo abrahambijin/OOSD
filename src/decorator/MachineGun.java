@@ -32,12 +32,12 @@ class MachineGun extends WeaponDecorator{
 
     @Override
     public int getRange() {
-        return super.getRange() + 1;
+        return super.getRange();
     }
 
     @Override
     public int getDamage() {
-        return super.getDamage() + 17;
+        return super.getDamage() + 7;
     }
 
     @Override
