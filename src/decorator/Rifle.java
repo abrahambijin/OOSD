@@ -17,7 +17,7 @@ class Rifle implements FireArm {
 
     @Override
     public String getName() {
-        return "I m a base straight line shooting thing";
+        return "Rifle";
     }
 
     @Override

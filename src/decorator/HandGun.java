@@ -15,7 +15,7 @@ class HandGun implements FireArm {
 
     @Override
     public String getName() {
-        return "I m a base omni directional shooting thing";
+        return "HandGun";
     }
 
     @Override

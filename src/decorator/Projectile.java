@@ -15,7 +15,7 @@ class Projectile implements FireArm {
 
     @Override
     public String getName() {
-        return "I m a base diagonal line shooting thing";
+        return "Projectile";
     }
 
     @Override
