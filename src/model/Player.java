@@ -42,7 +42,7 @@ public class Player
             // Note rifle can also be used as a weapon
             Troop tank = new Troop("Tank", 2, new ArrayList<>(Arrays.asList(
                     new Cannon(rifle, "Cannon"),
-                    new MachineGun(rifle, "Machine Gun"))));
+                    new MachineGun(rifle, "Machine Gun"))), Direction.STRAIGHT_LINE);
             Tower tower = new Tower();
             return new PlayerOne(name,
                     new ArrayList<>(Arrays.asList(tank, tower)));
@@ -54,10 +54,10 @@ public class Player
 
             Troop jet = new Troop("Jet", 3, new ArrayList<>(
                     Arrays.asList(new Mg17(projectile, "MG 17"),
-                            new Bomb(projectile, "Bomb"))));
+                            new Bomb(projectile, "Bomb"))), Direction.DIAGONAL);
 
             Troop army = new Troop("Army", 1, new ArrayList<>(
-                    Arrays.asList(new Pistol(handGun, "Pistol"), new Ak47(handGun, "AK 47"))));
+                    Arrays.asList(new Pistol(handGun, "Pistol"), new Ak47(handGun, "AK 47"))), Direction.ANY);
             return new Player(name, new ArrayList<>(Arrays.asList(jet, army)));
         }
     }
