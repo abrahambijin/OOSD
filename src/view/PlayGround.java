@@ -38,7 +38,7 @@ public class PlayGround extends JPanel
                         new InitialItemPlacingController(new Position(i, j),
                                 game, view));
                 cell[i][j].setBorder(
-                        BorderFactory.createLineBorder(Color.lightGray));
+                        BorderFactory.createLineBorder(Color.black));
 
                 this.add(cell[i][j]);
 
@@ -57,7 +57,6 @@ public class PlayGround extends JPanel
                 {
                     cell[i][j].setEnabled(true);
                     //cell[i][j].setBackground(buttonColor);
-                    cell[i][j].setOpaque(true);
                     cell[i][j].setBorder(
                             BorderFactory.createLineBorder(buttonColor,1));
                 }
