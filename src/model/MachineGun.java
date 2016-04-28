@@ -11,18 +11,16 @@ import java.util.ArrayList;
 
 class MachineGun extends WeaponDecorator implements Attackable {
 
-    String overrriddenName;
+    String overriddenName;
 
     public MachineGun(Weapon decoratedWeapon, String name) {
         super(decoratedWeapon);
-        this.overrriddenName = name;
+        this.overriddenName = name;
     }
 
     @Override
     public String getName() {
-
-        if(overrriddenName == null) return super.getName();
-        else return overrriddenName;
+        return this.overriddenName;
     }
 
     @Override

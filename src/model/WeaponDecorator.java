@@ -13,6 +13,7 @@ abstract class WeaponDecorator implements Weapon {
         this.decoratedWeapon = decoratedWeapon;
     }
 
+    @Override
     public String getName() {
         return decoratedWeapon.getName();
     }

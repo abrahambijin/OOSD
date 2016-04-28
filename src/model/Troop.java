@@ -33,7 +33,6 @@ public class Troop extends GameItem
             return ((Attackable) weapons.get(weaponIndex)).getWeaponRange(super.getPosition());
         }
         return null;
-
     }
 
     protected ArrayList<Position> getWeaponRange(int weaponIndex, Position head)

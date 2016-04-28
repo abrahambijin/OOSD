@@ -17,10 +17,9 @@ public class Pistol extends WeaponDecorator implements Attackable {
         this.overriddenName = name;
     }
 
-
+    @Override
     public String getName() {
-        if(overriddenName == null) return super.getName();
-        else return overriddenName;
+        return overriddenName;
     }
 
     @Override
