@@ -1,5 +1,5 @@
 package model;
-import interfaces.Attackable;
+import interfaces.Shootable;
 import interfaces.Weapon;
 import utility.PossiblePoints;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 27/04/2016.
  */
-public class Pistol extends WeaponDecorator implements Attackable {
+public class Pistol extends WeaponDecorator implements Shootable {
 
     String overriddenName;
 

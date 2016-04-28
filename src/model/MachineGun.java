@@ -1,5 +1,5 @@
 package model;
-import interfaces.Attackable;
+import interfaces.Shootable;
 import interfaces.Weapon;
 import utility.PossiblePoints;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by mitulmanish on 27/04/2016.
  */
 
-class MachineGun extends WeaponDecorator implements Attackable {
+class MachineGun extends WeaponDecorator implements Shootable {
 
     String overriddenName;
 

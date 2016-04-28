@@ -1,6 +1,6 @@
 package model;
 
-import interfaces.Attackable;
+import interfaces.Shootable;
 import interfaces.Weapon;
 import interfaces.WeaponWithHead;
 import utility.PossiblePoints;
@@ -29,8 +29,8 @@ public class Troop extends GameItem
     public ArrayList<Position> getWeaponRange(int weaponIndex)
     {
 
-        if (weapons.get(weaponIndex) instanceof Attackable){
-            return ((Attackable) weapons.get(weaponIndex)).getWeaponRange(super.getPosition());
+        if (weapons.get(weaponIndex) instanceof Shootable){
+            return ((Shootable) weapons.get(weaponIndex)).getWeaponRange(super.getPosition());
         }
         return null;
     }

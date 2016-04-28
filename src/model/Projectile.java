@@ -1,6 +1,6 @@
 package model;
 
-import interfaces.Attackable;
+import interfaces.Shootable;
 import interfaces.Weapon;
 import utility.PossiblePoints;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 // BASE FOR Mg 17 BOMB
 
-class Projectile implements Weapon, Attackable {
+class Projectile implements Weapon, Shootable {
 
     @Override
     public String getName() {

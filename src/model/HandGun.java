@@ -1,6 +1,6 @@
 package model;
 
-import interfaces.Attackable;
+import interfaces.Shootable;
 import interfaces.Weapon;
 import utility.PossiblePoints;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 // BASE FOR Pistol Ak 47
 
-class HandGun implements Weapon, Attackable {
+class HandGun implements Weapon, Shootable {
 
     @Override
     public String getName() {
