@@ -1,4 +1,5 @@
 package model;
+
 import interfaces.Shootable;
 import interfaces.Weapon;
 import utility.PossiblePoints;
@@ -6,18 +7,20 @@ import utility.PossiblePoints;
 import java.util.ArrayList;
 
 /**
- * Created by mitulmanish on 26/04/2016.
+ * Created by mitulmanish on 28/04/2016.
  */
 
-// make this class a base class for staright line shooting weapons
+public class BaseWeapon implements Weapon, Shootable {
 
-// BASE FOR CANNON , MACHINE GUN
+    private Direction shootingDirection;
 
-class Rifle implements Weapon, Shootable {
+    public BaseWeapon(Direction shootingDirection) {
+        this.shootingDirection = shootingDirection;
+    }
 
     @Override
     public String getName() {
-        return "Rifle";
+        return "Base Weapon";
     }
 
     @Override
@@ -32,7 +35,7 @@ class Rifle implements Weapon, Shootable {
 
     @Override
     public Direction getDirection() {
-        return Direction.STRAIGHT_LINE;
+        return shootingDirection;
     }
 
     @Override
@@ -40,3 +43,5 @@ class Rifle implements Weapon, Shootable {
         return PossiblePoints.getPossiblePoints(location,getRange(), getDirection());
     }
 }
+
+

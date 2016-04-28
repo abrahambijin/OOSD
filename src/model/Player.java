@@ -36,28 +36,30 @@ public class Player
 
     public static Player playerFactory(String name)
     {
+        BaseWeapon baseWeapon = new BaseWeapon(Direction.STRAIGHT_LINE);
+
         if (noOfPlayers == 0)
         {
-            Rifle rifle = new Rifle();
-            // Note rifle can also be used as a weapon
             Troop tank = new Troop("Tank", 2, new ArrayList<>(Arrays.asList(
-                    new Cannon(rifle, "Cannon"),
-                    new MachineGun(rifle, "Machine Gun"))), Direction.STRAIGHT_LINE);
+                    new Cannon(baseWeapon, "Cannon"),
+                    new MachineGun(baseWeapon, "Machine Gun"))), Direction.STRAIGHT_LINE);
             Tower tower = new Tower();
             return new PlayerOne(name,
                     new ArrayList<>(Arrays.asList(tank, tower)));
         }
         else
         {
-            HandGun handGun = new HandGun();
-            Projectile projectile = new Projectile();
-
-            Troop jet = new Troop("Jet", 3, new ArrayList<>(
-                    Arrays.asList(new Mg17(projectile, "MG 17"),
-                            new Bomb(projectile, "Bomb"))), Direction.DIAGONAL);
+            baseWeapon = new BaseWeapon(Direction.ANY);
 
             Troop army = new Troop("Army", 1, new ArrayList<>(
-                    Arrays.asList(new Pistol(handGun, "Pistol"), new Ak47(handGun, "AK 47"))), Direction.ANY);
+                    Arrays.asList(new Pistol(baseWeapon, "Pistol"), new Ak47(baseWeapon, "AK 47"))), Direction.ANY);
+
+            baseWeapon = new BaseWeapon(Direction.DIAGONAL);
+
+            Troop jet = new Troop("Jet", 3, new ArrayList<>(
+                    Arrays.asList(new Mg17(baseWeapon, "MG 17"),
+                            new Bomb(baseWeapon, "Bomb"))), Direction.DIAGONAL);
+
             return new Player(name, new ArrayList<>(Arrays.asList(jet, army)));
         }
     }
