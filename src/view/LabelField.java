@@ -14,10 +14,10 @@ public class LabelField extends JPanel
         super(new FlowLayout(FlowLayout.LEFT));
         label = new JLabel(labelName);
         label1 = new JLabel("");
-        label.setFont(new Font("Arial", Font.BOLD, 20));
+        label.setFont(new Font("Impact", Font.BOLD, 20));
         //this.labelName = labelName;
         label.setForeground(Color.white);
-        label1.setFont(new Font("Arial", Font.PLAIN, 20));
+        label1.setFont(new Font("sans serif", Font.PLAIN, 18));
         label1.setForeground(Color.white);
         //setValue("");
         this.add(label);

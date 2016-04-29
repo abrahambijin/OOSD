@@ -1,6 +1,7 @@
 package view;
 
 
+import controller.StartGameButtonController;
 import model.Game;
 import java.awt.*;
 import javax.swing.*;
@@ -14,10 +15,12 @@ public class GameGUI extends JFrame
     private PlayGround playGround;
     private PlayerStatus playerStatus;
     private LabelField status;
+    private SplashScreen splashScreen;
 
 
     public GameGUI(Game game)
     {
+
         super("WarZone");
         JPanel gamePanel = new JPanel();
         gamePanel.setLayout(new BorderLayout());
@@ -42,7 +45,7 @@ public class GameGUI extends JFrame
         splitPane.setResizeWeight(0.75);
         splitPane.setEnabled(false);
         splitPane.setOpaque(false);
-        gamePanel.setBackground(new Color(80,80,80));
+        gamePanel.setBackground(new Color(65,65,65));
         gamePanel.add(splitPane, BorderLayout.CENTER);
         add(gamePanel);
 
@@ -62,4 +65,6 @@ public class GameGUI extends JFrame
     {
         this.status.setValue(status);
     }
+
+    public SplashScreen getSplashScreen() {return splashScreen; }
 }

@@ -24,7 +24,7 @@ public class PlayerStatus extends JPanel
         playerName = new JLabel("Player : ", SwingConstants.CENTER);
         playerName.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         playerName.setPreferredSize(new Dimension(playerName.getWidth(),75));
-        playerName.setFont(new Font("Arial Black",Font.BOLD,30));
+        playerName.setFont(new Font("Comic Sans MS",Font.BOLD,30));
         playerName.setForeground(Color.white);
         setPlayer(game.getCurrentPlayer());
         playerName.setOpaque(true);
