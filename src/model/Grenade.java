@@ -2,62 +2,79 @@ package model;
 
 import interfaces.Weapon;
 import interfaces.WeaponWithHead;
+import utility.PossiblePoints;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Grenade implements WeaponWithHead, Weapon {
+public class Grenade implements WeaponWithHead, Weapon
+{
 
     @Override
-    public String getName() { return "Grenade"; }
+    public String getName()
+    {
+        return "Grenade";
+    }
 
     @Override
-    public int getRange() {
+    public int getRange()
+    {
         return 1;
     }
 
     @Override
-    public int getDamage() {
+    public int getDamage()
+    {
         return 30;
     }
 
     @Override
-    public Direction getDirection() {
+    public Direction getDirection()
+    {
         return Direction.CUSTOM;
     }
 
 
     @Override
-    public ArrayList<Position> getWeaponRange(Position location, Position head)
+    public HashMap<Position, ArrayList<Position>> getWeaponRange(Position location, Position head)
     {
-        ArrayList<Position> shootingOptions = new ArrayList<>();
+        HashMap<Position, ArrayList<Position>> possibleOptions = PossiblePoints
+                .getPossiblePoints(location, getRange(), getDirection());
+        HashMap<Position, ArrayList<Position>> newSetOfOptions =
+                new HashMap<>();
+
         int headXCoordinate = head.getXCoordinate();
         int headYCoordinate = head.getYCoordinate();
-        int xPos = location.getXCoordinate();
-        int yPos = location.getYCoordinate();
-        shootingOptions.add(new Position((xPos + headXCoordinate),
-                (yPos + headYCoordinate)));
+
+        newSetOfOptions.put(head, possibleOptions.get(head));
+
         if (headXCoordinate == 0)
         {
-            shootingOptions
-                    .add(new Position((xPos - 1), (yPos + headYCoordinate)));
-            shootingOptions
-                    .add(new Position((xPos + 1), (yPos + headYCoordinate)));
+            Position p1 = new Position(-1, headYCoordinate);
+            newSetOfOptions.put(p1, possibleOptions.get(p1));
+
+            p1 = new Position(1, headYCoordinate);
+            newSetOfOptions.put(p1, possibleOptions.get(p1));
         }
         else if (headYCoordinate == 0)
         {
-            shootingOptions
-                    .add(new Position((xPos + headXCoordinate), (yPos - 1)));
-            shootingOptions
-                    .add(new Position((xPos + headXCoordinate), (yPos + 1)));
+            Position p1 = new Position(headXCoordinate, -1);
+            newSetOfOptions.put(p1, possibleOptions.get(p1));
+
+            p1 = new Position(headXCoordinate, 1);
+            newSetOfOptions.put(p1, possibleOptions.get(p1));
         }
         else
         {
-            shootingOptions.add(new Position((xPos + headXCoordinate), yPos));
-            shootingOptions.add(new Position(xPos, (yPos + headYCoordinate)));
+            Position p1 = new Position(0, headYCoordinate);
+            newSetOfOptions.put(p1, possibleOptions.get(p1));
+
+            p1 = new Position(headXCoordinate, 0);
+            newSetOfOptions.put(p1, possibleOptions.get(p1));
         }
-        return shootingOptions;
+        return newSetOfOptions;
     }
 }

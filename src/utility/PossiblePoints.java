@@ -1,11 +1,9 @@
 package utility;
 
-import model.Direction;
-import model.GameItem;
-import model.Position;
+import model.*;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
 
 /**
  * Created by Bijin on 14-Apr-16.
@@ -16,14 +14,15 @@ public final class PossiblePoints
     {
     }
 
-    public static ArrayList<Position> getPossiblePoints(Position position, int limit,
-                                                        Direction direction)
+    public static HashMap<Position, ArrayList<Position>> getPossiblePoints(
+            Position position, int limit, Direction direction)
     {
-        ArrayList<Position> positionOptions = new ArrayList<>();
+        HashMap<Position, ArrayList<Position>> positionOptions =
+                new HashMap<>();
         if (direction != Direction.STRAIGHT_LINE)
-            positionOptions.addAll(getDiagonalOptions(position, limit));
+            positionOptions.putAll(getDiagonalOptions(position, limit));
         if (direction != Direction.DIAGONAL)
-            positionOptions.addAll(getStraightLineOptions(position, limit));
+            positionOptions.putAll(getStraightLineOptions(position, limit));
         return positionOptions;
     }
 
@@ -36,58 +35,61 @@ public final class PossiblePoints
         for (int i = (-1 * rangeLimit); i <= rangeLimit; i++)
             for (int j = (-1 * rangeLimit); j <= rangeLimit; j++)
                 if (i != 0 || j != 0)
-                    positionOptions.add(new Position(xpos+i, ypos+j));
+                    positionOptions.add(new Position(xpos + i, ypos + j));
         return positionOptions;
     }
 
-    private static ArrayList<Position> getDiagonalOptions(Position location,
-                                                          int limit)
+    private static HashMap<Position, ArrayList<Position>> getDiagonalOptions(
+            Position location, int limit)
     {
         int xPos = location.getXCoordinate();
         int yPos = location.getYCoordinate();
-        ArrayList<Position> diagonalOptions = new ArrayList<>();
+
+        HashMap<Position, ArrayList<Position>> diagonalOptions =
+                new HashMap<>();
+        for (int i = -1; i <= 1; i += 2)
+            for (int j = -1; j <= 1; j += 2)
+                diagonalOptions.put(new Position(i, j), new ArrayList<>());
+
         for (int i = 1; i <= limit; i++)
         {
-            diagonalOptions.add(new Position((xPos - i), (yPos - i)));
-            diagonalOptions.add(new Position((xPos - i), (yPos + i)));
-            diagonalOptions.add(new Position((xPos + i), (yPos - i)));
-            diagonalOptions.add(new Position((xPos + i), (yPos + i)));
+            diagonalOptions.get(new Position(-1, -1))
+                    .add(new Position((xPos - i), (yPos - i)));
+            diagonalOptions.get(new Position(-1, 1))
+                    .add(new Position((xPos - i), (yPos + i)));
+            diagonalOptions.get(new Position(1, -1))
+                    .add(new Position((xPos + i), (yPos - i)));
+            diagonalOptions.get(new Position(1, 1))
+                    .add(new Position((xPos + i), (yPos + i)));
         }
         return diagonalOptions;
     }
 
-    private static ArrayList<Position> getStraightLineOptions(Position location,
-                                                              int limit)
+    private static HashMap<Position, ArrayList<Position>> getStraightLineOptions(
+            Position location, int limit)
     {
         int xPos = location.getXCoordinate();
         int yPos = location.getYCoordinate();
-        ArrayList<Position> straightLineShootingOptions = new ArrayList<>();
+
+        HashMap<Position, ArrayList<Position>> straightLineShootingOptions =
+                new HashMap<>();
+        for (int i = -1; i <= 1; i++)
+            for (int j = -1; j <= 1; j++)
+                if (!(i == 0 && j == 0) && (i == 0 || j == 0))
+                    straightLineShootingOptions
+                            .put(new Position(i, j), new ArrayList<>());
+
         for (int i = 1; i <= limit; i++)
         {
-            straightLineShootingOptions.add(new Position((xPos - i), yPos));
-            straightLineShootingOptions.add(new Position(xPos, (yPos + i)));
-            straightLineShootingOptions.add(new Position((xPos + i), yPos));
-            straightLineShootingOptions.add(new Position(xPos, (yPos - i)));
+            straightLineShootingOptions.get(new Position(-1, 0))
+                    .add(new Position((xPos - i), yPos));
+            straightLineShootingOptions.get(new Position(0, 1))
+                    .add(new Position(xPos, (yPos + i)));
+            straightLineShootingOptions.get(new Position(1, 0))
+                    .add(new Position((xPos + i), yPos));
+            straightLineShootingOptions.get(new Position(0, -1))
+                    .add(new Position(xPos, (yPos - i)));
         }
         return straightLineShootingOptions;
-    }
-
-    // find empty points on the warzone so that game extras can be populated on the warzone randomly
-    // after initial game items have been laid down on the warzone , find the empty positions and select random positions
-    private static ArrayList<Position> getEmptySlotsOnBoard(GameItem [][] warZone){
-        ArrayList<Position> emptySpots = null;
-        for (int row = 0; row < warZone.length; row++){
-            for(int col = 0; col < warZone.length; col++){
-                if (warZone[row][col] == null) {
-                    emptySpots.add(new Position(row, col));
-                }
-            }
-        }
-        return emptySpots;
-    }
-
-    public static Position  getRandomEmptySlotOnBoard(GameItem [][] warZone){
-        ArrayList<Position> emptyLocations = getEmptySlotsOnBoard(warZone);
-        return emptyLocations.get(new Random().nextInt(emptyLocations.size()) + 1);
     }
 }

@@ -4,6 +4,7 @@ import utility.PossiblePoints;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -31,23 +32,19 @@ public class Tower extends Troop
         super.setImageIconPath("Images/Tower/Tower" + head + ".png");
     }
 
-    public ArrayList<Position> getWeaponRange(int weaponIndex)
+    public HashMap<Position, ArrayList<Position>> getWeaponRange(int weaponIndex)
 
     {
         return super.getWeaponRange(weaponIndex, head);
     }
 
 
-    public ArrayList<Position> possibleMovePositions()
+    public HashMap<Position, ArrayList<Position>> possibleMovePositions()
     {
-        ArrayList<Position> positions = PossiblePoints
+        HashMap<Position, ArrayList<Position>> positions = PossiblePoints
                 .getPossiblePoints(super.getPosition(), super.getMaxNoOfSteps(),
                         Direction.ANY);
-        int excludeXPosition= getPosition().getXCoordinate() + head
-                .getXCoordinate();
-        int excludeYPosition= getPosition().getYCoordinate() + head
-                .getYCoordinate();
-        positions.remove(new Position(excludeXPosition,excludeYPosition));
+        positions.remove(head);
         return positions;
     }
 

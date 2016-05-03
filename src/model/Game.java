@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -83,12 +84,16 @@ public class Game
     {
         if (item instanceof Troop)
         {
-            ArrayList<Position> possibleMovePositions =
+            ArrayList<Position> possibleMovePositions = new ArrayList<>();
+            HashMap<Position, ArrayList<Position>> positions =
                     ((Troop) item).possibleMovePositions();
+
+            positions.values().forEach(possibleMovePositions::addAll);
+
             if (item instanceof Tower)
                 return possibleMovePositions;
 
-            return board.filterMovePositions(possibleMovePositions);
+            return board.filterMovePositions(positions);
         }
         return null;
     }
@@ -114,7 +119,7 @@ public class Game
     {
         ArrayList<Position> positionsOccupied = new ArrayList<>();
         for (Player player : players)
-                positionsOccupied.addAll(player.getItemLocations());
+            positionsOccupied.addAll(player.getItemLocations());
         return positionsOccupied;
     }
 

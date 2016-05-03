@@ -41,4 +41,10 @@ public class Position
     {
         return "(" + xCoordinate + ", " + yCoordinate + ")";
     }
+
+    public int hashCode()
+    {
+        return toString().hashCode();
+    }
+
 }

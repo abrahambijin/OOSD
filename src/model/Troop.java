@@ -6,6 +6,7 @@ import interfaces.WeaponWithHead;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -26,7 +27,7 @@ public class Troop extends GameItem
         this.movingDirection = movingDirection;
     }
 
-    public ArrayList<Position> getWeaponRange(int weaponIndex)
+    public HashMap<Position, ArrayList<Position>> getWeaponRange(int weaponIndex)
     {
 
         if (weapons.get(weaponIndex) instanceof Shootable){
@@ -35,7 +36,7 @@ public class Troop extends GameItem
         return null;
     }
 
-    protected ArrayList<Position> getWeaponRange(int weaponIndex, Position head)
+    protected HashMap<Position, ArrayList<Position>> getWeaponRange(int weaponIndex, Position head)
     {
         if (weapons.get(weaponIndex) instanceof WeaponWithHead)
         {
@@ -56,7 +57,7 @@ public class Troop extends GameItem
         return weapons;
     }
 
-    public ArrayList<Position> possibleMovePositions()
+    public HashMap<Position, ArrayList<Position>> possibleMovePositions()
     {
         return PossiblePoints
                 .getPossiblePoints(super.getPosition(), maxNoOfSteps,

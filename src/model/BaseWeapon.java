@@ -5,6 +5,7 @@ import interfaces.Weapon;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by mitulmanish on 28/04/2016.
@@ -39,7 +40,7 @@ public class BaseWeapon implements Weapon, Shootable {
     }
 
     @Override
-    public ArrayList<Position> getWeaponRange(Position location) {
+    public HashMap<Position, ArrayList<Position>> getWeaponRange(Position location) {
         return PossiblePoints.getPossiblePoints(location,getRange(), getDirection());
     }
 }

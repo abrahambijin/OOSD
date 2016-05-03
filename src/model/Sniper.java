@@ -2,8 +2,10 @@ package model;
 
 import interfaces.Weapon;
 import interfaces.WeaponWithHead;
+import utility.PossiblePoints;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -30,25 +32,16 @@ public class Sniper implements Weapon, WeaponWithHead{
         return Direction.CUSTOM;
     }
 
-
     @Override
-    public ArrayList<Position> getWeaponRange(Position currentPosition, Position head)
+    public HashMap<Position, ArrayList<Position>> getWeaponRange(
+            Position location, Position head)
     {
-        ArrayList<Position> shootingOptions = new ArrayList<>();
-        int headXCoordinate = head.getXCoordinate();
-        int headYCoordinate = head.getYCoordinate();
-        int xPos = currentPosition.getXCoordinate();
-        int yPos = currentPosition.getYCoordinate();
-        for(int i=1; i <= getRange();i++)
-            shootingOptions.add(new Position((xPos + (i * headXCoordinate)),
-                    (yPos + (i * headYCoordinate))));
-        shootingOptions.add(new Position((xPos + headXCoordinate),
-                (yPos + headYCoordinate)));
-        shootingOptions.add(new Position((xPos + (2 * headXCoordinate)),
-                (yPos + (2 * headYCoordinate))));
-        shootingOptions.add(new Position((xPos + (3 * headXCoordinate)),
-                (yPos + (3 * headYCoordinate))));
-        return shootingOptions;
-    }
+        HashMap<Position, ArrayList<Position>> newSetOfOptions =
+                new HashMap<>();
 
+        newSetOfOptions.put(head, PossiblePoints.getPossiblePoints
+                (location,getRange(),getDirection()).get(head));
+
+        return newSetOfOptions;
+    }
 }

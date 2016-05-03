@@ -4,6 +4,7 @@ import interfaces.Weapon;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ListIterator;
 
 /**
@@ -35,7 +36,8 @@ public class Board
             return true;
         }
         // check if position is occupied by game Extras
-        else if (warZone[xCoordinate][yCoordinate] instanceof Arsenal){
+        else if (warZone[xCoordinate][yCoordinate] instanceof Arsenal)
+        {
 
             Arsenal arsenal = (Arsenal) getItem(position);
             Weapon bonusWeapon = arsenal.getBonusWeapon();
@@ -44,7 +46,8 @@ public class Board
             setItemOnWarZone(position, item);
             return true;
         }
-        else if (warZone[xCoordinate][yCoordinate] instanceof Hospital){
+        else if (warZone[xCoordinate][yCoordinate] instanceof Hospital)
+        {
 
             Hospital hospital = (Hospital) getItem(position);
             item.enhanceHealth(hospital.getHealthMultiplyingFactor());
@@ -52,7 +55,8 @@ public class Board
             return true;
         }
 
-        else if (warZone[xCoordinate][yCoordinate] instanceof LandMine){
+        else if (warZone[xCoordinate][yCoordinate] instanceof LandMine)
+        {
 
             LandMine landMine = (LandMine) getItem(position);
             float diminishingFactor = landMine.getHealthDiminishinfFactor();
@@ -176,7 +180,7 @@ public class Board
         GameItem item = warZone[xCoordinate][yCoordinate];
         if (item != null && item instanceof Troop)
         {
-            if(item instanceof Tower)
+            if (item instanceof Tower)
             {
                 ((Tower) item).move(newPosition);
                 success = true;
@@ -201,26 +205,27 @@ public class Board
         return success;
     }
 
-    public ArrayList<Position> filterMovePositions(ArrayList<Position> positions)
+    public ArrayList<Position> filterMovePositions(
+            HashMap<Position, ArrayList<Position>> positions)
     {
-        ListIterator<Position> iterator = positions.listIterator();
-        while (iterator.hasNext())
-        {
-            Position position = iterator.next();
-            try
+        ArrayList<Position> possiblePositions = new ArrayList<>();
+
+        for (ArrayList<Position> points : positions.values())
+            for (Position candidatePosition : points)
             {
-                if (getItem(position) != null)
+                try
                 {
-                    iterator.remove();
+                    if (getItem(candidatePosition) != null)
+                        break;
+                    possiblePositions.add(candidatePosition);
+                }
+                catch (ArrayIndexOutOfBoundsException e)
+                {
+                    break;
                 }
             }
-            catch (ArrayIndexOutOfBoundsException e)
-            {
-                iterator.remove();
-            }
-        }
 
-        return positions;
+        return possiblePositions;
     }
 
     private void setPointToNull(Position location)
@@ -228,7 +233,8 @@ public class Board
         warZone[location.getXCoordinate()][location.getYCoordinate()] = null;
     }
 
-    public void setItemOnWarZone(Position location, GameItem item){
+    public void setItemOnWarZone(Position location, GameItem item)
+    {
         warZone[location.getXCoordinate()][location.getYCoordinate()] = item;
     }
 
