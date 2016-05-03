@@ -22,17 +22,17 @@ public class Runner
             askName(i);
             teamNames.add(getTeamName());
         }
-        game = new Game(teamNames,10);
+        game = new Game(teamNames, 10);
         System.out.println();
-        for(Player player: game.getPlayers())
+        for (Player player : game.getPlayers())
         {
-            System.out.println(player.getName()+": ");
+            System.out.println(player.getName() + ": ");
             for (GameItem item : player.getItems())
             {
                 System.out.print("Where would you like to place " +
                         item.getName() + ":");
                 Position location = getLocationInput();
-                while(!game.addItemToBoard(player,item,location))
+                while (!game.addItemToBoard(player, item, location))
                 {
                     System.out.println("Incorrect position");
                     System.out.print("Where would you like to place " +
@@ -43,25 +43,26 @@ public class Runner
         }
         displayBoard();
 
-        while(true)
+        while (true)
         {
             Player currentPlayer = game.getCurrentPlayer();
-            System.out.println(currentPlayer.getName()+": Select a Troop");
+            System.out.println(currentPlayer.getName() + ": Select a Troop");
             Position selectedPosition = getLocationInput();
-            while(!game.isTroopOfCurrentPlayer(selectedPosition))
+            while (!game.isTroopOfCurrentPlayer(selectedPosition))
             {
                 System.out.println("Incorrect selection");
-                System.out.println(currentPlayer.getName()+": Select a Troop");
+                System.out
+                        .println(currentPlayer.getName() + ": Select a Troop");
                 selectedPosition = getLocationInput();
             }
-            System.out.println("Where do you want to move "+game.getItem
-                    (selectedPosition).getName());
+            System.out.println("Where do you want to move " +
+                    game.getItem(selectedPosition).getName());
             Position newLocation = getLocationInput();
-            while(!game.move(selectedPosition,newLocation))
+            while (!game.move(selectedPosition, newLocation))
             {
                 System.out.println("Incorrect selection");
-                System.out.println("Where do you want to move "+game.getItem
-                        (selectedPosition).getName());
+                System.out.println("Where do you want to move " +
+                        game.getItem(selectedPosition).getName());
                 newLocation = getLocationInput();
             }
             System.out.println();
@@ -72,8 +73,7 @@ public class Runner
 
     private static void askName(int number)
     {
-        System.out
-                .print("Player" + number + ",please select your team name: ");
+        System.out.print("Player" + number + ",please select your team name: ");
     }
 
     private static String getTeamName()
@@ -87,19 +87,19 @@ public class Runner
         Scanner input = new Scanner(System.in);
         int x = input.nextInt();
         int y = input.nextInt();
-        return new Position(x,y);
+        return new Position(x, y);
     }
 
     private static void displayBoard()
     {
-        for(int i=0; i<game.getBOARD_SIZE();i++)
+        for (int i = 0; i < game.getBOARD_SIZE(); i++)
         {
             System.out.print("|");
-            for(int j=0;j<game.getBOARD_SIZE();j++)
+            for (int j = 0; j < game.getBOARD_SIZE(); j++)
             {
-                GameItem item = game.getItem(new Position(i,j));
-                if(item!=null)
-                    System.out.print(item.getName()+" |");
+                GameItem item = game.getItem(new Position(i, j));
+                if (item != null)
+                    System.out.print(item.getName() + " |");
                 else
                     System.out.print("      |");
             }

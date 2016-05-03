@@ -8,6 +8,7 @@ import java.util.HashMap;
 /**
  * Created by mitulmanish on 28/04/2016.
  */
-public interface Shootable {
+public interface Shootable
+{
     HashMap<Position, ArrayList<Position>> getWeaponRange(Position location);
 }

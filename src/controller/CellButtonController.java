@@ -75,8 +75,8 @@ public class CellButtonController implements ActionListener
             }
 
             game.nextPlayer();
-            view.getPlayGround().disableButtons(game.getOccupiedBoardLocation(),
-                    null);
+            view.getPlayGround()
+                    .disableButtons(game.getOccupiedBoardLocation(), null);
             view.getPlayerStatus().updatePage(game.getCurrentPlayer());
         }
         view.getPlayerStatus().getTop().enableBackButton(false);

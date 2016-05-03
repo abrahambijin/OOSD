@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+
 import utility.CustomFonts;
 
 public class LabelField extends JPanel
@@ -13,7 +14,7 @@ public class LabelField extends JPanel
     public LabelField(String labelName)
     {
         super(new FlowLayout(FlowLayout.LEFT));
-        label = new JLabel(labelName+ " :");
+        label = new JLabel(labelName + " :");
         label1 = new JLabel("");
         //label.setFont(new Font("Impact", Font.BOLD, 20));
         //this.labelName = labelName;
@@ -28,10 +29,10 @@ public class LabelField extends JPanel
         this.setOpaque(false);
     }
 
-//    public void setValue(String value)
-//    {
-//        label.setText(String.format("%-6s: %s", labelName, value));
-//    }
+    //    public void setValue(String value)
+    //    {
+    //        label.setText(String.format("%-6s: %s", labelName, value));
+    //    }
 
     public void setValue(String value)
     {

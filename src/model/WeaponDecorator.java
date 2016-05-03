@@ -5,31 +5,37 @@ import interfaces.Weapon;
 /**
  * Created by mitulmanish on 28/04/2016.
  */
-abstract class WeaponDecorator implements Weapon {
+abstract class WeaponDecorator implements Weapon
+{
 
     Weapon decoratedWeapon;
 
-    public WeaponDecorator(Weapon decoratedWeapon) {
+    public WeaponDecorator(Weapon decoratedWeapon)
+    {
         this.decoratedWeapon = decoratedWeapon;
     }
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return decoratedWeapon.getName();
     }
 
     @Override
-    public int getRange() {
+    public int getRange()
+    {
         return decoratedWeapon.getRange();
     }
 
     @Override
-    public int getDamage() {
+    public int getDamage()
+    {
         return decoratedWeapon.getDamage();
     }
 
     @Override
-    public Direction getDirection() {
+    public Direction getDirection()
+    {
         return decoratedWeapon.getDirection();
     }
 

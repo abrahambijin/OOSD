@@ -10,37 +10,46 @@ import java.util.HashMap;
 /**
  * Created by mitulmanish on 27/04/2016.
  */
-class Mg17 extends WeaponDecorator implements Shootable {
+class Mg17 extends WeaponDecorator implements Shootable
+{
 
     String overriddenName;
 
-    public Mg17(Weapon decoratedWeapon, String name) {
+    public Mg17(Weapon decoratedWeapon, String name)
+    {
         super(decoratedWeapon);
         this.overriddenName = name;
     }
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return overriddenName;
     }
 
     @Override
-    public int getRange() {
+    public int getRange()
+    {
         return super.getRange() + 1;
     }
 
     @Override
-    public int getDamage() {
+    public int getDamage()
+    {
         return super.getDamage() + 10;
     }
 
     @Override
-    public Direction getDirection() {
+    public Direction getDirection()
+    {
         return super.getDirection();
     }
 
     @Override
-    public HashMap<Position, ArrayList<Position>> getWeaponRange(Position location) {
-        return PossiblePoints.getPossiblePoints(location,getRange(), getDirection());
+    public HashMap<Position, ArrayList<Position>> getWeaponRange(
+            Position location)
+    {
+        return PossiblePoints
+                .getPossiblePoints(location, getRange(), getDirection());
     }
 }

@@ -10,5 +10,6 @@ import java.util.HashMap;
  */
 public interface WeaponWithHead
 {
-    HashMap<Position, ArrayList<Position>> getWeaponRange(Position location, Position head);
+    HashMap<Position, ArrayList<Position>> getWeaponRange(Position location,
+                                                          Position head);
 }

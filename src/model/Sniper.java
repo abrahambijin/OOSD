@@ -39,8 +39,8 @@ public class Sniper implements Weapon, WeaponWithHead{
         HashMap<Position, ArrayList<Position>> newSetOfOptions =
                 new HashMap<>();
 
-        newSetOfOptions.put(head, PossiblePoints.getPossiblePoints
-                (location,getRange(),getDirection()).get(head));
+        newSetOfOptions.put(head, PossiblePoints
+                .getPossiblePoints(location, getRange(), getDirection()).get(head));
 
         return newSetOfOptions;
     }

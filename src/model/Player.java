@@ -40,9 +40,10 @@ public class Player
 
         if (noOfPlayers == 0)
         {
-            Troop tank = new Troop("Tank", 2, new ArrayList<>(Arrays.asList(
-                    new Cannon(baseWeapon, "Cannon"),
-                    new MachineGun(baseWeapon, "Machine Gun"))), Direction.STRAIGHT_LINE);
+            Troop tank = new Troop("Tank", 2, new ArrayList<>(
+                    Arrays.asList(new Cannon(baseWeapon, "Cannon"),
+                            new MachineGun(baseWeapon, "Machine Gun"))),
+                    Direction.STRAIGHT_LINE);
             Tower tower = new Tower();
             return new PlayerOne(name,
                     new ArrayList<>(Arrays.asList(tank, tower)));
@@ -52,7 +53,8 @@ public class Player
             baseWeapon = new BaseWeapon(Direction.ANY);
 
             Troop army = new Troop("Army", 1, new ArrayList<>(
-                    Arrays.asList(new Pistol(baseWeapon, "Pistol"), new Ak47(baseWeapon, "AK 47"))), Direction.ANY);
+                    Arrays.asList(new Pistol(baseWeapon, "Pistol"),
+                            new Ak47(baseWeapon, "AK 47"))), Direction.ANY);
 
             baseWeapon = new BaseWeapon(Direction.DIAGONAL);
 

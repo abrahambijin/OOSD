@@ -29,7 +29,7 @@ public class SettingsScreen extends JFrame
         for (int i = 0; i < Game.getNO_OF_PLAYERS(); i++)
         {
             InputLabelTextField playerName = new InputLabelTextField("Player " +
-                    "" + (i+1));
+                    "" + (i + 1));
             playerName.addDocumentListener(new PlayerNameInputController(this));
             players.add(playerName);
         }
@@ -70,7 +70,7 @@ public class SettingsScreen extends JFrame
         JLabel background = new JLabel(new ImageIcon("Images/gameLogo2.jpg"));
         background.setLayout(new BorderLayout());
         background.add(panel);
-        background.add(buttonPanel,BorderLayout.SOUTH);
+        background.add(buttonPanel, BorderLayout.SOUTH);
 
         this.add(background);
         this.setUndecorated(true);

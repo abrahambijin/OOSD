@@ -58,7 +58,14 @@ public abstract class GameItem
         health -= damage;
     }
 
-    public void enhanceHealth(int multiplyingFactor){ health *= multiplyingFactor; }
-    public void diminishHealth(float diminishFactor) { health -= health * diminishFactor;}
+    public void enhanceHealth(int multiplyingFactor)
+    {
+        health *= multiplyingFactor;
+    }
+
+    public void diminishHealth(float diminishFactor)
+    {
+        health -= health * diminishFactor;
+    }
 
 }

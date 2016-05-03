@@ -6,13 +6,15 @@ import java.awt.*;
 /**
  * Created by Bijin on 16-Apr-16.
  */
-public class ItemWeaponInfo extends JPanel{
-    private JScrollPane scroll= new JScrollPane();
+public class ItemWeaponInfo extends JPanel
+{
+    private JScrollPane scroll = new JScrollPane();
     private JLabel label = new JLabel();
     private JPanel itemList = new JPanel();
     private JPanel itemStrength = new JPanel();
 
-    public ItemWeaponInfo() {
+    public ItemWeaponInfo()
+    {
         //divide bottom panel
         this.setLayout(new GridLayout(0, 2));
         itemList.setLayout(new BorderLayout());

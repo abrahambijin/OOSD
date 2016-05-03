@@ -2,6 +2,7 @@ package view;
 
 
 import model.Game;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -24,7 +25,7 @@ public class GameGUI extends JFrame
         gamePanel.setLayout(new BorderLayout());
 
         playGround = new PlayGround(game, this);
-        playerStatus = new PlayerStatus(game,this);
+        playerStatus = new PlayerStatus(game, this);
 
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
@@ -32,9 +33,9 @@ public class GameGUI extends JFrame
         leftPanel.add(playGround);
         status = new LabelField("Status ");
         //status.setBackground(Color.yellow);
-        setStatus(
-                game.getCurrentPlayer().getName() + ", where would you like to" +
-                        " place the Base?");
+        setStatus(game.getCurrentPlayer().getName() +
+                ", where would you like to" +
+                " place the Base?");
         leftPanel.add(status, BorderLayout.SOUTH);
 
         JSplitPane splitPane =
@@ -43,7 +44,7 @@ public class GameGUI extends JFrame
         splitPane.setResizeWeight(0.75);
         splitPane.setEnabled(false);
         splitPane.setOpaque(false);
-        gamePanel.setBackground(new Color(65,65,65));
+        gamePanel.setBackground(new Color(65, 65, 65));
         gamePanel.add(splitPane, BorderLayout.CENTER);
         add(gamePanel);
 

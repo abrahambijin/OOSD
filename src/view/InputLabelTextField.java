@@ -23,7 +23,7 @@ public class InputLabelTextField extends JPanel
         textField.setForeground(Color.white);
         textField.setCaretColor(Color.white);
         textField.setOpaque(false);
-        textField.setBackground(new Color(0,0,0,30));
+        textField.setBackground(new Color(0, 0, 0, 30));
         this.add(labelName);
         this.add(textField);
         this.setOpaque(false);

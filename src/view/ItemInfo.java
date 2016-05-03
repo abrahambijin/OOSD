@@ -53,12 +53,12 @@ public class ItemInfo extends JPanel
     public void enableButtons(Boolean isEnabled)
     {
         moveButton.setEnabled(isEnabled);
-//        attackButton.setEnabled(isEnabled);
+        //        attackButton.setEnabled(isEnabled);
     }
 
     public void setValues(GameItem item)
     {
-        if(item!=null)
+        if (item != null)
         {
             troop.setValue(item.getName());
             health.setValue(item.getHealth() + "");

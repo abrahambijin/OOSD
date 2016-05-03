@@ -19,7 +19,8 @@ public class Troop extends GameItem
     private Direction movingDirection;
 
 
-    public Troop(String name, int maxNoOfSteps, ArrayList<Weapon> weapons, Direction movingDirection)
+    public Troop(String name, int maxNoOfSteps, ArrayList<Weapon> weapons,
+                 Direction movingDirection)
     {
         super(name);
         this.maxNoOfSteps = maxNoOfSteps;
@@ -27,16 +28,20 @@ public class Troop extends GameItem
         this.movingDirection = movingDirection;
     }
 
-    public HashMap<Position, ArrayList<Position>> getWeaponRange(int weaponIndex)
+    public HashMap<Position, ArrayList<Position>> getWeaponRange(
+            int weaponIndex)
     {
 
-        if (weapons.get(weaponIndex) instanceof Shootable){
-            return ((Shootable) weapons.get(weaponIndex)).getWeaponRange(super.getPosition());
+        if (weapons.get(weaponIndex) instanceof Shootable)
+        {
+            return ((Shootable) weapons.get(weaponIndex))
+                    .getWeaponRange(super.getPosition());
         }
         return null;
     }
 
-    protected HashMap<Position, ArrayList<Position>> getWeaponRange(int weaponIndex, Position head)
+    protected HashMap<Position, ArrayList<Position>> getWeaponRange(
+            int weaponIndex, Position head)
     {
         if (weapons.get(weaponIndex) instanceof WeaponWithHead)
         {
@@ -69,6 +74,9 @@ public class Troop extends GameItem
         super.setPosition(newPosition);
     }
 
-    public void addWeapon(Weapon weapon){ this.weapons.add(weapon); }
+    public void addWeapon(Weapon weapon)
+    {
+        this.weapons.add(weapon);
+    }
 
 }
