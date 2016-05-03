@@ -1,5 +1,6 @@
 package mainGameGUI;
 
+import utility.CustomFonts;
 import view.SScreen;
 import view.SettingsScreen;
 
@@ -12,7 +13,7 @@ public class TestGameGUI
 {
     public static void main(String[] arg)
     {
-
+        CustomFonts.initialiseFont();
         final SScreen splashScreen = new SScreen();
         splashScreen.setLocationRelativeTo(null);
         splashScreen.setVisible(true);

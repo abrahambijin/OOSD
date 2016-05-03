@@ -3,6 +3,7 @@ package view;
 import controller.PlayButtonController;
 import controller.PlayerNameInputController;
 import model.Game;
+import utility.CustomFonts;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,13 +23,13 @@ public class SettingsScreen extends JFrame
         JLabel header = new JLabel("Game Settings", SwingConstants.CENTER);
         header.setOpaque(false);
         header.setForeground(Color.white);
-        header.setFont(new Font("Arial", Font.BOLD, 20));
+        header.setFont(CustomFonts.lifeCraft);
 
         players = new ArrayList<>();
         for (int i = 0; i < Game.getNO_OF_PLAYERS(); i++)
         {
             InputLabelTextField playerName = new InputLabelTextField("Player " +
-                    "" + i);
+                    "" + (i+1));
             playerName.addDocumentListener(new PlayerNameInputController(this));
             players.add(playerName);
         }
