@@ -1,7 +1,5 @@
 package view;
 
-import utility.CustomFonts;
-
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
@@ -20,7 +18,6 @@ public class InputLabelTextField extends JPanel
         JLabel labelName = new JLabel(name);
         labelName.setForeground(Color.white);
         labelName.setFont(new Font("Arial", Font.BOLD, 14));
-        //labelName.setFont(CustomFonts.orena);
         textField = new JTextField(name, 20);
 
         textField.setForeground(Color.white);

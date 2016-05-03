@@ -1,7 +1,6 @@
 package view;
 
 
-import controller.StartGameButtonController;
 import model.Game;
 import java.awt.*;
 import javax.swing.*;
@@ -15,7 +14,6 @@ public class GameGUI extends JFrame
     private PlayGround playGround;
     private PlayerStatus playerStatus;
     private LabelField status;
-    private SplashScreen splashScreen;
 
 
     public GameGUI(Game game)
@@ -66,5 +64,4 @@ public class GameGUI extends JFrame
         this.status.setValue(status);
     }
 
-    public SplashScreen getSplashScreen() {return splashScreen; }
 }

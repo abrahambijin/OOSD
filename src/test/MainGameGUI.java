@@ -1,7 +1,7 @@
-package mainGameGUI;
+package test;
 
 import utility.CustomFonts;
-import view.SScreen;
+import view.SplashScreen;
 import view.SettingsScreen;
 
 import javax.swing.*;
@@ -9,12 +9,12 @@ import javax.swing.*;
 /**
  * Created by ankurdabral on 15/04/2016.
  */
-public class TestGameGUI
+public class MainGameGUI
 {
     public static void main(String[] arg)
     {
         CustomFonts.initialiseFont();
-        final SScreen splashScreen = new SScreen();
+        final SplashScreen splashScreen = new SplashScreen();
         splashScreen.setLocationRelativeTo(null);
         splashScreen.setVisible(true);
 
