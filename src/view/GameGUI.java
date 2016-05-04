@@ -44,7 +44,7 @@ public class GameGUI extends JFrame
         splitPane.setResizeWeight(0.75);
         splitPane.setEnabled(false);
         splitPane.setOpaque(false);
-        gamePanel.setBackground(new Color(65, 65, 65));
+        gamePanel.setBackground(new Color(40, 40, 40));
         gamePanel.add(splitPane, BorderLayout.CENTER);
         add(gamePanel);
 
