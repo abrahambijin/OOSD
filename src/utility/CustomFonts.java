@@ -12,7 +12,7 @@ public final class CustomFonts
 {
 
     public static Font lifeCraft, perfectDark, hand, neverWinter, fof, orena,
-            reTurn, chelsea, WOW;
+            reTurn, chelsea, primeTime;
 
     private CustomFonts()
     {
@@ -41,9 +41,9 @@ public final class CustomFonts
                     new File("Fonts/return.ttf")).deriveFont(Font.BOLD, 30);
             chelsea = Font.createFont(Font.TRUETYPE_FONT,
                     new File("Fonts/Chelsea.ttf")).deriveFont(Font.BOLD, 20);
-            WOW = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("Fonts/world of water.ttf"))
-                    .deriveFont(Font.BOLD, 30);
+            primeTime = Font.createFont(Font.TRUETYPE_FONT,
+                    new File("Fonts/PrimeTime.ttf"))
+                    .deriveFont(Font.BOLD, 16);
 
         }
         catch (FontFormatException e)
@@ -67,7 +67,7 @@ public final class CustomFonts
         ge.registerFont(hand);
         ge.registerFont(reTurn);
         ge.registerFont(chelsea);
-        ge.registerFont(WOW);
+        ge.registerFont(primeTime);
 
 
     }
