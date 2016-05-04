@@ -13,19 +13,19 @@ public class Player
 
     private static int noOfPlayers = 0;
     private String name;
-    private ArrayList<Troop> troops;
+    private ArrayList<Unit> units;
     private PlayerColor color;
 
-    private Player(String name, ArrayList<Troop> troops)
+    private Player(String name, ArrayList<Unit> units)
     {
-        this(name, troops, new PlayerColor(46, 96, 234));
+        this(name, units, new PlayerColor(46, 96, 234));
     }
 
-    protected Player(String name, ArrayList<Troop> troops, PlayerColor color)
+    protected Player(String name, ArrayList<Unit> units, PlayerColor color)
     {
         this.name = name;
         this.color = color;
-        this.troops = troops;
+        this.units = units;
         noOfPlayers++;
     }
 
@@ -40,7 +40,7 @@ public class Player
 
         if (noOfPlayers == 0)
         {
-            Troop tank = new Troop("Tank", 2, new ArrayList<>(
+            Unit tank = new Unit("Tank", 2, new ArrayList<>(
                     Arrays.asList(new Cannon(baseWeapon, "Cannon"),
                             new MachineGun(baseWeapon, "Machine Gun"))),
                     Direction.STRAIGHT_LINE);
@@ -52,13 +52,13 @@ public class Player
         {
             baseWeapon = new BaseWeapon(Direction.ANY);
 
-            Troop army = new Troop("Army", 1, new ArrayList<>(
+            Unit army = new Unit("Army", 1, new ArrayList<>(
                     Arrays.asList(new Pistol(baseWeapon, "Pistol"),
                             new Ak47(baseWeapon, "AK 47"))), Direction.ANY);
 
             baseWeapon = new BaseWeapon(Direction.DIAGONAL);
 
-            Troop jet = new Troop("Jet", 3, new ArrayList<>(
+            Unit jet = new Unit("Jet", 3, new ArrayList<>(
                     Arrays.asList(new Mg17(baseWeapon, "MG 17"),
                             new Bomb(baseWeapon, "Bomb"))), Direction.DIAGONAL);
 
@@ -69,7 +69,7 @@ public class Player
     public ArrayList<GameItem> getItems()
     {
         ArrayList<GameItem> items = new ArrayList<>();
-        items.addAll(troops);
+        items.addAll(units);
         return items;
     }
 

@@ -11,7 +11,7 @@ import java.util.HashMap;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Troop extends GameItem
+public class Unit extends GameItem
 {
 
     private int maxNoOfSteps;
@@ -19,8 +19,8 @@ public class Troop extends GameItem
     private Direction movingDirection;
 
 
-    public Troop(String name, int maxNoOfSteps, ArrayList<Weapon> weapons,
-                 Direction movingDirection)
+    public Unit(String name, int maxNoOfSteps, ArrayList<Weapon> weapons,
+                Direction movingDirection)
     {
         super(name);
         this.maxNoOfSteps = maxNoOfSteps;

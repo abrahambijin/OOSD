@@ -5,7 +5,6 @@ import utility.PossiblePoints;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ListIterator;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -41,7 +40,7 @@ public class Board
 
             Arsenal arsenal = (Arsenal) getItem(position);
             Weapon bonusWeapon = arsenal.getBonusWeapon();
-            ArrayList<Weapon> weapons = ((Troop) item).getWeapons();
+            ArrayList<Weapon> weapons = ((Unit) item).getWeapons();
             weapons.add(bonusWeapon);
             setItemOnWarZone(position, item);
             return true;
@@ -178,7 +177,7 @@ public class Board
         int yCoordinate = currentPosition.getYCoordinate();
 
         GameItem item = warZone[xCoordinate][yCoordinate];
-        if (item != null && item instanceof Troop)
+        if (item != null && item instanceof Unit)
         {
             if (item instanceof Tower)
             {
@@ -197,7 +196,7 @@ public class Board
                 }
                 if (success)
                 {
-                    ((Troop) item).move(newPosition);
+                    ((Unit) item).move(newPosition);
                     setPointToNull(currentPosition);
                 }
             }

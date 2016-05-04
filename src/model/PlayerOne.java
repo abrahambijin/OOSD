@@ -12,9 +12,9 @@ public class PlayerOne extends Player
 
     private Base base;
 
-    public PlayerOne(String name, ArrayList<Troop> troops)
+    public PlayerOne(String name, ArrayList<Unit> units)
     {
-        super(name, troops, new PlayerColor(255, 50, 0));
+        super(name, units, new PlayerColor(255, 50, 0));
         try
         {
             this.base = Base.baseFactory();

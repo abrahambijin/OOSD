@@ -82,11 +82,11 @@ public class Game
 
     public ArrayList<Position> getPossibleMovePoints(GameItem item)
     {
-        if (item instanceof Troop)
+        if (item instanceof Unit)
         {
             ArrayList<Position> possibleMovePositions = new ArrayList<>();
             HashMap<Position, ArrayList<Position>> positions =
-                    ((Troop) item).possibleMovePositions();
+                    ((Unit) item).possibleMovePositions();
 
             positions.values().forEach(possibleMovePositions::addAll);
 
