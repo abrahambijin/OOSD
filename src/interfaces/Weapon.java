@@ -1,20 +1,19 @@
 package interfaces;
 
-import model.Direction;
+import model.Position;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
- * Created by mitulmanish on 28/04/2016.
+ * Created by Bijin on 28-Apr-16.
  */
 public interface Weapon
 {
-
-    String getName();
-
-    int getRange();
-
     int getDamage();
 
-    Direction getDirection();
+    HashMap<Position, ArrayList<Position>> getShootingOptions(
+            Position currentLocation);
+
+    String getName();
 }

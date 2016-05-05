@@ -2,7 +2,6 @@ package model;
 
 import interfaces.Shootable;
 import interfaces.Weapon;
-import interfaces.WeaponWithHead;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
@@ -31,7 +30,6 @@ public class Unit extends GameItem
     public HashMap<Position, ArrayList<Position>> getWeaponRange(
             int weaponIndex)
     {
-
         if (weapons.get(weaponIndex) instanceof Shootable)
         {
             return ((Shootable) weapons.get(weaponIndex))
@@ -40,17 +38,17 @@ public class Unit extends GameItem
         return null;
     }
 
-    protected HashMap<Position, ArrayList<Position>> getWeaponRange(
-            int weaponIndex, Position head)
-    {
-        if (weapons.get(weaponIndex) instanceof WeaponWithHead)
-        {
-            return ((WeaponWithHead) weapons.get(weaponIndex))
-                    .getWeaponRange(super.getPosition(), head);
-        }
-        else
-            return getWeaponRange(weaponIndex);
-    }
+//    protected HashMap<Position, ArrayList<Position>> getWeaponRange(
+//            int weaponIndex, Position head)
+//    {
+//        if (weapons.get(weaponIndex) instanceof WeaponWithHead)
+//        {
+//            return ((WeaponWithHead) weapons.get(weaponIndex))
+//                    .getWeaponRange(super.getPosition(), head);
+//        }
+//        else
+//            return getWeaponRange(weaponIndex);
+//    }
 
     public int getMaxNoOfSteps()
     {

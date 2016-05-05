@@ -1,5 +1,6 @@
 package model;
 
+import Settings.UnitsList;
 import interfaces.Weapon;
 
 import java.util.ArrayList;
@@ -36,33 +37,15 @@ public class Player
 
     public static Player playerFactory(String name)
     {
-        BaseWeapon baseWeapon = new BaseWeapon(Direction.STRAIGHT_LINE);
-
         if (noOfPlayers == 0)
         {
-            Unit tank = new Unit("Tank", 2, new ArrayList<>(
-                    Arrays.asList(new Cannon(baseWeapon, "Cannon"),
-                            new MachineGun(baseWeapon, "Machine Gun"))),
-                    Direction.STRAIGHT_LINE);
-            Tower tower = new Tower();
-            return new PlayerOne(name,
-                    new ArrayList<>(Arrays.asList(tank, tower)));
+            return new PlayerOne(name, new ArrayList<>(
+                    Arrays.asList(UnitsList.tank, UnitsList.tower)));
         }
         else
         {
-            baseWeapon = new BaseWeapon(Direction.ANY);
-
-            Unit army = new Unit("Army", 1, new ArrayList<>(
-                    Arrays.asList(new Pistol(baseWeapon, "Pistol"),
-                            new Ak47(baseWeapon, "AK 47"))), Direction.ANY);
-
-            baseWeapon = new BaseWeapon(Direction.DIAGONAL);
-
-            Unit jet = new Unit("Jet", 3, new ArrayList<>(
-                    Arrays.asList(new Mg17(baseWeapon, "MG 17"),
-                            new Bomb(baseWeapon, "Bomb"))), Direction.DIAGONAL);
-
-            return new Player(name, new ArrayList<>(Arrays.asList(jet, army)));
+            return new Player(name, new ArrayList<>(
+                    Arrays.asList(UnitsList.jet, UnitsList.army)));
         }
     }
 

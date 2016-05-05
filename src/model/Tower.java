@@ -1,5 +1,6 @@
 package model;
 
+import interfaces.Weapon;
 import utility.PossiblePoints;
 
 import java.util.ArrayList;
@@ -15,10 +16,9 @@ public class Tower extends Unit
 
     Position head;
 
-    public Tower()
+    public Tower(ArrayList<Weapon> weapons)
     {
-        super("Tower", 1,
-                new ArrayList<>(Arrays.asList(new Sniper(), new Grenade())), Direction.CUSTOM);
+        super("Tower", 1, weapons, Direction.CUSTOM);
 
         Random randomNumberGenerator = new Random();
         int headXPos = randomNumberGenerator.nextInt(3) - 1;
@@ -30,14 +30,8 @@ public class Tower extends Unit
 
         head = new Position(headXPos, headYPos);
         super.setImageIconPath("Images/Tower/Tower" + head + ".png");
+        updateWeapons();
     }
-
-    public HashMap<Position, ArrayList<Position>> getWeaponRange(int weaponIndex)
-
-    {
-        return super.getWeaponRange(weaponIndex, head);
-    }
-
 
     public HashMap<Position, ArrayList<Position>> possibleMovePositions()
     {
@@ -56,6 +50,14 @@ public class Tower extends Unit
                 newPosition.getYCoordinate() - getPosition().getYCoordinate();
         head = new Position(headX, headY);
         super.setImageIconPath("Images/Tower/Tower" + head + ".png");
+        updateWeapons();
+    }
+
+    public void updateWeapons()
+    {
+        for (Weapon weapon : super.getWeapons())
+            if (weapon instanceof WeaponDecoratedWithHead)
+                ((WeaponDecoratedWithHead) weapon).updateHead(head);
     }
 
 }

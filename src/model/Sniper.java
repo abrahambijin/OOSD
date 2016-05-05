@@ -1,46 +1,29 @@
 package model;
 
 import interfaces.Weapon;
-import interfaces.WeaponWithHead;
-import utility.PossiblePoints;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by mitulmanish on 26/03/2016.
+ * Created by Bijin on 28-Apr-16.
  */
-public class Sniper implements Weapon, WeaponWithHead{
-
-    @Override
-    public String getName() {
-        return "Sniper";
+public class Sniper extends WeaponDecoratedWithHead
+{
+    public Sniper(Weapon weapon)
+    {
+        super(weapon);
     }
 
     @Override
-    public int getRange() {
-        return 3;
-    }
-
-    @Override
-    public int getDamage() {
-        return 35;
-    }
-
-    @Override
-    public Direction getDirection() {
-        return Direction.CUSTOM;
-    }
-
-    @Override
-    public HashMap<Position, ArrayList<Position>> getWeaponRange(
-            Position location, Position head)
+    public HashMap<Position, ArrayList<Position>> getShootingOptions(
+            Position currentLocation)
     {
         HashMap<Position, ArrayList<Position>> newSetOfOptions =
                 new HashMap<>();
 
-        newSetOfOptions.put(head, PossiblePoints
-                .getPossiblePoints(location, getRange(), getDirection()).get(head));
+        newSetOfOptions.put(super.getHead(),
+                super.getShootingOptions(currentLocation).get(super.getHead()));
 
         return newSetOfOptions;
     }
