@@ -1,6 +1,6 @@
-package utility;
+package Utility;
 
-import model.*;
+import Model.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

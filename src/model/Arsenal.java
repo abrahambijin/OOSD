@@ -1,6 +1,6 @@
-package model;
+package Model;
 
-import interfaces.Weapon;
+import Interfaces.Weapon;
 
 /**
  * Created by mitulmanish on 23/04/2016.

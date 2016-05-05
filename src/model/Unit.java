@@ -1,8 +1,8 @@
-package model;
+package Model;
 
-import interfaces.Shootable;
-import interfaces.Weapon;
-import utility.PossiblePoints;
+import Interfaces.Shootable;
+import Interfaces.Weapon;
+import Utility.PossiblePoints;
 
 import java.util.ArrayList;
 import java.util.HashMap;

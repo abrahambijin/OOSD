@@ -1,9 +1,9 @@
-package view;
+package View;
 
-import controller.BackButtonController;
-import controller.MoveButtonController;
-import model.Game;
-import model.GameItem;
+import Controller.BackButtonController;
+import Controller.MoveButtonController;
+import Model.Game;
+import Model.GameItem;
 
 import javax.swing.*;
 import java.awt.*;

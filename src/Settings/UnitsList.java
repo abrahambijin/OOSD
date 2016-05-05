@@ -1,9 +1,9 @@
 package Settings;
 
 
-import model.Direction;
-import model.Tower;
-import model.Unit;
+import Model.Direction;
+import Model.Tower;
+import Model.Unit;
 
 import java.util.ArrayList;
 import java.util.Arrays;

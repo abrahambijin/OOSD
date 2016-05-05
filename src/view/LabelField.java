@@ -1,10 +1,10 @@
-package view;
+package View;
 
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
 
-import utility.CustomFonts;
+import Utility.CustomFonts;
 
 public class LabelField extends JPanel
 {

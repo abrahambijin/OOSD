@@ -1,9 +1,9 @@
-package view;
+package View;
 
-import controller.PlayButtonController;
-import controller.PlayerNameInputController;
-import model.Game;
-import utility.CustomFonts;
+import Controller.PlayButtonController;
+import Controller.PlayerNameInputController;
+import Model.Game;
+import Utility.CustomFonts;
 
 import javax.swing.*;
 import java.awt.*;

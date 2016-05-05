@@ -1,8 +1,8 @@
-package test;
+package Test;
 
-import utility.CustomFonts;
-import view.SplashScreen;
-import view.SettingsScreen;
+import Utility.CustomFonts;
+import View.SplashScreen;
+import View.SettingsScreen;
 
 import javax.swing.*;
 
@@ -13,14 +13,14 @@ public class MainGameGUI
 {
     public static void main(String[] arg)
     {
-        CustomFonts.initialiseFont();
         final SplashScreen splashScreen = new SplashScreen();
         splashScreen.setLocationRelativeTo(null);
         splashScreen.setVisible(true);
 
+        CustomFonts.initialiseFont();
         try
         {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         }
         catch (InterruptedException e)
         {

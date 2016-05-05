@@ -1,6 +1,6 @@
-package model;
+package Model;
 
-import exceptions.ObjectAlreadyExistException;
+import Exceptions.ObjectAlreadyExistException;
 
 /**
  * Created by Bijin on 14-Apr-16.

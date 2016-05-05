@@ -1,9 +1,8 @@
-package utility;
+package Utility;
 
 import java.awt.*;
 import java.io.*;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by ankurdabral on 2/05/2016.

@@ -1,9 +1,9 @@
-package view;
+package View;
 
-import controller.CellButtonController;
-import controller.InitialItemPlacingController;
-import model.Game;
-import model.Position;
+import Controller.CellButtonController;
+import Controller.InitialItemPlacingController;
+import Model.Game;
+import Model.Position;
 
 import javax.swing.*;
 import java.awt.*;

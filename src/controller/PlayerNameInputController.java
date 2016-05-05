@@ -1,7 +1,7 @@
-package controller;
+package Controller;
 
 
-import view.SettingsScreen;
+import View.SettingsScreen;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;

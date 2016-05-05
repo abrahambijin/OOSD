@@ -1,6 +1,6 @@
-package model;
+package Model;
 
-import exceptions.ObjectAlreadyExistException;
+import Exceptions.ObjectAlreadyExistException;
 
 import java.util.ArrayList;
 

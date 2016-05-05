@@ -1,10 +1,9 @@
-package model;
+package Model;
 
-import interfaces.Weapon;
-import utility.PossiblePoints;
+import Interfaces.Weapon;
+import Utility.PossiblePoints;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 

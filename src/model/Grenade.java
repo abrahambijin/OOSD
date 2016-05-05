@@ -1,6 +1,6 @@
-package model;
+package Model;
 
-import interfaces.Weapon;
+import Interfaces.Weapon;
 
 import java.util.ArrayList;
 import java.util.HashMap;

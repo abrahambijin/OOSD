@@ -1,12 +1,10 @@
-package view;
+package View;
 
-import model.*;
-import utility.CustomFonts;
+import Model.*;
+import Utility.CustomFonts;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 
 /**

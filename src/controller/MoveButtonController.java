@@ -1,7 +1,7 @@
-package controller;
+package Controller;
 
-import model.*;
-import view.GameGUI;
+import Model.*;
+import View.GameGUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,14 +1,14 @@
-package controller;
+package Controller;
 
-import model.Game;
-import view.GameGUI;
-import view.SettingsScreen;
+import Model.Game;
+import View.GameGUI;
+import View.SettingsScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-//import view.GameGUI;
+//import View.GameGUI;
 
 /**
  * Created by ankurdabral on 29/04/2016.

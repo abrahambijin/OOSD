@@ -1,10 +1,10 @@
 package Settings;
 
-import interfaces.Weapon;
-import model.BasicWeapon;
-import model.Direction;
-import model.Grenade;
-import model.Sniper;
+import Interfaces.Weapon;
+import Model.BasicWeapon;
+import Model.Direction;
+import Model.Grenade;
+import Model.Sniper;
 
 /**
  * Created by Bijin on 05-May-16.

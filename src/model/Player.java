@@ -1,7 +1,7 @@
-package model;
+package Model;
 
 import Settings.UnitsList;
-import interfaces.Weapon;
+import Interfaces.Weapon;
 
 import java.util.ArrayList;
 import java.util.Arrays;
