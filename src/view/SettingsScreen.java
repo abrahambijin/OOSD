@@ -3,6 +3,7 @@ package View;
 import Controller.PlayButtonController;
 import Controller.PlayerNameInputController;
 import Model.Game;
+import Settings.GameSettings;
 import Utility.CustomFonts;
 
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class SettingsScreen extends JFrame
         header.setFont(CustomFonts.lifeCraft);
 
         players = new ArrayList<>();
-        for (int i = 0; i < Game.getNO_OF_PLAYERS(); i++)
+        for (int i = 0; i < GameSettings.NO_OF_PLAYERS; i++)
         {
             InputLabelTextField playerName = new InputLabelTextField("Player " +
                     "" + (i + 1));
@@ -91,8 +92,8 @@ public class SettingsScreen extends JFrame
 
     public int getBoardSize()
     {
-        return ((boardSize.getSelectedItem()).equals("Small")) ? 10 :
-                ((boardSize.getSelectedItem()).equals("Medium")) ? 15 : 20;
+        return GameSettings.BoardSize
+                .getBoardSize(boardSize.getSelectedItem().toString());
     }
 
     public ArrayList<String> getNames()

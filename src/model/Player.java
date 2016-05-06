@@ -35,17 +35,22 @@ public class Player
         return name;
     }
 
-    public static Player playerFactory(String name)
+    public static Player playerFactory(String name, int noOfUnits)
     {
+        ArrayList<Unit> units = new ArrayList<>();
         if (noOfPlayers == 0)
         {
-            return new PlayerOne(name, new ArrayList<>(
-                    Arrays.asList(UnitsList.tank, UnitsList.tower)));
+            units.add(UnitsList.tower);
+            for (int i = 1; i < noOfUnits; i++)
+                units.add(UnitsList.tank);
+            return new PlayerOne(name, units);
         }
         else
         {
-            return new Player(name, new ArrayList<>(
-                    Arrays.asList(UnitsList.jet, UnitsList.army)));
+            units.add(UnitsList.jet);
+            for (int i = 1; i < noOfUnits; i++)
+                units.add(UnitsList.army);
+            return new Player(name, units);
         }
     }
 

@@ -1,6 +1,7 @@
 package Test;
 
 import Model.*;
+import Settings.GameSettings;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,12 +18,12 @@ public class Runner
 
         System.out.println("Player One will defend the base");
         ArrayList<String> teamNames = new ArrayList<>();
-        for (int i = 1; i <= Game.getNO_OF_PLAYERS(); i++)
+        for (int i = 1; i <= GameSettings.NO_OF_PLAYERS; i++)
         {
             askName(i);
             teamNames.add(getTeamName());
         }
-        game = new Game(teamNames, 10);
+        game = new Game(teamNames, 10, 2);
         System.out.println();
         for (Player player : game.getPlayers())
         {

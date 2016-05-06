@@ -38,18 +38,6 @@ public class Unit extends GameItem
         return null;
     }
 
-//    protected HashMap<Position, ArrayList<Position>> getWeaponRange(
-//            int weaponIndex, Position head)
-//    {
-//        if (weapons.get(weaponIndex) instanceof WeaponWithHead)
-//        {
-//            return ((WeaponWithHead) weapons.get(weaponIndex))
-//                    .getWeaponRange(super.getPosition(), head);
-//        }
-//        else
-//            return getWeaponRange(weaponIndex);
-//    }
-
     public int getMaxNoOfSteps()
     {
         return maxNoOfSteps;

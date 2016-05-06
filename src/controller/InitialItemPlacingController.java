@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Settings.GameSettings;
 import View.GameGUI;
 
 import java.awt.event.ActionEvent;
@@ -54,7 +55,7 @@ public class InitialItemPlacingController implements ActionListener
             item = currentPlayer.getItems().get(ITEM_INDEX);
 
 
-            if (PLAYER_INDEX <= Game.getNO_OF_PLAYERS())
+            if (PLAYER_INDEX <= GameSettings.NO_OF_PLAYERS)
             {
                 view.getPlayGround()
                         .disableButtons(game.possiblePointToPlaceItems(), null);

@@ -1,5 +1,7 @@
 package Model;
 
+import Settings.GameSettings;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,24 +10,23 @@ import java.util.HashMap;
  */
 public class Game
 {
-    private static final int NO_OF_PLAYERS = 2;
     private Board board;
     private ArrayList<Player> players;
     private int currentPlayerIndex;
 
-    public Game(ArrayList<String> teamNames, int boardSize)
+    public Game(ArrayList<String> teamNames, int boardSize, int noOfUnits)
     {
         this.board = new Board(boardSize);
         players = new ArrayList<>();
-        initializeGame(teamNames);
+        initializeGame(teamNames, noOfUnits);
         currentPlayerIndex = 0;
     }
 
-    private void initializeGame(ArrayList<String> teamNames)
+    private void initializeGame(ArrayList<String> teamNames, int noOfUnits)
     {
         for (String teamName : teamNames)
         {
-            players.add(Player.playerFactory(teamName));
+            players.add(Player.playerFactory(teamName, noOfUnits));
         }
     }
 
@@ -40,10 +41,6 @@ public class Game
         return success;
     }
 
-    public static int getNO_OF_PLAYERS()
-    {
-        return NO_OF_PLAYERS;
-    }
 
     public ArrayList<Player> getPlayers()
     {
@@ -71,7 +68,7 @@ public class Game
     public void nextPlayer()
     {
         currentPlayerIndex++;
-        if (currentPlayerIndex == NO_OF_PLAYERS)
+        if (currentPlayerIndex == GameSettings.NO_OF_PLAYERS)
             currentPlayerIndex = 0;
     }
 
