@@ -1,7 +1,5 @@
 package Model;
 
-import Interfaces.Color;
-import Interfaces.PlayerItem;
 import Settings.UnitsList;
 
 import java.util.ArrayList;
