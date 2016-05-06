@@ -34,7 +34,7 @@ public class Game
                                   Position preferredLocation)
     {
         boolean success;
-        if (player instanceof PlayerOne)
+        if (player.isPlayerOne())
             success = board.placePlayerOneItem(item, preferredLocation);
         else
             success = board.placePlayerItem(item, preferredLocation);
@@ -59,7 +59,7 @@ public class Game
 
     public ArrayList<Position> possiblePointToPlaceItems()
     {
-        if (getCurrentPlayer() instanceof PlayerOne)
+        if (getCurrentPlayer().isPlayerOne())
             return board.possiblePointsToPlacePlayerOneItem();
         else
             return board.possiblePointsToPlacePlayerItem();

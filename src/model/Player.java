@@ -11,23 +11,21 @@ import java.util.Arrays;
  */
 public class Player
 {
-
-    private static int noOfPlayers = 0;
     private String name;
-    private ArrayList<Unit> units;
+    private ArrayList<GameItem> units;
     private PlayerColor color;
+    private boolean isPlayerOne;
 
-    private Player(String name, ArrayList<Unit> units)
-    {
-        this(name, units, new PlayerColor(46, 96, 234));
-    }
-
-    protected Player(String name, ArrayList<Unit> units, PlayerColor color)
+    private Player(String name, ArrayList<GameItem> units, PlayerColor color, boolean isPlayerOne)
     {
         this.name = name;
         this.color = color;
         this.units = units;
-        noOfPlayers++;
+        this.isPlayerOne = isPlayerOne;
+    }
+
+    public boolean isPlayerOne() {
+        return isPlayerOne;
     }
 
     public String getName()
@@ -37,21 +35,11 @@ public class Player
 
     public static Player playerFactory(String name, int noOfUnits)
     {
-        ArrayList<Unit> units = new ArrayList<>();
-        if (noOfPlayers == 0)
-        {
-            units.add(UnitsList.tower);
-            for (int i = 1; i < noOfUnits; i++)
-                units.add(UnitsList.tank);
-            return new PlayerOne(name, units);
-        }
-        else
-        {
-            units.add(UnitsList.jet);
-            for (int i = 1; i < noOfUnits; i++)
-                units.add(UnitsList.army);
-            return new Player(name, units);
-        }
+        AbstractFactory playerFactory = PlayerComponentFactory.getPlayerPropertyFactory();
+
+
+        return new Player(name, playerFactory.getPlayerItem(noOfUnits),
+                    playerFactory.getColor(), playerFactory.isPlayerOne());
     }
 
     public ArrayList<GameItem> getItems()
