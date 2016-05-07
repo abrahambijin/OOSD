@@ -31,9 +31,9 @@ public class PlayerOneGameComponent extends AbstractFactory
             System.exit(0);
         }
 
-        units.add(UnitsList.tower);
+        units.add(UnitsList.getUnit("Tower"));
         for (int i = 1; i < numberOfItems; i++)
-            units.add(UnitsList.getTank());
+            units.add(UnitsList.getUnit("Tank"));
         return units;
     }
 

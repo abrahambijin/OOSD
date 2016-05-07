@@ -1,5 +1,6 @@
 package Test;
 
+import Settings.UnitsList;
 import Utility.CustomFonts;
 import View.SplashScreen;
 import View.SettingsScreen;
@@ -18,6 +19,7 @@ public class MainGameGUI
         splashScreen.setVisible(true);
 
         CustomFonts.initialiseFont();
+        UnitsList.generateUnits();
         try
         {
             Thread.sleep(1000);

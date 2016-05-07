@@ -21,9 +21,9 @@ public class PlayerGameComponent extends AbstractFactory
     {
 
         ArrayList<GameItem> units = new ArrayList<>();
-        units.add(UnitsList.jet);
+        units.add(UnitsList.getUnit("Jet"));
         for (int i = 1; i < numberOfItems; i++)
-            units.add(UnitsList.getArmy());
+            units.add(UnitsList.getUnit("Army"));
         return units;
     }
 

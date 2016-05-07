@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Unit extends GameItem
+public class Unit extends GameItem implements Cloneable
 {
 
     private int maxNoOfSteps;
@@ -63,6 +63,21 @@ public class Unit extends GameItem
     public void addWeapon(Weapon weapon)
     {
         this.weapons.add(weapon);
+    }
+
+    public Object clone()
+    {
+        Object clone = null;
+        try
+        {
+            clone = super.clone();
+        }
+        catch (CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+        }
+
+        return clone;
     }
 
 }
