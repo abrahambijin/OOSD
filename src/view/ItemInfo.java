@@ -10,10 +10,11 @@ import java.awt.*;
 
 /**
  * Created by Bijin on 16-Apr-16.
+ * display information about the selected item
  */
 public class ItemInfo extends JPanel
 {
-    LabelField troop;
+    LabelField unit;
     LabelField health;
     JButton moveButton;
     JButton attackButton;
@@ -22,29 +23,32 @@ public class ItemInfo extends JPanel
 
     public ItemInfo(Game game, GameGUI view)
     {
-        this.setLayout(new GridLayout(0, 1));
-        // add labels
 
-        troop = new LabelField("Troop");
+        this.setLayout(new GridLayout(0, 1));
+
+        // add custom label field to show item name and health
+        unit = new LabelField("Unit");
         health = new LabelField("Health");
 
+        // adding buttons to move or attack
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
-        moveButton = new JButton("Move");
-        moveButton.addActionListener(new MoveButtonController(game, view));
-        moveButton.setPreferredSize(new Dimension(100, 40));
-        moveButton.setEnabled(false);
-        attackButton = new JButton("Attack");
-        attackButton.setPreferredSize(new Dimension(100, 40));
-        attackButton.setEnabled(false);
-        backButton = new JButton("Back");
-        backButton.addActionListener(new BackButtonController(game, view));
-        backButton.setPreferredSize(new Dimension(200, 40));
-        buttonPanel.setOpaque(false);
-        buttonPanel.add(moveButton);
-        buttonPanel.add(attackButton);
+            moveButton = new JButton("Move");
+            moveButton.addActionListener(new MoveButtonController(game, view));
+            moveButton.setPreferredSize(new Dimension(100, 40));
+            moveButton.setEnabled(false);
+            attackButton = new JButton("Attack");
+            attackButton.setPreferredSize(new Dimension(100, 40));
+            attackButton.setEnabled(false);
+            // back button to undo seleted action
+            backButton = new JButton("Back");
+            backButton.addActionListener(new BackButtonController(game, view));
+            backButton.setPreferredSize(new Dimension(200, 40));
+            buttonPanel.setOpaque(false);
+            buttonPanel.add(moveButton);
+            buttonPanel.add(attackButton);
         this.setOpaque(false);
-        this.add(troop);
+        this.add(unit);
         this.add(health);
         this.add(buttonPanel);
 
@@ -53,23 +57,24 @@ public class ItemInfo extends JPanel
     public void enableButtons(Boolean isEnabled)
     {
         moveButton.setEnabled(isEnabled);
-        //        attackButton.setEnabled(isEnabled);
     }
 
+    // set values of unit name and health
     public void setValues(GameItem item)
     {
         if (item != null)
         {
-            troop.setValue(item.getName());
+            unit.setValue(item.getName());
             health.setValue(item.getHealth() + "");
         }
         else
         {
-            troop.resetValue();
+            unit.resetValue();
             health.resetValue();
         }
     }
 
+    //enable/disable back button
     public void enableBackButton(Boolean enable)
     {
         buttonPanel.removeAll();

@@ -19,5 +19,17 @@ public final class GameSettings
     }
 
     public static final int NO_OF_PLAYERS = 2;
+    public static final int MAX_NO_OF_UNITS = 8;
+    public static final int INCREMENTS = 2;
+
+    public static int getNoOfUnits(String selection)
+    {
+        for(int i = INCREMENTS; i<=MAX_NO_OF_UNITS; i+=INCREMENTS)
+        {
+            if(selection.equalsIgnoreCase(i+""))
+                return i;
+        }
+        return INCREMENTS;
+    }
 
 }

@@ -10,7 +10,7 @@ import java.io.IOException;
 public final class CustomFonts
 {
 
-    public static Font lifeCraft, perfectDark, hand, neverWinter, fof, orena,
+    public static Font lifeCraft, perfectDark, hand, neverWinter, fof, droidSans,
             reTurn, chelsea, primeTime;
 
     private CustomFonts()
@@ -24,20 +24,10 @@ public final class CustomFonts
             lifeCraft = Font.createFont(Font.TRUETYPE_FONT,
                     new File("Fonts/LifeCraft_Font.ttf"))
                     .deriveFont(Font.BOLD, 30);
-            perfectDark = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("Fonts/Perfect Dark Zero.ttf"))
-                    .deriveFont(Font.BOLD, 30);
-            hand = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("Fonts/hand.ttf")).deriveFont(Font.BOLD, 20);
-            neverWinter = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("Fonts/Neverwinter.otf"))
-                    .deriveFont(Font.BOLD, 40);
-            fof = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("Fonts/FEASFBRG.TTF")).deriveFont(Font.BOLD, 20);
-            orena = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("Fonts/Orena.ttf")).deriveFont(Font.BOLD, 18);
-            reTurn = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("Fonts/return.ttf")).deriveFont(Font.BOLD, 30);
+
+            droidSans = Font.createFont(Font.TRUETYPE_FONT,
+                    new File("Fonts/DroidSans.ttf")).deriveFont(Font.BOLD, 14);
+
             chelsea = Font.createFont(Font.TRUETYPE_FONT,
                     new File("Fonts/Chelsea.ttf")).deriveFont(Font.BOLD, 20);
             primeTime = Font.createFont(Font.TRUETYPE_FONT,
@@ -60,11 +50,11 @@ public final class CustomFonts
                 GraphicsEnvironment.getLocalGraphicsEnvironment();
         //register the font
         ge.registerFont(lifeCraft);
-        ge.registerFont(perfectDark);
-        ge.registerFont(orena);
-        ge.registerFont(fof);
-        ge.registerFont(hand);
-        ge.registerFont(reTurn);
+        //ge.registerFont(perfectDark);
+        ge.registerFont(droidSans);
+        //ge.registerFont(fof);
+        //ge.registerFont(hand);
+        //ge.registerFont(reTurn);
         ge.registerFont(chelsea);
         ge.registerFont(primeTime);
 

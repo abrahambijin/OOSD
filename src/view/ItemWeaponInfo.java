@@ -5,6 +5,7 @@ import java.awt.*;
 
 /**
  * Created by Bijin on 16-Apr-16.
+ * display weapon information about the seleted unit
  */
 public class ItemWeaponInfo extends JPanel
 {
@@ -15,13 +16,12 @@ public class ItemWeaponInfo extends JPanel
 
     public ItemWeaponInfo()
     {
-        //divide bottom panel
         this.setLayout(new GridLayout(0, 2));
+        // adding scroll pane to select item
         itemList.setLayout(new BorderLayout());
-        label = new JLabel("item", SwingConstants.LEFT);
-        scroll = new JScrollPane();
+            label = new JLabel("item", SwingConstants.LEFT);
+            scroll = new JScrollPane();
         itemList.add(label, BorderLayout.PAGE_START);
-
         itemList.add(scroll, BorderLayout.CENTER);
 
         itemStrength.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 20));
@@ -29,8 +29,6 @@ public class ItemWeaponInfo extends JPanel
         itemStrength.add(power);
 
         //add panels
-
-
         this.add(itemList);
         this.add(itemStrength);
 

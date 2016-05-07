@@ -17,6 +17,7 @@ public class SettingsScreen extends JFrame
 {
     private ArrayList<InputLabelTextField> players;
     private JComboBox<String> boardSize;
+    private JComboBox<String> pecies;
     JButton startButton;
 
     public SettingsScreen()
@@ -38,15 +39,45 @@ public class SettingsScreen extends JFrame
         String[] sizeValue = {"Small", "Medium", "Large"};
         boardSize = new JComboBox<>(sizeValue);
         boardSize.setSelectedIndex(0);
-        JLabel boardSizeHeading = new JLabel("Select Board Size: ");
+        JLabel boardSizeHeading = new JLabel("Select Board Size");
+
         boardSizeHeading.setForeground(Color.white);
-        boardSizeHeading.setFont(new Font("Arial", Font.BOLD, 14));
-        JPanel boardSizePanel = new JPanel(new FlowLayout());
+        boardSizeHeading.setFont(CustomFonts.droidSans);
+        //boardSizeHeading.setFont(new Font("Arial", Font.BOLD, 14));
+        JPanel boardSizePanel = new JPanel(new FlowLayout(FlowLayout.LEFT,30,0));
         boardSizePanel.setBackground(new Color(61, 61, 61));
         boardSizePanel.add(boardSizeHeading);
         boardSizePanel.add(boardSize);
         boardSizePanel.setOpaque(false);
 
+        //String[] peciesValue = {"2","4","6","8"};
+        int limit = GameSettings.MAX_NO_OF_UNITS/GameSettings.INCREMENTS;
+        String[] peciesValue = new String[limit];
+        for(int i = 0,j=GameSettings.INCREMENTS; i<limit; i++,j+=GameSettings.INCREMENTS)
+        {
+            peciesValue[i]=j+"";
+        }
+        pecies = new JComboBox<>(peciesValue);
+        pecies.setSelectedIndex(0);
+        JLabel peciesHeading = new JLabel("Number Of Pecies");
+        peciesHeading.setForeground(Color.white);
+        //peciesHeading.setFont(new Font("Arial",Font.BOLD,14));
+        peciesHeading.setFont(CustomFonts.droidSans);
+        JPanel playerPeciesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,30,0));
+        playerPeciesPanel.setBackground(new Color(61, 61, 61));
+        playerPeciesPanel.add(peciesHeading);
+        playerPeciesPanel.add(pecies);
+        playerPeciesPanel.setOpaque(false);
+
+
+        //JLabel playerPecies = new JLabel("Number of pecies:");
+        //playerPecies.setForeground(Color.white);
+        //playerPecies.setFont(new Font("Arial",Font.BOLD,14));
+        //JTextField peciesValue = new JTextField("",10);
+        //playerPeciesPanel.setOpaque(false);
+        //playerPeciesPanel.add(playerPecies);
+        //playerPeciesPanel.add(peciesValue);
+        //playerPecies.getTextField();
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
@@ -65,7 +96,10 @@ public class SettingsScreen extends JFrame
         panel.add(header);
         for (InputLabelTextField inputLabelTextField : players)
             panel.add(inputLabelTextField);
+        panel.add(playerPeciesPanel);
         panel.add(boardSizePanel);
+
+
         panel.setOpaque(false);
 
         JLabel background = new JLabel(new ImageIcon("Images/gameLogo2.jpg"));
@@ -95,7 +129,10 @@ public class SettingsScreen extends JFrame
         return GameSettings.BoardSize
                 .getBoardSize(boardSize.getSelectedItem().toString());
     }
-
+    public int getPecies()
+    {
+        return GameSettings.getNoOfUnits(pecies.getSelectedItem().toString());
+    }
     public ArrayList<String> getNames()
     {
         ArrayList<String> playerNames = new ArrayList<>();

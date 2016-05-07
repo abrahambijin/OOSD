@@ -27,9 +27,10 @@ public class PlayButtonController implements ActionListener
     {
         ArrayList<String> names = screen.getNames();
         int board = screen.getBoardSize();
+        int peices = screen.getPecies();
         screen.setVisible(false);
 
-        Game game = new Game(names, board, 2);
+        Game game = new Game(names, board, peices);
 
         GameGUI gui = new GameGUI(game);
         gui.setSize(1400, 700);

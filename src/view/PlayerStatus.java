@@ -9,6 +9,7 @@ import java.awt.*;
 
 /**
  * Created by ankurdabral on 12/04/2016.
+ * playerStatus panel to
  */
 public class PlayerStatus extends JPanel
 {
@@ -21,12 +22,9 @@ public class PlayerStatus extends JPanel
     public PlayerStatus(Game game, GameGUI view)
     {
         this.setLayout(new BorderLayout());
-        //CustomFonts.initialiseFont();
-
         playerName = new JLabel("Player : ", SwingConstants.CENTER);
         playerName.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         playerName.setPreferredSize(new Dimension(playerName.getWidth(),75));
-        //playerName.setFont(new Font("Comic Sans MS",Font.BOLD,30));
         playerName.setFont(CustomFonts.lifeCraft);
         playerName.setForeground(Color.white);
         setPlayer(game.getCurrentPlayer());

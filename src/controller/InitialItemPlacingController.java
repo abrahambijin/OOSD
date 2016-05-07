@@ -61,7 +61,7 @@ public class InitialItemPlacingController implements ActionListener
                         .disableButtons(game.possiblePointToPlaceItems(), null);
                 view.setStatus(
                         currentPlayer.getName() + ", where would you like to" +
-                                " place " + item.getName() + "?");
+                                " place " + item.getName() + "? ");
             }
             else
             {
@@ -70,7 +70,7 @@ public class InitialItemPlacingController implements ActionListener
                 view.getPlayGround().resetButtonActionListener(game, view);
                 view.setStatus(
                         currentPlayer.getName() + ", select the troop you " +
-                                "wish to move or attack with");
+                                "wish to move or attack with  ");
             }
 
 
