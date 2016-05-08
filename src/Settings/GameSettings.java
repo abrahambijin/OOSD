@@ -19,6 +19,7 @@ public final class GameSettings
     }
 
     public static final int NO_OF_PLAYERS = 2;
+    public static final int INITIAL_DISTANCE_FROM_BASE = 2;
     public static final int MAX_NO_OF_UNITS = 8;
     public static final int INCREMENTS = 2;
 

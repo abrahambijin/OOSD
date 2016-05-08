@@ -1,6 +1,5 @@
 package Model;
 
-import Interfaces.Weapon;
 import Utility.PossiblePoints;
 
 import java.util.ArrayList;
@@ -15,16 +14,14 @@ public class Board
     private GameItem[][] warZone;
     private Position basePosition;
     private final int BOARD_SIZE;
-    private final int INITIAL_DISTANCE_FROM_BASE;
 
     public Board(int boardSize)
     {
         BOARD_SIZE = boardSize;
-        INITIAL_DISTANCE_FROM_BASE = 2;
         this.warZone = new GameItem[BOARD_SIZE][BOARD_SIZE];
     }
 
-    private boolean placeGameItem(GameItem item, Position position)
+    private boolean placeGameUnit(GameItem item, Position position)
     {
         int xCoordinate = position.getXCoordinate();
         int yCoordinate = position.getYCoordinate();
@@ -37,24 +34,20 @@ public class Board
         return false;
     }
 
-    public GameItem[][] getWarZone()
-    {
-        return warZone;
-    }
-
-    public GameItem getItem(Position location)
+    public GameItem getUnit(Position location)
     {
         return warZone[location.getXCoordinate()][location.getYCoordinate()];
     }
 
-    public boolean placePlayerOneItem(GameItem item, Position preferredLocation)
+    public boolean placePlayerUnit(GameItem item, Position preferredLocation,
+                                   boolean isPlayerOne)
     {
         try
         {
-            boolean successfullyPlaced;
+            boolean successfullyPlaced = false;
             if (item instanceof Base)
             {
-                successfullyPlaced = placeGameItem(item, preferredLocation);
+                successfullyPlaced = placeGameUnit(item, preferredLocation);
                 if (successfullyPlaced)
                 {
                     basePosition = preferredLocation;
@@ -63,17 +56,15 @@ public class Board
             }
             else
             {
-                if (possiblePointsToPlacePlayerOneItem()
-                        .contains(preferredLocation))
+                ArrayList<Position> possiblePositions =
+                        possiblePositionsToPlacePlayerUnits(isPlayerOne);
+                if (possiblePositions.contains(preferredLocation))
                 {
-                    successfullyPlaced = placeGameItem(item, preferredLocation);
+                    successfullyPlaced = placeGameUnit(item, preferredLocation);
                     if (successfullyPlaced)
                         item.setPosition(preferredLocation);
                 }
-                else
-                    successfullyPlaced = false;
-            }
-            return successfullyPlaced;
+            } return successfullyPlaced;
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
@@ -81,64 +72,11 @@ public class Board
         }
     }
 
-    public ArrayList<Position> possiblePointsToPlacePlayerOneItem()
+    public ArrayList<Position> possiblePositionsToPlacePlayerUnits(
+            boolean isPlayerOne)
     {
         return PossiblePoints
-                .getPointsInRange(basePosition, INITIAL_DISTANCE_FROM_BASE);
-    }
-
-    public ArrayList<Position> possiblePointsToPlacePlayerItem()
-    {
-        ArrayList<Position> listOfPositions = new ArrayList<>();
-        if (!(basePosition.getYCoordinate() < ((BOARD_SIZE - 1) / 2)))
-        {
-            listOfPositions.addAll(getBorder(0, false));
-        }
-        if (!(basePosition.getYCoordinate() > ((BOARD_SIZE - 1) / 2)))
-        {
-            listOfPositions.addAll(getBorder(BOARD_SIZE - 1, false));
-        }
-        if (!(basePosition.getXCoordinate() < ((BOARD_SIZE - 1) / 2)))
-        {
-            listOfPositions.addAll(getBorder(0, true));
-        }
-        if (!(basePosition.getXCoordinate() > ((BOARD_SIZE - 1) / 2)))
-        {
-            listOfPositions.addAll(getBorder(BOARD_SIZE - 1, true));
-        }
-        return listOfPositions;
-    }
-
-    public boolean placePlayerItem(GameItem item, Position preferredLocation)
-    {
-        try
-        {
-            boolean successfullyPlaced = false;
-
-            if (possiblePointsToPlacePlayerItem().contains(preferredLocation))
-            {
-                successfullyPlaced = placeGameItem(item, preferredLocation);
-                if (successfullyPlaced)
-                    item.setPosition(preferredLocation);
-            }
-            return successfullyPlaced;
-        }
-        catch (ArrayIndexOutOfBoundsException e)
-        {
-            return false;
-        }
-    }
-
-    private ArrayList<Position> getBorder(int fixedValue, boolean xIsFixed)
-    {
-        ArrayList<Position> listOfPositions = new ArrayList<>();
-        if (xIsFixed)
-            for (int i = 0; i < BOARD_SIZE; i++)
-                listOfPositions.add(new Position(fixedValue, i));
-        else
-            for (int i = 1; i < BOARD_SIZE - 1; i++)
-                listOfPositions.add(new Position(i, fixedValue));
-        return listOfPositions;
+                .getPossiblePoints(basePosition, BOARD_SIZE, isPlayerOne);
     }
 
     public boolean move(Position currentPosition, Position newPosition)
@@ -159,7 +97,7 @@ public class Board
             {
                 try
                 {
-                    success = placeGameItem(item, newPosition);
+                    success = placeGameUnit(item, newPosition);
                 }
                 catch (ArrayIndexOutOfBoundsException e)
                 {
@@ -185,7 +123,7 @@ public class Board
             {
                 try
                 {
-                    if (getItem(candidatePosition) != null)
+                    if (getUnit(candidatePosition) != null)
                         break;
                     possiblePositions.add(candidatePosition);
                 }
@@ -194,7 +132,6 @@ public class Board
                     break;
                 }
             }
-
         return possiblePositions;
     }
 
@@ -203,7 +140,7 @@ public class Board
         warZone[location.getXCoordinate()][location.getYCoordinate()] = null;
     }
 
-    public void setItemOnWarZone(Position location, GameItem item)
+    private void setItemOnWarZone(Position location, GameItem item)
     {
         warZone[location.getXCoordinate()][location.getYCoordinate()] = item;
     }

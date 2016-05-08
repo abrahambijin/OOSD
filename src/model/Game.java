@@ -34,10 +34,8 @@ public class Game
                                   Position preferredLocation)
     {
         boolean success;
-        if (player.isPlayerOne())
-            success = board.placePlayerOneItem(item, preferredLocation);
-        else
-            success = board.placePlayerItem(item, preferredLocation);
+        success = board.placePlayerUnit(item, preferredLocation,
+                player.isPlayerOne());
         return success;
     }
 
@@ -49,7 +47,7 @@ public class Game
 
     public GameItem getItem(Position location)
     {
-        return board.getItem(location);
+        return board.getUnit(location);
     }
 
     public int getBOARD_SIZE()
@@ -59,10 +57,8 @@ public class Game
 
     public ArrayList<Position> possiblePointToPlaceItems()
     {
-        if (getCurrentPlayer().isPlayerOne())
-            return board.possiblePointsToPlacePlayerOneItem();
-        else
-            return board.possiblePointsToPlacePlayerItem();
+        return board.possiblePositionsToPlacePlayerUnits(getCurrentPlayer()
+                .isPlayerOne());
     }
 
     public void nextPlayer()
@@ -105,7 +101,7 @@ public class Game
     {
         boolean success = false;
         ArrayList<Position> possibleMoveLocations =
-                getPossibleMovePoints(board.getItem(currentLocation));
+                getPossibleMovePoints(board.getUnit(currentLocation));
         if (possibleMoveLocations != null &&
                 possibleMoveLocations.contains(newLocation))
             success = board.move(currentLocation, newLocation);

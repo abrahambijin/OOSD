@@ -1,6 +1,7 @@
 package Utility;
 
 import Model.*;
+import Settings.GameSettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,4 +93,46 @@ public final class PossiblePoints
         }
         return straightLineShootingOptions;
     }
+
+    public static ArrayList<Position> getPossiblePoints(Position basePosition,
+                                                        int boardSize,
+                                                        boolean isPlayerOne)
+    {
+        if (isPlayerOne)
+            return getPointsInRange(basePosition, GameSettings
+                    .INITIAL_DISTANCE_FROM_BASE);
+
+        ArrayList<Position> listOfPositions = new ArrayList<>();
+        if (!(basePosition.getYCoordinate() < ((boardSize - 1) / 2)))
+        {
+            listOfPositions.addAll(getBorder(0, false, boardSize));
+        }
+        if (!(basePosition.getYCoordinate() > ((boardSize - 1) / 2)))
+        {
+            listOfPositions.addAll(getBorder(boardSize - 1, false, boardSize));
+        }
+        if (!(basePosition.getXCoordinate() < ((boardSize - 1) / 2)))
+        {
+            listOfPositions.addAll(getBorder(0, true, boardSize));
+        }
+        if (!(basePosition.getXCoordinate() > ((boardSize - 1) / 2)))
+        {
+            listOfPositions.addAll(getBorder(boardSize - 1, true, boardSize));
+        }
+        return listOfPositions;
+    }
+
+    private static ArrayList<Position> getBorder(int fixedValue, boolean
+            xIsFixed, int limit)
+    {
+        ArrayList<Position> listOfPositions = new ArrayList<>();
+        if (xIsFixed)
+            for (int i = 0; i < limit; i++)
+                listOfPositions.add(new Position(fixedValue, i));
+        else
+            for (int i = 1; i < limit - 1; i++)
+                listOfPositions.add(new Position(i, fixedValue));
+        return listOfPositions;
+    }
+
 }
