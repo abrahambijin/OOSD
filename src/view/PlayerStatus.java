@@ -5,6 +5,7 @@ import Utility.CustomFonts;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 /**
@@ -34,7 +35,8 @@ public class PlayerStatus extends JPanel
         JPanel itemDetails = new JPanel(new GridLayout(2,1));
         top = new ItemInfo(game, view);
         bottom = new ItemWeaponInfo();
-        bottom.setVisible(false);
+        //bottom.setVisible(false);
+
         itemDetails.setOpaque(false);
         itemDetails.add(top);
         itemDetails.add(bottom);
@@ -62,7 +64,12 @@ public class PlayerStatus extends JPanel
         itemLocation = item.getPosition();
         top.setValues(item);
         top.enableButtons(buttonsEnabled);
+        
     }
+
+//    public void updateWeaponList (GameItem item, ){
+//
+//    }
 
     public void setPlayer(Player player)
     {
