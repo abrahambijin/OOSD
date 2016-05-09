@@ -1,6 +1,5 @@
 package Model;
 
-import Interfaces.Shootable;
 import Interfaces.Weapon;
 import Utility.PossiblePoints;
 
@@ -30,12 +29,8 @@ public class Unit extends GameItem implements Cloneable
     public HashMap<Position, ArrayList<Position>> getWeaponRange(
             int weaponIndex)
     {
-        if (weapons.get(weaponIndex) instanceof Shootable)
-        {
-            return ((Shootable) weapons.get(weaponIndex))
-                    .getWeaponRange(super.getPosition());
-        }
-        return null;
+        return (weapons.get(weaponIndex))
+                .getShootingOptions(super.getPosition());
     }
 
     public int getMaxNoOfSteps()
