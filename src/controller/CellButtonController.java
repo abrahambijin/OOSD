@@ -72,7 +72,7 @@ public class CellButtonController implements ActionListener
                 view.getPlayGround().moveItem(currentLocation, location,
                         item.getImageIconPath());
             }
-
+            view.getPlayerStatus().getBottom().setVisible(false);
             game.nextPlayer();
             view.getPlayGround()
                     .disableButtons(game.getOccupiedBoardLocation(), null);

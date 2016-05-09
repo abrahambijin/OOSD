@@ -1,9 +1,11 @@
 package View;
 
+import Interfaces.Weapon;
 import Utility.CustomFonts;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Bijin on 16-Apr-16.
@@ -15,6 +17,9 @@ public class ItemWeaponInfo extends JPanel
     private JLabel label = new JLabel();
     private JPanel itemList = new JPanel();
     private JPanel itemStrength = new JPanel();
+    private DefaultListModel items = new DefaultListModel();
+    private JList weapons;
+
 
     public ItemWeaponInfo()
     {
@@ -24,7 +29,8 @@ public class ItemWeaponInfo extends JPanel
             label = new JLabel("Weapons", SwingConstants.LEFT);
             label.setForeground(Color.white);
             label.setFont(CustomFonts.primeTime);
-            scroll = new JScrollPane();
+            weapons = new JList(items);
+            scroll = new JScrollPane(weapons);
 //        label.setOpaque(false);
 //        scroll.setOpaque(false);
         itemList.add(label, BorderLayout.PAGE_START);
@@ -40,4 +46,13 @@ public class ItemWeaponInfo extends JPanel
         this.add(itemStrength);
 
     }
+
+    public void updateList(ArrayList<Weapon> weapons){
+        items.clear();
+        for(Weapon w: weapons ){
+            items.addElement(w.getName());
+        }
+    }
+
+
 }
