@@ -37,20 +37,15 @@ public class CellButtonController extends GameController
 
     private void selectItem()
     {
-        if (GameActionController.getSTATUS() == ButtonStatus.NOT_SELECTED)
+        GameItem item = super.getGame().getItem(location);
+        if (item != null)
         {
-            GameItem item = super.getGame().getItem(location);
-            if (item != null)
-            {
-                Boolean pass =
-                        super.getGame().isTroopOfCurrentPlayer(location) &&
-                                !(item instanceof Base);
-                super.getView().getPlayerStatus().setItem(item, pass);
-            }
-            super.getView().setStatus(
-                    super.getGame().getCurrentPlayer().getName() +
-                            ", would you like to move or attack?");
+            Boolean pass = super.getGame().isTroopOfCurrentPlayer(location) &&
+                    !(item instanceof Base);
+            super.getView().getPlayerStatus().setItem(item, pass);
         }
+        super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
+                ", would you like to move or attack?");
     }
 
     private void moveItem()

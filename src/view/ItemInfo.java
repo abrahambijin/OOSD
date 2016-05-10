@@ -1,5 +1,6 @@
 package View;
 
+import Controller.AttackButtonController;
 import Controller.BackButtonController;
 import Controller.MoveButtonController;
 import Model.Game;
@@ -38,6 +39,7 @@ public class ItemInfo extends JPanel
             moveButton.setPreferredSize(new Dimension(100, 40));
             moveButton.setEnabled(false);
             attackButton = new JButton("Attack");
+            attackButton.addActionListener(new AttackButtonController(game, view));
             attackButton.setPreferredSize(new Dimension(100, 40));
             attackButton.setEnabled(false);
             // back button to undo seleted action
@@ -57,6 +59,7 @@ public class ItemInfo extends JPanel
     public void enableButtons(Boolean isEnabled)
     {
         moveButton.setEnabled(isEnabled);
+        attackButton.setEnabled(isEnabled);
     }
 
     // set values of unit name and health

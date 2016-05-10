@@ -23,6 +23,7 @@ public class BackButtonController extends GameController
                 .disableButtons(super.getGame().getOccupiedBoardLocation(),
                         null);
         super.getView().getPlayerStatus().getTop().enableBackButton(false);
+        super.getView().getPlayerStatus().setWeaponListVisible(false);
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
                 ", select the troop you wish to move or attack with");
     }
