@@ -9,79 +9,83 @@ import java.awt.event.ActionListener;
 /**
  * Created by ankurdabral on 12/04/2016.
  */
-public class CellButtonController implements ActionListener
+public class CellButtonController extends GameController
 {
-    private static boolean isItemSelected = false;
+    private static ButtonStatus status = ButtonStatus.NOT_SELECTED;
     private Position location;
-    private Game game;
-    private GameGUI view;
 
-    public CellButtonController(Position location, Game game, GameGUI view)
+    public CellButtonController(Game game, GameGUI view, Position location)
     {
+        super(game, view);
         this.location = location;
-        this.game = game;
-        this.view = view;
     }
 
-    public static void setIsItemSelected(boolean isItemSelected)
+    public static void setStatus(ButtonStatus status)
     {
-        CellButtonController.isItemSelected = isItemSelected;
+        CellButtonController.status = status;
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (isItemSelected)
+        if (status == ButtonStatus.SELECTED_TO_MOVE)
             moveItem();
 
-        else
+        else if (status == ButtonStatus.NOT_SELECTED)
             selectItem();
     }
 
     private void selectItem()
     {
-        GameItem item = game.getItem(location);
-        if (item != null)
+        if (GameActionController.getSTATUS() == ButtonStatus.NOT_SELECTED)
         {
-            Boolean pass = game.isTroopOfCurrentPlayer(location) &&
-                    !(item instanceof Base);
-            view.getPlayerStatus().setItem(item, pass);
+            GameItem item = super.getGame().getItem(location);
+            if (item != null)
+            {
+                Boolean pass =
+                        super.getGame().isTroopOfCurrentPlayer(location) &&
+                                !(item instanceof Base);
+                super.getView().getPlayerStatus().setItem(item, pass);
+            }
+            super.getView().setStatus(
+                    super.getGame().getCurrentPlayer().getName() +
+                            ", would you like to move or attack?");
         }
-        view.setStatus(
-                game.getCurrentPlayer().getName() + ", would you like to move" +
-                        " or attack?");
     }
 
     private void moveItem()
     {
-        Position currentLocation = view.getPlayerStatus().getItemLocation();
-        GameItem item = game.getItem(currentLocation);
+        Position currentLocation =
+                super.getView().getPlayerStatus().getItemLocation();
+        GameItem item = super.getGame().getItem(currentLocation);
 
-        boolean success = game.move(currentLocation, location);
+        boolean success = super.getGame().move(currentLocation, location);
 
         if (success)
         {
             if (item instanceof Tower)
             {
-                view.getPlayGround().setButtonImage(currentLocation,
+                super.getView().getPlayGround().setButtonImage(currentLocation,
                         item.getImageIconPath());
             }
 
             else
             {
-                view.getPlayGround().moveItem(currentLocation, location,
-                        item.getImageIconPath());
+                super.getView().getPlayGround()
+                        .moveItem(currentLocation, location,
+                                item.getImageIconPath());
             }
-            view.getPlayerStatus().getBottom().setVisible(false);
-            game.nextPlayer();
-            view.getPlayGround()
-                    .disableButtons(game.getOccupiedBoardLocation(), null);
-            view.getPlayerStatus().updatePage(game.getCurrentPlayer());
+            super.getView().getPlayerStatus().getBottom().setVisible(false);
+            super.getGame().nextPlayer();
+            super.getView().getPlayGround()
+                    .disableButtons(super.getGame().getOccupiedBoardLocation(),
+                            null);
+            super.getView().getPlayerStatus()
+                    .updatePage(super.getGame().getCurrentPlayer());
         }
-        view.getPlayerStatus().getTop().enableBackButton(false);
-        isItemSelected = false;
-        view.setStatus(
-                game.getCurrentPlayer().getName() + ", select the troop you " +
-                        "wish to move or attack with");
+        super.getView().getPlayerStatus().getTop().enableBackButton(false);
+        GameActionController.setSTATUS(ButtonStatus.NOT_SELECTED);
+        super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
+                ", select the troop you wish to move or attack with");
     }
 }
