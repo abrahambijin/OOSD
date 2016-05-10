@@ -1,6 +1,8 @@
 package View;
 
+import Controller.WeaponSelectionController;
 import Interfaces.Weapon;
+import Model.Game;
 import Utility.CustomFonts;
 
 import javax.swing.*;
@@ -17,28 +19,32 @@ public class ItemWeaponInfo extends JPanel
     private JLabel label = new JLabel();
     private JPanel itemList = new JPanel();
     private JPanel itemStrength = new JPanel();
-    private DefaultListModel items = new DefaultListModel();
-    private JList weapons;
+    private DefaultListModel ListItems = new DefaultListModel();
+    private JList weaponsList;
+    private LabelField powerLevel;
 
 
-    public ItemWeaponInfo()
+    public ItemWeaponInfo(Game game, GameGUI view)
     {
         this.setLayout(new GridLayout(0, 2));
         // adding scroll pane to select item
         itemList.setLayout(new BorderLayout());
+        //itemList.setLayout(new FlowLayout(FlowLayout.LEFT,2,20));
             label = new JLabel("Weapons", SwingConstants.LEFT);
             label.setForeground(Color.white);
             label.setFont(CustomFonts.primeTime);
-            weapons = new JList(items);
-            scroll = new JScrollPane(weapons);
+            weaponsList = new JList(ListItems);
+            weaponsList.addListSelectionListener(new WeaponSelectionController(game,view));
+            scroll = new JScrollPane(weaponsList);
+            scroll.setPreferredSize(new Dimension(20,1000));
 //        label.setOpaque(false);
 //        scroll.setOpaque(false);
         itemList.add(label, BorderLayout.PAGE_START);
         itemList.add(scroll, BorderLayout.CENTER);
         itemList.setOpaque(false);
         itemStrength.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 20));
-        LabelField power = new LabelField("Power");
-        itemStrength.add(power);
+        powerLevel = new LabelField("Power");
+        itemStrength.add(powerLevel);
         itemStrength.setOpaque(false);
         //add panels
         this.setOpaque(false);
@@ -48,10 +54,16 @@ public class ItemWeaponInfo extends JPanel
     }
 
     public void updateList(ArrayList<Weapon> weapons){
-        items.clear();
+        ListItems.clear();
         for(Weapon w: weapons ){
-            items.addElement(w.getName());
+            ListItems.addElement(w.getName());
         }
+    }
+    public  String getSelectedID() {
+        return (String) weaponsList.getSelectedValue();
+    }
+    public void updatePowerLevel(Weapon weapon){
+        powerLevel.setValue(weapon.getName());
     }
 
 

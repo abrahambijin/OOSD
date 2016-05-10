@@ -35,8 +35,9 @@ public class PlayerStatus extends JPanel
 
         JPanel itemDetails = new JPanel(new GridLayout(2,1));
         top = new ItemInfo(game, view);
-        bottom = new ItemWeaponInfo();
+        bottom = new ItemWeaponInfo(game, view);
         bottom.setVisible(false);
+        //bottom.setVisible(true);
 
         itemDetails.setOpaque(false);
         itemDetails.add(top);
