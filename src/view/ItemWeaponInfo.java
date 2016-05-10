@@ -30,15 +30,16 @@ public class ItemWeaponInfo extends JPanel
         // adding scroll pane to select item
         itemList.setLayout(new BorderLayout());
         //itemList.setLayout(new FlowLayout(FlowLayout.LEFT,2,20));
-            label = new JLabel("Weapons", SwingConstants.LEFT);
-            label.setForeground(Color.white);
-            label.setFont(CustomFonts.primeTime);
-            weaponsList = new JList(ListItems);
-            weaponsList.addListSelectionListener(new WeaponSelectionController(game,view));
-            scroll = new JScrollPane(weaponsList);
-            scroll.setPreferredSize(new Dimension(20,1000));
-//        label.setOpaque(false);
-//        scroll.setOpaque(false);
+        label = new JLabel("Weapons", SwingConstants.LEFT);
+        label.setForeground(Color.white);
+        label.setFont(CustomFonts.primeTime);
+        weaponsList = new JList(ListItems);
+        weaponsList.addListSelectionListener(
+                new WeaponSelectionController(game, view));
+        scroll = new JScrollPane(weaponsList);
+        scroll.setPreferredSize(new Dimension(20, 1000));
+        //        label.setOpaque(false);
+        //        scroll.setOpaque(false);
         itemList.add(label, BorderLayout.PAGE_START);
         itemList.add(scroll, BorderLayout.CENTER);
         itemList.setOpaque(false);
@@ -53,17 +54,25 @@ public class ItemWeaponInfo extends JPanel
 
     }
 
-    public void updateList(ArrayList<Weapon> weapons){
+    public void updateList(ArrayList<Weapon> weapons)
+    {
         ListItems.clear();
-        for(Weapon w: weapons ){
+        powerLevel.resetValue();
+        for (Weapon w : weapons)
+        {
             ListItems.addElement(w.getName());
         }
     }
-    public  String getSelectedID() {
+
+    public String getSelectedID()
+    {
         return (String) weaponsList.getSelectedValue();
     }
-    public void updatePowerLevel(Weapon weapon){
-        powerLevel.setValue(weapon.getName());
+
+    public void updatePowerLevel(Weapon weapon)
+    {
+        if (weapon != null)
+            powerLevel.setValue(weapon.getDamage()+"");
     }
 
 

@@ -2,6 +2,8 @@ package Controller;
 
 import Interfaces.Weapon;
 import Model.Game;
+import Model.GameItem;
+import Model.Unit;
 import View.GameGUI;
 
 import javax.swing.event.ListSelectionEvent;
@@ -29,6 +31,13 @@ public class WeaponSelectionController implements ListSelectionListener {
         if (!e.getValueIsAdjusting() && isActive){
             String value = view.getPlayerStatus().getBottom().getSelectedID();
             System.out.println(value);
+            GameItem selectedItem = game.getItem(view.getPlayerStatus()
+                    .getItemLocation());
+            Weapon weapon = null;
+            if(selectedItem instanceof Unit)
+                weapon = ((Unit) selectedItem).getWeapon(value);
+
+            view.getPlayerStatus().getBottom().updatePowerLevel(weapon);
             //Weapon weapon = view.getPlayerStatus().getBottom().getSelectedID();
 //            String value = view.getBorrowBookView().getSelectedID().t
 //
