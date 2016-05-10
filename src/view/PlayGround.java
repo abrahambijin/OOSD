@@ -2,6 +2,8 @@ package View;
 
 import Controller.CellButtonController;
 import Controller.InitialItemPlacingController;
+import Controller.MoveUnitController;
+import Controller.SelectUnitController;
 import Model.Game;
 import Model.Position;
 
@@ -89,8 +91,10 @@ public class PlayGround extends JPanel
                 for (ActionListener listener : cell[i][j].getActionListeners())
                     cell[i][j].removeActionListener(listener);
                 cell[i][j].addActionListener(
-                        new CellButtonController(new Position(i, j), game,
-                                view));
+                        new SelectUnitController(game, view,
+                                new Position(i, j)));
+                cell[i][j].addActionListener(
+                        new MoveUnitController(game, view, new Position(i, j)));
             }
     }
 

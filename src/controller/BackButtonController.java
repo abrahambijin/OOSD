@@ -4,31 +4,26 @@ import Model.*;
 import View.GameGUI;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by ankurdabral on 12/04/2016.
  */
-public class BackButtonController implements ActionListener
+public class BackButtonController extends GameController
 {
-    private Game game;
-    private GameGUI view;
-
     public BackButtonController(Game game, GameGUI view)
     {
-        this.game = game;
-        this.view = view;
+        super(game, view);
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        CellButtonController.setIsItemSelected(false);
-        view.getPlayGround()
-                .disableButtons(game.getOccupiedBoardLocation(), null);
-        view.getPlayerStatus().getTop().enableBackButton(false);
-        view.setStatus(
-                game.getCurrentPlayer().getName() + ", select the troop you " +
-                        "wish to move or attack with");
+        GameActionController.setSTATUS(ButtonStatus.NOT_SELECTED);
+        super.getView().getPlayGround()
+                .disableButtons(super.getGame().getOccupiedBoardLocation(),
+                        null);
+        super.getView().getPlayerStatus().getTop().enableBackButton(false);
+        super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
+                ", select the troop you wish to move or attack with");
     }
 }

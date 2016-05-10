@@ -24,7 +24,7 @@ public class MoveButtonController implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        CellButtonController.setIsItemSelected(true);
+        GameActionController.setSTATUS(ButtonStatus.SELECTED_TO_MOVE);
         GameItem item = game.getItem(view.getPlayerStatus().getItemLocation());
         PlayerColor playerColor = game.getCurrentPlayer().getColor();
         Color cellColor =

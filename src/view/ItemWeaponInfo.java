@@ -26,7 +26,7 @@ public class ItemWeaponInfo extends JPanel
 
     public ItemWeaponInfo(Game game, GameGUI view)
     {
-        this.setLayout(new GridLayout(0, 2));
+        this.setLayout(new BorderLayout());
         // adding scroll pane to select item
         itemList.setLayout(new BorderLayout());
         //itemList.setLayout(new FlowLayout(FlowLayout.LEFT,2,20));
@@ -37,11 +37,11 @@ public class ItemWeaponInfo extends JPanel
         weaponsList.addListSelectionListener(
                 new WeaponSelectionController(game, view));
         scroll = new JScrollPane(weaponsList);
-        scroll.setPreferredSize(new Dimension(20, 1000));
+        //scroll.setPreferredSize(new Dimension(20, 1000));
         //        label.setOpaque(false);
         //        scroll.setOpaque(false);
         itemList.add(label, BorderLayout.PAGE_START);
-        itemList.add(scroll, BorderLayout.CENTER);
+        itemList.add(scroll);
         itemList.setOpaque(false);
         itemStrength.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 20));
         powerLevel = new LabelField("Power");
@@ -49,7 +49,7 @@ public class ItemWeaponInfo extends JPanel
         itemStrength.setOpaque(false);
         //add panels
         this.setOpaque(false);
-        this.add(itemList);
+        this.add(itemList,BorderLayout.WEST);
         this.add(itemStrength);
 
     }
