@@ -19,7 +19,7 @@ public class ItemWeaponInfo extends JPanel
     private JLabel label = new JLabel();
     private JPanel itemList = new JPanel();
     private JPanel itemStrength = new JPanel();
-    private DefaultListModel ListItems = new DefaultListModel();
+    private DefaultListModel listItems = new DefaultListModel();
     private JList weaponsList;
     private LabelField powerLevel;
 
@@ -33,7 +33,7 @@ public class ItemWeaponInfo extends JPanel
         label = new JLabel("Weapons", SwingConstants.LEFT);
         label.setForeground(Color.white);
         label.setFont(CustomFonts.primeTime);
-        weaponsList = new JList(ListItems);
+        weaponsList = new JList(listItems);
         weaponsList.addListSelectionListener(
                 new WeaponSelectionController(game, view));
         scroll = new JScrollPane(weaponsList);
@@ -56,12 +56,13 @@ public class ItemWeaponInfo extends JPanel
 
     public void updateList(ArrayList<Weapon> weapons)
     {
-        ListItems.clear();
+        listItems.clear();
         powerLevel.resetValue();
         for (Weapon w : weapons)
         {
-            ListItems.addElement(w.getName());
+            listItems.addElement(w.getName());
         }
+        weaponsList.setSelectedIndex(0);
     }
 
     public String getSelectedID()

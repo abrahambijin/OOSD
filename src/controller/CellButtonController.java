@@ -46,6 +46,7 @@ public class CellButtonController implements ActionListener
             Boolean pass = game.isTroopOfCurrentPlayer(location) &&
                     !(item instanceof Base);
             view.getPlayerStatus().setItem(item, pass);
+            view.getPlayerStatus().getTop().enableButtons(true);
         }
         view.setStatus(
                 game.getCurrentPlayer().getName() + ", would you like to move" +

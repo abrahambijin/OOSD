@@ -30,7 +30,6 @@ public class WeaponSelectionController implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting() && isActive){
             String value = view.getPlayerStatus().getBottom().getSelectedID();
-            System.out.println(value);
             GameItem selectedItem = game.getItem(view.getPlayerStatus()
                     .getItemLocation());
             Weapon weapon = null;
@@ -38,14 +37,6 @@ public class WeaponSelectionController implements ListSelectionListener {
                 weapon = ((Unit) selectedItem).getWeapon(value);
 
             view.getPlayerStatus().getBottom().updatePowerLevel(weapon);
-            //Weapon weapon = view.getPlayerStatus().getBottom().getSelectedID();
-//            String value = view.getBorrowBookView().getSelectedID().t
-//
-//            // storing object of book for selected book id
-//            LibraryBook book = model.getBook(value);
-//            //updating book values in borrow book panel
-//            view.getBorrowBookView().updateBookValues(book);
-            //view.getPlayerStatus().getBottom().updatePowerLevel(value);
         }
 
     }
