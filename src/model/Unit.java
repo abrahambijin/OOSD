@@ -33,6 +33,14 @@ public class Unit extends GameItem implements Cloneable
                 .getShootingOptions(super.getPosition());
     }
 
+    public int getWeaponPower(String weaponName)
+    {
+        for(Weapon weapon : weapons)
+            if(weapon.getName().equalsIgnoreCase(weaponName))
+                return weapon.getDamage();
+        return -1;
+    }
+
     public int getMaxNoOfSteps()
     {
         return maxNoOfSteps;
