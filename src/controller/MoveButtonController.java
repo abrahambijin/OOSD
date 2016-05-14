@@ -2,40 +2,39 @@ package Controller;
 
 import Model.*;
 import View.GameGUI;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 /**
  * Created by ankurdabral on 12/04/2016.
  */
-public class MoveButtonController implements ActionListener
+public class MoveButtonController extends GameController
 {
-    private Game game;
-    private GameGUI view;
 
     public MoveButtonController(Game game, GameGUI view)
     {
-        this.game = game;
-        this.view = view;
+        super(game, view);
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
         GameActionController.setSTATUS(ButtonStatus.SELECTED_TO_MOVE);
-        GameItem item = game.getItem(view.getPlayerStatus().getItemLocation());
-        PlayerColor playerColor = game.getCurrentPlayer().getColor();
+        GameItem item = super.getGame()
+                .getItem(super.getView().getPlayerStatus().getItemLocation());
+        PlayerColor playerColor = super.getGame().getCurrentPlayer().getColor();
         Color cellColor =
                 new Color(playerColor.getRed(), playerColor.getGreen(),
                         playerColor.getBlue());
-        view.getPlayGround()
-                .disableButtons(game.getPossibleMovePoints(item), cellColor);
-        view.getPlayGround().setDisabledButtonIcon(item.getPosition(),
-                item.getImageIconPath());
-        view.getPlayerStatus().getTop().enableBackButton(true);
-        view.setStatus(game.getCurrentPlayer().getName() +
+        super.getView().getPlayGround()
+                .disableButtons(super.getGame().getPossibleMovePoints(item),
+                        cellColor);
+        super.getView().getPlayGround()
+                .setDisabledButtonIcon(item.getPosition(),
+                        item.getImageIconPath());
+        super.getView().getPlayerStatus().getTop().enableBackButton(true);
+        super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
                 ", where would you like to move " + item.getName() + " to?");
     }
 }

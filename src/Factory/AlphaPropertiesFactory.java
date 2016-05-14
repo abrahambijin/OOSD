@@ -1,6 +1,10 @@
-package Model;
+package Factory;
 
 import Exceptions.ObjectAlreadyExistException;
+import Interfaces.AbstractPlayerPropertiesFactory;
+import Model.Base;
+import Model.GameItem;
+import Model.PlayerColor;
 import Settings.UnitsList;
 
 import java.util.ArrayList;
@@ -8,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 6/05/2016.
  */
-public class PlayerOneGameComponent extends AbstractFactory
+class AlphaPropertiesFactory implements AbstractPlayerPropertiesFactory
 {
 
     @Override
@@ -38,7 +42,7 @@ public class PlayerOneGameComponent extends AbstractFactory
     }
 
     @Override
-    boolean isPlayerOne()
+    public boolean isPlayerOne()
     {
         return true;
     }

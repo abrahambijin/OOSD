@@ -1,5 +1,8 @@
-package Model;
+package Factory;
 
+import Interfaces.AbstractPlayerPropertiesFactory;
+import Model.GameItem;
+import Model.PlayerColor;
 import Settings.UnitsList;
 
 import java.util.ArrayList;
@@ -7,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by mitulmanish on 6/05/2016.
  */
-public class PlayerGameComponent extends AbstractFactory
+class BetaPropertiesFactory implements AbstractPlayerPropertiesFactory
 {
 
     @Override
@@ -28,7 +31,7 @@ public class PlayerGameComponent extends AbstractFactory
     }
 
     @Override
-    boolean isPlayerOne()
+    public boolean isPlayerOne()
     {
         return false;
     }

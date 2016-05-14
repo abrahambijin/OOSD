@@ -1,10 +1,10 @@
 package Model;
 
-import Settings.UnitsList;
+import Factory.PlayerPropertiesFactory;
+import Interfaces.AbstractPlayerPropertiesFactory;
 import Interfaces.Weapon;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -35,7 +35,7 @@ public class Player
 
     public static Player playerFactory(String name, int noOfUnits)
     {
-        AbstractFactory playerFactory = PlayerComponentFactory.getPlayerPropertyFactory();
+        AbstractPlayerPropertiesFactory playerFactory = PlayerPropertiesFactory.getPlayerPropertyFactory();
 
 
         return new Player(name, playerFactory.getPlayerItem(noOfUnits),

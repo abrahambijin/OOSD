@@ -9,7 +9,7 @@ import Model.Sniper;
 /**
  * Created by Bijin on 05-May-16.
  */
-public final class WeaponsList
+final class WeaponsList
 {
     public static final Weapon cannon =
             new BasicWeapon("Cannon", 2, Direction.STRAIGHT_LINE, 15);
