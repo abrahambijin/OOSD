@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Game
+public class Game implements Cloneable
 {
     private Board board;
     private ArrayList<Player> players;
@@ -116,4 +116,8 @@ public class Game
         return positionsOccupied;
     }
 
+    @Override
+    public Game clone() throws CloneNotSupportedException {
+        return (Game) super.clone();
+    }
 }
