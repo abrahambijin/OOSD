@@ -42,9 +42,9 @@ public class Board
     public boolean placePlayerUnit(GameItem item, Position preferredLocation,
                                    boolean isPlayerOne)
     {
-        try
+        boolean successfullyPlaced = false;
+        if(isPositionOnBoard(preferredLocation))
         {
-            boolean successfullyPlaced = false;
             if (item instanceof Base)
             {
                 successfullyPlaced = placeGameUnit(item, preferredLocation);
@@ -64,12 +64,10 @@ public class Board
                     if (successfullyPlaced)
                         item.setPosition(preferredLocation);
                 }
-            } return successfullyPlaced;
+            }
         }
-        catch (ArrayIndexOutOfBoundsException e)
-        {
-            return false;
-        }
+        return successfullyPlaced;
+
     }
 
     public ArrayList<Position> possiblePositionsToPlacePlayerUnits(
@@ -95,14 +93,11 @@ public class Board
             }
             else
             {
-                try
+                if(isPositionOnBoard(newPosition))
                 {
                     success = placeGameUnit(item, newPosition);
                 }
-                catch (ArrayIndexOutOfBoundsException e)
-                {
-                    return false;
-                }
+
                 if (success)
                 {
                     ((Unit) item).move(newPosition);
@@ -121,16 +116,12 @@ public class Board
         for (ArrayList<Position> points : positions.values())
             for (Position candidatePosition : points)
             {
-                try
-                {
-                    if (getUnit(candidatePosition) != null)
-                        break;
-                    possiblePositions.add(candidatePosition);
-                }
-                catch (ArrayIndexOutOfBoundsException e)
-                {
+                if (!isPositionOnBoard(candidatePosition) ||
+                        getUnit(candidatePosition) != null)
                     break;
-                }
+
+                possiblePositions.add(candidatePosition);
+
             }
         return possiblePositions;
     }
@@ -148,5 +139,13 @@ public class Board
     public int getBOARD_SIZE()
     {
         return BOARD_SIZE;
+    }
+
+    public boolean isPositionOnBoard(Position position)
+    {
+        return (position.getXCoordinate() >= 0 &&
+                position.getXCoordinate() < BOARD_SIZE &&
+                position.getYCoordinate() >= 0 &&
+                position.getYCoordinate() < BOARD_SIZE);
     }
 }

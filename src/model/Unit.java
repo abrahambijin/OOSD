@@ -27,16 +27,15 @@ public class Unit extends GameItem implements Cloneable
     }
 
     public HashMap<Position, ArrayList<Position>> getWeaponRange(
-            int weaponIndex)
+            String weaponName)
     {
-        return (weapons.get(weaponIndex))
-                .getShootingOptions(super.getPosition());
+        return (getWeapon(weaponName)).getShootingOptions(super.getPosition());
     }
 
     public Weapon getWeapon(String weaponName)
     {
-        for(Weapon weapon : weapons)
-            if(weapon.getName().equalsIgnoreCase(weaponName))
+        for (Weapon weapon : weapons)
+            if (weapon.getName().equalsIgnoreCase(weaponName))
                 return weapon;
         return null;
     }
@@ -58,14 +57,14 @@ public class Unit extends GameItem implements Cloneable
                         movingDirection);
     }
 
+    public int hit(String weaponName)
+    {
+        return getWeapon(weaponName).getDamage();
+    }
+
     public void move(Position newPosition)
     {
         super.setPosition(newPosition);
-    }
-
-    public void addWeapon(Weapon weapon)
-    {
-        this.weapons.add(weapon);
     }
 
     public Object clone()

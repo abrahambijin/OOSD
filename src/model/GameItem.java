@@ -53,19 +53,10 @@ public abstract class GameItem
         this.imageIconPath = imageIconPath;
     }
 
-    public void getHit(int damage)
+    public boolean getHit(int damage)
     {
         health -= damage;
-    }
-
-    public void enhanceHealth(int multiplyingFactor)
-    {
-        health *= multiplyingFactor;
-    }
-
-    public void diminishHealth(float diminishFactor)
-    {
-        health -= health * diminishFactor;
+        return health > 0;
     }
 
 }
