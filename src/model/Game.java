@@ -4,6 +4,7 @@ import Settings.GameSettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -57,8 +58,8 @@ public class Game
 
     public ArrayList<Position> possiblePointToPlaceItems()
     {
-        return board.possiblePositionsToPlacePlayerUnits(getCurrentPlayer()
-                .isPlayerOne());
+        return board.possiblePositionsToPlacePlayerUnits(
+                getCurrentPlayer().isPlayerOne());
     }
 
     public void nextPlayer()
@@ -115,5 +116,29 @@ public class Game
             positionsOccupied.addAll(player.getItemLocations());
         return positionsOccupied;
     }
+
+    public ArrayList<Position> getPossibleShootingOptions(Position itemLocation,
+                                                          String weaponName)
+    {
+        GameItem item = getItem(itemLocation);
+        if (item instanceof Unit)
+        {
+            HashMap<Position, ArrayList<Position>> map =
+                    ((Unit) item).getWeaponRange(weaponName);
+
+            ArrayList<Position> possiblePositions = new ArrayList<>();
+
+            for (ArrayList<Position> points : map.values())
+                for (Position candidatePosition : points)
+                {
+                    if (board.isPositionOnBoard(candidatePosition) &&
+                            !isTroopOfCurrentPlayer(candidatePosition))
+                        possiblePositions.add(candidatePosition);
+                }
+            return possiblePositions;
+        }
+        return null;
+    }
+    
 
 }
