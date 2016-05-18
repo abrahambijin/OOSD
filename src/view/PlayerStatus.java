@@ -19,7 +19,9 @@ public class PlayerStatus extends JPanel
     private JLabel playerName = new JLabel();
     private ItemInfo top;
     private ItemWeaponInfo bottom;
+    private MoveStyle bottom2;
     private Position itemLocation;
+    private JPanel itemDetails;
 
     public PlayerStatus(Game game, GameGUI view)
     {
@@ -33,15 +35,17 @@ public class PlayerStatus extends JPanel
         playerName.setOpaque(true);
         this.add(playerName,BorderLayout.NORTH);
 
-        JPanel itemDetails = new JPanel(new GridLayout(2,1));
+        itemDetails = new JPanel(new GridLayout(2,1));
         top = new ItemInfo(game, view);
         bottom = new ItemWeaponInfo(game, view);
+        bottom2 = new MoveStyle(game, view);
         bottom.setVisible(false);
+        bottom2.setVisible(false);
         //bottom.setVisible(true);
 
         itemDetails.setOpaque(false);
         itemDetails.add(top);
-        itemDetails.add(bottom);
+        //itemDetails.add(bottom);
         this.setOpaque(false);
         this.add(itemDetails);
     }
@@ -54,6 +58,8 @@ public class PlayerStatus extends JPanel
     public ItemWeaponInfo getBottom() {
         return bottom;
     }
+
+    public  MoveStyle getBottom2() { return bottom2;}
 
 
     public Position getItemLocation()
@@ -69,14 +75,29 @@ public class PlayerStatus extends JPanel
             ArrayList<Weapon> Weapon = ((Unit) item).getWeapons();
             bottom.updateList(Weapon);
         }
-            bottom.setVisible(false);
+//            bottom.setVisible(false);
+//            bottom2.setVisible(false);
+
         top.setValues(item);
         top.enableButtons(buttonsEnabled);
 
     }
 
     public void setWeaponListVisible(boolean isVisible){
+        itemDetails.remove(bottom2);
+        itemDetails.add(bottom);
         bottom.setVisible(isVisible);
+        itemDetails.repaint();
+    }
+
+    public void setMoveButtons(){
+
+        itemDetails.remove(bottom);
+
+        itemDetails.add(bottom2);
+        bottom2.setVisible(true);
+        itemDetails.repaint();
+
     }
 
 //    public void updateWeaponList (GameItem item, ){

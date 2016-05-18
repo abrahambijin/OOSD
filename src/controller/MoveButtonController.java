@@ -23,17 +23,23 @@ public class MoveButtonController extends GameController
         GameActionController.setSTATUS(ButtonStatus.SELECTED_TO_MOVE);
         GameItem item = super.getGame()
                 .getItem(super.getView().getPlayerStatus().getItemLocation());
+
         PlayerColor playerColor = super.getGame().getCurrentPlayer().getColor();
+
         Color cellColor =
                 new Color(playerColor.getRed(), playerColor.getGreen(),
                         playerColor.getBlue());
+
         super.getView().getPlayGround()
                 .disableButtons(super.getGame().getPossibleMovePoints(item),
                         cellColor);
+
         super.getView().getPlayGround()
                 .setDisabledButtonIcon(item.getPosition(),
                         item.getImageIconPath());
         super.getView().getPlayerStatus().getTop().enableBackButton(true);
+        super.getView().getPlayerStatus().setMoveButtons();
+        //super.getView().getPlayerStatus().getBottom2().resetButton();
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
                 ", where would you like to move " + item.getName() + " to?");
     }

@@ -18,7 +18,8 @@ public class ItemInfo extends JPanel
     LabelField unit;
     LabelField health;
     JButton moveButton;
-    JButton attackButton;
+    JButton hitButton;
+    JButton undoButton;
     JButton backButton;
     JPanel buttonPanel;
 
@@ -38,17 +39,22 @@ public class ItemInfo extends JPanel
             moveButton.addActionListener(new MoveButtonController(game, view));
             moveButton.setPreferredSize(new Dimension(100, 40));
             moveButton.setEnabled(false);
-            attackButton = new JButton("Attack");
-            attackButton.addActionListener(new AttackButtonController(game, view));
-            attackButton.setPreferredSize(new Dimension(100, 40));
-            attackButton.setEnabled(false);
+            hitButton = new JButton("Attack");
+            hitButton.addActionListener(new AttackButtonController(game, view));
+            hitButton.setPreferredSize(new Dimension(100, 40));
+            hitButton.setEnabled(false);
+            undoButton = new JButton("Undo");
+            //undoButton.addActionListener(new AttackButtonController(game, view));
+            undoButton.setPreferredSize(new Dimension(100, 40));
+            undoButton.setEnabled(false);
             // back button to undo seleted action
             backButton = new JButton("Back");
             backButton.addActionListener(new BackButtonController(game, view));
             backButton.setPreferredSize(new Dimension(200, 40));
             buttonPanel.setOpaque(false);
             buttonPanel.add(moveButton);
-            buttonPanel.add(attackButton);
+            buttonPanel.add(hitButton);
+            buttonPanel.add(undoButton);
         this.setOpaque(false);
         this.add(unit);
         this.add(health);
@@ -59,7 +65,8 @@ public class ItemInfo extends JPanel
     public void enableButtons(Boolean isEnabled)
     {
         moveButton.setEnabled(isEnabled);
-        attackButton.setEnabled(isEnabled);
+        hitButton.setEnabled(isEnabled);
+        undoButton.setEnabled(isEnabled);
     }
 
     // set values of unit name and health
@@ -88,7 +95,8 @@ public class ItemInfo extends JPanel
         else
         {
             buttonPanel.add(moveButton);
-            buttonPanel.add(attackButton);
+            buttonPanel.add(hitButton);
+            buttonPanel.add(undoButton);
         }
         this.revalidate();
         this.repaint();

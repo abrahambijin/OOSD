@@ -25,20 +25,27 @@ public class AttackButtonController extends GameController
         GameActionController.setSTATUS(ButtonStatus.SELECTED_TO_ATTACK);
         GameItem item = super.getGame()
                 .getItem(super.getView().getPlayerStatus().getItemLocation());
+
+        String selectedWeapon = super.getView().getPlayerStatus().getBottom().getSelectedID();
+
         PlayerColor playerColor = super.getGame().getCurrentPlayer().getColor();
         Color cellColor =
                 new Color(playerColor.getRed(), playerColor.getGreen(),
                         playerColor.getBlue());
+
         super.getView().getPlayGround()
-                .disableButtons(new ArrayList<Position>(),
+                .disableButtons(super.getGame().getPossibleShootingOptions(item.getPosition(),selectedWeapon),
                         cellColor);
+
         super.getView().getPlayGround()
                 .setDisabledButtonIcon(item.getPosition(),
                         item.getImageIconPath());
+
         boolean pass = item instanceof Unit;
         if (pass)
             super.getView().getPlayerStatus().getBottom()
                     .updateList(((Unit) item).getWeapons());
+
         super.getView().getPlayerStatus().setWeaponListVisible(pass);
         super.getView().getPlayerStatus().getTop().enableBackButton(true);
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +

@@ -24,6 +24,7 @@ public class BackButtonController extends GameController
                         null);
         super.getView().getPlayerStatus().getTop().enableBackButton(false);
         super.getView().getPlayerStatus().setWeaponListVisible(false);
+       // super.getView().getPlayerStatus().getBottom2().resetButton();
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
                 ", select the troop you wish to move or attack with");
     }

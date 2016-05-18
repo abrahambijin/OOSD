@@ -52,6 +52,7 @@ public class MoveUnitController extends GameActionController
                 super.getView().getPlayerStatus()
                         .updatePage(super.getGame().getCurrentPlayer());
             }
+            //super.getView().getPlayerStatus().getBottom2().resetButton();
             super.getView().getPlayerStatus().getTop().enableBackButton(false);
             GameActionController.setSTATUS(ButtonStatus.NOT_SELECTED);
             super.getView().setStatus(
