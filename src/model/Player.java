@@ -62,9 +62,5 @@ public class Player
         return locations;
     }
 
-    public void addExtraWeapon(Weapon weapon)
-    {
-
-    }
 
 }

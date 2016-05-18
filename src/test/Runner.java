@@ -49,7 +49,7 @@ public class Runner
             Player currentPlayer = game.getCurrentPlayer();
             System.out.println(currentPlayer.getName() + ": Select a Troop");
             Position selectedPosition = getLocationInput();
-            while (!game.isTroopOfCurrentPlayer(selectedPosition))
+            while (!game.isUnitOfCurrentPlayer(selectedPosition))
             {
                 System.out.println("Incorrect selection");
                 System.out

@@ -4,7 +4,6 @@ import Settings.GameSettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Stack;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -92,7 +91,7 @@ public class Game
         return null;
     }
 
-    public boolean isTroopOfCurrentPlayer(Position location)
+    public boolean isUnitOfCurrentPlayer(Position location)
     {
         return (players.get(currentPlayerIndex).getItemLocations()
                 .contains(location));
@@ -132,13 +131,33 @@ public class Game
                 for (Position candidatePosition : points)
                 {
                     if (board.isPositionOnBoard(candidatePosition) &&
-                            !isTroopOfCurrentPlayer(candidatePosition))
+                            !isUnitOfCurrentPlayer(candidatePosition))
                         possiblePositions.add(candidatePosition);
                 }
             return possiblePositions;
         }
         return null;
     }
-    
+
+    public boolean hit(Position itemLocation, Position targetLocation,
+                       String weaponName)
+    {
+        boolean success = false;
+
+        if (isUnitOfCurrentPlayer(itemLocation) &&
+                !isUnitOfCurrentPlayer(targetLocation))
+        {
+            GameItem item = board.getUnit(itemLocation);
+
+            if (item instanceof Unit)
+            {
+                GameItem target = board.getUnit(targetLocation);
+                target.getHit(((Unit) item).hit(weaponName));
+                success = true;
+            }
+        }
+
+        return success;
+    }
 
 }

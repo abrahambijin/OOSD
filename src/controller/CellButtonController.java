@@ -4,7 +4,6 @@ import Model.*;
 import View.GameGUI;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by ankurdabral on 12/04/2016.
@@ -40,7 +39,7 @@ public class CellButtonController extends GameController
         GameItem item = super.getGame().getItem(location);
         if (item != null)
         {
-            Boolean pass = super.getGame().isTroopOfCurrentPlayer(location) &&
+            Boolean pass = super.getGame().isUnitOfCurrentPlayer(location) &&
                     !(item instanceof Base);
             super.getView().getPlayerStatus().setItem(item, pass);
         }
