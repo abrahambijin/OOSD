@@ -34,7 +34,7 @@ public class MoveStyle extends JPanel{
     }
 
     public void resetButton(){
-      normal.setEnabled(true);
+      normal.setSelected(true);
     }
 
 }

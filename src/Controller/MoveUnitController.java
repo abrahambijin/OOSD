@@ -46,6 +46,8 @@ public class MoveUnitController extends GameActionController
                                     item.getImageIconPath());
                 }
                 super.getView().getPlayerStatus().getBottom().setVisible(false);
+                super.getView().getPlayerStatus().getBottom2().setVisible(false);
+                super.getView().getPlayerStatus().getBottom2().resetButton();
                 super.getGame().nextPlayer();
                 super.getView().getPlayGround().disableButtons(
                         super.getGame().getOccupiedBoardLocation(), null);
