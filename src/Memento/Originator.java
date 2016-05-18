@@ -5,6 +5,8 @@ import Model.Game;
 /**
  * Created by mitulmanish on 14/05/2016.
  */
+
+
 public class Originator {
 
     private Game state;
