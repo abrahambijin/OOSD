@@ -39,7 +39,7 @@ public class PlayerStatus extends JPanel
         top = new ItemInfo(game, view);
         bottom = new ItemWeaponInfo(game, view);
         bottom2 = new MoveStyle();
-        bottom2.setOpaque(false);
+       //bottom2.setOpaque(false);
         bottom.setVisible(false);
         bottom2.setVisible(false);
         //bottom.setVisible(true);

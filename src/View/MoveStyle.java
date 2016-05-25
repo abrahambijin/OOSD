@@ -27,11 +27,13 @@ public class MoveStyle extends JPanel
         attack = new JRadioButton("Attack");
         attack.setForeground(Color.white);
         attack.setFont(CustomFonts.droidSans);
-
+        normal.setOpaque(false);
+        defence.setOpaque(false);
+        attack.setOpaque(false);
         movement.add(normal);
         movement.add(defence);
         movement.add(attack);
-
+        //this.setBackground(Color.blue);
         this.setOpaque(false);
         this.add(normal);
         this.add(defence);
