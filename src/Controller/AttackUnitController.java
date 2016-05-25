@@ -37,6 +37,13 @@ public class AttackUnitController extends GameActionController
                 {
                     exitSystem(super.getGame().getCurrentPlayer().getName());
                 }
+                GameItem item = super.getGame().getItem(super.getLocation());
+                if (item == null)
+                    super.getView().getPlayGround().setButtonImage(super.getLocation(),
+                            "");
+                else
+                    super.getView().getPlayGround().setButtonImage(super.getLocation(),
+                            item.getImageIconPath());
             }
             super.getView().getPlayerStatus().getBottom().setVisible(false);
             super.getView().getPlayerStatus().getBottom2().setVisible(false);

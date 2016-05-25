@@ -13,8 +13,10 @@ public class Obstacles extends GameItem
     }
 
     @Override
-    public void getHit(int damage) {
+    public void getHit(int damage)
+    {
         super.getHit(damage);
-        super.setImageIconPath("Images/GameItems/" + super.getName() + "-broken.png");
+        super.setImageIconPath(
+                "Images/GameItems/" + super.getName() + "-broken.png");
     }
 }

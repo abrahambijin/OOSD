@@ -91,9 +91,9 @@ public class Game
         return null;
     }
 
-    public void addObstacles()
+    public ArrayList<Position> addObstacles()
     {
-        board.addObstacles();
+        return board.addObstacles();
     }
 
     public boolean isUnitOfCurrentPlayer(Position location)

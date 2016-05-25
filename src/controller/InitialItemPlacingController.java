@@ -6,6 +6,7 @@ import View.GameGUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by ankurdabral on 12/04/2016.
@@ -65,6 +66,13 @@ public class InitialItemPlacingController implements ActionListener
             }
             else
             {
+                ArrayList<Position> locations = game.addObstacles();
+                for(Position position: locations)
+                {
+                    GameItem obstacle = game.getItem(position);
+                    view.getPlayGround().setButtonImage(position,obstacle.getImageIconPath());
+                }
+
                 view.getPlayGround()
                         .disableButtons(game.getOccupiedBoardLocation(), null);
                 view.getPlayGround().resetButtonActionListener(game, view);
