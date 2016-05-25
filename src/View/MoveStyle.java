@@ -1,6 +1,7 @@
 package View;
 
 import Model.Game;
+import Utility.CustomFonts;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +18,13 @@ public class MoveStyle extends JPanel{
         this.setLayout(new GridLayout(0,1));
         normal = new JRadioButton("Normal",true);
         normal.setForeground(Color.white);
+        normal.setFont(CustomFonts.droidSans);
         defence = new JRadioButton("Defence");
         defence.setForeground(Color.white);
+        defence.setFont(CustomFonts.droidSans);
         attack = new JRadioButton("Attack");
         attack.setForeground(Color.white);
+        attack.setFont(CustomFonts.droidSans);
 
         movement.add(normal);
         movement.add(defence);

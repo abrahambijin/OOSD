@@ -6,6 +6,7 @@ import Model.Game;
 import Utility.CustomFonts;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -19,6 +20,8 @@ public class ItemWeaponInfo extends JPanel
     private JLabel label = new JLabel();
     private JPanel itemList = new JPanel();
     private JPanel itemStrength = new JPanel();
+    private JPanel imagePanel = new JPanel();
+    private JLabel imageLabel = new JLabel();
     private DefaultListModel listItems = new DefaultListModel();
     private JList weaponsList;
     private LabelField powerLevel;
@@ -34,6 +37,7 @@ public class ItemWeaponInfo extends JPanel
         label.setForeground(Color.white);
         label.setFont(CustomFonts.primeTime);
         weaponsList = new JList(listItems);
+        weaponsList.setFont(CustomFonts.droidSans);
         weaponsList.addListSelectionListener(
                 new WeaponSelectionController(game, view));
         scroll = new JScrollPane(weaponsList);
@@ -43,9 +47,21 @@ public class ItemWeaponInfo extends JPanel
         itemList.add(label, BorderLayout.PAGE_START);
         itemList.add(scroll);
         itemList.setOpaque(false);
-        itemStrength.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 20));
+        //itemStrength.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 20));
+        itemStrength.setLayout(new BorderLayout(0,0));
+
         powerLevel = new LabelField("Power");
-        itemStrength.add(powerLevel);
+        powerLevel.setBorder(new EmptyBorder(20,10,0,0));
+        imagePanel.setLayout(new BorderLayout());
+        imageLabel.setForeground(Color.white);
+        imageLabel.setOpaque(true);
+        imagePanel.add(imageLabel, BorderLayout.WEST);
+        imagePanel.setOpaque(false);
+        imagePanel.setBorder(new EmptyBorder(30,20,10,0));
+        itemStrength.add(imagePanel,BorderLayout.PAGE_START);
+        itemStrength.add(powerLevel,BorderLayout.LINE_START);
+        //imageLabel.setBorder(new EmptyBorder(0,5,0,0));
+
         itemStrength.setOpaque(false);
         //add panels
         this.setOpaque(false);
@@ -72,8 +88,12 @@ public class ItemWeaponInfo extends JPanel
 
     public void updatePowerLevel(Weapon weapon)
     {
-        if (weapon != null)
-            powerLevel.setValue(weapon.getDamage()+"");
+        if (weapon != null) {
+            powerLevel.setValue(weapon.getDamage() + "");
+            //imageLabel = new JLabel(new ImageIcon(weapon.getImage()));
+            imageLabel.setIcon(new ImageIcon(weapon.getImage()));
+            imageLabel.repaint();
+        }
     }
 
 

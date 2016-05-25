@@ -15,6 +15,7 @@ public class BasicWeapon implements Weapon
     private int range;
     private Direction shootingDirection;
     private int damage;
+    private String weaponIcon;
 
     public BasicWeapon(String weaponName, int range,
                        Direction shootingDirection, int damage)
@@ -23,6 +24,7 @@ public class BasicWeapon implements Weapon
         this.range = range;
         this.shootingDirection = shootingDirection;
         this.damage = damage;
+        this.weaponIcon = "Images/Weapons/"+ weaponName +".png";
     }
 
 
@@ -31,6 +33,9 @@ public class BasicWeapon implements Weapon
     {
         return damage;
     }
+
+    @Override
+    public String getImage(){return weaponIcon;}
 
     @Override
     public HashMap<Position, ArrayList<Position>> getShootingOptions(Position currentLocation)

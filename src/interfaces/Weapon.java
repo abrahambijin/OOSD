@@ -17,4 +17,5 @@ public interface Weapon
             Position currentLocation);
 
     String getName();
+    String getImage();
 }

@@ -27,6 +27,8 @@ public abstract class WeaponDecoratedWithHead implements Weapon
     }
 
     @Override
+    public String getImage() {return weapon.getImage();}
+    @Override
     public HashMap<Position, ArrayList<Position>> getShootingOptions(Position currentLocation)
     {
         return weapon.getShootingOptions(currentLocation);
