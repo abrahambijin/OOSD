@@ -147,17 +147,29 @@ public class Game
         if (isUnitOfCurrentPlayer(itemLocation) &&
                 !isUnitOfCurrentPlayer(targetLocation))
         {
-            GameItem item = board.getUnit(itemLocation);
+            success = board.hit(itemLocation, targetLocation, weaponName);
 
-            if (item instanceof Unit)
-            {
-                GameItem target = board.getUnit(targetLocation);
-                target.getHit(((Unit) item).hit(weaponName));
-                success = true;
-            }
+            if (success)
+                players.forEach(Player::updateItemList);
         }
 
         return success;
     }
 
+    public boolean checkGameStatus()
+    {
+        boolean isActive = board.isBaseActive();
+
+        if (isActive)
+        {
+            int activePlayers = 0;
+            for(Player player : players)
+            {
+                if (player.isAlive())
+                    activePlayers++;
+            }
+            isActive = activePlayers > 1;
+        }
+        return isActive;
+    }
 }

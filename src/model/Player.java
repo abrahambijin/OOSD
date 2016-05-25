@@ -15,6 +15,7 @@ public class Player
     private ArrayList<GameItem> units;
     private PlayerColor color;
     private boolean isPlayerOne;
+    private boolean isAlive;
 
     private Player(String name, ArrayList<GameItem> units, PlayerColor color, boolean isPlayerOne)
     {
@@ -22,6 +23,7 @@ public class Player
         this.color = color;
         this.units = units;
         this.isPlayerOne = isPlayerOne;
+        this.isAlive = true;
     }
 
     public boolean isPlayerOne() {
@@ -62,5 +64,27 @@ public class Player
         return locations;
     }
 
+    public void updateItemList()
+    {
+        int index = -1;
+        for (int i = 0; i<units.size(); i++)
+            if (!units.get(i).isActive())
+            {
+                index = i;
+                break;
+            }
 
+        if(index>=0)
+            units.remove(index);
+
+        int count = isPlayerOne? 1:0;
+
+        if (units.size()<=count)
+            isAlive = false;
+    }
+
+    public boolean isAlive()
+    {
+        return isAlive;
+    }
 }

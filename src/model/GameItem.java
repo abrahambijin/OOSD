@@ -13,7 +13,7 @@ public abstract class GameItem
 
     public GameItem(String name)
     {
-        this(name, 100);
+        this(name, 50);
     }
 
     public GameItem(String name, int health)
@@ -53,9 +53,13 @@ public abstract class GameItem
         this.imageIconPath = imageIconPath;
     }
 
-    public boolean getHit(int damage)
+    public void getHit(int damage)
     {
         health -= damage;
+    }
+
+    public boolean isActive()
+    {
         return health > 0;
     }
 

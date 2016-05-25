@@ -25,7 +25,7 @@ public class Board
     {
         int xCoordinate = position.getXCoordinate();
         int yCoordinate = position.getYCoordinate();
-        // the cell must be empty to place a new game item
+        // The cell must be empty to place a new game item
         if (warZone[xCoordinate][yCoordinate] == null)
         {
             setItemOnWarZone(position, item);
@@ -43,7 +43,7 @@ public class Board
                                    boolean isPlayerOne)
     {
         boolean successfullyPlaced = false;
-        if(isPositionOnBoard(preferredLocation))
+        if (isPositionOnBoard(preferredLocation))
         {
             if (item instanceof Base)
             {
@@ -67,7 +67,6 @@ public class Board
             }
         }
         return successfullyPlaced;
-
     }
 
     public ArrayList<Position> possiblePositionsToPlacePlayerUnits(
@@ -93,7 +92,7 @@ public class Board
             }
             else
             {
-                if(isPositionOnBoard(newPosition))
+                if (isPositionOnBoard(newPosition))
                 {
                     success = placeGameUnit(item, newPosition);
                 }
@@ -148,4 +147,31 @@ public class Board
                 position.getYCoordinate() >= 0 &&
                 position.getYCoordinate() < BOARD_SIZE);
     }
+
+    public boolean hit(Position itemLocation, Position targetLocation,
+                    String weaponName)
+    {
+        boolean success = false;
+        GameItem item = getUnit(itemLocation);
+
+        if (item instanceof Unit)
+        {
+            GameItem target = getUnit(targetLocation);
+            if (target != null)
+            {
+                target.getHit(((Unit) item).hit(weaponName));
+
+                if (!target.isActive())
+                    setPointToNull(targetLocation);
+                success = true;
+            }
+        }
+        return success;
+    }
+
+    public boolean isBaseActive()
+    {
+        return getUnit(basePosition) != null;
+    }
+
 }
