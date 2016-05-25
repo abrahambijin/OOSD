@@ -4,6 +4,7 @@ import Utility.PossiblePoints;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by mitulmanish on 26/03/2016.
@@ -174,4 +175,11 @@ public class Board
         return getUnit(basePosition) != null;
     }
 
+    public void addObstacles()
+    {
+        Random generator = new Random();
+
+
+
+    }
 }
