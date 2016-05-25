@@ -26,6 +26,7 @@ public class AttackButtonController extends GameController
         GameItem item = super.getGame()
                 .getItem(super.getView().getPlayerStatus().getItemLocation());
 
+        super.getView().getPlayerStatus().getBottom().setListenerStatus(true);
         String selectedWeapon = super.getView().getPlayerStatus().getBottom().getSelectedID();
 
         PlayerColor playerColor = super.getGame().getCurrentPlayer().getColor();
@@ -45,7 +46,6 @@ public class AttackButtonController extends GameController
         if (pass)
             super.getView().getPlayerStatus().getBottom()
                     .updateList(((Unit) item).getWeapons());
-
         super.getView().getPlayerStatus().setWeaponListVisible(pass);
         super.getView().getPlayerStatus().getTop().enableBackButton(true);
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
