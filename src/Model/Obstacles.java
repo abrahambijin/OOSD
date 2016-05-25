@@ -7,20 +7,14 @@ import Exceptions.ObjectAlreadyExistException;
  */
 public class Obstacles extends GameItem
 {
-    private static int COUNT = 0;
-
-    private Obstacles()
+    public Obstacles()
     {
-        super("Base", 50);
-        COUNT++;
+        super("Obstacles", 50);
     }
 
-    public static Obstacles baseFactory() throws ObjectAlreadyExistException
-    {
-        if (COUNT == 0)
-            return new Obstacles();
-        else
-            throw new ObjectAlreadyExistException(
-                    "The game can have only one" + " Base class");
+    @Override
+    public void getHit(int damage) {
+        super.getHit(damage);
+        super.setImageIconPath("Images/GameItems/" + super.getName() + "-broken.png");
     }
 }

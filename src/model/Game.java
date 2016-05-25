@@ -91,6 +91,11 @@ public class Game
         return null;
     }
 
+    public void addObstacles()
+    {
+        board.addObstacles();
+    }
+
     public boolean isUnitOfCurrentPlayer(Position location)
     {
         return (players.get(currentPlayerIndex).getItemLocations()
