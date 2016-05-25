@@ -51,7 +51,7 @@ public class ItemWeaponInfo extends JPanel
         itemStrength.setLayout(new BorderLayout(0,0));
 
         powerLevel = new LabelField("Power");
-        powerLevel.setBorder(new EmptyBorder(20,10,0,0));
+        powerLevel.setBorder(new EmptyBorder(10,10,0,0));
         imagePanel.setLayout(new BorderLayout());
         imageLabel.setForeground(Color.white);
         imageLabel.setOpaque(true);
@@ -90,8 +90,7 @@ public class ItemWeaponInfo extends JPanel
     {
         if (weapon != null) {
             powerLevel.setValue(weapon.getDamage() + "");
-            //imageLabel = new JLabel(new ImageIcon(weapon.getImage()));
-            imageLabel.setIcon(new ImageIcon(weapon.getImage()));
+            imageLabel.setIcon(new ImageIcon(new ImageIcon(weapon.getImage()).getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT)));
             imageLabel.repaint();
         }
     }
