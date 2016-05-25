@@ -7,6 +7,7 @@ import Utility.CustomFonts;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class ItemWeaponInfo extends JPanel
     private DefaultListModel listItems = new DefaultListModel();
     private JList weaponsList;
     private LabelField powerLevel;
+    private WeaponSelectionController selectionListener;
 
 
     public ItemWeaponInfo(Game game, GameGUI view)
@@ -36,10 +38,12 @@ public class ItemWeaponInfo extends JPanel
         label = new JLabel("Weapons", SwingConstants.LEFT);
         label.setForeground(Color.white);
         label.setFont(CustomFonts.primeTime);
+
+        selectionListener = new WeaponSelectionController(game, view);
+
         weaponsList = new JList(listItems);
         weaponsList.setFont(CustomFonts.droidSans);
-        weaponsList.addListSelectionListener(
-                new WeaponSelectionController(game, view));
+        weaponsList.addListSelectionListener(selectionListener);
         scroll = new JScrollPane(weaponsList);
         //scroll.setPreferredSize(new Dimension(20, 1000));
         //        label.setOpaque(false);
@@ -48,24 +52,24 @@ public class ItemWeaponInfo extends JPanel
         itemList.add(scroll);
         itemList.setOpaque(false);
         //itemStrength.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 20));
-        itemStrength.setLayout(new BorderLayout(0,0));
+        itemStrength.setLayout(new BorderLayout(0, 0));
 
         powerLevel = new LabelField("Power");
-        powerLevel.setBorder(new EmptyBorder(10,10,0,0));
+        powerLevel.setBorder(new EmptyBorder(10, 10, 0, 0));
         imagePanel.setLayout(new BorderLayout());
         imageLabel.setForeground(Color.white);
         imageLabel.setOpaque(true);
         imagePanel.add(imageLabel, BorderLayout.WEST);
         imagePanel.setOpaque(false);
-        imagePanel.setBorder(new EmptyBorder(30,20,10,0));
-        itemStrength.add(imagePanel,BorderLayout.PAGE_START);
-        itemStrength.add(powerLevel,BorderLayout.LINE_START);
+        imagePanel.setBorder(new EmptyBorder(30, 20, 10, 0));
+        itemStrength.add(imagePanel, BorderLayout.PAGE_START);
+        itemStrength.add(powerLevel, BorderLayout.LINE_START);
         //imageLabel.setBorder(new EmptyBorder(0,5,0,0));
 
         itemStrength.setOpaque(false);
         //add panels
         this.setOpaque(false);
-        this.add(itemList,BorderLayout.WEST);
+        this.add(itemList, BorderLayout.WEST);
         this.add(itemStrength);
 
     }
@@ -88,11 +92,19 @@ public class ItemWeaponInfo extends JPanel
 
     public void updatePowerLevel(Weapon weapon)
     {
-        if (weapon != null) {
+        if (weapon != null)
+        {
             powerLevel.setValue(weapon.getDamage() + "");
-            imageLabel.setIcon(new ImageIcon(new ImageIcon(weapon.getImage()).getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT)));
+            imageLabel.setIcon(new ImageIcon(
+                    new ImageIcon(weapon.getImage()).getImage()
+                            .getScaledInstance(70, 70, Image.SCALE_DEFAULT)));
             imageLabel.repaint();
         }
+    }
+
+    public void setListenerStatus(Boolean status)
+    {
+        selectionListener.setIsActive(status);
     }
 
 

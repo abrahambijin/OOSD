@@ -38,7 +38,8 @@ public class PlayerStatus extends JPanel
         itemDetails = new JPanel(new GridLayout(2,1));
         top = new ItemInfo(game, view);
         bottom = new ItemWeaponInfo(game, view);
-        bottom2 = new MoveStyle(game, view);
+        bottom2 = new MoveStyle();
+        bottom2.setOpaque(false);
         bottom.setVisible(false);
         bottom2.setVisible(false);
         //bottom.setVisible(true);
@@ -87,12 +88,14 @@ public class PlayerStatus extends JPanel
         itemDetails.remove(bottom2);
         itemDetails.add(bottom);
         bottom.setVisible(isVisible);
+        bottom.setListenerStatus(isVisible);
         itemDetails.repaint();
     }
 
     public void setMoveButtons(){
 
         itemDetails.remove(bottom);
+        bottom.setListenerStatus(false);
 
         itemDetails.add(bottom2);
         bottom2.setVisible(true);
@@ -100,9 +103,6 @@ public class PlayerStatus extends JPanel
 
     }
 
-//    public void updateWeaponList (GameItem item, ){
-//
-//    }
 
     public void setPlayer(Player player)
     {

@@ -20,7 +20,7 @@ public abstract class GameItem
     {
         this.name = name;
         this.health = health;
-        this.imageIconPath = "Images/" + name + ".png";
+        this.imageIconPath = "Images/GameItems/" + name + ".png";
     }
 
     public Position getPosition()

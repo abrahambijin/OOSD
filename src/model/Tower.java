@@ -28,7 +28,7 @@ public class Tower extends Unit
         } while (headXPos == 0 && headYPos == 0);
 
         head = new Position(headXPos, headYPos);
-        super.setImageIconPath("Images/Tower/Tower" + head + ".png");
+        super.setImageIconPath("Images/GameItems/Tower/Tower" + head + ".png");
         updateWeapons();
     }
 
@@ -48,7 +48,7 @@ public class Tower extends Unit
         int headY =
                 newPosition.getYCoordinate() - getPosition().getYCoordinate();
         head = new Position(headX, headY);
-        super.setImageIconPath("Images/Tower/Tower" + head + ".png");
+        super.setImageIconPath("Images/GameItems/Tower/Tower" + head + ".png");
         updateWeapons();
     }
 
