@@ -2,6 +2,7 @@ package Model;
 
 import Interfaces.Weapon;
 import Utility.PossiblePoints;
+import Utility.Posture;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class Unit extends GameItem implements Cloneable
     private int maxNoOfSteps;
     private ArrayList<Weapon> weapons;
     private Direction movingDirection;
+    private Posture currentPosture;
 
 
     public Unit(String name, int maxNoOfSteps, ArrayList<Weapon> weapons,
@@ -24,6 +26,7 @@ public class Unit extends GameItem implements Cloneable
         this.maxNoOfSteps = maxNoOfSteps;
         this.weapons = weapons;
         this.movingDirection = movingDirection;
+        this.currentPosture = Posture.NORMAL;
     }
 
     public HashMap<Position, ArrayList<Position>> getWeaponRange(
@@ -57,9 +60,15 @@ public class Unit extends GameItem implements Cloneable
                         movingDirection);
     }
 
+    @Override
+    public void getHit(int damage)
+    {
+        super.getHit(damage + currentPosture.getValue());
+    }
+
     public int hit(String weaponName)
     {
-        return getWeapon(weaponName).getDamage();
+        return (getWeapon(weaponName).getDamage() + currentPosture.getValue());
     }
 
     public void move(Position newPosition)
@@ -80,6 +89,11 @@ public class Unit extends GameItem implements Cloneable
         }
 
         return clone;
+    }
+
+    public void setPosture(Posture posture)
+    {
+        this.currentPosture = posture;
     }
 
 }

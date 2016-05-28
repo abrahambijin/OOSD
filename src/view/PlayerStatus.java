@@ -118,4 +118,10 @@ public class PlayerStatus extends JPanel
         setPlayer(player);
         top.reset();
     }
+
+    public String getSelectedMovePosture()
+    {
+        return bottom2.getSelected();
+    }
+
 }

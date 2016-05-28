@@ -46,4 +46,17 @@ public class MoveStyle extends JPanel
         normal.setSelected(true);
     }
 
+    public String getSelected()
+    {
+        for (Enumeration<AbstractButton> buttons = movement.getElements(); buttons
+                .hasMoreElements();)
+        {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
+    }
+
 }

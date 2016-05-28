@@ -1,9 +1,7 @@
 package Controller;
 
-import Model.Game;
-import Model.GameItem;
-import Model.Position;
-import Model.Tower;
+import Model.*;
+import Utility.Posture;
 import View.GameGUI;
 
 import java.awt.event.ActionEvent;
@@ -45,6 +43,13 @@ public class MoveUnitController extends GameActionController
                             .moveItem(currentLocation, super.getLocation(),
                                     item.getImageIconPath());
                 }
+
+                String movePosture = super.getView().getPlayerStatus()
+                        .getSelectedMovePosture();
+
+                if(movePosture!=null && item instanceof Unit)
+                    ((Unit) item).setPosture(Posture.getPosture(movePosture));
+
                 super.getView().getPlayerStatus().getBottom().setVisible(false);
                 super.getView().getPlayerStatus().getBottom2().setVisible(false);
                 super.getView().getPlayerStatus().getBottom2().resetButton();

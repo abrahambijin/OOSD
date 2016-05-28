@@ -8,10 +8,33 @@ import java.util.Arrays;
  */
 public enum Posture
 {
-    ATTACK, DEFENCE, NORMAL;
+    ATTACK(10), DEFENCE(-10), NORMAL(0);
 
-    public ArrayList<String> getPostures()
+    private int value;
+
+    Posture(int value)
     {
-        return new ArrayList<>(Arrays.asList("ATTACK","DEFENCE","NORMAL"));
+        this.value = value;
     }
+
+    public static ArrayList<String> getPostures()
+    {
+        return new ArrayList<>(Arrays.asList("ATTACK", "NORMAL", "DEFENCE"));
+    }
+
+    public int getValue()
+    {
+        return value;
+    }
+
+    public static Posture getPosture (String posture)
+    {
+        if(posture.equalsIgnoreCase("ATTACK"))
+            return ATTACK;
+        else if (posture.equalsIgnoreCase("DEFENCE"))
+            return DEFENCE;
+        else
+            return NORMAL;
+    }
+
 }
