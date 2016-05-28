@@ -150,7 +150,7 @@ public class Board
     }
 
     public boolean hit(Position itemLocation, Position targetLocation,
-                    String weaponName)
+                       String weaponName)
     {
         boolean success = false;
         GameItem item = getUnit(itemLocation);
@@ -180,20 +180,32 @@ public class Board
         Random generator = new Random();
         ArrayList<Position> positions = new ArrayList<>();
 
-        int limit = BOARD_SIZE * 2/5;
-        for(int i=0; i<limit; i++)
+        int limit = BOARD_SIZE * 2 / 5;
+        for (int i = 0; i < limit; i++)
         {
             Position p;
             do
             {
                 int x = generator.nextInt(BOARD_SIZE);
                 int y = generator.nextInt(BOARD_SIZE);
-                p = new Position(x,y);
-            }while(!placeGameUnit(new Obstacles(),p));
+                p = new Position(x, y);
+            } while (!placeGameUnit(new Obstacles(), p));
 
             positions.add(p);
             getUnit(p).setPosition(p);
         }
         return positions;
     }
+
+    public ArrayList<Position> occupiedPositions()
+    {
+        ArrayList<Position> positionsOccupied = new ArrayList<>();
+        for (int i = 0; i < BOARD_SIZE; i++)
+            for (int j = 0; j < BOARD_SIZE; j++)
+                if (warZone[i][j] != null)
+                    positionsOccupied.add(new Position(i,j));
+
+        return positionsOccupied;
+    }
+
 }

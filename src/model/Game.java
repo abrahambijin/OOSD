@@ -115,10 +115,7 @@ public class Game
 
     public ArrayList<Position> getOccupiedBoardLocation()
     {
-        ArrayList<Position> positionsOccupied = new ArrayList<>();
-        for (Player player : players)
-            positionsOccupied.addAll(player.getItemLocations());
-        return positionsOccupied;
+        return board.occupiedPositions();
     }
 
     public ArrayList<Position> getPossibleShootingOptions(Position itemLocation,
