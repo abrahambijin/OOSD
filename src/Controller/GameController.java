@@ -28,4 +28,12 @@ public abstract class GameController implements ActionListener
     {
         return view;
     }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public void setView(GameGUI view) {
+        this.view = view;
+    }
 }
