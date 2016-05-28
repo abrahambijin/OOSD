@@ -15,13 +15,13 @@ import java.awt.*;
  */
 public class ItemInfo extends JPanel
 {
-    LabelField unit;
-    LabelField health;
-    JButton moveButton;
-    JButton hitButton;
-    JButton undoButton;
-    JButton backButton;
-    JPanel buttonPanel;
+    private LabelField unit;
+    private LabelField health;
+    private JButton moveButton;
+    private JButton hitButton;
+    private JButton undoButton;
+    private JButton backButton;
+    private JPanel buttonPanel;
 
     public ItemInfo(Game game, GameGUI view)
     {

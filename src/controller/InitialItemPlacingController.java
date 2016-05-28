@@ -67,10 +67,11 @@ public class InitialItemPlacingController implements ActionListener
             else
             {
                 ArrayList<Position> locations = game.addObstacles();
-                for(Position position: locations)
+                for (Position position : locations)
                 {
                     GameItem obstacle = game.getItem(position);
-                    view.getPlayGround().setButtonImage(position,obstacle.getImageIconPath());
+                    view.getPlayGround().setButtonImage(position,
+                            obstacle.getImageIconPath());
                 }
 
                 view.getPlayGround()

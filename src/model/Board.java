@@ -183,17 +183,16 @@ public class Board
         int limit = BOARD_SIZE * 2/5;
         for(int i=0; i<limit; i++)
         {
-            int x;
-            int y;
             Position p;
             do
             {
-                x = generator.nextInt(BOARD_SIZE);
-                y = generator.nextInt(BOARD_SIZE);
+                int x = generator.nextInt(BOARD_SIZE);
+                int y = generator.nextInt(BOARD_SIZE);
                 p = new Position(x,y);
-            }while(placeGameUnit(new Obstacles(),p));
+            }while(!placeGameUnit(new Obstacles(),p));
 
             positions.add(p);
+            getUnit(p).setPosition(p);
         }
         return positions;
     }
