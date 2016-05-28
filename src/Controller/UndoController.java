@@ -28,6 +28,7 @@ public class UndoController extends GameController
         ArrayList<Position> occupiedPositions =
                 super.getGame().getOccupiedBoardLocation();
 
+        super.getView().getPlayGround().reset();
         for (Position position : occupiedPositions)
         {
             GameItem item = super.getGame().getItem(position);

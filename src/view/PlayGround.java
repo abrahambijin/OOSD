@@ -127,6 +127,14 @@ public class PlayGround extends JPanel
                 .getScaledInstance(imageWidth, imageHeight,
                         Image.SCALE_DEFAULT);
     }
+
+    public void reset()
+    {
+        for(int i=0; i<size; i++)
+            for(int j=0; j<size; j++)
+                setButtonImage(new Position(i,j), null);
+    }
+
 }
 
 
