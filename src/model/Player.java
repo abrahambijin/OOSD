@@ -4,12 +4,13 @@ import Factory.PlayerPropertiesFactory;
 import Interfaces.AbstractPlayerPropertiesFactory;
 import Interfaces.Weapon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Player
+public class Player implements Serializable
 {
     private String name;
     private ArrayList<GameItem> units;

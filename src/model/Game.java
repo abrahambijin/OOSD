@@ -1,14 +1,17 @@
 package Model;
 
 import Settings.GameSettings;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Game
+@JsonDeserialize(as = Game.class)
+public class Game implements Serializable
 {
     private Board board;
     private ArrayList<Player> players;

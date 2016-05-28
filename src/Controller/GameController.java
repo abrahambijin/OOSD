@@ -47,6 +47,6 @@ public abstract class GameController implements ActionListener
 
     public void undo()
     {
-        saveGameState.loadGame(this,2);
+        saveGameState.loadGame(this,1);
     }
 }

@@ -3,6 +3,7 @@ package Model;
 import Interfaces.Weapon;
 import Utility.PossiblePoints;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.Random;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Tower extends Unit
+public class Tower extends Unit implements Serializable
 {
 
     Position head;

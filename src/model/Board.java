@@ -2,6 +2,7 @@ package Model;
 
 import Utility.PossiblePoints;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -9,7 +10,7 @@ import java.util.Random;
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Board
+public class Board implements Serializable
 {
 
     private GameItem[][] warZone;

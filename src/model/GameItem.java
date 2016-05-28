@@ -1,9 +1,11 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public abstract class GameItem
+public abstract class GameItem implements Serializable
 {
 
     private String name;

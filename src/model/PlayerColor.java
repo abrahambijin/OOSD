@@ -1,10 +1,12 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Created by ankurdabral on 15/04/2016.
  * //
  */
-public class PlayerColor
+public class PlayerColor implements Serializable
 {
 
     private int red;

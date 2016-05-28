@@ -4,13 +4,14 @@ import Interfaces.Weapon;
 import Utility.PossiblePoints;
 import Utility.Posture;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Unit extends GameItem implements Cloneable
+public class Unit extends GameItem implements Cloneable, Serializable
 {
 
     private int maxNoOfSteps;

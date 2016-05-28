@@ -2,10 +2,12 @@ package Model;
 
 import Exceptions.ObjectAlreadyExistException;
 
+import java.io.Serializable;
+
 /**
  * Created by Bijin on 14-Apr-16.
  */
-public class Base extends GameItem
+public class Base extends GameItem implements Serializable
 {
     private static int COUNT = 0;
 

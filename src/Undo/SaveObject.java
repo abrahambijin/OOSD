@@ -9,5 +9,5 @@ import View.GameGUI;
 public class SaveObject {
 
     public Game game;
-    public GameGUI view;
+
 }

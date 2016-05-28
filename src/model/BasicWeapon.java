@@ -3,13 +3,14 @@ package Model;
 import Interfaces.Weapon;
 import Utility.PossiblePoints;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by Bijin on 28-Apr-16.
  */
-public class BasicWeapon implements Weapon
+public class BasicWeapon implements Weapon, Serializable
 {
     private String weaponName;
     private int range;

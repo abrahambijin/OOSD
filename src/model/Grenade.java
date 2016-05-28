@@ -2,13 +2,14 @@ package Model;
 
 import Interfaces.Weapon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Grenade extends WeaponDecoratedWithHead {
+public class Grenade extends WeaponDecoratedWithHead implements Serializable {
 
     public Grenade(Weapon weapon)
     {

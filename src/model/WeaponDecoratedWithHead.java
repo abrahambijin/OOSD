@@ -2,13 +2,14 @@ package Model;
 
 import Interfaces.Weapon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by Bijin on 28-Apr-16.
  */
-public abstract class WeaponDecoratedWithHead implements Weapon
+public abstract class WeaponDecoratedWithHead implements Weapon, Serializable
 {
 
     private Weapon weapon;
