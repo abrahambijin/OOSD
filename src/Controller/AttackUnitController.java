@@ -49,6 +49,7 @@ public class AttackUnitController extends GameActionController
             super.getView().getPlayerStatus().getBottom2().setVisible(false);
             super.getView().getPlayerStatus().getBottom().setListenerStatus(false);
             super.getView().getPlayerStatus().getBottom2().resetButton();
+            super.saveGame();
             super.getGame().nextPlayer();
             super.getView().getPlayGround()
                     .disableButtons(super.getGame().getOccupiedBoardLocation(),

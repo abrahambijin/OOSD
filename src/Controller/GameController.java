@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Game;
+import Undo.SaveGameState;
 import View.GameGUI;
 
 import java.awt.event.ActionListener;
@@ -12,11 +13,13 @@ public abstract class GameController implements ActionListener
 {
     private Game game;
     private GameGUI view;
+    private SaveGameState saveGameState;
 
     public GameController(Game game, GameGUI view)
     {
         this.game = game;
         this.view = view;
+        this.saveGameState = new SaveGameState();
     }
 
     public Game getGame()
@@ -35,5 +38,15 @@ public abstract class GameController implements ActionListener
 
     public void setView(GameGUI view) {
         this.view = view;
+    }
+
+    public void saveGame()
+    {
+        saveGameState.saveGame(this);
+    }
+
+    public void undo()
+    {
+        saveGameState.loadGame(this,2);
     }
 }

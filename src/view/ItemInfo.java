@@ -3,6 +3,7 @@ package View;
 import Controller.AttackButtonController;
 import Controller.BackButtonController;
 import Controller.MoveButtonController;
+import Controller.UndoController;
 import Model.Game;
 import Model.GameItem;
 
@@ -44,7 +45,7 @@ public class ItemInfo extends JPanel
             hitButton.setPreferredSize(new Dimension(100, 40));
             hitButton.setEnabled(false);
             undoButton = new JButton("Undo");
-            //undoButton.addActionListener(new AttackButtonController(game, view));
+            undoButton.addActionListener(new UndoController(game, view));
             undoButton.setPreferredSize(new Dimension(100, 40));
             undoButton.setEnabled(false);
             // back button to undo seleted action

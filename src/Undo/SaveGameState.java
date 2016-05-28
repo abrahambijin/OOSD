@@ -6,7 +6,6 @@ import Interfaces.Weapon;
 import Model.*;
 import Settings.GameSettings;
 import Settings.UnitsList;
-import Test.MainGameGUI;
 import Utility.CustomFonts;
 import Utility.PossiblePoints;
 import View.*;
@@ -25,38 +24,36 @@ import java.nio.file.Paths;
 /**
  * Created by mitulmanish on 28/05/2016.
  */
-public class SaveGameState {
+public class SaveGameState
+{
     public static int COUNTER = 0;
-    public static String SAVE_LOCATION = "undo"+ Integer.toString(COUNTER) +".txt";
+    public static String SAVE_LOCATION =
+            "undo" + Integer.toString(COUNTER) + ".txt";
     private ObjectMapper mapper = new ObjectMapper();
 
     public SaveGameState()
     {
-        mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        mapper.setVisibility(PropertyAccessor.ALL,
+                JsonAutoDetect.Visibility.ANY);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        mapper.registerSubtypes(Base.class, BasicWeapon.class, Board.class, Direction.class,
-                GameItem.class, Grenade.class, Obstacles.class, Player.class, PlayerColor.class,
-                Position.class, Sniper.class, Tower.class, Unit.class, WeaponDecoratedWithHead.class,
-                AbstractPlayerPropertiesFactory.class, Weapon.class, GameSettings.class, UnitsList.class,
-                CustomFonts.class, PossiblePoints.class, InputLabelTextField.class,
-                ItemInfo.class, ItemWeaponInfo.class, LabelField.class, MoveStyle.class, PlayerStatus.class,
-                PlayGround.class, SettingsScreen.class, SplashScreen.class, AttackButtonController.class,
-                AttackUnitController.class, BackButtonController.class, ButtonStatus.class,
-                CellButtonController.class, GameActionController.class, InitialItemPlacingController.class,
-                MoveButtonController.class, MoveUnitController.class, PlayButtonController.class,
-                PlayerNameInputController.class, SelectUnitController.class, SelectUnitController.class,
-                WeaponSelectionController.class);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                false);
+        mapper.registerSubtypes(Board.class, GameItem.class, Obstacles.class,
+                Player.class, Tower.class, Unit.class, ItemInfo.class,
+                ItemWeaponInfo.class, MoveStyle.class, PlayerStatus.class,
+                PlayGround.class);
     }
 
     public boolean saveGame(GameController gameController)
     {
-        if (COUNTER < 3) {
-            COUNTER ++;
+        if (COUNTER < 3)
+        {
+            COUNTER++;
         }
-        else COUNTER = 1;
+        else
+            COUNTER = 1;
 
-        SAVE_LOCATION = "undo"+ Integer.toString(COUNTER) +".txt";
+        SAVE_LOCATION = "undo" + Integer.toString(COUNTER) + ".txt";
 
         try
         {
@@ -82,7 +79,7 @@ public class SaveGameState {
 
     public boolean loadGame(GameController gameController, int stage)
     {
-        SAVE_LOCATION = "undo"+ Integer.toString(stage) +".txt";
+        SAVE_LOCATION = "undo" + Integer.toString(stage) + ".txt";
         try
         {
             Path path = Paths.get(SAVE_LOCATION);
