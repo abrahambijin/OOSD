@@ -35,11 +35,11 @@ public class SaveGameState {
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        mapper.registerSubtypes(Base.class, BasicWeapon.class, Board.class, Direction.class, Game.class,
+        mapper.registerSubtypes(Base.class, BasicWeapon.class, Board.class, Direction.class,
                 GameItem.class, Grenade.class, Obstacles.class, Player.class, PlayerColor.class,
                 Position.class, Sniper.class, Tower.class, Unit.class, WeaponDecoratedWithHead.class,
                 AbstractPlayerPropertiesFactory.class, Weapon.class, GameSettings.class, UnitsList.class,
-                MainGameGUI.class, CustomFonts.class, PossiblePoints.class, InputLabelTextField.class,
+                CustomFonts.class, PossiblePoints.class, InputLabelTextField.class,
                 ItemInfo.class, ItemWeaponInfo.class, LabelField.class, MoveStyle.class, PlayerStatus.class,
                 PlayGround.class, SettingsScreen.class, SplashScreen.class, AttackButtonController.class,
                 AttackUnitController.class, BackButtonController.class, ButtonStatus.class,
