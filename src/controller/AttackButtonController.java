@@ -28,7 +28,8 @@ public class AttackButtonController extends GameController
                 .getItem(super.getView().getPlayerStatus().getItemLocation());
 
         super.getView().getPlayerStatus().getBottom().setListenerStatus(true);
-        String selectedWeapon = super.getView().getPlayerStatus().getBottom().getSelectedID();
+        String selectedWeapon =
+                super.getView().getPlayerStatus().getBottom().getSelectedID();
 
         PlayerColor playerColor = super.getGame().getCurrentPlayer().getColor();
         Color cellColor =
@@ -36,10 +37,9 @@ public class AttackButtonController extends GameController
                         playerColor.getBlue());
 
 
-
-        super.getView().getPlayGround()
-                .disableButtons(super.getGame().getPossibleShootingOptions(item.getPosition(),selectedWeapon),
-                        cellColor);
+        super.getView().getPlayGround().disableButtons(super.getGame()
+                        .getPossibleShootingOptions(item.getPosition(), selectedWeapon),
+                cellColor);
 
         super.getView().getPlayGround()
                 .setDisabledButtonIcon(item.getPosition(),
@@ -47,10 +47,13 @@ public class AttackButtonController extends GameController
 
         boolean pass = item instanceof Unit;
         if (pass)
+        {
             super.getView().getPlayerStatus().getBottom()
                     .updateList(((Unit) item).getWeapons());
+            super.getView().getPlayerStatus().getBottom()
+                    .setWeaponInfo(((Unit) item).getCurrentPosture());
+        }
         super.getView().getPlayerStatus().setWeaponListVisible(pass);
-        super.getView().getPlayerStatus().getBottom().setWeaponInfo((Unit) item.getCurrentPost);
         super.getView().getPlayerStatus().getTop().enableBackButton(true);
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
                 ", select the item you want to attack with");
