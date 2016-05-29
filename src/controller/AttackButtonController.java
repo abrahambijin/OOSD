@@ -33,7 +33,9 @@ public class AttackButtonController extends GameController implements
         PlayerStatus playeStatus = super.getView().getPlayerStatus();
         Game game = super.getGame();
 
-        GameActionController.setSTATUS(ButtonStatus.SELECTED_TO_ATTACK);
+        super.getView().getPlayGround()
+                .resetButtonActionListener(ButtonStatus.SELECTED_TO_ATTACK,
+                        getView());
         GameItem item = game.getItem(playeStatus.getItemLocation());
         //set list listner to false initially
         playeStatus.getBottom().setListenerStatus(true);

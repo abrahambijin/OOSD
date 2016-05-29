@@ -45,7 +45,8 @@ public class ItemWeaponInfo extends JPanel
 
         weaponsList = new JList(listItems);
         weaponsList.setFont(CustomFonts.droidSans);
-        weaponsList.addListSelectionListener(selectionListener); // add actionlistner to weapon list
+        weaponsList.addListSelectionListener(
+                selectionListener); // add actionlistner to weapon list
 
         //adding scroll pane
         scroll = new JScrollPane(weaponsList);
@@ -54,14 +55,16 @@ public class ItemWeaponInfo extends JPanel
         itemList.setOpaque(false);
         itemStrength.setLayout(new BorderLayout(0, 0));
 
-        powerLevel = new LabelField("Power"); // label fiel to show power level of weapon
+        powerLevel = new LabelField(
+                "Power"); // label fiel to show power level of weapon
         powerLevel.setBorder(new EmptyBorder(0, 20, 0, 10));
 
         //new panel to add image of weapon
         imagePanel.setLayout(new BorderLayout());
         imageLabel.setForeground(Color.white);
         imageLabel.setOpaque(true);
-        imagePanel.add(imageLabel,BorderLayout.WEST); //add image label to panel
+        imagePanel
+                .add(imageLabel, BorderLayout.WEST); //add image label to panel
         imagePanel.setOpaque(false);
         imagePanel.setBorder(new EmptyBorder(30, 20, 10, 0));
 
@@ -76,7 +79,7 @@ public class ItemWeaponInfo extends JPanel
         itemStrength.add(imagePanel);
         itemStrength.add(powerLevel);
         itemStrength.add(weaponInfo);
-        itemStrength.setLayout(new BoxLayout(itemStrength,BoxLayout.Y_AXIS));
+        itemStrength.setLayout(new BoxLayout(itemStrength, BoxLayout.Y_AXIS));
         itemStrength.setOpaque(false);
 
         //add panels
@@ -86,7 +89,8 @@ public class ItemWeaponInfo extends JPanel
 
     }
 
-    public void updateList(ArrayList<Weapon> weapons) //update weapon list according to units
+    public void updateList(
+            ArrayList<Weapon> weapons) //update weapon list according to units
     {
         listItems.clear();
         powerLevel.resetValue();
@@ -103,7 +107,7 @@ public class ItemWeaponInfo extends JPanel
     }
 
     public void updatePowerLevel(Weapon weapon) //updates weapon power and
-                                                //image according to selection
+    //image according to selection
     {
         if (weapon != null)
         {
@@ -120,10 +124,16 @@ public class ItemWeaponInfo extends JPanel
         selectionListener.setIsActive(status);
     }
 
-    public void setWeaponInfo(Posture info){ //update posture information
+    public void setWeaponInfo(Posture info)
+    { //update posture information
 
-        weaponInfo.setText("Unit is in "+info.toString()+" mode \n" +
-                " the damage changed by "+info.getValue());
+        int value = info.getValue();
+        String change = info.getValue() > 0 ? "The damage is increased " +
+                "by" + value : info.getValue() < 0 ? "The damage is decreased" +
+                " by" + (value * -1) : "";
+
+        weaponInfo.setText("Unit is in " + info.toString() + " mode \n" +
+                change);
     }
 
 

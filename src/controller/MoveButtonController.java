@@ -22,7 +22,9 @@ public class MoveButtonController extends GameController implements
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        GameActionController.setSTATUS(ButtonStatus.SELECTED_TO_MOVE);
+        super.getView().getPlayGround()
+                .resetButtonActionListener(ButtonStatus.SELECTED_TO_MOVE,
+                        getView());
         GameItem item = super.getGame()
                 .getItem(super.getView().getPlayerStatus().getItemLocation());
 

@@ -55,7 +55,9 @@ public class UndoController extends GameController implements ActionListener
             System.out.println(
                     super.getGame().getCurrentPlayer().getName() + "++++");
             super.getView().getPlayerStatus().getTop().enableBackButton(false);
-            GameActionController.setSTATUS(ButtonStatus.NOT_SELECTED);
+            super.getView().getPlayGround()
+                    .resetButtonActionListener(ButtonStatus.NOT_SELECTED,
+                            getView());
             super.getView().setStatus(
                     super.getGame().getCurrentPlayer().getName() +
                             ", select the troop you wish to move or attack with");

@@ -19,7 +19,9 @@ public class BackButtonController extends GameController implements
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        GameActionController.setSTATUS(ButtonStatus.NOT_SELECTED);
+        super.getView().getPlayGround()
+                .resetButtonActionListener(ButtonStatus.NOT_SELECTED,
+                        getView());
         super.getView().getPlayGround()
                 .disableButtons(super.getGame().getOccupiedBoardLocation(),
                         null);

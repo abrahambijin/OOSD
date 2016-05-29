@@ -18,23 +18,20 @@ public class SelectUnitController extends GameActionController
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (GameActionController.getSTATUS() == ButtonStatus.NOT_SELECTED)
+        GameItem item = super.getGame().getItem(super.getLocation());
+        if (item != null)
         {
-            GameItem item = super.getGame().getItem(super.getLocation());
-            if (item != null)
-            {
-                Boolean pass = super.getGame()
-                        .isUnitOfCurrentPlayer(super.getLocation()) &&
-                        !(item instanceof Base);
+            Boolean pass = super.getGame()
+                    .isUnitOfCurrentPlayer(super.getLocation()) &&
+                    !(item instanceof Base);
 
-                boolean canUndo = pass &&
-                        !super.getGame().getCurrentPlayer().isUndoCalled();
+            boolean canUndo =
+                    pass && !super.getGame().getCurrentPlayer().isUndoCalled();
 
-                super.getView().getPlayerStatus().setItem(item, pass, canUndo);
-            }
-            super.getView().setStatus(
-                    super.getGame().getCurrentPlayer().getName() +
-                            ", would you like to move or attack?");
+            super.getView().getPlayerStatus().setItem(item, pass, canUndo);
         }
+        super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
+                ", would you like to move or attack?");
+
     }
 }

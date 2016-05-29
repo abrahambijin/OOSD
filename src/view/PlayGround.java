@@ -25,7 +25,7 @@ public class PlayGround extends JPanel
         size = boardSize;
 
         this.setLayout(new GridLayout(size, size));
-                        // set user defined size of board
+        // set user defined size of board
         cell = new Cell[size][size];
         initialise(view);
     }
@@ -37,9 +37,8 @@ public class PlayGround extends JPanel
             for (int j = 0; j < size; j++)
             {
                 cell[i][j] = new Cell(i, j);
-                cell[i][j].addActionListener(
-                        new InitialItemPlacingController(new Position(i, j),
-                                view));
+                cell[i][j].setActionController(ButtonStatus.INITIAL_PLACING,
+                        view);
                 cell[i][j]
                         .setBorder(BorderFactory.createLineBorder(Color.black));
                 this.add(cell[i][j]);
@@ -80,21 +79,13 @@ public class PlayGround extends JPanel
                 .setIcon(new ImageIcon(buttonImage));
     }
 
-    public void resetButtonActionListener(GameGUI view)
+    public void resetButtonActionListener(ButtonStatus status, GameGUI view)
     {
         //change actionlistned on cells
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
             {
-                for (ActionListener listener : cell[i][j].getActionListeners())
-                    cell[i][j].removeActionListener(listener);
-                cell[i][j].addActionListener(
-                        new SelectUnitController(view, new Position(i, j)));
-                cell[i][j].addActionListener(
-                        new MoveUnitController(view, new Position(i, j)));
-
-                cell[i][j].addActionListener(
-                        new AttackUnitController(view, new Position(i, j)));
+                cell[i][j].setActionController(status,view);
             }
     }
 
