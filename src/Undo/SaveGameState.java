@@ -3,6 +3,8 @@ package Undo;
 import Controller.*;
 import Model.*;
 import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 /**
@@ -13,8 +15,9 @@ public class SaveGameState
     public static int COUNTER = 0;
     public static String SAVE_GAME_LOCATION =
             "undoGame" + Integer.toString(COUNTER) + ".txt";
-    public static String SAVE_VIEW_LOCATION =
-            "undoView" + Integer.toString(COUNTER) + ".txt";
+    private Queue<String> fileHolder = new LinkedList<>();
+
+
 
     public SaveGameState()
     {
@@ -25,7 +28,7 @@ public class SaveGameState
     {
         int checker = 0;
 
-        if (COUNTER < 3)
+        if (COUNTER < 6)
         {
             COUNTER++;
         }
@@ -33,12 +36,13 @@ public class SaveGameState
             COUNTER = 1;
 
         SAVE_GAME_LOCATION = "undoGame" + Integer.toString(COUNTER) + ".txt";
+        fileHolder.add(SAVE_GAME_LOCATION);
 
         try {
-            OutputStream os = new FileOutputStream(SAVE_GAME_LOCATION);
-            ObjectOutputStream oos = new ObjectOutputStream(os);
-            oos.writeObject(gameController.getGame());
-            os.close();
+            OutputStream outputStream = new FileOutputStream(SAVE_GAME_LOCATION);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(gameController.getGame());
+            outputStream.close();
             checker++;
 
         } catch (IOException e) {
@@ -52,12 +56,16 @@ public class SaveGameState
     {
         SAVE_GAME_LOCATION = "undoGame" + Integer.toString(stage) + ".txt";
 
+        for(int index = stage * 2; index > 0; index -- ) {
+            fileHolder.poll();
+        }
+
         try {
-            InputStream is = new FileInputStream(SAVE_GAME_LOCATION);
-            ObjectInputStream ois = new ObjectInputStream(is);
-            Game game = (Game)ois.readObject();
+            InputStream inputStream = new FileInputStream(SAVE_GAME_LOCATION);
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+            Game game = (Game)objectInputStream.readObject();
             gameController.setGame(game);
-            is.close();
+            inputStream.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
