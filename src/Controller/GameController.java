@@ -1,6 +1,7 @@
 package Controller;
 
 import Memento.CareTaker;
+import Memento.Originator;
 import Model.Game;
 import View.GameGUI;
 
@@ -12,6 +13,8 @@ public abstract class GameController
 {
     private static Game game;
     private static CareTaker careTaker;
+    private static Originator originator;
+
     private GameGUI view;
 
     public GameController(GameGUI view)
@@ -23,6 +26,7 @@ public abstract class GameController
     {
         GameController.game = game;
         GameController.careTaker = new CareTaker();
+        GameController.originator = new Originator();
     }
 
     public Game getGame()
@@ -37,12 +41,12 @@ public abstract class GameController
 
     public void saveGame()
     {
-        careTaker.store(game);
+        careTaker.store(originator.saveMemento(game));
     }
 
     public void undo()
     {
-        Game newGame = careTaker.load(1);
+        Game newGame = originator.restoreMemento(careTaker.load(1));
         if (newGame != null)
             GameController.game = newGame;
     }

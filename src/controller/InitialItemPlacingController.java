@@ -70,6 +70,7 @@ public class InitialItemPlacingController extends GameController implements Acti
                             obstacle.getImageIconPath());
                 }
 
+                System.out.println(super.getGame().getCurrentPlayer().getName());
                 super.saveGame();
 
                 super.getView().getPlayGround()

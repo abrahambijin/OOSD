@@ -39,18 +39,22 @@ public class AttackUnitController extends GameActionController
                 }
                 GameItem item = super.getGame().getItem(super.getLocation());
                 if (item == null)
-                    super.getView().getPlayGround().setButtonImage(super.getLocation(),
-                            "");
+                    super.getView().getPlayGround()
+                            .setButtonImage(super.getLocation(), "");
                 else
-                    super.getView().getPlayGround().setButtonImage(super.getLocation(),
-                            item.getImageIconPath());
+                    super.getView().getPlayGround()
+                            .setButtonImage(super.getLocation(),
+                                    item.getImageIconPath());
             }
+            System.out.println(super.getGame().getCurrentPlayer().getName());
             super.getView().getPlayerStatus().getBottom().setVisible(false);
             super.getView().getPlayerStatus().getBottom2().setVisible(false);
-            super.getView().getPlayerStatus().getBottom().setListenerStatus(false);
+            super.getView().getPlayerStatus().getBottom()
+                    .setListenerStatus(false);
             super.getView().getPlayerStatus().getBottom2().resetButton();
-            super.saveGame();
+
             super.getGame().nextPlayer();
+            super.saveGame();
             super.getView().getPlayGround()
                     .disableButtons(super.getGame().getOccupiedBoardLocation(),
                             null);

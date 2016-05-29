@@ -30,6 +30,8 @@ public class MoveUnitController extends GameActionController
 
             if (success)
             {
+                System.out.println(super.getGame().getCurrentPlayer().getName());
+
                 if (item instanceof Tower)
                 {
                     super.getView().getPlayGround()
@@ -53,8 +55,9 @@ public class MoveUnitController extends GameActionController
                 super.getView().getPlayerStatus().getBottom().setVisible(false);
                 super.getView().getPlayerStatus().getBottom2().setVisible(false);
                 super.getView().getPlayerStatus().getBottom2().resetButton();
-                super.saveGame();
+
                 super.getGame().nextPlayer();
+                super.saveGame();
                 super.getView().getPlayGround().disableButtons(
                         super.getGame().getOccupiedBoardLocation(), null);
                 super.getView().getPlayerStatus()
