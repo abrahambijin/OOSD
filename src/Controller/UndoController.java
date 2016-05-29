@@ -1,8 +1,10 @@
 package Controller;
 
+import Memento.CareTaker;
 import Model.Game;
 import Model.GameItem;
 import Model.Position;
+import Settings.GameSettings;
 import View.GameGUI;
 
 import javax.swing.*;
@@ -23,48 +25,58 @@ public class UndoController extends GameController implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        String[] values = {"1", "2", "3"};
+        ArrayList<String> inputs = new ArrayList<>();
+        for (int i = 1;
+             i <= (CareTaker.getCount() / (GameSettings.NO_OF_PLAYERS + 1)) &&
+                     i <= GameSettings.MAX_POSSIBLE_UNDO; i++)
+            inputs.add(i + "");
 
-        Object selected = JOptionPane
-                .showInputDialog(null, "Select level of undo", "Selection",
-                        JOptionPane.QUESTION_MESSAGE, null, values, "0");
-        if (selected != null)
-        {//null if the user cancels.
-            String selectedString = selected.toString();
-            super.undo(Integer.parseInt(selectedString));
-            super.getGame().getCurrentPlayer().undoIsCalled();
-
-
-            //String value = super.getView().getUndoMove().getSelected();
-
-
-            ArrayList<Position> occupiedPositions =
-                    super.getGame().getOccupiedBoardLocation();
-
-            super.getView().getPlayGround().reset();
-            for (Position position : occupiedPositions)
-            {
-                GameItem item = super.getGame().getItem(position);
-                super.getView().getPlayGround()
-                        .setButtonImage(position, item.getImageIconPath());
-            }
-            super.getView().getPlayGround()
-                    .disableButtons(occupiedPositions, null);
-            super.getView().getPlayerStatus()
-                    .updatePage(super.getGame().getCurrentPlayer());
-            System.out.println(
-                    super.getGame().getCurrentPlayer().getName() + "++++");
-            super.getView().getPlayerStatus().getTop().enableBackButton(false);
-            super.getView().getPlayGround()
-                    .resetButtonActionListener(ButtonStatus.NOT_SELECTED,
-                            getView());
-            super.getView().setStatus(
-                    super.getGame().getCurrentPlayer().getName() +
-                            ", select the troop you wish to move or attack with");
-        }
+        if (inputs.isEmpty())
+            JOptionPane.showMessageDialog(super.getView(),
+                    "There are no " + "saved states");
         else
         {
-            System.out.println("User cancelled");
+            Object selected = JOptionPane
+                    .showInputDialog(null, "Select level of undo", "Selection",
+                            JOptionPane.QUESTION_MESSAGE, null,
+                            inputs.toArray(), "0");
+            if (selected != null)
+            {//null if the user cancels.
+                String selectedString = selected.toString();
+                super.undo(Integer.parseInt(selectedString));
+                super.getGame().getCurrentPlayer().undoIsCalled();
+
+
+                //String value = super.getView().getUndoMove().getSelected();
+
+
+                ArrayList<Position> occupiedPositions =
+                        super.getGame().getOccupiedBoardLocation();
+
+                super.getView().getPlayGround().reset();
+                for (Position position : occupiedPositions)
+                {
+                    GameItem item = super.getGame().getItem(position);
+                    super.getView().getPlayGround()
+                            .setButtonImage(position, item.getImageIconPath());
+                }
+                super.getView().getPlayGround()
+                        .disableButtons(occupiedPositions, null);
+                super.getView().getPlayerStatus()
+                        .updatePage(super.getGame().getCurrentPlayer());
+                super.getView().getPlayerStatus().getTop()
+                        .enableBackButton(false);
+                super.getView().getPlayGround()
+                        .resetButtonActionListener(ButtonStatus.NOT_SELECTED,
+                                getView());
+                super.getView().setStatus(
+                        super.getGame().getCurrentPlayer().getName() +
+                                ", select the troop you wish to move or attack with");
+            }
+            else
+            {
+                System.out.println("User cancelled");
+            }
         }
     }
 }
