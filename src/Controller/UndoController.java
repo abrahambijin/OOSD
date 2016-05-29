@@ -5,6 +5,7 @@ import Model.GameItem;
 import Model.Position;
 import View.GameGUI;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -22,8 +23,22 @@ public class UndoController extends GameController implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        String[] values = {"1","2","3"};
+
+        Object selected = JOptionPane.showInputDialog(null, "Select level of undo", "Selection", JOptionPane.DEFAULT_OPTION, null, values, "0");
+        if ( selected != null ){//null if the user cancels.
+            String selectedString = selected.toString();
+            //do something
+        }else{
+            System.out.println("User cancelled");
+        }
         super.undo();
         super.getGame().getCurrentPlayer().undoIsCalled();
+
+
+        //String value = super.getView().getUndoMove().getSelected();
+
+
         
         ArrayList<Position> occupiedPositions =
                 super.getGame().getOccupiedBoardLocation();

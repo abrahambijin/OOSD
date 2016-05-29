@@ -30,6 +30,7 @@ public class GameGUI extends JFrame
         playGround = new PlayGround(game.getBOARD_SIZE(),this);
         playerStatus = new PlayerStatus(game.getCurrentPlayer(), this);
 
+
         // panel to add playground and status of label at bottom
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
@@ -70,5 +71,6 @@ public class GameGUI extends JFrame
     {
         this.status.setValue(status);
     }
+
 
 }

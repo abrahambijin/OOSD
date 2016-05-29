@@ -109,4 +109,5 @@ public class ItemInfo extends JPanel
         setValues(null);
     }
 
+
 }
