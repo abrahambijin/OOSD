@@ -4,6 +4,7 @@ import Controller.WeaponSelectionController;
 import Interfaces.Weapon;
 import Model.Game;
 import Utility.CustomFonts;
+import Utility.Posture;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -110,9 +111,10 @@ public class ItemWeaponInfo extends JPanel
         selectionListener.setIsActive(status);
     }
 
-    public void setWeaponInfo(String info){
+    public void setWeaponInfo(Posture info){
 
-        weaponInfo.setText(info);
+        weaponInfo.setText("Unit is in "+info.toString()+"mode \n" +
+                "the damage changed by"+info.getValue());
     }
 
 
