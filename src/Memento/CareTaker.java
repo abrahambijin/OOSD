@@ -22,7 +22,7 @@ public class CareTaker
     {
         savedGameStates.addFirst(memento);
 
-        if (savedGameStates.size() > ((GameSettings.MAX_POSSIBLE_UNDO * 3) + 1))
+        if (savedGameStates.size() > GameSettings.MAX_POSSIBLE_UNDO * 6)
             savedGameStates.pollLast();
     }
 
@@ -34,7 +34,6 @@ public class CareTaker
         for(int i = 0; i < 2*undoStage; i++)
             savedGameStates.pollFirst();
 
-        System.out.println("Care Taker: Load Game");
         return (savedGameStates.pollFirst());
     }
 }

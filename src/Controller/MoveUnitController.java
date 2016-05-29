@@ -19,7 +19,6 @@ public class MoveUnitController extends GameActionController
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        System.out.println("in Move");
         Position currentLocation =
                 super.getView().getPlayerStatus().getItemLocation();
         GameItem item = super.getGame().getItem(currentLocation);
@@ -29,8 +28,6 @@ public class MoveUnitController extends GameActionController
 
         if (success)
         {
-            System.out.println(super.getGame().getCurrentPlayer().getName());
-
             if (item instanceof Tower)
             {
                 super.getView().getPlayGround().setButtonImage(currentLocation,

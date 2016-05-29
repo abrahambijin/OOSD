@@ -1,6 +1,5 @@
 package Memento;
 
-import Controller.GameController;
 import Model.Game;
 
 import java.io.*;
@@ -17,7 +16,6 @@ public class Originator
 
     private void set()
     {
-        System.out.println("Originator: Saving to Memento.");
         if (COUNTER < 6)
         {
             COUNTER++;
@@ -51,8 +49,8 @@ public class Originator
 
 
     /**
-     * @param memento        : this memento object is fetched from the careTaker stack eg.
-     *                       originator.restoreFromMemento(caretaker.getMemento(1), gameController);
+     * @param memento : this memento object is fetched from the careTaker stack eg.
+     *                originator.restoreFromMemento(caretaker.getMemento(1), gameController);
      */
     public Game restoreMemento(Memento memento)
     {
@@ -67,7 +65,6 @@ public class Originator
                     new ObjectInputStream(inputStream);
             game = (Game) objectInputStream.readObject();
             inputStream.close();
-            System.out.println("Originator: Load Game");
         }
         catch (Exception e)
         {

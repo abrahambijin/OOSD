@@ -3,14 +3,12 @@ package Model;
 import Utility.PossiblePoints;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Board implements Serializable
+public class Board implements Serializable, Observer
 {
 
     private GameItem[][] warZone;
@@ -31,6 +29,7 @@ public class Board implements Serializable
         if (warZone[xCoordinate][yCoordinate] == null)
         {
             setItemOnWarZone(position, item);
+            item.addObserver(this);
             return true;
         }
         return false;
@@ -102,7 +101,7 @@ public class Board implements Serializable
                 if (success)
                 {
                     ((Unit) item).move(newPosition);
-                    setPointToNull(currentPosition);
+                    setItemOnWarZone(currentPosition,null);
                 }
             }
         }
@@ -125,11 +124,6 @@ public class Board implements Serializable
 
             }
         return possiblePositions;
-    }
-
-    private void setPointToNull(Position location)
-    {
-        warZone[location.getXCoordinate()][location.getYCoordinate()] = null;
     }
 
     private void setItemOnWarZone(Position location, GameItem item)
@@ -162,9 +156,6 @@ public class Board implements Serializable
             if (target != null)
             {
                 target.getHit(((Unit) item).hit(weaponName));
-
-                if (!target.isActive())
-                    setPointToNull(targetLocation);
                 success = true;
             }
         }
@@ -204,9 +195,15 @@ public class Board implements Serializable
         for (int i = 0; i < BOARD_SIZE; i++)
             for (int j = 0; j < BOARD_SIZE; j++)
                 if (warZone[i][j] != null)
-                    positionsOccupied.add(new Position(i,j));
+                    positionsOccupied.add(new Position(i, j));
 
         return positionsOccupied;
     }
 
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if (o instanceof GameItem)
+            setItemOnWarZone(((GameItem) o).getPosition(),null);
+    }
 }

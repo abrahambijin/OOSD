@@ -1,11 +1,12 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public abstract class GameItem implements Serializable
+public abstract class GameItem extends Observable implements Serializable
 {
 
     private String name;
@@ -58,6 +59,12 @@ public abstract class GameItem implements Serializable
     public void getHit(int damage)
     {
         health -= damage;
+        if(!isActive())
+        {
+            System.out.println("Origin");
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public boolean isActive()

@@ -43,7 +43,7 @@ public class AttackUnitController extends GameActionController
                         .setButtonImage(super.getLocation(),
                                 item.getImageIconPath());
         }
-        System.out.println(super.getGame().getCurrentPlayer().getName());
+
         super.getView().getPlayerStatus().getBottom().setVisible(false);
         super.getView().getPlayerStatus().getBottom2().setVisible(false);
         super.getView().getPlayerStatus().getBottom().setListenerStatus(false);

@@ -6,11 +6,13 @@ import Interfaces.Weapon;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by mitulmanish on 26/03/2016.
  */
-public class Player implements Serializable
+public class Player implements Serializable, Observer
 {
     private String name;
     private ArrayList<GameItem> units;
@@ -27,6 +29,9 @@ public class Player implements Serializable
         this.isPlayerOne = isPlayerOne;
         this.isAlive = true;
         this.undoCalled = false;
+
+        for (GameItem unit : units)
+            unit.addObserver(this);
     }
 
     public boolean isPlayerOne() {
@@ -67,25 +72,6 @@ public class Player implements Serializable
         return locations;
     }
 
-    public void updateItemList()
-    {
-        int index = -1;
-        for (int i = 0; i<units.size(); i++)
-            if (!units.get(i).isActive())
-            {
-                index = i;
-                break;
-            }
-
-        if(index>=0)
-            units.remove(index);
-
-        int count = isPlayerOne? 1:0;
-
-        if (units.size()<=count)
-            isAlive = false;
-    }
-
     public boolean isAlive()
     {
         return isAlive;
@@ -99,5 +85,21 @@ public class Player implements Serializable
     public void undoIsCalled()
     {
         this.undoCalled = true;
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if(o instanceof GameItem)
+        {
+            if(units.contains(o))
+            {
+                units.remove(o);
+                int count = isPlayerOne? 1:0;
+
+                if (units.size()<=count)
+                    isAlive = false;
+            }
+        }
     }
 }

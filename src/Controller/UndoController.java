@@ -27,7 +27,7 @@ public class UndoController extends GameController implements ActionListener
 
         Object selected = JOptionPane
                 .showInputDialog(null, "Select level of undo", "Selection",
-                        JOptionPane.DEFAULT_OPTION, null, values, "0");
+                        JOptionPane.QUESTION_MESSAGE, null, values, "0");
         if (selected != null)
         {//null if the user cancels.
             String selectedString = selected.toString();
