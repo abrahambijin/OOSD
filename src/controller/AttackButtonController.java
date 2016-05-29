@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Utility.Posture;
 import View.GameGUI;
 
 import java.awt.*;
@@ -34,6 +35,8 @@ public class AttackButtonController extends GameController
                 new Color(playerColor.getRed(), playerColor.getGreen(),
                         playerColor.getBlue());
 
+
+
         super.getView().getPlayGround()
                 .disableButtons(super.getGame().getPossibleShootingOptions(item.getPosition(),selectedWeapon),
                         cellColor);
@@ -47,8 +50,8 @@ public class AttackButtonController extends GameController
             super.getView().getPlayerStatus().getBottom()
                     .updateList(((Unit) item).getWeapons());
         super.getView().getPlayerStatus().setWeaponListVisible(pass);
+        super.getView().getPlayerStatus().getBottom().setWeaponInfo((Unit) item.getCurrentPost);
         super.getView().getPlayerStatus().getTop().enableBackButton(true);
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
                 ", select the item you want to attack with");
     }
-}

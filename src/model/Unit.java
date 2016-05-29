@@ -97,4 +97,7 @@ public class Unit extends GameItem implements Cloneable, Serializable
         this.currentPosture = posture;
     }
 
+    public Posture getCurrentPosture() {
+        return currentPosture;
+    }
 }

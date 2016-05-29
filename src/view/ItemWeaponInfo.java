@@ -27,7 +27,7 @@ public class ItemWeaponInfo extends JPanel
     private JList weaponsList;
     private LabelField powerLevel;
     private WeaponSelectionController selectionListener;
-
+    private JLabel weaponInfo;
 
     public ItemWeaponInfo(Game game, GameGUI view)
     {
@@ -62,6 +62,9 @@ public class ItemWeaponInfo extends JPanel
         imagePanel.add(imageLabel, BorderLayout.WEST);
         imagePanel.setOpaque(false);
         imagePanel.setBorder(new EmptyBorder(30, 20, 10, 0));
+        weaponInfo = new JLabel("New Label");
+        weaponInfo.setForeground(Color.white);
+        imagePanel.add(weaponInfo,BorderLayout.EAST);
         itemStrength.add(imagePanel, BorderLayout.PAGE_START);
         itemStrength.add(powerLevel, BorderLayout.LINE_START);
         //imageLabel.setBorder(new EmptyBorder(0,5,0,0));
@@ -105,6 +108,11 @@ public class ItemWeaponInfo extends JPanel
     public void setListenerStatus(Boolean status)
     {
         selectionListener.setIsActive(status);
+    }
+
+    public void setWeaponInfo(String info){
+
+        weaponInfo.setText(info);
     }
 
 
