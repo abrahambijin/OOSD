@@ -11,73 +11,70 @@ import java.util.ArrayList;
 /**
  * Created by ankurdabral on 12/04/2016.
  */
-public class InitialItemPlacingController implements ActionListener
+public class InitialItemPlacingController extends GameController implements ActionListener
 {
 
     private static int ITEM_INDEX = 0;
     private static int PLAYER_INDEX = 1;
 
     private Position location;
-    private Game game;
-    private GameGUI view;
 
-    public InitialItemPlacingController(Position location, Game game,
-                                        GameGUI view)
+    public InitialItemPlacingController(Position location, GameGUI view)
     {
+        super(view);
         this.location = location;
-        this.game = game;
-        this.view = view;
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
 
-        Player currentPlayer = game.getCurrentPlayer();
+        Player currentPlayer = super.getGame().getCurrentPlayer();
 
         GameItem item = currentPlayer.getItems().get(ITEM_INDEX);
-        boolean success = game.addItemToBoard(currentPlayer, item, location);
+        boolean success = super.getGame().addItemToBoard(currentPlayer, item, location);
 
         if (success)
         {
             ITEM_INDEX++;
-            view.getPlayGround()
+            super.getView().getPlayGround()
                     .setButtonImage(location, item.getImageIconPath());
 
             if (ITEM_INDEX >= currentPlayer.getItems().size())
             {
                 ITEM_INDEX = 0;
-                game.nextPlayer();
+                super.getGame().nextPlayer();
                 PLAYER_INDEX++;
-                view.getPlayerStatus().setPlayer(game.getCurrentPlayer());
+                super.getView().getPlayerStatus().setPlayer(super.getGame().getCurrentPlayer());
             }
 
-            currentPlayer = game.getCurrentPlayer();
+            currentPlayer = super.getGame().getCurrentPlayer();
             item = currentPlayer.getItems().get(ITEM_INDEX);
 
 
             if (PLAYER_INDEX <= GameSettings.NO_OF_PLAYERS)
             {
-                view.getPlayGround()
-                        .disableButtons(game.possiblePointToPlaceItems(), null);
-                view.setStatus(
+                super.getView().getPlayGround()
+                        .disableButtons(super.getGame().possiblePointToPlaceItems(), null);
+                super.getView().setStatus(
                         currentPlayer.getName() + ", where would you like to" +
                                 " place " + item.getName() + "? ");
             }
             else
             {
-                ArrayList<Position> locations = game.addObstacles();
+                ArrayList<Position> locations = super.getGame().addObstacles();
                 for (Position position : locations)
                 {
-                    GameItem obstacle = game.getItem(position);
-                    view.getPlayGround().setButtonImage(position,
+                    GameItem obstacle = super.getGame().getItem(position);
+                    super.getView().getPlayGround().setButtonImage(position,
                             obstacle.getImageIconPath());
                 }
 
-                view.getPlayGround()
-                        .disableButtons(game.getOccupiedBoardLocation(), null);
-                view.getPlayGround().resetButtonActionListener(game, view);
-                view.setStatus(
+                super.getView().getPlayGround()
+                        .disableButtons(super.getGame().getOccupiedBoardLocation(), null);
+                super.getView().getPlayGround().resetButtonActionListener
+                        (super.getView());
+                super.getView().setStatus(
                         currentPlayer.getName() + ", select the troop you " +
                                 "wish to move or attack with  ");
             }

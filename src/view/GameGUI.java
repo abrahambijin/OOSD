@@ -27,8 +27,8 @@ public class GameGUI extends JFrame
         gamePanel.setLayout(new BorderLayout());
 
         // creating objects of playGround and playerStatus view
-        playGround = new PlayGround(game, this);
-        playerStatus = new PlayerStatus(game, this);
+        playGround = new PlayGround(game.getBOARD_SIZE(),this);
+        playerStatus = new PlayerStatus(game.getCurrentPlayer(), this);
 
         // panel to add playground and status of label at bottom
         JPanel leftPanel = new JPanel();

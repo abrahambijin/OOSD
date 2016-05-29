@@ -6,18 +6,20 @@ import View.GameGUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
 /**
  * Created by ankurdabral on 10/05/2016.
  */
-public class AttackButtonController extends GameController
+public class AttackButtonController extends GameController implements
+        ActionListener
 {
 
-    public AttackButtonController(Game game, GameGUI view)
+    public AttackButtonController(GameGUI view)
     {
-        super(game, view);
+        super(view);
     }
 
     @Override

@@ -7,7 +7,15 @@ import java.util.Stack;
  */
 public class CareTaker {
 
-    private Stack<Memento> savedGameStates = new Stack<>();
+    private Stack<Memento> savedGameStates;
+
+    private Originator originator;
+
+    public CareTaker()
+    {
+        savedGameStates = new Stack<>();
+        originator = new Originator();
+    }
 
     public void addMemento(Memento memento) { savedGameStates.add(memento); }
 

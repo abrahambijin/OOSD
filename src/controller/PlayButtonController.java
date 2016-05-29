@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-//import View.GameGUI;
 
 /**
  * Created by ankurdabral on 29/04/2016.
@@ -30,13 +29,14 @@ public class PlayButtonController implements ActionListener
         int peices = screen.getPecies();
         screen.setVisible(false);
 
-        Game game = new Game(names, board, peices);
-
+        Game game = Game.GameFactory(names, board, peices);
+        GameController.setControler(game);
         GameGUI gui = new GameGUI(game);
+
         gui.setSize(1400, 700);
         gui.setLocationRelativeTo(null);
         gui.setVisible(true);
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
 

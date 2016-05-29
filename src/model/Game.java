@@ -16,8 +16,9 @@ public class Game implements Serializable
     private Board board;
     private ArrayList<Player> players;
     private int currentPlayerIndex;
+    private static Game instance;
 
-    public Game(ArrayList<String> teamNames, int boardSize, int noOfUnits)
+    private Game(ArrayList<String> teamNames, int boardSize, int noOfUnits)
     {
         this.board = new Board(boardSize);
         players = new ArrayList<>();
@@ -31,6 +32,14 @@ public class Game implements Serializable
         {
             players.add(Player.playerFactory(teamName, noOfUnits));
         }
+    }
+
+    public static Game GameFactory(ArrayList<String> teamNames, int boardSize, int
+            noOfUnits)
+    {
+        if (instance == null)
+            instance = new Game(teamNames, boardSize, noOfUnits);
+        return instance;
     }
 
     public boolean addItemToBoard(Player player, GameItem item,

@@ -23,7 +23,7 @@ public class PlayerStatus extends JPanel
     private Position itemLocation;
     private JPanel itemDetails;
 
-    public PlayerStatus(Game game, GameGUI view)
+    public PlayerStatus(Player currentPlayer, GameGUI view)
     {
         this.setLayout(new BorderLayout());
         playerName = new JLabel("Player : ", SwingConstants.CENTER);
@@ -31,22 +31,22 @@ public class PlayerStatus extends JPanel
         playerName.setPreferredSize(new Dimension(playerName.getWidth(),75));
         playerName.setFont(CustomFonts.lifeCraft);
         playerName.setForeground(Color.white);
-        setPlayer(game.getCurrentPlayer());
+        setPlayer(currentPlayer);
         playerName.setOpaque(true);
         this.add(playerName,BorderLayout.NORTH);
 
         itemDetails = new JPanel(new GridLayout(2,1));
-        top = new ItemInfo(game, view);
-        bottom = new ItemWeaponInfo(game, view);
+        top = new ItemInfo(view);
+        bottom = new ItemWeaponInfo(view);
         bottom2 = new MoveStyle();
-       //bottom2.setOpaque(false);
+
         bottom.setVisible(false);
         bottom2.setVisible(false);
-        //bottom.setVisible(true);
+
 
         itemDetails.setOpaque(false);
         itemDetails.add(top);
-        //itemDetails.add(bottom);
+
         this.setOpaque(false);
         this.add(itemDetails);
     }

@@ -30,7 +30,7 @@ public class ItemWeaponInfo extends JPanel
     private WeaponSelectionController selectionListener;
     private JLabel weaponInfo;
 
-    public ItemWeaponInfo(Game game, GameGUI view)
+    public ItemWeaponInfo(GameGUI view)
     {
         this.setLayout(new BorderLayout());
         // adding scroll pane to select item
@@ -40,7 +40,7 @@ public class ItemWeaponInfo extends JPanel
         label.setForeground(Color.white);
         label.setFont(CustomFonts.primeTime);
 
-        selectionListener = new WeaponSelectionController(game, view);
+        selectionListener = new WeaponSelectionController(view);
 
         weaponsList = new JList(listItems);
         weaponsList.setFont(CustomFonts.droidSans);

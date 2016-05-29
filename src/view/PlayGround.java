@@ -18,15 +18,15 @@ public class PlayGround extends JPanel
     private Cell cell[][];
 
 
-    public PlayGround(Game game, GameGUI view)
+    public PlayGround(int boardSize, GameGUI view)
     {
-        size = game.getBOARD_SIZE();
+        size = boardSize;
         this.setLayout(new GridLayout(size, size));
         cell = new Cell[size][size];
-        initialise(game, view);
+        initialise(view);
     }
 
-    private void initialise(Game game, GameGUI view)
+    private void initialise(GameGUI view)
     {
         for (int i = 0; i < size; i++)
         {
@@ -35,7 +35,7 @@ public class PlayGround extends JPanel
                 cell[i][j] = new Cell(i, j);
                 cell[i][j].addActionListener(
                         new InitialItemPlacingController(new Position(i, j),
-                                game, view));
+                                view));
                 cell[i][j]
                         .setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -80,7 +80,7 @@ public class PlayGround extends JPanel
                 .setIcon(new ImageIcon(buttonImage));
     }
 
-    public void resetButtonActionListener(Game game, GameGUI view)
+    public void resetButtonActionListener(GameGUI view)
     {
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
@@ -88,14 +88,12 @@ public class PlayGround extends JPanel
                 for (ActionListener listener : cell[i][j].getActionListeners())
                     cell[i][j].removeActionListener(listener);
                 cell[i][j].addActionListener(
-                        new SelectUnitController(game, view,
-                                new Position(i, j)));
+                        new SelectUnitController(view, new Position(i, j)));
                 cell[i][j].addActionListener(
-                        new MoveUnitController(game, view, new Position(i, j)));
+                        new MoveUnitController(view, new Position(i, j)));
 
                 cell[i][j].addActionListener(
-                        new AttackUnitController(game, view,
-                                new Position(i, j)));
+                        new AttackUnitController(view, new Position(i, j)));
             }
     }
 
@@ -130,9 +128,9 @@ public class PlayGround extends JPanel
 
     public void reset()
     {
-        for(int i=0; i<size; i++)
-            for(int j=0; j<size; j++)
-                setButtonImage(new Position(i,j), null);
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                setButtonImage(new Position(i, j), null);
     }
 
 }

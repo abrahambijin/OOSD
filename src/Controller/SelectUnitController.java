@@ -10,9 +10,9 @@ import java.awt.event.ActionEvent;
  */
 public class SelectUnitController extends GameActionController
 {
-    public SelectUnitController(Game game, GameGUI view, Position location)
+    public SelectUnitController(GameGUI view, Position location)
     {
-        super(game, view, location);
+        super(view, location);
     }
 
     @Override

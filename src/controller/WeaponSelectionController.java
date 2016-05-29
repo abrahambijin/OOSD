@@ -16,17 +16,15 @@ import java.awt.event.ActionListener;
 /**
  * Created by ankurdabral on 10/05/2016.
  */
-public class WeaponSelectionController implements ListSelectionListener
+public class WeaponSelectionController extends GameController implements 
+        ListSelectionListener
 {
-
-    private Game game;
-    private GameGUI view;
+    
     private boolean isActive;
 
-    public WeaponSelectionController(Game game, GameGUI view)
+    public WeaponSelectionController(GameGUI view)
     {
-        this.game = game;
-        this.view = view;
+        super(view);
         this.isActive = false;
     }
 
@@ -36,23 +34,23 @@ public class WeaponSelectionController implements ListSelectionListener
     {
         if (!e.getValueIsAdjusting() && isActive)
         {
-            String value = view.getPlayerStatus().getBottom().getSelectedID();
+            String value = super.getView().getPlayerStatus().getBottom().getSelectedID();
             GameItem selectedItem =
-                    game.getItem(view.getPlayerStatus().getItemLocation());
+                    super.getGame().getItem(super.getView().getPlayerStatus().getItemLocation());
             Weapon weapon = null;
             if (selectedItem instanceof Unit)
                 weapon = ((Unit) selectedItem).getWeapon(value);
 
             if (weapon != null)
             {
-                view.getPlayerStatus().getBottom().updatePowerLevel(weapon);
-                PlayerColor playerColor = game.getCurrentPlayer().getColor();
+                super.getView().getPlayerStatus().getBottom().updatePowerLevel(weapon);
+                PlayerColor playerColor = super.getGame().getCurrentPlayer().getColor();
                 Color cellColor =
                         new Color(playerColor.getRed(), playerColor.getGreen(),
                                 playerColor.getBlue());
 
-                view.getPlayGround().disableButtons(
-                        game.getPossibleShootingOptions(
+                super.getView().getPlayGround().disableButtons(
+                        super.getGame().getPossibleShootingOptions(
                                 selectedItem.getPosition(), value), cellColor);
             }
         }

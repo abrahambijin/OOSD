@@ -24,7 +24,7 @@ public class ItemInfo extends JPanel
     private JButton backButton;
     private JPanel buttonPanel;
 
-    public ItemInfo(Game game, GameGUI view)
+    public ItemInfo(GameGUI view)
     {
 
         this.setLayout(new GridLayout(0, 1));
@@ -37,20 +37,20 @@ public class ItemInfo extends JPanel
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
             moveButton = new JButton("Move");
-            moveButton.addActionListener(new MoveButtonController(game, view));
+            moveButton.addActionListener(new MoveButtonController(view));
             moveButton.setPreferredSize(new Dimension(100, 40));
             moveButton.setEnabled(false);
             hitButton = new JButton("Attack");
-            hitButton.addActionListener(new AttackButtonController(game, view));
+            hitButton.addActionListener(new AttackButtonController(view));
             hitButton.setPreferredSize(new Dimension(100, 40));
             hitButton.setEnabled(false);
             undoButton = new JButton("Undo");
-            undoButton.addActionListener(new UndoController(game, view));
+            undoButton.addActionListener(new UndoController(view));
             undoButton.setPreferredSize(new Dimension(100, 40));
             undoButton.setEnabled(false);
             // back button to undo seleted action
             backButton = new JButton("Back");
-            backButton.addActionListener(new BackButtonController(game, view));
+            backButton.addActionListener(new BackButtonController(view));
             backButton.setPreferredSize(new Dimension(200, 40));
             buttonPanel.setOpaque(false);
             buttonPanel.add(moveButton);

@@ -4,17 +4,19 @@ import Model.*;
 import View.GameGUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /**
  * Created by ankurdabral on 12/04/2016.
  */
-public class MoveButtonController extends GameController
+public class MoveButtonController extends GameController implements
+        ActionListener
 {
 
-    public MoveButtonController(Game game, GameGUI view)
+    public MoveButtonController(GameGUI view)
     {
-        super(game, view);
+        super(view);
     }
 
     @Override

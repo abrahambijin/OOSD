@@ -11,9 +11,9 @@ import java.awt.event.ActionEvent;
  */
 public class MoveUnitController extends GameActionController
 {
-    public MoveUnitController(Game game, GameGUI view, Position location)
+    public MoveUnitController(GameGUI view, Position location)
     {
-        super(game, view, location);
+        super(view, location);
     }
 
     @Override

@@ -13,11 +13,11 @@ import java.util.ArrayList;
 /**
  * Created by Bijin on 10-May-16.
  */
-public class UndoController extends GameController
+public class UndoController extends GameController implements ActionListener
 {
-    public UndoController(Game game, GameGUI view)
+    public UndoController(GameGUI view)
     {
-        super(game, view);
+        super(view);
     }
 
     @Override
