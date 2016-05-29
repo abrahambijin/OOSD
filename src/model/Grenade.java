@@ -1,6 +1,7 @@
 package Model;
 
 import Interfaces.Weapon;
+import Utility.Position;
 
 import java.io.Serializable;
 import java.util.ArrayList;

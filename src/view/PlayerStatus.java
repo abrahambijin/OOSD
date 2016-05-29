@@ -3,6 +3,8 @@ package View;
 import Model.*;
 import Interfaces.*;
 import Utility.CustomFonts;
+import Utility.PlayerColor;
+import Utility.Position;
 
 import javax.swing.*;
 import java.awt.*;

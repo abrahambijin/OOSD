@@ -1,17 +1,14 @@
 package Controller;
 
 import Interfaces.Weapon;
-import Model.Game;
 import Model.GameItem;
-import Model.PlayerColor;
+import Utility.PlayerColor;
 import Model.Unit;
 import View.GameGUI;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by ankurdabral on 10/05/2016.

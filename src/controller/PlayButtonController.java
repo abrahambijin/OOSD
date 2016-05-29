@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Game;
 import View.GameGUI;
-import View.SettingsScreen;
+import SplashScreen.SettingsScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

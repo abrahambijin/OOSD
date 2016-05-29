@@ -2,7 +2,7 @@ package Settings;
 
 import Interfaces.Weapon;
 import Model.BasicWeapon;
-import Model.Direction;
+import Utility.Direction;
 import Model.Grenade;
 import Model.Sniper;
 

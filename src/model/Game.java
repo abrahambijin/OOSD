@@ -1,6 +1,7 @@
 package Model;
 
 import Settings.GameSettings;
+import Utility.Position;
 
 
 import java.io.Serializable;

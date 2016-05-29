@@ -2,13 +2,12 @@ package View;
 
 import Controller.WeaponSelectionController;
 import Interfaces.Weapon;
-import Model.Game;
 import Utility.CustomFonts;
+import Utility.LabelField;
 import Utility.Posture;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -18,7 +17,6 @@ import java.util.ArrayList;
  */
 public class ItemWeaponInfo extends JPanel
 {
-    private JScrollPane scroll = new JScrollPane();
     private JLabel label = new JLabel();
     private JPanel itemList = new JPanel();
     private JPanel itemStrength = new JPanel();
@@ -49,7 +47,7 @@ public class ItemWeaponInfo extends JPanel
                 selectionListener); // add actionlistner to weapon list
 
         //adding scroll pane
-        scroll = new JScrollPane(weaponsList);
+        JScrollPane scroll = new JScrollPane(weaponsList);
         itemList.add(label, BorderLayout.PAGE_START);
         itemList.add(scroll);
         itemList.setOpaque(false);

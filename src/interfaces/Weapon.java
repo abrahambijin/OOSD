@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Model.Position;
+import Utility.Position;
 
 import java.util.ArrayList;
 import java.util.HashMap;

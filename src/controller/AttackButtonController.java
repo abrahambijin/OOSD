@@ -1,16 +1,15 @@
 package Controller;
 
 import Model.*;
-import Utility.Posture;
+import Utility.ButtonStatus;
+import Utility.PlayerColor;
 import View.GameGUI;
 import View.PlayGround;
 import View.PlayerStatus;
 
-import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 
 /**

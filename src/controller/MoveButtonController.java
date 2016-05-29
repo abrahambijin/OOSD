@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.*;
+import Utility.ButtonStatus;
+import Utility.PlayerColor;
 import View.GameGUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;

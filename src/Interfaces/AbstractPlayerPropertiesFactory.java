@@ -1,7 +1,7 @@
 package Interfaces;
 
 import Model.GameItem;
-import Model.PlayerColor;
+import Utility.PlayerColor;
 
 import java.util.ArrayList;
 

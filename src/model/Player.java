@@ -2,7 +2,8 @@ package Model;
 
 import Factory.PlayerPropertiesFactory;
 import Interfaces.AbstractPlayerPropertiesFactory;
-import Interfaces.Weapon;
+import Utility.PlayerColor;
+import Utility.Position;
 
 import java.io.Serializable;
 import java.util.ArrayList;

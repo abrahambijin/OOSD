@@ -1,4 +1,4 @@
-package Controller;
+package Utility;
 
 /**
  * Created by Bijin on 11-May-16.

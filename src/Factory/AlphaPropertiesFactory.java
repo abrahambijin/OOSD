@@ -4,7 +4,7 @@ import Exceptions.ObjectAlreadyExistException;
 import Interfaces.AbstractPlayerPropertiesFactory;
 import Model.Base;
 import Model.GameItem;
-import Model.PlayerColor;
+import Utility.PlayerColor;
 import Settings.UnitsList;
 
 import java.util.ArrayList;

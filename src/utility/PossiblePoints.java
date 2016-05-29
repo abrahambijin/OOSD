@@ -1,6 +1,5 @@
 package Utility;
 
-import Model.*;
 import Settings.GameSettings;
 
 import java.util.ArrayList;

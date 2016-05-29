@@ -1,7 +1,7 @@
 package Controller;
 
 
-import View.SettingsScreen;
+import SplashScreen.SettingsScreen;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;

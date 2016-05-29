@@ -2,7 +2,7 @@ package Factory;
 
 import Interfaces.AbstractPlayerPropertiesFactory;
 import Model.GameItem;
-import Model.PlayerColor;
+import Utility.PlayerColor;
 import Settings.UnitsList;
 
 import java.util.ArrayList;

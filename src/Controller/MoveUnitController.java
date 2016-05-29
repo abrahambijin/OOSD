@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.*;
+import Utility.ButtonStatus;
+import Utility.Position;
 import Utility.Posture;
 import View.GameGUI;
 

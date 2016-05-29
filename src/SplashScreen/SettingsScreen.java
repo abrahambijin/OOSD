@@ -1,10 +1,10 @@
-package View;
+package SplashScreen;
 
 import Controller.PlayButtonController;
 import Controller.PlayerNameInputController;
-import Model.Game;
 import Settings.GameSettings;
 import Utility.CustomFonts;
+import Utility.InputLabelTextField;
 
 import javax.swing.*;
 import java.awt.*;

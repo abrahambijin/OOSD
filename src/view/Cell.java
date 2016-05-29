@@ -1,7 +1,8 @@
 package View;
 
 import Controller.*;
-import Model.Position;
+import Utility.Position;
+import Utility.ButtonStatus;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

@@ -1,12 +1,10 @@
 package View;
 
-import Controller.*;
-import Model.Game;
-import Model.Position;
+import Utility.Position;
+import Utility.ButtonStatus;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**

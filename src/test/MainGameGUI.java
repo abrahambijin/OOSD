@@ -2,8 +2,8 @@ package Test;
 
 import Settings.UnitsList;
 import Utility.CustomFonts;
-import View.SplashScreen;
-import View.SettingsScreen;
+import SplashScreen.SplashScreen;
+import SplashScreen.SettingsScreen;
 
 import javax.swing.*;
 

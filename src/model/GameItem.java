@@ -1,5 +1,7 @@
 package Model;
 
+import Utility.Position;
+
 import java.io.Serializable;
 import java.util.Observable;
 

@@ -1,6 +1,5 @@
 package View;
 
-import Model.Game;
 import Utility.CustomFonts;
 
 import javax.swing.*;

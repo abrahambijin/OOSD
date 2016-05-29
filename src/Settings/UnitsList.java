@@ -1,7 +1,7 @@
 package Settings;
 
 
-import Model.Direction;
+import Utility.Direction;
 import Model.Tower;
 import Model.Unit;
 

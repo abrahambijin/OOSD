@@ -1,7 +1,5 @@
 package Memento;
 
-import Model.Game;
-
 /**
  * Created by mitulmanish on 29/05/2016.
  */

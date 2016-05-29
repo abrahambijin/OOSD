@@ -2,6 +2,8 @@ package Controller;
 
 import Model.*;
 import Settings.GameSettings;
+import Utility.ButtonStatus;
+import Utility.Position;
 import View.GameGUI;
 
 import java.awt.event.ActionEvent;
@@ -71,8 +73,6 @@ public class InitialItemPlacingController extends GameActionController
                             obstacle.getImageIconPath());
                 }
 
-                System.out
-                        .println(super.getGame().getCurrentPlayer().getName());
                 super.saveGame();
 
                 super.getView().getPlayGround().disableButtons(

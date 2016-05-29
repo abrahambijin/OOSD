@@ -2,6 +2,7 @@ package View;
 
 
 import Model.Game;
+import Utility.LabelField;
 
 import java.awt.*;
 import javax.swing.*;

@@ -1,6 +1,8 @@
 package Model;
 
 import Interfaces.Weapon;
+import Utility.Direction;
+import Utility.Position;
 import Utility.PossiblePoints;
 import Utility.Posture;
 

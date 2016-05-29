@@ -1,10 +1,10 @@
 package Controller;
 
 import Memento.CareTaker;
-import Model.Game;
 import Model.GameItem;
-import Model.Position;
+import Utility.Position;
 import Settings.GameSettings;
+import Utility.ButtonStatus;
 import View.GameGUI;
 
 import javax.swing.*;

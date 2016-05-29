@@ -1,5 +1,6 @@
 package Model;
 
+import Utility.Position;
 import Utility.PossiblePoints;
 
 import java.io.Serializable;

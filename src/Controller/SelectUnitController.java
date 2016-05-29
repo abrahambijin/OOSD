@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Utility.Position;
 import View.GameGUI;
 
 import java.awt.event.ActionEvent;
