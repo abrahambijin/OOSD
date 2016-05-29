@@ -35,13 +35,10 @@ public class UndoController extends GameController
             super.getView().getPlayGround()
                     .setButtonImage(position, item.getImageIconPath());
         }
-        super.getView().getPlayerStatus().getBottom().setVisible(false);
-        super.getView().getPlayerStatus().getBottom2().setVisible(false);
-        super.getView().getPlayerStatus().getBottom().setListenerStatus(false);
-        super.getView().getPlayerStatus().getBottom2().resetButton();
         super.getView().getPlayGround().disableButtons(occupiedPositions, null);
         super.getView().getPlayerStatus()
                 .updatePage(super.getGame().getCurrentPlayer());
+        System.out.println(super.getGame().getCurrentPlayer().getName()+"++++");
         super.getView().getPlayerStatus().getTop().enableBackButton(false);
         GameActionController.setSTATUS(ButtonStatus.NOT_SELECTED);
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +

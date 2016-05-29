@@ -26,6 +26,7 @@ public class SelectUnitController extends GameActionController
                 Boolean pass = super.getGame()
                         .isUnitOfCurrentPlayer(super.getLocation()) &&
                         !(item instanceof Base);
+                System.out.println(super.getGame().getCurrentPlayer());
                 super.getView().getPlayerStatus().setItem(item, pass);
             }
             super.getView().setStatus(

@@ -72,12 +72,10 @@ public class PlayerStatus extends JPanel
     {
         itemLocation = item.getPosition();
         if (item instanceof Unit){
-            //bottom.setVisible(buttonsEnabled);
+
             ArrayList<Weapon> Weapon = ((Unit) item).getWeapons();
             bottom.updateList(Weapon);
         }
-//            bottom.setVisible(false);
-//            bottom2.setVisible(false);
 
         top.setValues(item);
         top.enableButtons(buttonsEnabled);

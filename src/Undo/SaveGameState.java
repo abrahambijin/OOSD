@@ -45,7 +45,7 @@ public class SaveGameState
             e.printStackTrace();
         }
 
-        return checker == 1 ? true: false;
+        return checker == 1;
     }
 
     public boolean loadGame(GameController gameController, int stage)
