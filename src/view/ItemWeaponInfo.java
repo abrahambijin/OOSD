@@ -28,7 +28,7 @@ public class ItemWeaponInfo extends JPanel
     private JList weaponsList;
     private LabelField powerLevel;
     private WeaponSelectionController selectionListener;
-    private JLabel weaponInfo;
+    private JTextArea weaponInfo;
 
     public ItemWeaponInfo(Game game, GameGUI view)
     {
@@ -56,18 +56,22 @@ public class ItemWeaponInfo extends JPanel
         itemStrength.setLayout(new BorderLayout(0, 0));
 
         powerLevel = new LabelField("Power");
-        powerLevel.setBorder(new EmptyBorder(10, 10, 0, 0));
+        powerLevel.setBorder(new EmptyBorder(0, 20, 0, 10));
         imagePanel.setLayout(new BorderLayout());
         imageLabel.setForeground(Color.white);
         imageLabel.setOpaque(true);
-        imagePanel.add(imageLabel, BorderLayout.WEST);
+        imagePanel.add(imageLabel,BorderLayout.WEST);
         imagePanel.setOpaque(false);
         imagePanel.setBorder(new EmptyBorder(30, 20, 10, 0));
-        weaponInfo = new JLabel("New Label");
+        weaponInfo = new JTextArea();
         weaponInfo.setForeground(Color.white);
-        imagePanel.add(weaponInfo,BorderLayout.EAST);
-        itemStrength.add(imagePanel, BorderLayout.PAGE_START);
-        itemStrength.add(powerLevel, BorderLayout.LINE_START);
+        weaponInfo.setFont(CustomFonts.chelsea);
+        weaponInfo.setOpaque(false);
+        weaponInfo.setBorder(new EmptyBorder(0, 22, 0, 10));
+        itemStrength.add(imagePanel);
+        itemStrength.add(powerLevel);
+        itemStrength.add(weaponInfo);
+        itemStrength.setLayout(new BoxLayout(itemStrength,BoxLayout.Y_AXIS));
         //imageLabel.setBorder(new EmptyBorder(0,5,0,0));
 
         itemStrength.setOpaque(false);
@@ -101,7 +105,7 @@ public class ItemWeaponInfo extends JPanel
             powerLevel.setValue(weapon.getDamage() + "");
             imageLabel.setIcon(new ImageIcon(
                     new ImageIcon(weapon.getImage()).getImage()
-                            .getScaledInstance(70, 70, Image.SCALE_DEFAULT)));
+                            .getScaledInstance(80, 50, Image.SCALE_DEFAULT)));
             imageLabel.repaint();
         }
     }
@@ -113,8 +117,8 @@ public class ItemWeaponInfo extends JPanel
 
     public void setWeaponInfo(Posture info){
 
-        weaponInfo.setText("Unit is in "+info.toString()+"mode \n" +
-                "the damage changed by"+info.getValue());
+        weaponInfo.setText("Unit is in "+info.toString()+" mode \n" +
+                " the damage changed by "+info.getValue());
     }
 
 
