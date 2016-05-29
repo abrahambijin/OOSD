@@ -58,3 +58,4 @@ public class AttackButtonController extends GameController
         super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
                 ", select the item you want to attack with");
     }
+}
