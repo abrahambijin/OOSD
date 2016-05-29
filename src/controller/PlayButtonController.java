@@ -29,7 +29,7 @@ public class PlayButtonController implements ActionListener
         int peices = screen.getPecies();
         screen.setVisible(false);
 
-        Game game = Game.GameFactory(names, board, peices);
+        Game game = new Game(names, board, peices);
         GameController.setController(game);
         GameGUI gui = new GameGUI(game);
 
