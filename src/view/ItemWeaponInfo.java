@@ -33,48 +33,50 @@ public class ItemWeaponInfo extends JPanel
     public ItemWeaponInfo(Game game, GameGUI view)
     {
         this.setLayout(new BorderLayout());
-        // adding scroll pane to select item
+        //adding scroll pane to select item
         itemList.setLayout(new BorderLayout());
-        //itemList.setLayout(new FlowLayout(FlowLayout.LEFT,2,20));
         label = new JLabel("Weapons", SwingConstants.LEFT);
         label.setForeground(Color.white);
         label.setFont(CustomFonts.primeTime);
-
+        //new actionListner to read item from list
         selectionListener = new WeaponSelectionController(game, view);
 
         weaponsList = new JList(listItems);
         weaponsList.setFont(CustomFonts.droidSans);
-        weaponsList.addListSelectionListener(selectionListener);
+        weaponsList.addListSelectionListener(selectionListener); // add actionlistner to weapon list
+
+        //adding scroll pane
         scroll = new JScrollPane(weaponsList);
-        //scroll.setPreferredSize(new Dimension(20, 1000));
-        //        label.setOpaque(false);
-        //        scroll.setOpaque(false);
         itemList.add(label, BorderLayout.PAGE_START);
         itemList.add(scroll);
         itemList.setOpaque(false);
-        //itemStrength.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 20));
         itemStrength.setLayout(new BorderLayout(0, 0));
 
-        powerLevel = new LabelField("Power");
+        powerLevel = new LabelField("Power"); // label fiel to show power level of weapon
         powerLevel.setBorder(new EmptyBorder(0, 20, 0, 10));
+
+        //new panel to add image of weapon
         imagePanel.setLayout(new BorderLayout());
         imageLabel.setForeground(Color.white);
         imageLabel.setOpaque(true);
-        imagePanel.add(imageLabel,BorderLayout.WEST);
+        imagePanel.add(imageLabel,BorderLayout.WEST); //add image label to panel
         imagePanel.setOpaque(false);
         imagePanel.setBorder(new EmptyBorder(30, 20, 10, 0));
+
+        //text area to show posture and its value
         weaponInfo = new JTextArea();
         weaponInfo.setForeground(Color.white);
         weaponInfo.setFont(CustomFonts.chelsea);
         weaponInfo.setOpaque(false);
         weaponInfo.setBorder(new EmptyBorder(0, 22, 0, 10));
+
+        //adding to single panel
         itemStrength.add(imagePanel);
         itemStrength.add(powerLevel);
         itemStrength.add(weaponInfo);
         itemStrength.setLayout(new BoxLayout(itemStrength,BoxLayout.Y_AXIS));
-        //imageLabel.setBorder(new EmptyBorder(0,5,0,0));
-
         itemStrength.setOpaque(false);
+
         //add panels
         this.setOpaque(false);
         this.add(itemList, BorderLayout.WEST);
@@ -82,7 +84,7 @@ public class ItemWeaponInfo extends JPanel
 
     }
 
-    public void updateList(ArrayList<Weapon> weapons)
+    public void updateList(ArrayList<Weapon> weapons) //update weapon list according to units
     {
         listItems.clear();
         powerLevel.resetValue();
@@ -93,12 +95,13 @@ public class ItemWeaponInfo extends JPanel
         weaponsList.setSelectedIndex(0);
     }
 
-    public String getSelectedID()
+    public String getSelectedID()  //get selected weapon
     {
         return (String) weaponsList.getSelectedValue();
     }
 
-    public void updatePowerLevel(Weapon weapon)
+    public void updatePowerLevel(Weapon weapon) //updates weapon power and
+                                                //image according to selection
     {
         if (weapon != null)
         {
@@ -110,12 +113,12 @@ public class ItemWeaponInfo extends JPanel
         }
     }
 
-    public void setListenerStatus(Boolean status)
+    public void setListenerStatus(Boolean status) //enable/disable weapon list
     {
         selectionListener.setIsActive(status);
     }
 
-    public void setWeaponInfo(Posture info){
+    public void setWeaponInfo(Posture info){ //update posture information
 
         weaponInfo.setText("Unit is in "+info.toString()+" mode \n" +
                 " the damage changed by "+info.getValue());

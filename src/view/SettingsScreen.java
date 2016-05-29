@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Bijin on 30-Apr-16.
+ *
+ * first screen to set player names , size of board and number of pieces
  */
 public class SettingsScreen extends JFrame
 {
@@ -27,6 +29,7 @@ public class SettingsScreen extends JFrame
         header.setForeground(Color.white);
         header.setFont(CustomFonts.lifeCraft);
 
+        //Input label fields for player names
         players = new ArrayList<>();
         for (int i = 0; i < GameSettings.NO_OF_PLAYERS; i++)
         {
@@ -36,21 +39,20 @@ public class SettingsScreen extends JFrame
             players.add(playerName);
         }
 
+        //selecting board size
         String[] sizeValue = {"Small", "Medium", "Large"};
         boardSize = new JComboBox<>(sizeValue);
         boardSize.setSelectedIndex(0);
         JLabel boardSizeHeading = new JLabel("Select Board Size");
-
         boardSizeHeading.setForeground(Color.white);
         boardSizeHeading.setFont(CustomFonts.droidSans);
-        //boardSizeHeading.setFont(new Font("Arial", Font.BOLD, 14));
         JPanel boardSizePanel = new JPanel(new FlowLayout(FlowLayout.LEFT,30,0));
         boardSizePanel.setBackground(new Color(61, 61, 61));
         boardSizePanel.add(boardSizeHeading);
         boardSizePanel.add(boardSize);
         boardSizePanel.setOpaque(false);
 
-        //String[] peciesValue = {"2","4","6","8"};
+      //setting number of pieces
         int limit = GameSettings.MAX_NO_OF_UNITS/GameSettings.INCREMENTS;
         String[] peciesValue = new String[limit];
         for(int i = 0,j=GameSettings.INCREMENTS; i<limit; i++,j+=GameSettings.INCREMENTS)
@@ -61,7 +63,6 @@ public class SettingsScreen extends JFrame
         pecies.setSelectedIndex(0);
         JLabel peciesHeading = new JLabel("Number Of Pecies");
         peciesHeading.setForeground(Color.white);
-        //peciesHeading.setFont(new Font("Arial",Font.BOLD,14));
         peciesHeading.setFont(CustomFonts.droidSans);
         JPanel playerPeciesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,30,0));
         playerPeciesPanel.setBackground(new Color(61, 61, 61));
@@ -69,25 +70,15 @@ public class SettingsScreen extends JFrame
         playerPeciesPanel.add(pecies);
         playerPeciesPanel.setOpaque(false);
 
-
-        //JLabel playerPecies = new JLabel("Number of pecies:");
-        //playerPecies.setForeground(Color.white);
-        //playerPecies.setFont(new Font("Arial",Font.BOLD,14));
-        //JTextField peciesValue = new JTextField("",10);
-        //playerPeciesPanel.setOpaque(false);
-        //playerPeciesPanel.add(playerPecies);
-        //playerPeciesPanel.add(peciesValue);
-        //playerPecies.getTextField();
-
+        //add start and cancel button
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
-
         startButton = new JButton("Play Game");
         startButton.addActionListener(new PlayButtonController(this));
-
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(e -> System.exit(0));
 
+        //adding buttons
         buttonPanel.add(startButton);
         buttonPanel.add(cancelButton);
 
@@ -98,10 +89,9 @@ public class SettingsScreen extends JFrame
             panel.add(inputLabelTextField);
         panel.add(playerPeciesPanel);
         panel.add(boardSizePanel);
-
-
         panel.setOpaque(false);
 
+        //add backgroung image
         JLabel background = new JLabel(new ImageIcon("Images/gameLogo2.jpg"));
         background.setLayout(new BorderLayout());
         background.add(panel);

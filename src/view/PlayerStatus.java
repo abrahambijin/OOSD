@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Created by ankurdabral on 12/04/2016.
- * playerStatus panel to
+ * playerStatus panel to show itemInfo and itemWeaponInfo
  */
 public class PlayerStatus extends JPanel
 {
@@ -26,27 +26,30 @@ public class PlayerStatus extends JPanel
     public PlayerStatus(Game game, GameGUI view)
     {
         this.setLayout(new BorderLayout());
+        //update players name
         playerName = new JLabel("Player : ", SwingConstants.CENTER);
         playerName.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         playerName.setPreferredSize(new Dimension(playerName.getWidth(),75));
         playerName.setFont(CustomFonts.lifeCraft);
         playerName.setForeground(Color.white);
+
         setPlayer(game.getCurrentPlayer());
         playerName.setOpaque(true);
+
         this.add(playerName,BorderLayout.NORTH);
 
         itemDetails = new JPanel(new GridLayout(2,1));
+
         top = new ItemInfo(game, view);
         bottom = new ItemWeaponInfo(game, view);
         bottom2 = new MoveStyle();
-       //bottom2.setOpaque(false);
+
+        // set bottom panel as not visible by default
         bottom.setVisible(false);
         bottom2.setVisible(false);
-        //bottom.setVisible(true);
 
         itemDetails.setOpaque(false);
         itemDetails.add(top);
-        //itemDetails.add(bottom);
         this.setOpaque(false);
         this.add(itemDetails);
     }
@@ -69,20 +72,20 @@ public class PlayerStatus extends JPanel
     }
 
     public void setItem(GameItem item, boolean buttonsEnabled)
-    {
+    {  //update weapon list
         itemLocation = item.getPosition();
         if (item instanceof Unit){
 
             ArrayList<Weapon> Weapon = ((Unit) item).getWeapons();
             bottom.updateList(Weapon);
         }
-
         top.setValues(item);
         top.enableButtons(buttonsEnabled);
 
     }
 
     public void setWeaponListVisible(boolean isVisible){
+        //set weapon list visible when attack button is clicked
         itemDetails.remove(bottom2);
         itemDetails.add(bottom);
         bottom.setVisible(isVisible);
@@ -91,10 +94,9 @@ public class PlayerStatus extends JPanel
     }
 
     public void setMoveButtons(){
-
+        // set move buttons visible when move button is clicked
         itemDetails.remove(bottom);
         bottom.setListenerStatus(false);
-
         itemDetails.add(bottom2);
         bottom2.setVisible(true);
         itemDetails.repaint();
@@ -103,7 +105,7 @@ public class PlayerStatus extends JPanel
 
 
     public void setPlayer(Player player)
-    {
+    { //set current player name in the panel
         playerName.setText(player.getName());
         PlayerColor playerColor = player.getColor();
         playerName.setBackground(
@@ -115,6 +117,10 @@ public class PlayerStatus extends JPanel
     {
         setPlayer(player);
         top.reset();
+    }
+    public void updateWeapon(Unit item){
+        bottom.updateList(((Unit) item).getWeapons());
+        bottom.setWeaponInfo(((Unit) item).getCurrentPosture());
     }
 
     public String getSelectedMovePosture()
