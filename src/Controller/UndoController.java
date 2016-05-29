@@ -3,7 +3,6 @@ package Controller;
 import Model.Game;
 import Model.GameItem;
 import Model.Position;
-import Undo.SaveGameState;
 import View.GameGUI;
 
 import java.awt.event.ActionEvent;
@@ -24,7 +23,8 @@ public class UndoController extends GameController implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         super.undo();
-
+        super.getGame().getCurrentPlayer().undoIsCalled();
+        
         ArrayList<Position> occupiedPositions =
                 super.getGame().getOccupiedBoardLocation();
 

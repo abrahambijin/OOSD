@@ -15,7 +15,7 @@ public class Originator
     public static String SAVE_GAME_LOCATION =
             "undoGame" + Integer.toString(COUNTER) + ".txt";
 
-    public void set()
+    private void set()
     {
         System.out.println("Originator: Saving to Memento.");
         if (COUNTER < 6)
@@ -28,18 +28,17 @@ public class Originator
         SAVE_GAME_LOCATION = "undoGame" + Integer.toString(COUNTER) + ".txt";
     }
 
-    public Memento saveToMemento(GameController gameController)
+    public Memento saveMemento(Game game)
     {
-
-        // always call the set method before calling the saveToMememto function
-
+        // always call the set method before calling the saveMemento function
+        set();
         try
         {
             OutputStream outputStream =
                     new FileOutputStream(SAVE_GAME_LOCATION);
             ObjectOutputStream objectOutputStream =
                     new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(gameController.getGame());
+            objectOutputStream.writeObject(game);
             outputStream.close();
 
         }
@@ -54,26 +53,26 @@ public class Originator
     /**
      * @param memento        : this memento object is fetched from the careTaker stack eg.
      *                       originator.restoreFromMemento(caretaker.getMemento(1), gameController);
-     * @param gameController
      */
-    public void restoreFromMemento(Memento memento,
-                                   GameController gameController)
+    public Game restoreMemento(Memento memento)
     {
 
         SAVE_GAME_LOCATION = memento.getSavedState();
 
+        Game game = null;
         try
         {
             InputStream inputStream = new FileInputStream(SAVE_GAME_LOCATION);
             ObjectInputStream objectInputStream =
                     new ObjectInputStream(inputStream);
-            Game game = (Game) objectInputStream.readObject();
-            gameController.setGame(game);
+            game = (Game) objectInputStream.readObject();
             inputStream.close();
+            System.out.println("Originator: Load Game");
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+        return game;
     }
 }

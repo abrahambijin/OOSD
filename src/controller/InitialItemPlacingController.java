@@ -70,6 +70,8 @@ public class InitialItemPlacingController extends GameController implements Acti
                             obstacle.getImageIconPath());
                 }
 
+                super.saveGame();
+
                 super.getView().getPlayGround()
                         .disableButtons(super.getGame().getOccupiedBoardLocation(), null);
                 super.getView().getPlayGround().resetButtonActionListener

@@ -74,7 +74,7 @@ public class PlayerStatus extends JPanel
         return itemLocation;
     }
 
-    public void setItem(GameItem item, boolean buttonsEnabled)
+    public void setItem(GameItem item, boolean buttonsEnabled, boolean canUndo)
     {  //update weapon list
         itemLocation = item.getPosition();
         if (item instanceof Unit){
@@ -83,7 +83,7 @@ public class PlayerStatus extends JPanel
             bottom.updateList(Weapon);
         }
         top.setValues(item);
-        top.enableButtons(buttonsEnabled);
+        top.enableButtons(buttonsEnabled,canUndo);
 
     }
 

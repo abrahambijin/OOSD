@@ -30,7 +30,7 @@ public class PlayButtonController implements ActionListener
         screen.setVisible(false);
 
         Game game = Game.GameFactory(names, board, peices);
-        GameController.setControler(game);
+        GameController.setController(game);
         GameGUI gui = new GameGUI(game);
 
         gui.setSize(1400, 700);

@@ -63,11 +63,11 @@ public class ItemInfo extends JPanel
 
     }
 
-    public void enableButtons(Boolean isEnabled)
+    public void enableButtons(Boolean isEnabled, Boolean canUndo)
     {
         moveButton.setEnabled(isEnabled);
         hitButton.setEnabled(isEnabled);
-        undoButton.setEnabled(isEnabled);
+        undoButton.setEnabled(canUndo);
     }
 
     // set values of unit name and health
@@ -105,7 +105,7 @@ public class ItemInfo extends JPanel
 
     public void reset()
     {
-        enableButtons(false);
+        enableButtons(false,false);
         setValues(null);
     }
 

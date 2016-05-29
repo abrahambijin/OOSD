@@ -17,6 +17,7 @@ public class Player implements Serializable
     private PlayerColor color;
     private boolean isPlayerOne;
     private boolean isAlive;
+    private boolean undoCalled;
 
     private Player(String name, ArrayList<GameItem> units, PlayerColor color, boolean isPlayerOne)
     {
@@ -25,6 +26,7 @@ public class Player implements Serializable
         this.units = units;
         this.isPlayerOne = isPlayerOne;
         this.isAlive = true;
+        this.undoCalled = false;
     }
 
     public boolean isPlayerOne() {
@@ -87,5 +89,15 @@ public class Player implements Serializable
     public boolean isAlive()
     {
         return isAlive;
+    }
+
+    public boolean isUndoCalled()
+    {
+        return undoCalled;
+    }
+
+    public void undoIsCalled()
+    {
+        this.undoCalled = true;
     }
 }
