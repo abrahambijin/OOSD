@@ -44,9 +44,9 @@ public abstract class GameController
         careTaker.store(originator.saveMemento(game));
     }
 
-    public void undo()
+    public void undo(int undoStage)
     {
-        Game newGame = originator.restoreMemento(careTaker.load(1));
+        Game newGame = originator.restoreMemento(careTaker.load(undoStage));
         if (newGame != null)
             GameController.game = newGame;
     }
