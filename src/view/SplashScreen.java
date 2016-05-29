@@ -2,6 +2,9 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+/**
+ * splash screen with game logo
+ */
 
 public class SplashScreen extends JWindow
 {

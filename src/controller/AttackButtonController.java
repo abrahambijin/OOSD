@@ -3,7 +3,10 @@ package Controller;
 import Model.*;
 import Utility.Posture;
 import View.GameGUI;
+import View.PlayGround;
+import View.PlayerStatus;
 
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Created by ankurdabral on 10/05/2016.
+ * to show the view to game when attack button is clicked
  */
 public class AttackButtonController extends GameController implements
         ActionListener
@@ -25,39 +29,39 @@ public class AttackButtonController extends GameController implements
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        PlayGround playGround = super.getView().getPlayGround();
+        PlayerStatus playeStatus = super.getView().getPlayerStatus();
+        Game game = super.getGame();
+
         GameActionController.setSTATUS(ButtonStatus.SELECTED_TO_ATTACK);
-        GameItem item = super.getGame()
-                .getItem(super.getView().getPlayerStatus().getItemLocation());
+        GameItem item = game.getItem(playeStatus.getItemLocation());
+        //set list listner to false initially
+        playeStatus.getBottom().setListenerStatus(true);
 
-        super.getView().getPlayerStatus().getBottom().setListenerStatus(true);
-        String selectedWeapon =
-                super.getView().getPlayerStatus().getBottom().getSelectedID();
+        String selectedWeapon = playeStatus.getBottom().getSelectedID();
+        PlayerColor playerColor = game.getCurrentPlayer().getColor(); // get current player color
 
-        PlayerColor playerColor = super.getGame().getCurrentPlayer().getColor();
-        Color cellColor =
-                new Color(playerColor.getRed(), playerColor.getGreen(),
+        Color cellColor = new Color(playerColor.getRed(), playerColor.getGreen(),
                         playerColor.getBlue());
-
-
-        super.getView().getPlayGround().disableButtons(super.getGame()
+        //enable/disable button in playground
+        playGround.disableButtons(game
                         .getPossibleShootingOptions(item.getPosition(), selectedWeapon),
                 cellColor);
 
-        super.getView().getPlayGround()
-                .setDisabledButtonIcon(item.getPosition(),
+        playGround.setDisabledButtonIcon(item.getPosition(),
                         item.getImageIconPath());
 
         boolean pass = item instanceof Unit;
+
         if (pass)
-        {
-            super.getView().getPlayerStatus().getBottom()
-                    .updateList(((Unit) item).getWeapons());
-            super.getView().getPlayerStatus().getBottom()
-                    .setWeaponInfo(((Unit) item).getCurrentPosture());
+        { //pass unit to update view
+            playeStatus.updateWeapon((Unit) item);
         }
-        super.getView().getPlayerStatus().setWeaponListVisible(pass);
-        super.getView().getPlayerStatus().getTop().enableBackButton(true);
-        super.getView().setStatus(super.getGame().getCurrentPlayer().getName() +
+
+        playeStatus.setWeaponListVisible(pass);
+        playeStatus.getTop().enableBackButton(true); //enable back button
+
+        super.getView().setStatus(game.getCurrentPlayer().getName() +
                 ", select the item you want to attack with");
     }
 }
