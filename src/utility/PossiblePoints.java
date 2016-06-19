@@ -4,6 +4,7 @@ import Settings.GameSettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by Bijin on 14-Apr-16.
@@ -98,8 +99,8 @@ public final class PossiblePoints
                                                         boolean isPlayerOne)
     {
         if (isPlayerOne)
-            return getPointsInRange(basePosition, GameSettings
-                    .INITIAL_DISTANCE_FROM_BASE);
+            return getPointsInRange(basePosition,
+                    GameSettings.INITIAL_DISTANCE_FROM_BASE);
 
         ArrayList<Position> listOfPositions = new ArrayList<>();
         if (!(basePosition.getYCoordinate() < ((boardSize - 1) / 2)))
@@ -121,8 +122,8 @@ public final class PossiblePoints
         return listOfPositions;
     }
 
-    private static ArrayList<Position> getBorder(int fixedValue, boolean
-            xIsFixed, int limit)
+    private static ArrayList<Position> getBorder(int fixedValue,
+                                                 boolean xIsFixed, int limit)
     {
         ArrayList<Position> listOfPositions = new ArrayList<>();
         if (xIsFixed)
@@ -132,6 +133,14 @@ public final class PossiblePoints
             for (int i = 1; i < limit - 1; i++)
                 listOfPositions.add(new Position(i, fixedValue));
         return listOfPositions;
+    }
+
+    public static Position generateRandomPosition(int limit)
+    {
+        Random generator = new Random();
+        int x = generator.nextInt(limit);
+        int y = generator.nextInt(limit);
+        return new Position(x, y);
     }
 
 }

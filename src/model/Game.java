@@ -154,9 +154,6 @@ public class Game implements Serializable
                 !isUnitOfCurrentPlayer(targetLocation))
         {
             success = board.hit(itemLocation, targetLocation, weaponName);
-
-//            if (success)
-//                players.forEach(Player::updateItemList);
         }
 
         return success;

@@ -11,7 +11,6 @@ import java.util.*;
  */
 public class Board implements Serializable, Observer
 {
-
     private GameItem[][] warZone;
     private Position basePosition;
     private final int BOARD_SIZE;
@@ -24,10 +23,7 @@ public class Board implements Serializable, Observer
 
     private boolean placeGameUnit(GameItem item, Position position)
     {
-        int xCoordinate = position.getXCoordinate();
-        int yCoordinate = position.getYCoordinate();
-        // The cell must be empty to place a new game item
-        if (warZone[xCoordinate][yCoordinate] == null)
+        if (getUnit(position) == null)
         {
             setItemOnWarZone(position, item);
             item.addObserver(this);
@@ -81,10 +77,8 @@ public class Board implements Serializable, Observer
     public boolean move(Position currentPosition, Position newPosition)
     {
         boolean success = false;
-        int xCoordinate = currentPosition.getXCoordinate();
-        int yCoordinate = currentPosition.getYCoordinate();
 
-        GameItem item = warZone[xCoordinate][yCoordinate];
+        GameItem item = getUnit(currentPosition);
         if (item != null && item instanceof Unit)
         {
             if (item instanceof Tower)
@@ -102,7 +96,7 @@ public class Board implements Serializable, Observer
                 if (success)
                 {
                     ((Unit) item).move(newPosition);
-                    setItemOnWarZone(currentPosition,null);
+                    setItemOnWarZone(currentPosition, null);
                 }
             }
         }
@@ -120,9 +114,7 @@ public class Board implements Serializable, Observer
                 if (!isPositionOnBoard(candidatePosition) ||
                         getUnit(candidatePosition) != null)
                     break;
-
                 possiblePositions.add(candidatePosition);
-
             }
         return possiblePositions;
     }
@@ -170,7 +162,6 @@ public class Board implements Serializable, Observer
 
     public ArrayList<Position> addObstacles()
     {
-        Random generator = new Random();
         ArrayList<Position> positions = new ArrayList<>();
 
         int limit = BOARD_SIZE * 2 / 5;
@@ -179,9 +170,7 @@ public class Board implements Serializable, Observer
             Position p;
             do
             {
-                int x = generator.nextInt(BOARD_SIZE);
-                int y = generator.nextInt(BOARD_SIZE);
-                p = new Position(x, y);
+                p = PossiblePoints.generateRandomPosition(BOARD_SIZE);
             } while (!placeGameUnit(new Obstacles(), p));
 
             positions.add(p);
@@ -197,7 +186,6 @@ public class Board implements Serializable, Observer
             for (int j = 0; j < BOARD_SIZE; j++)
                 if (warZone[i][j] != null)
                     positionsOccupied.add(new Position(i, j));
-
         return positionsOccupied;
     }
 
@@ -205,6 +193,6 @@ public class Board implements Serializable, Observer
     public void update(Observable o, Object arg)
     {
         if (o instanceof GameItem)
-            setItemOnWarZone(((GameItem) o).getPosition(),null);
+            setItemOnWarZone(((GameItem) o).getPosition(), null);
     }
 }

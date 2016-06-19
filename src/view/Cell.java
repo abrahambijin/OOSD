@@ -16,7 +16,6 @@ public class Cell extends JButton
 {
 
     private Position position;
-    private GameActionController actionController;
 
     public Cell(int xCoordinate, int yCoordinate)
     {
@@ -31,6 +30,7 @@ public class Cell extends JButton
 
     public void setActionController(ButtonStatus buttonStatus, GameGUI view)
     {
+        GameActionController actionController;
         switch (buttonStatus)
         {
             case SELECTED_TO_MOVE:
